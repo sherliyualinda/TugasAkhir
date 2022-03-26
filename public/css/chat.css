@@ -1,0 +1,231 @@
+.nav-item a.active {
+    /*background-color: #358f66;*/
+    color: #358f66;
+    font-weight: 700;
+}
+
+.row {
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
+
+.col-form-label {
+    text-align: right;
+}
+
+.col-lg-10 {
+    padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+}
+
+#upload_link {
+    text-decoration: none;
+}
+
+#upload {
+    display: none
+}
+
+.list-group-item {
+    padding: 0.75rem 0rem;
+    background-color: #fdfdfd
+}
+
+ul.no-bullets {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#people-list {
+    margin-top: 0px;
+}
+
+.container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    max-width: 50%;
+    width: fit-content;
+}
+
+.darker {
+    margin-left: auto;
+    background-color: #ddd;
+    text-align: right;
+}
+
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.container img {
+    float: left;
+    max-width: 30px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+.time-right {
+    float: right;
+    color: #aaa;
+    font-size: 11px;
+}
+
+.time-left {
+    float: left;
+    color: #999;
+    font-size: 11px;
+}
+
+p {
+    margin-bottom: 0.5rem;
+    color: black;
+}
+
+.gap {
+    padding: 130px 0;
+    /*padding-top: 100px;*/
+}
+
+.modal-open .modal {
+    background-color: #00000094;
+}
+
+ul#ui-id-1.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front {
+    overflow-y: auto;
+    max-height: 200px;
+    top: 37px !important;
+    width: 300px;
+    position: absolute;
+    overflow-x: hidden;
+    font-size: 1rem;
+    color: #495057;
+    /*padding: .375rem .375rem;*/
+    font-family: Muli, Segoe Ui;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+    border: 1px solid #F5F5F5;
+    background: #F5F5F5;
+    font-weight: normal;
+    color: #fff
+}
+
+.post-comt-box2 {
+    display: inline-block;
+    padding-left: 15px;
+    position: relative;
+    width: 93%;
+}
+
+.post-comt-box2 form textarea {
+    background: #f3f3f3 none repeat scroll 0 0;
+    border-color: transparent;
+    border-radius: 3px;
+    color: #000000;
+    font-size: 13.5px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 16px;
+}
+
+.post-comt-box2 form button {
+    position: absolute;
+    color: #358f66;
+    right: 0;
+    background: #f3f3f3;
+    height: 40px;
+}
+
+.post-comt-box2 form button:hover {
+    position: absolute;
+    color: blue;
+    right: 0;
+    background: #f3f3f3;
+    height: 40px;
+}
+
+.we-comet>li {
+    margin-bottom: 0px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 7px;
+    min-width: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    background-color: red;
+    vertical-align: baseline;
+    border-radius: 10px;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #F5F5F5;
+}
+
+input.filterinput.form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-control:focus {
+    border-color: #ced4da;
+    box-shadow: none;
+}
+
+.attachments {
+    border: transparent;
+    display: block;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 7px;
+    text-align: right;
+    border-top: 0;
+    background: #f3f3f3;
+}
+
+.mb-3 {
+    margin-bottom: 0px !important;
+}
+
+.list-hover i {
+    display: none;
+}
+
+.list-hover:hover i {
+    display: block;
+    float: right;
+    top: -50%;
+    position: relative;
+}
+
+.list-hover:hover a {
+    width: 90%;
+}

@@ -1,0 +1,96 @@
+.nav-item a.active {
+    /*background-color: #358f66;*/
+    color: #358f66;
+    font-weight: 700;
+}
+
+.row {
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
+
+.col-form-label {
+    text-align: right;
+}
+
+.col-lg-10 {
+    padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+}
+
+.gap {
+    padding: 130px 0;
+}
+
+.field-icon {
+    float: right;
+    margin-left: -25px;
+    margin-right: 10px;
+    margin-top: -27px;
+    position: relative;
+    z-index: 2;
+}
+
+.chosen-container {
+    /*border: 1px solid #ced4da;*/
+    border-radius: 0.25rem;
+    padding-right: 15px;
+}
+
+.chosen-container-single .chosen-single {
+    border-width: 0 0 0;
+    padding: 0 0 0 0;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    background: white;
+}
+
+.chosen-container-single .chosen-single span {
+    margin-left: 5px;
+    color: #545454;
+    font-size: 15px;
+}
+
+.chosen-container .chosen-results li.highlighted {
+    background-color: #358f66;
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(20%, #358f61), color-stop(90%, #358f66));
+    background-image: -webkit-linear-gradient(#358f61 20%, #358f66 90%);
+    background-image: -moz-linear-gradient(#358f61 20%, #358f66 90%);
+    background-image: -o-linear-gradient(#358f61 20%, #358f66 90%);
+    background-image: linear-gradient(#358f61 20%, #358f66 90%);
+}
+
+ul#ui-id-1.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front {
+    overflow-y: auto;
+    max-height: 200px;
+    top: 37px !important;
+    width: 300px;
+    position: absolute;
+    overflow-x: hidden;
+    font-size: 1rem;
+    color: #495057;
+    /*padding: .375rem .375rem;*/
+    font-family: Muli, Segoe Ui;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+    border: 1px solid #F5F5F5;
+    background: #F5F5F5;
+    font-weight: normal;
+    color: #fff
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #F5F5F5;
+}
+
+.form-control:focus {
+    border-color: #ced4da;
+    box-shadow: none;
+}

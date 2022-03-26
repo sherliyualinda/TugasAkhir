@@ -1,0 +1,178 @@
+.feature-photo {
+    padding-top: 65px;
+}
+
+.feature-photo .container-fluid {
+    height: auto;
+}
+
+.edit-phto:hover {
+    background: rgba(192, 192, 192, 0.5);
+    border: 1px solid rgba(192, 192, 192, 0.5);
+    color: black;
+}
+
+.fileContainer:hover {
+    color: black;
+    font-weight: 600;
+}
+
+.modal-open .modal {
+    background-color: #00000094;
+}
+
+.post-comt-box2 {
+    display: inline-block;
+    padding-left: 15px;
+    position: relative;
+    width: 93%;
+}
+
+.post-comt-box2 form textarea {
+    background: #f3f3f3 none repeat scroll 0 0;
+    border-color: transparent;
+    border-radius: 3px;
+    color: #000000;
+    font-size: 13.5px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 16px;
+}
+
+.post-comt-box2 form button {
+    position: absolute;
+    color: #358f66;
+    right: 0;
+    background: #f3f3f3;
+    height: 40px;
+}
+
+.post-comt-box2 form button:hover {
+    position: absolute;
+    color: blue;
+    right: 0;
+    background: #f3f3f3;
+    height: 40px;
+}
+
+ul#ui-id-1.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front {
+    overflow-y: auto;
+    max-height: 200px;
+    top: 37px !important;
+    width: 300px;
+    position: absolute;
+    overflow-x: hidden;
+    font-size: 1rem;
+    color: #495057;
+    /*padding: .375rem .375rem;*/
+    font-family: Muli, Segoe Ui;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+    border: 1px solid #F5F5F5;
+    background: #F5F5F5;
+    font-weight: normal;
+    color: #fff
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #F5F5F5;
+}
+
+.form-control:focus {
+    border-color: #ced4da;
+    box-shadow: none;
+}
+
+/*@media screen and (max-width: 980px)*/
+@media screen and (max-width: 640px) {
+    .central-meta {
+        margin-bottom: 10px;
+        margin-top: 10px;
+        margin-right: 0px;
+        width: 100%;
+    }
+
+    .feature-photo>.edit-phto {
+        top: 70px;
+        bottom: auto !important;
+    }
+
+    .feature-photo>figure img {
+        height: 100px !important;
+    }
+
+    .user-avatar {
+        top: -75px !important;
+    }
+
+    .col-lg-2.col-sm-3 {
+        height: 70px !important;
+    }
+
+    div.central-meta.item {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    button#lihatdetil.portfolio-link.btn.btn-light {
+        height: 100px !important;
+    }
+
+    button#lihatdetil.portfolio-link.btn.btn-light>img {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    button#lihatdetil.portfolio-link.btn.btn-light>video {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    .container-fluid {
+        padding-left: 0px !important;
+    }
+
+    .user-avatar {
+        margin-left: 15px !important;
+    }
+
+    .user-avatar>figure>img {
+        width: 200px !important;
+        height: 200px !important;
+        object-fit: cover !important;
+    }
+}
+
+.user-avatar>figure>img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn-link {
+    color: #358f66;
+}
+
+body {
+    padding-right: 0 !important;
+}
+
+.swal2-html-container {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+
+.hide {
+    display: none;
+}
+
+.comment-text:hover .hide {
+    display: unset;
+}

@@ -1,0 +1,128 @@
+.gap {
+    padding: 130px 0;
+}
+
+.modal-open .modal {
+    background-color: #00000094;
+}
+
+p {
+    color: black;
+}
+
+.description>span {
+    font-weight: 400;
+}
+
+.post-comt-box2 {
+    display: inline-block;
+    padding-left: 15px;
+    position: relative;
+    width: 93%;
+}
+
+.post-comt-box2 form textarea {
+    background: #f3f3f3 none repeat scroll 0 0;
+    border-color: transparent;
+    border-radius: 3px;
+    color: #000000;
+    font-size: 13.5px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 16px;
+}
+
+.post-comt-box2 form button {
+    position: absolute;
+    color: #358f66;
+    right: 0;
+    background: #f3f3f3;
+    height: 40px;
+}
+
+.post-comt-box2 form button:hover {
+    position: absolute;
+    color: blue;
+    right: 0;
+    background: #f3f3f3;
+    height: 40px;
+}
+
+.we-comet>li {
+    margin-bottom: 0px;
+}
+
+ul#ui-id-1.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front {
+    overflow-y: auto;
+    max-height: 200px;
+    top: 37px !important;
+    width: 300px;
+    position: absolute;
+    overflow-x: hidden;
+    font-size: 1rem;
+    color: #495057;
+    /*padding: .375rem .375rem;*/
+    font-family: Muli, Segoe Ui;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+    border: 1px solid #F5F5F5;
+    background: #F5F5F5;
+    font-weight: normal;
+    color: #fff
+}
+
+.we-comet>li ul {
+    margin-top: 5px;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #F5F5F5;
+}
+
+/*i#icon_like.fa.fa-heart{
+	font-family: themify;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}*/
+
+.form-control:focus {
+    border-color: #ced4da;
+    box-shadow: none;
+}
+
+.swal2-image {
+    border-radius: 50%;
+}
+
+.friendz-meta {
+    width: 100%;
+}
+
+body {
+    padding-right: 0 !important;
+}
+
+.swal2-html-container {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+
+.hide {
+    display: none;
+}
+
+.we-comment:hover .hide {
+    display: unset;
+}

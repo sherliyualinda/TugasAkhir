@@ -1,0 +1,70 @@
+.nav-item a.active {
+    /*background-color: #358f66;*/
+    color: #358f66;
+    font-weight: 700;
+}
+
+.row {
+    padding-bottom: 5px;
+}
+
+.col-form-label {
+    text-align: right;
+}
+
+.col-lg-10 {
+    padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+}
+
+#upload_link {
+    text-decoration: none;
+}
+
+#upload {
+    display: none
+}
+
+.gap {
+    padding: 130px 0;
+    /*padding-top: 100px;*/
+}
+
+.modal-open .modal {
+    background-color: #00000094;
+}
+
+ul#ui-id-1.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front {
+    overflow-y: auto;
+    max-height: 200px;
+    top: 37px !important;
+    width: 300px;
+    position: absolute;
+    overflow-x: hidden;
+    font-size: 1rem;
+    color: #495057;
+    /*padding: .375rem .375rem;*/
+    font-family: Muli, Segoe Ui;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+    border: 1px solid #F5F5F5;
+    background: #F5F5F5;
+    font-weight: normal;
+    color: #fff
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #F5F5F5;
+}
+
+.form-control:focus {
+    border-color: #ced4da;
+    box-shadow: none;
+}
