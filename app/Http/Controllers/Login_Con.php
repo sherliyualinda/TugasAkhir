@@ -225,7 +225,7 @@ class Login_Con extends Controller
             $id = DB::table('pengguna')->insertGetId([
                 'jenis_akun'    =>  $request->jenis_akun,
                 'username'      =>  $request->username,
-                'password'      =>  Hash::make($request->password),
+                'password'      =>  $request->password,
                 'nama'          =>  ucwords(strtolower($nama)),
                 'village_id'    =>  $village_id,
                 'email'         =>  $request->email,
@@ -250,7 +250,7 @@ class Login_Con extends Controller
             'id'            =>  $id,
             'name'          =>  ucwords(strtolower($nama)),
             'email'         =>  $request->email,
-            'password'      =>  Hash::make($request->password),
+            'password'      =>  $request->password,
             'created_at'    =>  $tgl,
             'updated_at'    =>  $tgl
             ]);
@@ -266,7 +266,7 @@ class Login_Con extends Controller
         if($village_id != 0){       
             $data1 = [
                 'email'     => $request->email,
-                'password'  => Hash::make($request->password),
+                'password'  => $request->password,
                 'id_desa'   => $village_id,
                 'name'      => ucwords(strtolower($nama)),
                 'from'      => 'desafeed',
@@ -293,7 +293,7 @@ class Login_Con extends Controller
         $data2 = array(
     		'name'			=> ucwords(strtolower($nama)),
     	  	'email'			=> $request->email,
-    	  	'password'		=> Hash::make($request->password),
+    	  	'password'		=> $request->password,
     	  	'phone_number'	=> $request->nomor_hp,
     	  	'provinces_id'  => $province_id,
     	  	'regencies_id'	=> $regency_id,
@@ -339,7 +339,7 @@ class Login_Con extends Controller
     	$data4 = array(
     	  	'name' => ucwords(strtolower($nama)),
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
             'provinsis' => '35',
             'kota_kabupatens' =>$regency_id,
             'kecamatans' => $district_id,
@@ -422,7 +422,7 @@ class Login_Con extends Controller
             ]);
 
         $data_user = DB::table('users')->where('email', $request->email)->update([
-                'password'=>Hash::make($request->password)
+                'password'=>$request->password
             ]);
 
         if($data && $data_user){
