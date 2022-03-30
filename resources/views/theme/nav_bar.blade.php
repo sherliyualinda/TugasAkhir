@@ -41,8 +41,7 @@
 					<div class="row" style="margin-right: 0; margin-left: 0;">
 						<div class="col desa-col">
 						    @if(Auth::check())
-							<a href="http://marketpalcedesaku.masuk.web.id/autoLogin" onclick="event.preventDefault();
-                document.getElementById('login-form-store').submit();" target="_blank" class="dropdown-item">
+							<a href="{{ url('sosial-media/marketplace') }}" class="dropdown-item">
 							    <img src="/desastore-logo.png" style="min-width: 150px;">
 								<br>
 								<small style="white-space: normal!important;">Jual & beli berbagai produk desa di DesaStore!</small>
@@ -52,7 +51,7 @@
                                 <input type="hidden" name="id_desa" value="{{ auth()->user()->pengguna->village_id }}"> -->
                             </form>
 							@else
-							<a class="dropdown-item" target="_blank" href="{{ route(marketplace) }}">
+							<a class="dropdown-item" target="_blank" href="{{ url(sosial-media/marketplace) }}">
 								<img src="/desastore-logo.png" style="min-width: 150px;">
 								<br>
 								<small style="white-space: normal!important;">Jual & beli berbagai produk desa di DesaStore!</small>
