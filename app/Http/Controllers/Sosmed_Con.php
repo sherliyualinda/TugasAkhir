@@ -1198,6 +1198,9 @@ class Sosmed_Con extends Controller{
         }
         return redirect()->back();
     }
+    public function marketplace(){
+        return view('home');
+    }
 
     public function lihat_profil($username){
         $cek = ModelUser::where('username', $username)->first();

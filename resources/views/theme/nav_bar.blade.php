@@ -16,46 +16,7 @@
 				</a>
 				<div class="dropdown-menu box-size" aria-labelledby="navbarDropdown" style="width: 850px!important;">
 					<div class="row" style="margin-right: 0; margin-left: 0;">
-						<div class="col desa-col">
-						    @if(Auth::check())
-							<a href="https://desaku-desanews.masuk.id/autoLogin" onclick="event.preventDefault();
-                document.getElementById('login-form-news').submit();" target="_blank" class="dropdown-item">
-							    <img src="/desanews-logo.png" style="min-width: 150px;">
-								<br>
-								<small style="white-space: normal!important;">Berita dan kegiatan desa terkini & terupdate di DesaNews!</small>
-							</a>
-                            <form id="login-form-news" action="https://desaku-desanews.masuk.id/autoLogin" method="POST" class="d-none">
-                                <input type="hidden" name="email" value="{{ auth()->user()->pengguna->email }}">
-                                <input type="hidden" name="id_desa" value="{{ auth()->user()->pengguna->village_id }}">
-                            </form>
-							@else
-							<a class="dropdown-item" target="_blank" href="https://desaku-desanews.masuk.id">
-								<img src="/desanews-logo.png" style="min-width: 150px;">
-								<br>
-								<small style="white-space: normal!important;">Berita dan kegiatan desa terkini & terupdate di DesaNews!</small>
-							</a>
-							@endif
-						</div>
-						<div class="col desa-col">
-						    @if(Auth::check())
-    							<a href="https://desaku-desacuss.masuk.id/autoLogin" onclick="event.preventDefault();
-                    document.getElementById('login-form-cuss').submit();" target="_blank" class="dropdown-item">
-    							    <img src="/desacuss-logo.png" style="min-width: 150px;">
-    								<br>
-    								<small style="white-space: normal!important;">Diskusikan rencana program desa di DesaCuss!</small>
-    							</a>
-                                <form id="login-form-cuss" action="http://desaku-desacuss.masuk.id/autoLogin" method="POST" class="d-none">
-                                    <input type="hidden" name="email" value="{{ auth()->user()->pengguna->email }}">
-                                    <input type="hidden" name="id_desa" value="{{ auth()->user()->pengguna->village_id }}">
-                                </form>
-    						@else
-                                <a class="dropdown-item" target="_blank" href="https://desaku-desacuss.masuk.id">
-    								<img src="/desacuss-logo.png" style="min-width: 150px;">
-    								<br>
-    								<small style="white-space: normal!important;">Diskusikan rencana program desa di DesaCuss!</small>
-    							</a>
-    						@endif
-						</div>
+						
 						<div class="col desa-col">
 						    @if(Auth::check())
 							<a href="https://desaku-desatour.masuk.id/autoLogin" onclick="event.preventDefault();
@@ -81,44 +42,23 @@
 						<div class="col desa-col">
 						    @if(Auth::check())
 							<a href="http://marketpalcedesaku.masuk.web.id/autoLogin" onclick="event.preventDefault();
-                document.getElementById('login-form-tube').submit();" target="_blank" class="dropdown-item">
-							    <img src="/desatube-logo.png" style="min-width: 150px;">
-								<br>
-								<small style="white-space: normal!important;">Publish video tentang desa, kegiatan desa, dan cerita desa di DesaTube!</small>
-							</a>
-                            <form id="login-form-tube" action="http://marketpalcedesaku.masuk.web.id/autoLogin" method="POST" class="d-none">
-                                <input type="hidden" name="email" value="{{ auth()->user()->pengguna->email }}">
-                                <input type="hidden" name="id_desa" value="{{ auth()->user()->pengguna->village_id }}">
-                            </form>
-							@else
-							<a class="dropdown-item" target="_blank" href="http://marketpalcedesaku.masuk.web.id/">
-								<img src="/desatube-logo.png" style="min-width: 150px;">
-								<br>
-								<small style="white-space: normal!important;">Publish video tentang desa, kegiatan desa, dan cerita desa di DesaTube!</small>
-							</a>
-							@endif
-						</div>
-						<div class="col desa-col">
-						    @if(Auth::check())
-							<a href="http://marketpalcedesaku.masuk.web.id/autoLogin" onclick="event.preventDefault();
                 document.getElementById('login-form-store').submit();" target="_blank" class="dropdown-item">
 							    <img src="/desastore-logo.png" style="min-width: 150px;">
 								<br>
 								<small style="white-space: normal!important;">Jual & beli berbagai produk desa di DesaStore!</small>
 							</a>
-                            <form id="login-form-store" action="http://marketpalcedesaku.masuk.web.id/autoLogin" method="POST" class="d-none">
-                                <input type="hidden" name="email" value="{{ auth()->user()->pengguna->email }}">
-                                <input type="hidden" name="id_desa" value="{{ auth()->user()->pengguna->village_id }}">
+                            <form id="login-form-store" action="#" method="POST" class="d-none">
+                                <!-- <input type="hidden" name="email" value="{{ auth()->user()->pengguna->email }}">
+                                <input type="hidden" name="id_desa" value="{{ auth()->user()->pengguna->village_id }}"> -->
                             </form>
 							@else
-							<a class="dropdown-item" target="_blank" href="http://marketpalcedesaku.masuk.web.id/">
+							<a class="dropdown-item" target="_blank" href="{{ route(marketplace) }}">
 								<img src="/desastore-logo.png" style="min-width: 150px;">
 								<br>
 								<small style="white-space: normal!important;">Jual & beli berbagai produk desa di DesaStore!</small>
 							</a>
 							@endif
 						</div>
-						<div class="col desa-col"></div>
 					</div>
 				</div>
 			</li>

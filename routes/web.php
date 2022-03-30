@@ -176,3 +176,6 @@ Route::post('/sosial-media/get-report-list', 'superadmin\menu_report_con@get_rep
 
 //SUPER ADMIN - MENU LIST PENGGUNA
 Route::get('/sosial-media/list-pengguna', 'superadmin\menu_pengguna_con@get_all_akun');
+
+//Marketplace
+Route::get('/sosial-media/marketplace', 'Sosmed_Con@marketplace')-> name('marketplace');
