@@ -41,7 +41,7 @@
 					<div class="row" style="margin-right: 0; margin-left: 0;">
 						<div class="col desa-col">
 						    @if(Auth::check())
-							<a href="{{ url('sosial-media/marketplace') }}" class="dropdown-item">
+							<a href="{{ url('categories') }}" class="dropdown-item">
 							    <img src="/desastore-logo.png" style="min-width: 150px;">
 								<br>
 								<small style="white-space: normal!important;">Jual & beli berbagai produk desa di DesaStore!</small>

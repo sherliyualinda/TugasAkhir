@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,16 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('provinces', 'API\LocationController@provinces')->name('api-provinces');
+Route::get('regencies/{provinces_id}', 'API\LocationController@regencies')->name('api-regencies');
+Route::get('districts/{regencies_id}', 'API\LocationController@districts')->name('api-districts');
+Route::get('villages/{districts_id}', 'API\LocationController@villages')->name('api-villages');
+
+
+
+Route::get('products', 'API\ProductController@getproduct')->name('getproduct');
+Route::get('productvillage/{id}', 'API\ProductController@getproductvillage')->name('villageproduct');
+
+Route::get('productterlaris', 'API\ProductController@productterlaris')->name('productterlaris');
+Route::get('produkgalleri/{id}', 'API\ProductController@produkgalleri')->name('produkgalleri');
