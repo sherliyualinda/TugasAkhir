@@ -37,7 +37,7 @@
 	</nav>
 		
 	<section>
-		<div class="gap gray-bg" style="padding-top: 100px;">
+		<div class="gap grey-bg" style="padding-top: 100px;">
 			<div class="container-fluid">
 				@if (Session::get('success'))
 					<div class="alert alert-success">

@@ -43,7 +43,7 @@
 </script>
 
 
-<nav class="navbar navbar-custom navbar-expand-lg navbar-light navbar-store fixed-top navbar-fixed-top" data-aos="fade-down">
+<nav class="navbar navbar-custom navbar-expand-lg navbar-light navbar-store fixed-top navbar-fixed-top bg-info text-white" data-aos="fade-down">
   <div class="container-fluid">
     <a href="{{ route('home') }}" class="navbar-brand">
       <img src="/images/newlogo.png" alt="Logo">
@@ -55,93 +55,55 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                             <li class="nav-item dropdown has-megamenu">
-                                <a class="nav-link underhoper-caang font-16" href="#" data-bs-toggle="dropdown">
-                                    <i class="bi bi-app-indicator"></i>&nbsp;Produk Desaku</a>
+                                <a class="nav-link underhoper-caang font-16" href="#" data-bs-toggle="dropdown" style="color: white;">
+                                    <i class="bi bi-app-indicator" ></i>&nbsp;Produk Desaku</a>
                                 <div class="dropdown-menu fade-down megamenu ms-auto me-auto" role="menu">
                                     @auth
-                                      <div class="row g-3">
-                                        <div class="col-lg-4 col-6">
-                                            <div class="col-megamenu">
-                                                <a class="dropdown-item teman-desaku"
-                                                    href="http://desaku-desanews.masuk.id/">
-                                                    <img class="zoom-logo mt-1" src="{{ asset('img/desanews.png') }}">
-                                                    <br>
-                                                    <small style="white-space: normal!important;">Berita dan kegiatan
-                                                        desa
-                                                        terkini dan terupdate di DesaNews!</small>
-                                                </a>
-                                            </div>
+                                    <div class="row" style="margin-right: 0; margin-left: 0;">
+                                          
+                                      <div class="col desa-col">
+                                              @if(Auth::check())
+                                            <a href="https://desaku-desatour.masuk.id/autoLogin" onclick="event.preventDefault();
+                                              document.getElementById('login-form-tour').submit();" target="_blank" class="dropdown-item">
+                                                <img src="/desatour-logo.png" style="min-width: 150px;">
+                                              <br>
+                                              <small style="white-space: normal!important;">Jelajahi wisata, kuliner, penginapan, dan infrastruktur desa di DesaTour!</small>
+                                            </a>
+                                                          <form id="login-form-tour" action="https://desaku-desatour.masuk.id/autoLogin" method="POST" class="d-none">
+                                                              <input type="hidden" name="email" value="{{ auth()->user()->pengguna->email }}">
+                                                              <input type="hidden" name="id_desa" value="{{ auth()->user()->pengguna->village_id }}">
+                                                          </form>
+                                            @else
+                                            <a class="dropdown-item" target="_blank" href="https://desaku-desatour.masuk.id">
+                                              <img src="/desatour-logo.png" style="min-width: 150px;">
+                                              <br>
+                                              <small style="white-space: normal!important;">Jelajahi wisata, kuliner, penginapan, dan infrastruktur desa di DesaTour!</small>
+                                            </a>
+                                            @endif
+                                          </div>
                                         </div>
-                                        <div class="col-lg-4 col-6">
-                                            <div class="col-megamenu">
-                                                <a class="dropdown-item teman-desaku" onclick="event.preventDefault();
-                                                      document.getElementById('login-form-desafeed').submit();"
-                                                    href="https://desaku-desafeed.masuk.id/autoLogin">
-                                                    <img class="zoom-logo" src="{{ asset('img/desafeed.png') }}">
-                                                    <br>
-                                                    <small style="white-space: normal!important;">Berbagi pengalaman
-                                                        pribadi,
-                                                        foto dan video berbagai warga desa di DesaFeed!</small>
-                                                </a>
-
-                                                <form id="login-form-desafeed" action="https://desaku-desafeed.masuk.id/autoLogin" method="POST" class="d-none">
-                                                    <input type="hidden" name="email" value="{{ Auth::user()->email }}">
-                                                    <input type="hidden" name="id_desa" value="{{ Auth::user()->villages_id }}">
-                                                  </form>
-                                            </div>
+                                        <div class="row" style="margin-right: 0; margin-left: 0;">
+                                          <div class="col desa-col">
+                                              @if(Auth::check())
+                                            <a href="{{ url('sosial-media/beranda') }}" class="dropdown-item">
+                                                <img src="/desafeed-logo.png" style="min-width: 150px;">
+                                              <br>
+                                              <small style="white-space: normal!important;">Media Sosial Untuk Kamu</small>
+                                            </a>
+                                                          <form id="login-form-store" action="#" method="POST" class="d-none">
+                                                              <!-- <input type="hidden" name="email" value="{{ auth()->user()->pengguna->email }}">
+                                                              <input type="hidden" name="id_desa" value="{{ auth()->user()->pengguna->village_id }}"> -->
+                                                          </form>
+                                            @else
+                                            <a class="dropdown-item" target="_blank" href="{{ url(sosial-media/beranda) }}">
+                                              <img src="/desafeed-logo.png" style="min-width: 150px;">
+                                              <br>
+                                              <small style="white-space: normal!important;">Jual & beli berbagai produk desa di DesaStore!</small>
+                                            </a>
+                                            @endif
+                                          </div>
                                         </div>
-                                        <div class="col-lg-4 col-6">
-                                            <div class="col-megamenu">
-                                                <a class="dropdown-item teman-desaku"
-                                                    href="http://desaku-desatour.masuk.id/">
-                                                    <img class="zoom-logo" src="{{ asset('img/desatour.png') }}">
-                                                    <br>
-                                                    <small style="white-space: normal!important;">Jelajahi wisata,
-                                                        kuliner,
-                                                        penginapan, dan infrastruktur desa di DesaTour!</small>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-6">
-                                            <div class="col-megamenu">
-                                                <a class="dropdown-item teman-desaku" onclick="event.preventDefault();
-                                                      document.getElementById('login-form-desatube').submit();"
-                                                    href="http://desatubenew.test/autoLogin">
-                                                    <img class="zoom-logo" src="{{ asset('img/desatube.png') }}">
-                                                    <br>
-                                                    <small style="white-space: normal!important;">Publish video tentang
-                                                        desa,
-                                                        kegiatan desa dan cerita desa di DesaTube!</small>
-                                                </a>
-
-                                                  <form id="login-form-desatube" action="http://desatubenew.test/autoLogin" method="POST" class="d-none">
-                                                    <input type="hidden" name="email" value="{{ Auth::user()->email }}">
-                                                    <input type="hidden" name="id_desa" value="{{ Auth::user()->villages_id }}">
-                                                  </form>
-                                            </div>
-                                        </div>
-                                       
-
-                                        <div class="col-lg-4 col-6">
-                                            <div class="col-megamenu">
-                                                <a class="dropdown-item teman-desaku" onclick="event.preventDefault();
-                                                      document.getElementById('login-form').submit();"
-                                                    href="http://desaku-desacuss.masuk.id/autoLogin">
-                                                    <img class="zoom-logo" src="{{ asset('img/desacuss.png') }}">
-                                                    <br>
-                                                    <small style="white-space: normal!important;">Berbagai produk desa
-                                                        yang
-                                                        dapat di Jual dan di Beli di DesaStore!</small>
-                                                </a>
-                                                <form id="login-form" action="http://desaku-desacuss.masuk.id/autoLogin" method="POST" class="d-none">
-                                                      
-                                                        <input type="hidden" name="email" value="{{ Auth::user()->email }}">
-                                                        <input type="hidden" name="id_desa" value="{{ Auth::user()->villages_id }}">
-                                                      </form>
-
-                                              
-                                            </div>
-                                        </div>
+                                  
                                     </div>
                                     @else
                                     <div class="row g-3">
@@ -217,24 +179,24 @@
                         </ul>
       <ul class="navbar-nav ml-auto text-center">
        
-        <li class="nav-item active">
+        <!-- <li class="nav-item active">
           <a href="{{ route('home') }}" class="nav-link">Halaman Utama</a>
-        </li>
+        </li> -->
 
        
         <li class="nav-item">
-          <a href="{{ route('categories') }}" class="nav-link">Kategori</a>
+          <a href="{{ route('categories') }}" class="nav-link" style="color: white;">Kategori</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('store-page-search') }}" class="nav-link">Toko</a>
+          <a href="{{ route('store-page-search') }}" class="nav-link" style="color: white;">Toko</a>
         </li>
        
         @guest
         <li class="nav-item">
-          <a href="{{ route('register') }}" class="nav-link">Daftar</a>
+          <a href="{{ route('register') }}" class="nav-link" style="color: white;">Daftar</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('login') }}" class="btn btn-success nav-link px-4 text-white">Masuk</a>
+          <a href="{{ route('login') }}" class="btn btn-success nav-link px-4 text-white" style="color: white;">Masuk</a>
         </li>
         @endguest
 
@@ -256,7 +218,7 @@
         </li> --}}
       <ul class="navbar-nav d-none d-lg-flex">
         <li class="nav-item dropdown">
-          <a href="" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown">
+          <a href="" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" style="color: white;">
             <img src="/images/icon-store.svg" alt="" class="rounded-circle mr-2 profile-picture">
             Hi, {{ Auth::user()->name }}
           </a>

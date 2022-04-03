@@ -1,4 +1,4 @@
-<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light"> -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-info text-white">
 	<div class="logo col-lg-2">
 		<a title="" href="{{ asset('/sosial-media/beranda') }}">
 			<img src="/Diessnie_logo.jpeg" alt="" style="max-height: 50px;">
@@ -11,7 +11,7 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto col-lg-2">
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle menu-text" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
+				<a class="nav-link dropdown-toggle menu-text" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
 				Produk Desaku
 				</a>
 				<div class="dropdown-menu box-size" aria-labelledby="navbarDropdown" style="width: 850px!important;">
@@ -74,16 +74,16 @@
 		@endif
 		<ul class="navbar-nav col-lg-4 d-flex justify-content-end">
 			{{-- <li class="nav-item">
-				<a class="nav-link" href="/sosial-media/shop" title="Produk Desa" data-ripple=""><i class="ti-shopping-cart" style="color:black; border: 2px double gold; padding: 5px;"></i></a>
+				<a class="nav-link" href="/sosial-media/shop" title="Produk Desa" data-ripple=""><i class="ti-shopping-cart" style="color:white; border: 2px double gold; padding: 5px;"></i></a>
 			</li> --}}
 			@if(Auth::check())
 				<li class="nav-item active">
-					<a class="nav-link beranda" href="/sosial-media/beranda" title="Home" data-ripple=""><i class="ti-home" style="color:black;"></i></a>
+					<a class="nav-link beranda" href="/sosial-media/beranda" title="Home" data-ripple=""><i class="ti-home" style="color:white;"></i></a>
 					<!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
 				</li>
 				<li class="nav-item">
 					<a class="nav-link notif" title="Notification" id="notif" data-ripple="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="ti-bell" style="color:black;"></i>
+						<i class="ti-bell" style="color:white;"></i>
 						@if($total_notif != 0)
 							<span class="badge badge-danger" id="jml_notif">{{ $total_notif }}</span>
 						@endif
@@ -99,7 +99,7 @@
 										<div class="media">
 											<img src="{{ (url('/data_file/'.$list->username_likers.'/foto_profil/'.$list->foto_profil_likers)) }}" class="align-self-center mr-3" alt="..." style="width: 30px; height: 30px; border-radius: 50%;">
 											<div class="media-body align-self-center" style="white-space: initial; width:200px;">
-												<small style="color: black"><b>{{ $list->username_likers }}</b> 
+												<small style="color: white"><b>{{ $list->username_likers }}</b> 
 												menyukai postingan anda
 												</small>
 												<small style="color: #989e99">-{{ date_format(date_create($list->tanggal_like), "d M Y H:i A") }}</small>
@@ -124,7 +124,7 @@
 										<div class="media">
 											<img src="{{ (url('/data_file/'.$list->username_commentor.'/foto_profil/'.$list->foto_profil_commentor)) }}" class="align-self-center mr-3" alt="..." style="width: 30px; height: 30px; border-radius: 50%;">
 											<div class="media-body align-self-center" style="white-space: initial; width:200px;">
-												<small style="color: black"><b>{{ $list->username_commentor }}</b> 
+												<small style="color: white"><b>{{ $list->username_commentor }}</b> 
 												@if(strpos($list->isi_komentar, auth()->user()->pengguna->username) !== false)
 													menyebut anda dalam komentar: 
 												@else 
@@ -154,7 +154,7 @@
 										<div class="media">
 											<img src="{{ (url('/data_file/'.$list->username_post.'/foto_profil/'.$list->foto_profil_post)) }}" class="align-self-center mr-3" alt="..." style="width: 30px; height: 30px; border-radius: 50%;">
 											<div class="media-body align-self-center" style="white-space: initial; width:200px;">
-												<small style="color: black"><b>{{ $list->username_post }}</b> 
+												<small style="color: white"><b>{{ $list->username_post }}</b> 
 													memposting sesuatu di <strong>{{ $list->nama_group }}</strong>
 												</small>
 												<small style="color: #989e99">-{{ date_format(date_create($list->created_at), "d M Y H:i A") }}</small>
@@ -166,7 +166,7 @@
 										<div class="media">
 											<img src="{{ (url('/data_file/'.$list->username_pengirim.'/foto_profil/'.$list->foto_pengirim)) }}" class="align-self-center mr-3" alt="..." style="width: 30px; height: 30px; border-radius: 50%;">
 											<div class="media-body align-self-center" style="white-space: initial; width:200px; height: 90px;">
-												<small style="color: black"><b>{{ $list->username_pengirim }}</b> 
+												<small style="color: white"><b>{{ $list->username_pengirim }}</b> 
 													mengundang anda ke dalam grup <strong>{{ $list->nama_group_undangan }}</strong>
 												</small>
 												<small style="color: #989e99">-{{ date_format(date_create($list->tanggal_undangan), "d M Y H:i A") }}</small>
@@ -181,7 +181,7 @@
 										<div class="media">
 											<img src="{{ (url('/data_file/'.$list->username_admin_penambah.'/foto_profil/'.$list->foto_admin_penambah)) }}" class="align-self-center mr-3" alt="..." style="width: 30px; height: 30px; border-radius: 50%;">
 											<div class="media-body align-self-center" style="white-space: initial; width:200px;">
-												<small style="color: black"><b>{{ $list->username_admin_penambah }}</b> 
+												<small style="color: white"><b>{{ $list->username_admin_penambah }}</b> 
 												menjadikan Anda sebagai admin grup <b>{{$list->nama_group_adm}}</b>
 												</small>
 												<small style="color: #989e99">-{{ date_format(date_create($list->tanggal_admin), "d M Y H:i A") }}</small>
@@ -195,7 +195,7 @@
 												<img src="{{ (url('/data_file/'.$list->username_requester.'/foto_profil/'.$list->foto_requester)) }}" class="align-self-center mr-3" alt="..." style="width: 30px; height: 30px; border-radius: 50%;">
 												@if($list->status_request == 'Menunggu')
 													<div class="media-body align-self-center" style="white-space: initial; width:200px; height: 90px;">
-														<small style="color: black"><b>{{ $list->username_requester }}</b> 
+														<small style="color: white"><b>{{ $list->username_requester }}</b> 
 															mengirim permintaan mengikuti
 														</small>
 														<small style="color: #989e99">-{{ date_format(date_create($list->tanggal_follow), "d M Y H:i A") }}</small>
@@ -205,7 +205,7 @@
 													</div>
 												@else
 													<div class="media-body align-self-center" style="white-space: initial; width:200px;">
-														<small style="color: black"><b>{{ $list->username_requester }}</b> 
+														<small style="color: white"><b>{{ $list->username_requester }}</b> 
 														mulai mengikuti Anda
 														</small>
 														<small style="color: #989e99">-{{ date_format(date_create($list->tanggal_follow), "d M Y H:i A") }}</small>
@@ -218,7 +218,7 @@
 											<div class="media">
 												<img src="{{ (url('/data_file/'.$list->username_followers.'/foto_profil/'.$list->foto_profil_followers)) }}" class="align-self-center mr-3" alt="..." style="width: 30px; height: 30px; border-radius: 50%;">
 												<div class="media-body align-self-center" style="white-space: initial; width:200px;">
-													<small style="color: black"><b>{{ $list->username_followers }}</b> 
+													<small style="color: white"><b>{{ $list->username_followers }}</b> 
 														mulai mengikuti Anda
 													</small>
 													<small style="color: #989e99">-{{ date_format(date_create($list->tanggal_follow), "d M Y H:i A") }}</small>
@@ -236,7 +236,7 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link pesan" href="{{ asset('/sosial-media/chat') }}" title="Message" data-ripple="">
-						<i class="fa fa-send-o" style="color:black;"></i> 
+						<i class="fa fa-send-o" style="color:white;"></i> 
 						@if(isset($notif_pesan))
 							@foreach ($notif_pesan as $notif)
 								@if($notif->jml != 0)
@@ -248,7 +248,7 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link group" href="{{ asset('/sosial-media/halaman_group') }}" title="Group" title="Group Notification" id="notif_group" data-ripple="">
-						<i class="fa fa-group" style="color:black;"></i>
+						<i class="fa fa-group" style="color:white;"></i>
 						@if(isset($notif_group))
 							@foreach ($notif_group as $row)
 								@if($row->jml != 0)
@@ -284,4 +284,4 @@
 			@endif
 		</ul>
 	</div>
-<!-- </nav> -->
+</nav>
