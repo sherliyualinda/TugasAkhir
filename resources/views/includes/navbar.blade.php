@@ -45,7 +45,7 @@
 
 <nav class="navbar navbar-custom navbar-expand-lg navbar-light navbar-store fixed-top navbar-fixed-top bg-info text-white" data-aos="fade-down">
   <div class="container-fluid">
-    <a href="{{ route('home') }}" class="navbar-brand">
+    <a href="{{ route('categories') }}" class="navbar-brand">
       <img src="/images/newlogo.png" alt="Logo">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
@@ -184,12 +184,12 @@
         </li> -->
 
        
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="{{ route('categories') }}" class="nav-link" style="color: white;">Kategori</a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a href="{{ route('store-page-search') }}" class="nav-link" style="color: white;">Toko</a>
-        </li>
+        </li> -->
        
         @guest
         <li class="nav-item">
@@ -224,6 +224,7 @@
           </a>
           <div class="dropdown-menu">
             <a href="{{ route('dashboard') }}" class="dropdown-item">Dashborad</a>
+            <a href="{{ route('store-page-search') }}" class="dropdown-item">Buat Toko</a>
             <a href="{{ route('dashboard-settings-account') }}" class="dropdown-item">Settings</a>
             <div class="dropdown-divider"></div>
             <a href="{{ route('logout') }}" onclick="event.preventDefault();
