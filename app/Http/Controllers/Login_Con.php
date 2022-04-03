@@ -18,8 +18,10 @@ use Auth;
 class Login_Con extends Controller
 {
     public function login(){
-        $villages = DB::select("SELECT villages.id, villages.name FROM villages JOIN districts ON villages.district_id=districts.id JOIN regencies ON districts.regency_id = regencies.id JOIN provinces ON regencies.province_id = provinces.id WHERE provinces.id = 32");
-        $regency = DB::select("SELECT DISTINCT regencies.id, regencies.name FROM regencies JOIN provinces ON regencies.province_id = provinces.id WHERE provinces.id = 32");
+        // $villages = DB::select("SELECT villages.id, villages.name FROM villages JOIN districts ON villages.district_id=districts.id JOIN regencies ON districts.regency_id = regencies.id JOIN provinces ON regencies.province_id = provinces.id WHERE provinces.id = 32");
+        // $regency = DB::select("SELECT DISTINCT regencies.id, regencies.name FROM regencies JOIN provinces ON regencies.province_id = provinces.id WHERE provinces.id = 32");
+        $villages = DB::select("SELECT villages.id, villages.name FROM villages JOIN districts ON villages.district_id=districts.id JOIN regencies ON districts.regency_id = regencies.id JOIN provinces ON regencies.province_id = provinces.id");
+        $regency = DB::select("SELECT DISTINCT regencies.id, regencies.name FROM regencies JOIN provinces ON regencies.province_id = provinces.id");
     	return view('login', compact('villages', 'regency'));
     }
     

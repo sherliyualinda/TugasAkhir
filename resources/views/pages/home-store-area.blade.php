@@ -230,7 +230,7 @@ Desaku
                 <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="400">
                     <a href="/details.html" class="component-products d-block">
                         <div class="products-thumbnail">
-                            <div class="products-image" style="background-image: url(/images/durian.jpg);">
+                            <div class="products-image" style="background-image: url(/images/durian1.jpg);">
                             </div>
                         </div>
                         <div class="products-text">
