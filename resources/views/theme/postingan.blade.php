@@ -328,7 +328,7 @@
                     </button>
                 </div>
                 <div class="modal-body" style="text-align: center;">
-                    <div class="friend-info" style="text-align: left; margin-bottom: 15px;">
+                    <div class="friend-info bg-info" style="text-align: left; margin-bottom: 15px;">
                         <figure style="width: 10%;">
                             <img id="foto_post" src="" alt="" style="width: 45px; height: 45px; border-radius: 50%;">
                         </figure>

@@ -11,7 +11,7 @@
                     </figure>
                     <div class="friend-name">
                         <ins>
-                            <a href="/sosial-media/profil/{{$data_desa->username}}" title="">
+                            <a href="/sosial-media/profil/{{$data_desa->username}}" title="" style="color: #1a8cff">
                                 {{ $data_desa->username }}
                             </a>
                         </ins>
