@@ -21,8 +21,9 @@ class Login_Con extends Controller
         // $villages = DB::select("SELECT villages.id, villages.name FROM villages JOIN districts ON villages.district_id=districts.id JOIN regencies ON districts.regency_id = regencies.id JOIN provinces ON regencies.province_id = provinces.id WHERE provinces.id = 32");
         // $regency = DB::select("SELECT DISTINCT regencies.id, regencies.name FROM regencies JOIN provinces ON regencies.province_id = provinces.id WHERE provinces.id = 32");
         $villages = DB::select("SELECT villages.id, villages.name FROM villages JOIN districts ON villages.district_id=districts.id JOIN regencies ON districts.regency_id = regencies.id JOIN provinces ON regencies.province_id = provinces.id");
-        $regency = DB::select("SELECT DISTINCT regencies.id, regencies.name FROM regencies JOIN provinces ON regencies.province_id = provinces.id");
-    	return view('login', compact('villages', 'regency'));
+        $regency = DB::select("SELECT regencies.id, regencies.name FROM regencies JOIN provinces ON regencies.province_id = provinces.id WHERE regencies.province_id=provinces.id");
+        $provinces = DB::select("SELECT DISTINCT provinces.id, provinces.name FROM provinces");
+    	return view('login', compact('villages', 'regency', 'provinces'));
     }
     
     public function autoLogin(Request $request){
@@ -56,6 +57,11 @@ class Login_Con extends Controller
         return redirect()->intended('/sosial-media');
     }
 
+
+    public function get_regency($id_regencies){
+        $data = DB::select("SELECT regencies.provinces_id, regencies.name FROM regencies WHERE regencies_id = '".$id_regencies."'");
+        return response()->json($data);
+    }
 
     public function get_district($id_regency){
         $data = DB::select("SELECT districts.id, districts.name FROM districts WHERE regency_id = '".$id_regency."'");
