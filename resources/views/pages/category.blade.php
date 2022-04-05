@@ -9,7 +9,7 @@ Desaku Category Page
 
 
 
-  <!-- Store Trend Categori -->
+  <!-- Store Trend Categori yow -->
   <section class="store-trend-categories mt-4">
     <div class="container">
       <div class="row">
