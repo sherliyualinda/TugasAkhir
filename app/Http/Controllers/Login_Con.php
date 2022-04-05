@@ -58,8 +58,8 @@ class Login_Con extends Controller
     }
 
 
-    public function get_regency($id_regencies){
-        $data = DB::select("SELECT regencies.provinces_id, regencies.name FROM regencies WHERE regencies_id = '".$id_regencies."'");
+    public function get_regency($id_province){
+        $data = DB::select("SELECT regencies.id, regencies.name FROM regencies WHERE province_id = '".$id_province."'");
         return response()->json($data);
     }
 

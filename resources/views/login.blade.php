@@ -203,7 +203,7 @@ select.form-control:not([size]):not([multiple]) {
 								</div> -->
 								<div class="form-group half" id="nama_kab">
 									<select class="form-control form-control-sm nama_kab" name="nama_kab" style="color: black;" required>
-										<option disabled selected>-- Pilih Kecamatan --</option>
+										<option disabled selected>-- Pilih Kabupaten/Kota --</option>
 									</select>
 								</div>
 								<div class="form-group half" id="nama_kec">
@@ -386,10 +386,10 @@ select.form-control:not([size]):not([multiple]) {
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	$('.nama_prov').on('change', function () {
 		var value = $(this).val();
-		// console.log(id);
+		console.log(id);
 		const myArr = value.split("+++");
 		var id = myArr[1];
-		// console.log(id);
+		console.log(id);
 		$.ajax({
 			url: "/sosial-media/login/get-regency/" + id,
 			type: 'get',
@@ -398,6 +398,7 @@ select.form-control:not([size]):not([multiple]) {
 			},
 			success: function (data) {
 				let html = '';
+				console.log(html);
 				if (data.length !== 0) {
 					for (var i = 0; i < data.length; i++) {
 						html += '<option value="Kab. ' + data[i].name + '+++' + data[i].id + '"' +
@@ -411,7 +412,7 @@ select.form-control:not([size]):not([multiple]) {
 				$('.appended_kab').remove();
 				$('.nama_kab').append(html);
 				// $('.chosen-results').append(html);
-				// console.log(html);
+			    
 			}
 		});
 	});
@@ -419,10 +420,10 @@ select.form-control:not([size]):not([multiple]) {
 
 	$('.nama_kab').on('change', function () {
 		var value = $(this).val();
-		// console.log(id);
+		console.log(id);
 		const myArr = value.split("+++");
 		var id = myArr[1];
-		// console.log(id);
+		console.log(id);
 		$.ajax({
 			url: "/sosial-media/login/get-district/" + id,
 			type: 'get',
@@ -431,13 +432,14 @@ select.form-control:not([size]):not([multiple]) {
 			},
 			success: function (data) {
 				let html = '';
+				console.log(html);
 				if (data.length !== 0) {
 					for (var i = 0; i < data.length; i++) {
 						html += '<option value="Kec. ' + data[i].name + '+++' + data[i].id + '"' +
 							' style="text-transform: capitalize;" class="appended_kec">' +
 							'Kec. ' + data[i].name.toLowerCase() + '</option>';
 						// $('.nama_kec').html(html);
-						// console.log(data[i].name);
+						console.log(data.length);
 					}
 				}
 				// document.getElementById("nama_kec").style.display = "block";
