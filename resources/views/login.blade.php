@@ -201,7 +201,7 @@ select.form-control:not([size]):not([multiple]) {
 										@endforeach
 									</select>
 								</div> -->
-								<div class="form-group half" id="nama_kab">
+								<div class="form-group" id="nama_kab">
 									<select class="form-control form-control-sm nama_kab" name="nama_kab" style="color: black;" required>
 										<option disabled selected>-- Pilih Kabupaten/Kota --</option>
 									</select>

@@ -66,6 +66,7 @@ Route::post('/sosial-media/login_proses', 'Login_Con@login_proses')->name('sosia
 Route::get('/sosial-media/logout_proses', 'Login_Con@logout_proses');
 Route::get('/sosial-media/login/get-district/{id_regency}', 'Login_Con@get_district');
 Route::get('/sosial-media/login/get-village/{id_district}', 'Login_Con@get_village');
+Route::get('/sosial-media/login/get-regency/{id_province}', 'Login_Con@get_regency');
 
 //LOKASI
 Route::get('/sosial-media/get-regency/{id_province}', 'Sosmed_Con@get_regency');

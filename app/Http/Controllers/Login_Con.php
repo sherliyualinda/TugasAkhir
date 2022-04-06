@@ -186,13 +186,14 @@ class Login_Con extends Controller
         $data = explode("+++",$request->nama_desa);
         $data_district = explode("+++",$request->nama_kec);
         $data_regency = explode("+++",$request->nama_kab);
+        $data_prov = explode("+++",$request->nama_prov);
     
         $nama = $data[0];
         $nm = substr($nama, 5);
         $village_id = $data[1];
         $district_id = $data_district[1];
         $regency_id = $data_regency[1];
-        $province_id = 32;
+        $province_id = $data_prov;
         if($request->jenis_akun == 'desa'){
             // $data = explode("+++",$request->nama_desa);
             // $data_district = explode("+++",$request->nama_kec);
