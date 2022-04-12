@@ -18,6 +18,10 @@ Route::get('/masuk', function(){
 	return view('auth/login');
 });
 
+Route::get('/gantt', function () {
+    return view('gantt');
+});
+
 //REFRESH WIDGET
 Route::get('/sosial-media/widget_berita.blade.php', function(){
 	return view('theme/widget_berita');
