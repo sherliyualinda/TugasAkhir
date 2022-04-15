@@ -63,13 +63,13 @@
                                           
                                       <div class="col desa-col">
                                               @if(Auth::check())
-                                            <a href="https://desaku-desatour.masuk.id/autoLogin" onclick="event.preventDefault();
+                                            <a href="{{ url('/lahan') }}" onclick="event.preventDefault();
                                               document.getElementById('login-form-tour').submit();" target="_blank" class="dropdown-item">
                                                 <img src="/desatour-logo.png" style="min-width: 150px;">
                                               <br>
-                                              <small style="white-space: normal!important;">Jelajahi wisata, kuliner, penginapan, dan infrastruktur desa di DesaTour!</small>
+                                              <small style="white-space: normal!important;">Jelajahi wisata123, kuliner, penginapan, dan infrastruktur desa di DesaTour!</small>
                                             </a>
-                                                          <form id="login-form-tour" action="https://desaku-desatour.masuk.id/autoLogin" method="POST" class="d-none">
+                                                          <form id="login-form-tour" action="{{ url('/lahan') }}" method="POST" class="d-none">
                                                               <input type="hidden" name="email" value="{{ auth()->user()->pengguna->email }}">
                                                               <input type="hidden" name="id_desa" value="{{ auth()->user()->pengguna->village_id }}">
                                                           </form>

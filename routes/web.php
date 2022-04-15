@@ -297,6 +297,10 @@ Route::prefix('adminstore')
 
     Route::resource('adminstore-transaction', 'TransactionController');
     Route::resource('adminstore-product-gallery', 'ProductGalleryController');
+
+    //LAHAN
+    Route::get('/lahan', 'LahanController@lahan');
+
     
 
     
