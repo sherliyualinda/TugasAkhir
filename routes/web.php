@@ -18,6 +18,13 @@ Route::get('/masuk', function(){
 	return view('auth/login');
 });
 
+  //LAHAN
+Route::get('/lahan', 'LahanController@lahan');
+  // Route::get('/lahan', function () {
+  //     return view('lahan');
+  // });
+
+
 Route::get('/gantt', function () {
     return view('gantt');
 });
@@ -298,9 +305,7 @@ Route::prefix('adminstore')
     Route::resource('adminstore-transaction', 'TransactionController');
     Route::resource('adminstore-product-gallery', 'ProductGalleryController');
 
-    //LAHAN
-    Route::get('/lahan', 'LahanController@lahan');
-
+  
     
 
     
