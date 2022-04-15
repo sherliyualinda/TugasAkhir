@@ -18,11 +18,9 @@ Route::get('/masuk', function(){
 	return view('auth/login');
 });
 
-  //LAHAN
+//LAHAN
 Route::get('/lahan', 'LahanController@lahan');
-  // Route::get('/lahan', function () {
-  //     return view('lahan');
-  // });
+
 
 
 Route::get('/gantt', function () {
