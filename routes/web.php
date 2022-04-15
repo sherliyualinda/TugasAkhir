@@ -18,8 +18,6 @@ Route::get('/masuk', function(){
 	return view('auth/login');
 });
 
-//LAHAN
-Route::get('/lahan', 'LahanController@lahan');
 
 
 
@@ -309,7 +307,9 @@ Route::prefix('adminstore')
     
 });
 
-
+//LAHAN
+Route::get('/lahan', 'LahanController@lahan');
+ 
 
 
 Auth::routes();

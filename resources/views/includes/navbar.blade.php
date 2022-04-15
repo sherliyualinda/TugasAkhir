@@ -63,8 +63,7 @@
                                           
                                       <div class="col desa-col">
                                               @if(Auth::check())
-                                            <a href="{{ url('/lahan') }}" onclick="event.preventDefault();
-                                              document.getElementById('login-form-tour').submit();" target="_blank" class="dropdown-item">
+                                            <a href="{{ url('/lahan') }}" class="dropdown-item">
                                                 <img src="/desatour-logo.png" style="min-width: 150px;">
                                               <br>
                                               <small style="white-space: normal!important;">Jelajahi wisata123, kuliner, penginapan, dan infrastruktur desa di DesaTour!</small>
