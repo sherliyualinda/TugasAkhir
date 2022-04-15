@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,3 +36,6 @@
 	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 		@include('nav_barMar')
 	</nav>
+=======
+ini lahan
+>>>>>>> Stashed changes
