@@ -33,6 +33,5 @@ Route::get('produkgalleri/{id}', 'API\ProductController@produkgalleri')->name('p
 
 
 Route::get('/data', 'GanttController@get');
-
 Route::resource('task', 'TaskController');
 Route::resource('link', 'LinkController');
