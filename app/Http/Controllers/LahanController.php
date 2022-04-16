@@ -50,7 +50,7 @@ class LahanController extends Controller
     }
 
     public function simpan(Request $request){
-        $lahan = Lahan::create([
+        lahan::create([
             'category_lahan_id'=>$request->category_lahan_id,
             'ukuran'=>$request->ukuran,
             'deskripsi'=>$request->deskripsi,
