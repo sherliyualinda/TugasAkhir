@@ -309,6 +309,9 @@ Route::prefix('adminstore')
 
 //LAHAN
 Route::get('/lahan', 'LahanController@lahan');
+Route::get('/lahan/create', 'LahanController@create');
+Route::post('/lahan/simpan', 'LahanController@simpan')->name('lahan.simpan');
+
  
 
 

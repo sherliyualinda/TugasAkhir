@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 
 use App\Product;
+use App\Lahan;
+//use App\Models\Category_lahan;
+use App\Category_lahan;
 use App\Category;
 use App\Transaction;
 use App\ProductGallery;
@@ -35,7 +38,25 @@ class LahanController extends Controller
      */
 
     public function lahan(){
-        return view('lahan');
+       return view('lahan');
+    }
+
+    public function create(){
+        //$data['categori']= "select * from category_lahan";
+        $categori=category_lahan::all();
+        return view('create_lahan',[
+            'categori' => $categori,
+        ]);
+    }
+
+    public function simpan(Request $request){
+        $lahan = Lahan::create([
+            'category_lahan_id'=>$request->category_lahan_id,
+            'ukuran'=>$request->ukuran,
+            'deskripsi'=>$request->deskripsi,
+            //'gambar'=>$request->gambar
+        ]);
+        //dd($request->all());
     }
     
 }
