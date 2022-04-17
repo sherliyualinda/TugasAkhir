@@ -52,6 +52,32 @@ class LahanController extends Controller
     }
 
     public function simpan(Request $request){
+        // menyimpan data file yang diupload ke variabel $file
+	    $file = $request->file('gambar');
+ 
+        // nama file
+        echo 'File Name: '.$file->getClientOriginalName();
+        echo '<br>';
+
+        // ekstensi file
+        echo 'File Extension: '.$file->getClientOriginalExtension();
+        echo '<br>';
+
+        // real path
+        // echo 'File Real Path: '.$file->getRealPath();
+        // echo '<br>';
+
+        // ukuran file
+        echo 'File Size: '.$file->getSize();
+        echo '<br>';
+
+        // tipe mime
+        echo 'File Mime Type: '.$file->getMimeType();
+
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'gambar_lahan';
+        $file->move($tujuan_upload,$file->getClientOriginalName());
+
         DB::table('lahan')->insert([
             'category_lahan_id' => $request->category_lahan_id,
             'ukuran'            => $request->ukuran,

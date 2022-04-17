@@ -30,8 +30,13 @@
         <td><textarea name="deskripsi" class="form-control form-control-user"></textarea></td>
     </tr>
   </div>
-  <input type="hidden" name="gambar" class="form-control form-control-user" value="tes aja">
   <div class="form-group">
+  <div class="form-group">
+		<tr>
+            <td>File Gambar</td>
+		    <td><input type="file" name="gambar"></td>
+        </tr>
+    </div>
     <tr>
         <td><button type="submit">Create</button></td> 
     </tr>  
