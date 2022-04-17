@@ -6,3 +6,29 @@
 
 <link rel="icon" href="/logo-home.png" type="image/png" sizes="16x16"> 	    
 <link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12 mb-5">
+            <img src="/Diessnie-logo.jpeg" class="rounded mx-auto d-block" width="80" alt="">
+        </div>
+        @foreach($lahan as $lahan)
+        <div class="col-md-4">
+            <div class="card">
+              <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ $lahan->category }}</h5>
+                <p class="card-text">
+                    <strong>Ukuran :</strong>{{ $lahan->ukuran}} <br>
+                    <!-- <strong>Deskripsi :</strong> {{ $lahan->deskripsi }} <br> -->
+                    <hr>
+                    <strong>Deskripsi :</strong> <br>
+                    {{ $lahan->deskripsi }} 
+                </p>
+                <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Pesan</a>
+              </div>
+            </div> 
+        </div>
+        @endforeach
+    </div>
+</div>

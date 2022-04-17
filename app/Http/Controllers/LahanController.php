@@ -40,7 +40,9 @@ class LahanController extends Controller
      */
 
     public function lahan(){
-       return view('lahan');
+        $lahan = Lahan::paginate(10);
+        return view('lahan', compact('lahan'));
+        // return view('lahan');
     }
 
     public function create(){
