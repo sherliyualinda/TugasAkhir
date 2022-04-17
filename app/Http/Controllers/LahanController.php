@@ -25,7 +25,9 @@ class LahanController extends Controller
      * Create a new controller instance.
      *
      * @return void
+     *
      */
+    protected $guarded=[];
     public function __construct()
     {
         $this->middleware('auth');
@@ -50,13 +52,13 @@ class LahanController extends Controller
     }
 
     public function simpan(Request $request){
-        lahan::create([
-            'category_lahan_id'=>$request->category_lahan_id,
-            'ukuran'=>$request->ukuran,
-            'deskripsi'=>$request->deskripsi,
-            //'gambar'=>$request->gambar
-        ]);
-        //dd($request->all());
+        // lahan::create([
+        //     'category_lahan_id'=>$request->category_lahan_id,
+        //     'ukuran'=>$request->ukuran,
+        //     'deskripsi'=>$request->deskripsi,
+        //     //'gambar'=>$request->gambar
+        // ]);
+        dd($request->all());
     }
     
 }

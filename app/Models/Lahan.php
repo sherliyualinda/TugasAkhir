@@ -24,11 +24,11 @@ class Province extends Model
      *
      * @var string
      */
-    protected $table = 'lahan';
-    protected $primaryKey = 'id';
+    protected $guarded=[];
+    protected $table = "lahan";
+    protected $primaryKey = "id";
     protected $fillable = [
-        'id','category_lahan_id','ukuran','deskripsi','gambar'
-    ];
+        'id','category_lahan_id','ukuran','deskripsi','gambar'];
 
     /**
      * Province has many regencies.
