@@ -40,7 +40,8 @@ class LahanController extends Controller
      */
 
     public function lahan(){
-        $lahan = Lahan::paginate(10);
+        //$lahan = Lahan::paginate(9);
+        $lahan = DB::select("SELECT l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM lahans l JOIN category_lahans cl ON l.category_lahan_id = cl.id");
         return view('lahan', compact('lahan'));
         // return view('lahan');
     }
@@ -80,11 +81,11 @@ class LahanController extends Controller
         $tujuan_upload = 'gambar_lahan';
         $file->move($tujuan_upload,$file->getClientOriginalName());
 
-        DB::table('lahan')->insert([
+        DB::table('lahans')->insert([
             'category_lahan_id' => $request->category_lahan_id,
             'ukuran'            => $request->ukuran,
             'deskripsi'         => $request->deskripsi,
-            'gambar'            => $request->gambar
+            'gambar'            => $file->getClientOriginalName()
         ]);
     }
     
