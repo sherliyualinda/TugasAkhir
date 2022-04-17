@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
 	<div class="logo col-lg-2">
 		<a title="" href="{{ asset('/sosial-media/beranda') }}">
-			<img src="/Diessnie-logo.jpeg" alt="" style="max-height: 50px;">
+			<img src="/Diessnie-logo.png" alt="" style="max-height: 50px;">
 		</a>
 	</div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

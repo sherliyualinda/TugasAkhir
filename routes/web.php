@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GanttController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,7 @@ Route::get('/masuk', function(){
 
 Route::get('/gantt', function () {
     return view('gantt');
-});
+})->middleware('auth');
 
 //REFRESH WIDGET
 Route::get('/sosial-media/widget_berita.blade.php', function(){
@@ -308,9 +309,9 @@ Route::prefix('adminstore')
 });
 
 //LAHAN
-Route::get('/lahan', 'LahanController@lahan');
-Route::get('/lahan/create', 'LahanController@create');
-Route::post('/lahan/simpan', 'LahanController@simpan')->name('lahan.simpan');
+Route::get('/lahan', 'LahanController@lahan')->middleware('auth');
+Route::get('/lahan/create', 'LahanController@create')->middleware('auth');
+Route::post('/lahan/simpan', 'LahanController@simpan')->name('lahan.simpan')->middleware('auth');
 
  
 
