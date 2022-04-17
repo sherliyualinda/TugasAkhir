@@ -10,7 +10,7 @@
   <div class="form-group">
     <tr>
         <label>Kategori</label>
-        <select class="form-control" name="categori_lahan_id">
+        <select class="form-control" name="category_lahan_id">
             <option value="">Pilih Kategori</option>
             @foreach($categori as $categori)
                 <option value="{{$categori->id}}">{{$categori->nama}}</option>
@@ -27,9 +27,10 @@
   <div class="form-group">
     <tr>
         <td>Deskripsi</td> 
-        <td><input type="input" name="deskripsi" class="form-control form-control-user"></td>
+        <td><textarea name="deskripsi" class="form-control form-control-user"></textarea></td>
     </tr>
   </div>
+  <input type="hidden" name="gambar" class="form-control form-control-user" value="tes aja">
   <div class="form-group">
     <tr>
         <td><button type="submit">Create</button></td> 

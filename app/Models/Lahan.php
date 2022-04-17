@@ -24,7 +24,7 @@ class Province extends Model
      *
      * @var string
      */
-    protected $guarded=[];
+    //protected $guarded=[];
     protected $table = "lahan";
     protected $primaryKey = "id";
     protected $fillable = [
