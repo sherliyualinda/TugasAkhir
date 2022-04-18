@@ -11,6 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12 mb-5">
             <img src="/Diessnie-logo.png" class="rounded mx-auto d-block" width="100" alt="">
+            <a href="{{ route('lahan.create') }}" class="btn btn-primary">+ Buat Lahan</a>
             <hr>
         </div>
         @foreach($lahan as $lahan)
@@ -20,10 +21,11 @@
               <div class="card-body">
                 <h5 class="card-title">{{ $lahan->nama }}</h5>
                 <p class="card-text">
-                    <strong>Ukuran :</strong>{{ $lahan->ukuran}} <br>
+                    <strong>Pemilik : </strong>{{ $lahan->pemilik}} <br>
+                    <strong>Ukuran : </strong>{{ $lahan->ukuran}} <br>
                     <!-- <strong>Deskripsi :</strong> {{ $lahan->deskripsi }} <br> -->
                     <hr>
-                    <strong>Deskripsi :</strong> <br>
+                    <strong>Deskripsi : </strong> <br>
                     {{ $lahan->deskripsi }} 
                 </p>
                 <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Pesan</a>

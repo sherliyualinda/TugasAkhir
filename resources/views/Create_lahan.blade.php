@@ -22,7 +22,8 @@
   <div class="form-group">
     <tr>
         <td>Ukuran</td> 
-        <td><input type="input" name="ukuran" class="form-control form-control-user"></td>
+        <td><input type="input" name="ukuran" class="form-control form-control-user">
+        </td>
     </tr>
   </div>
   <div class="form-group">

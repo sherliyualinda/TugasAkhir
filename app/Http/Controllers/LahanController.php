@@ -41,16 +41,18 @@ class LahanController extends Controller
 
     public function lahan(){
         //$lahan = Lahan::paginate(9);
-        $lahan = DB::select("SELECT l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM lahans l JOIN category_lahans cl ON l.category_lahan_id = cl.id");
+        $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id");
         return view('lahan', compact('lahan'));
         // return view('lahan');
     }
 
     public function create(){
         //$data['categori']= "select * from category_lahan";
+        //$user = User::find($id);
         $categori=category_lahan::all();
         return view('create_lahan',[
             'categori' => $categori,
+            'id_pengguna' => Auth::user()->pengguna->id_pengguna
         ]);
     }
 
@@ -85,7 +87,8 @@ class LahanController extends Controller
             'category_lahan_id' => $request->category_lahan_id,
             'ukuran'            => $request->ukuran,
             'deskripsi'         => $request->deskripsi,
-            'gambar'            => $file->getClientOriginalName()
+            'gambar'            => $file->getClientOriginalName(),
+            'id_user'       => Auth::user()->pengguna->id_pengguna
         ]);
     }
     

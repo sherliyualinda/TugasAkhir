@@ -310,7 +310,7 @@ Route::prefix('adminstore')
 
 //LAHAN
 Route::get('/lahan', 'LahanController@lahan')->middleware('auth');
-Route::get('/lahan/create', 'LahanController@create')->middleware('auth');
+Route::get('/lahan/create', 'LahanController@create')->name('lahan.create')->middleware('auth');
 Route::post('/lahan/simpan', 'LahanController@simpan')->name('lahan.simpan')->middleware('auth');
 
  
