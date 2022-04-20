@@ -7,51 +7,66 @@
 <link rel="icon" href="/logo-home.png" type="image/png" sizes="16x16"> 	    
 <link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
 
-<div class="limiter">
-    <div class="container-login100">
-      <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-    <h1>Create Lahan</h1>
-    <hr>
-    <hr>
-    <form action="{{route('lahan.simpan')}}" method="POST" enctype="multipart/form-data">
-        {{csrf_field() }}
-    <table>
-  <div class="form-group">
-    <tr>
-        <label>Kategori</label>
-        <select class="form-control" name="category_lahan_id">
-            <option value="">Pilih Kategori</option>
-            @foreach($categori as $categori)
-                <option value="{{$categori->id}}">{{$categori->nama}}</option>
-            @endforeach
-         </select>
-    </tr>
-  </div>
-  <div class="form-group">
-    <tr>
-        <td>Ukuran</td> 
-        <td><input type="input" name="ukuran" class="form-control form-control-user">
-        </td>
-    </tr>
-  </div>
-  <div class="form-group">
-    <tr>
-        <td>Deskripsi</td> 
-        <td><textarea name="deskripsi" class="form-control form-control-user"></textarea></td>
-    </tr>
-  </div>
-  <div class="form-group">
-  <div class="form-group">
-		<tr>
-            <td>File Gambar</td>
-		    <td><input type="file" name="gambar"></td>
-        </tr>
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Tambah Post</title>
+</head>
+
+<body>
+
+<div class="container" style="margin-top: 50px">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    Buat Lahan Baru
+                </div>
+                <div class="card-body">
+                <form action="{{route('lahan.simpan')}}" method="POST" enctype="multipart/form-data">
+                 {{ csrf_field() }}
+                        <div class="form-group">
+                            <label>Kategori</label>
+                            <!-- <input type="text" name="title" placeholder="Masukkan Title" class="form-control"> -->
+                            <select class="form-control" name="category_lahan_id" placeholder="--Pilih Kategori">
+                                <option value="">Pilih Kategori</option>
+                                @foreach($categori as $categori)
+                                    <option value="{{$categori->id}}">{{$categori->nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Ukuran</label>
+                            <input type="input" name="ukuran" class="form-control form-control-user" placeholder="Ukuran">
+                        </div>
+                        <div class="form-group">
+                            <label>Deskripsi</label>
+                            <!-- <textarea class="form-control" name="content" placeholder="Masukkan Content" rows="4"></textarea> -->
+                            <textarea name="deskripsi" class="form-control form-control-user" rows="4" placeholder="Masukkan Deskripsi"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Gambar</label>
+                            <input type="file" name="gambar">
+                        </div>
+                        <button type="submit" class="btn btn-success">SIMPAN</button>                    
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <tr>
-        <td><button type="submit">Create</button></td> 
-    </tr> 
-  </div>
-</table>
+</div>
 
-
-<!-- Percobaan -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'content' );
+</script>
+</body>
+</html>

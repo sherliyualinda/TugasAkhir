@@ -59,26 +59,7 @@ class LahanController extends Controller
     public function simpan(Request $request){
         // menyimpan data file yang diupload ke variabel $file
 	    $file = $request->file('gambar');
- 
-        // nama file
-        echo 'File Name: '.$file->getClientOriginalName();
-        echo '<br>';
-
-        // ekstensi file
-        echo 'File Extension: '.$file->getClientOriginalExtension();
-        echo '<br>';
-
-        // real path
-        // echo 'File Real Path: '.$file->getRealPath();
-        // echo '<br>';
-
-        // ukuran file
-        echo 'File Size: '.$file->getSize();
-        echo '<br>';
-
-        // tipe mime
-        echo 'File Mime Type: '.$file->getMimeType();
-
+        
         // isi dengan nama folder tempat kemana file diupload
         $tujuan_upload = 'gambar_lahan';
         $file->move($tujuan_upload,$file->getClientOriginalName());
@@ -90,6 +71,11 @@ class LahanController extends Controller
             'gambar'            => $file->getClientOriginalName(),
             'id_user'       => Auth::user()->pengguna->id_pengguna
         ]);
+        $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        return view('kelola_lahan', compact('lahan'));
     }
-    
+    public function kelola_lahan(){
+        $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        return view('kelola_lahan', compact('lahan'));
+    }    
 }
