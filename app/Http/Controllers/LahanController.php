@@ -80,7 +80,7 @@ class LahanController extends Controller
         return view('kelola_lahan', compact('lahan'));
     }    
     public function ubahlahan($id){
-        $categori = category_lahan::get();
+        $categori = category_lahan::all();
         $lahan = Lahan::select('*')->where('id', $id)->get();
         $lahan2 = Lahan::select('*')->where('id', $id)->get();
         return view('ubahlahan', compact('lahan','categori','lahan2'));  
