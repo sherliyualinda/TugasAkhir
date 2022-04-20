@@ -69,7 +69,8 @@ class LahanController extends Controller
             'ukuran'            => $request->ukuran,
             'deskripsi'         => $request->deskripsi,
             'gambar'            => $file->getClientOriginalName(),
-            'id_user'       => Auth::user()->pengguna->id_pengguna
+            'id_user'           => Auth::user()->pengguna->id_pengguna,
+            'updated_at'        => date("Y-m-d H:i:s")
         ]);
         $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
         return view('kelola_lahan', compact('lahan'));
@@ -79,19 +80,24 @@ class LahanController extends Controller
         return view('kelola_lahan', compact('lahan'));
     }    
     public function ubahlahan($id){
-        $categori=category_lahan::all();
+        $categori = category_lahan::get();
         $lahan = Lahan::select('*')->where('id', $id)->get();
-        return view('ubahlahan', ['lahan' => $lahan]);
+        $lahan2 = Lahan::select('*')->where('id', $id)->get();
+        return view('ubahlahan', compact('lahan','categori','lahan2'));  
     }
 
     public function updatelahan(Request $request){
-        $categori=category_lahan::all();
+        $file = $request->file('gambar');
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'gambar_lahan';
+        $file->move($tujuan_upload,$file->getClientOriginalName());
+        
         $lahan = Lahan::where('id', $request->id)->update([
-            'categori' => $request->categori,
+            'category_lahan_id' => $request->category_lahan_id,
             'ukuran' => $request->ukuran,
             'deskripsi' => $request->deskripsi,
-            'gambar' => $request->gambar,
+            'gambar' => $file->getClientOriginalName()
         ]);
-         return redirect()->route('kelola_lahan');
+        return redirect('lahan/kelola_lahan');
     }
 }

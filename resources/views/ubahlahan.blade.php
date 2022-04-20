@@ -26,44 +26,42 @@
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-header">
-                    Buat Lahan Baru
+                    Ubah Lahan
                 </div>
                 <div class="card-body">
-                @foreach($lahan as $lahan)
+                @foreach ($lahan as $lahan)
                 <form action="{{route('updatelahan')}}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
                  <input type="hidden" name="id" value="{{$lahan->id}}">
+                 @endforeach
                         <div class="form-group">
                             <label>Kategori</label>
                             <select class="form-control" name="category_lahan_id" placeholder="--Pilih Kategori">
-                                @foreach($categori as $categori)
-                                    <option 
-                                        value="{{$categori->id}}"
-                                        @if ($categori->id === $post->id)
-                                        seleted
-                                        @endif
-                                    >
+                                @foreach ($categori as $categori)
+                                    <option value="{{$categori->id}}" @if(old('categori',$lahan->category_lahan_id) == $categori->id) selected="selected" @endif>
                                         {{$categori->nama}}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
+                        @foreach ($lahan2 as $lahan2)
                         <div class="form-group">
                             <label>Ukuran</label>
-                            <input type="input" name="ukuran" value="{{$lahan->ukuran}}" class="form-control form-control-user" placeholder="Ukuran">
+                            <input type="input" name="ukuran" value="{{old('ukuran',$lahan2->ukuran)}}" class="form-control form-control-user" placeholder="Ukuran">
                         </div>
                         <div class="form-group">
                             <label>Deskripsi</label>
-                            <textarea name="deskripsi" value="{{$lahan->deskripsi}} class="form-control form-control-user" rows="4" placeholder="Masukkan Deskripsi"></textarea>
+                            <input type="input" name="deskripsi" value="{{old('deskripsi',$lahan2->deskripsi)}}" class="form-control form-control-user" rows="4" placeholder="Masukkan Deskripsi">
                         </div>
                         <div class="form-group">
-                            <label>Gambar</label>
-                            <input type="file" name="gambar" value="{{$lahan->gambar}}">
+                            <label>Gambar</label><br>
+                            <img src="{{ url('gambar_lahan') }}/{{ $lahan2->gambar }} "width="50" height="50">
+                            <input type="file" name="gambar" value="{{old('gambar',$lahan2->gambar)}}" required>
                         </div>
+                        @endforeach
                         <!-- <button type="submit" class="btn btn-success">SIMPAN</button> -->
                         <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Update Data</button>                    
                     </form>
-                    @endforeach
                 </div>
             </div>
         </div>

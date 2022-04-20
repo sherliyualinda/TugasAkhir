@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Province Model.
  */
-class Province extends Model
+class Lahan extends Model
 {
     use HasFactory;
     /**
@@ -26,6 +26,7 @@ class Province extends Model
      */
     //protected $guarded=[];
     protected $table = "lahan";
+    public $timestamps = false;
     protected $primaryKey = "id";
     protected $fillable = [
         'id','category_lahan_id','ukuran','deskripsi','gambar'];
