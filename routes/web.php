@@ -313,7 +313,8 @@ Route::get('/lahan', 'LahanController@lahan')->middleware('auth');
 Route::get('/lahan/create', 'LahanController@create')->name('lahan.create')->middleware('auth');
 Route::post('/lahan/simpan', 'LahanController@simpan')->name('lahan.simpan')->middleware('auth');
 Route::get('/lahan/kelola_lahan', 'LahanController@kelola_lahan')->name('lahan.kelola_lahan')->middleware('auth');
-
+Route::get('/lahan/ubah/{id}',  'LahanController@ubahlahan')->name('ubahlahan')->middleware('auth');
+Route::post('/lahan/update', 'LahanController@updatelahan')->name('updatelahan')->middleware('auth');
 
  
 

@@ -78,4 +78,20 @@ class LahanController extends Controller
         $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
         return view('kelola_lahan', compact('lahan'));
     }    
+    public function ubahlahan($id){
+        $categori=category_lahan::all();
+        $lahan = Lahan::select('*')->where('id', $id)->get();
+        return view('ubahlahan', ['lahan' => $lahan]);
+    }
+
+    public function updatelahan(Request $request){
+        $categori=category_lahan::all();
+        $lahan = Lahan::where('id', $request->id)->update([
+            'categori' => $request->categori,
+            'ukuran' => $request->ukuran,
+            'deskripsi' => $request->deskripsi,
+            'gambar' => $request->gambar,
+        ]);
+         return redirect()->route('kelola_lahan');
+    }
 }

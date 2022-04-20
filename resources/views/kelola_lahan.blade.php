@@ -40,7 +40,7 @@
                                     </td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
-                                            <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                                            <a href="/lahan/ubah/{{$lahan->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
                                             <a href="#" class="btn btn-sm btn-danger">Delete</a>
                                             <!-- <button type="submit" class="btn btn-sm btn-danger">HAPUS</button> -->
                                         </form>
