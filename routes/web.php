@@ -315,6 +315,7 @@ Route::post('/lahan/simpan', 'LahanController@simpan')->name('lahan.simpan')->mi
 Route::get('/lahan/kelola_lahan', 'LahanController@kelola_lahan')->name('lahan.kelola_lahan')->middleware('auth');
 Route::get('/lahan/ubah/{id}',  'LahanController@ubahlahan')->name('ubahlahan')->middleware('auth');
 Route::post('/lahan/update', 'LahanController@updatelahan')->name('updatelahan')->middleware('auth');
+Route::get('/lahan/hapus/{id}', 'LahanController@hapus_lahan')->middleware('auth');
 
  
 

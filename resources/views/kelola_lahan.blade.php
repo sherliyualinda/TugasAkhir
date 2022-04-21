@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
+	
+        @include('nav_barMar')
+
+</div>
 <body style="background: lightgray">
 
     <div class="container mt-5">
@@ -41,7 +45,7 @@
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
                                             <a href="/lahan/ubah/{{$lahan->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
-                                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                            <a href="/lahan/hapus/{{$lahan->id}}" class="btn btn-sm btn-danger">Delete</a>
                                             <!-- <button type="submit" class="btn btn-sm btn-danger">HAPUS</button> -->
                                         </form>
                                     </td>

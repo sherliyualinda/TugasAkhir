@@ -100,4 +100,9 @@ class LahanController extends Controller
         ]);
         return redirect('lahan/kelola_lahan');
     }
+
+    public function hapus_lahan($id){
+        DB::table('lahans')->where('id',$id)->delete();
+        return redirect('lahan/kelola_lahan');
+    }
 }
