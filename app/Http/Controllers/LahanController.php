@@ -100,4 +100,5 @@ class LahanController extends Controller
         ]);
         return redirect('lahan/kelola_lahan');
     }
+    //
 }
