@@ -11,12 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-<<<<<<< Updated upstream
         $this->call(TasksTableSeeder::class);
-		$this->call(LinksTableSeeder::class);
-=======
-        $this->call(Category_lahanSeeder::class);
->>>>>>> Stashed changes
+        $this->call(LinksTableSeeder::class);
     }
 }

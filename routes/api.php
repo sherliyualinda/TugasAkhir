@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/data', 'GanttController@get');
+Route::resource('task', 'TaskController');
+Route::resource('link', 'LinkController');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -31,6 +35,3 @@ Route::get('productvillage/{id}', 'API\ProductController@getproductvillage')->na
 Route::get('productterlaris', 'API\ProductController@productterlaris')->name('productterlaris');
 Route::get('produkgalleri/{id}', 'API\ProductController@produkgalleri')->name('produkgalleri');
 
-Route::get('/data', 'GanttController@get');
-Route::resource('task', 'TaskController');
-Route::resource('link', 'LinkController');

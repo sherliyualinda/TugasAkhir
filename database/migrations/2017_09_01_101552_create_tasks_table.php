@@ -15,6 +15,7 @@ class CreateTasksTable extends Migration
             $table->float('progress');
             $table->dateTime('start_date');
             $table->integer('parent');
+            $table->integer('sortorder')->default(0);
             $table->timestamps();
         });
     }

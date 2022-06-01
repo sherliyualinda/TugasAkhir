@@ -1,7 +1,8 @@
 <?php
  
 use Illuminate\Database\Seeder;
- 
+use Illuminate\Support\Facades\DB;
+
 class TasksTableSeeder extends Seeder
 {
     public function run()
