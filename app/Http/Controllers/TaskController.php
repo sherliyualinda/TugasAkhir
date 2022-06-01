@@ -16,7 +16,9 @@ class TaskController extends Controller
         $task->progress = $request->has("progress") ? $request->progress : 0;
         $task->parent = $request->parent;
  
+        dd($task);
         $task->save();
+        
  
         return response()->json([
             "action"=> "inserted",

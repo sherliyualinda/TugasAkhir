@@ -20,8 +20,6 @@ Route::get('/masuk', function(){
 });
 
 
-
-
 Route::get('/gantt', function () {
     return view('gantt');
 })->middleware('auth');
