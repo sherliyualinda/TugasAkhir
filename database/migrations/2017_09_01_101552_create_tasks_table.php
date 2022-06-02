@@ -17,6 +17,7 @@ class CreateTasksTable extends Migration
             $table->integer('parent');
             $table->integer('sortorder')->default(0);
             $table->timestamps();
+            $table->integer('id_lahan');
         });
     }
  

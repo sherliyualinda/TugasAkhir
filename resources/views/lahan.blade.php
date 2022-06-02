@@ -12,6 +12,7 @@
         <div class="col-md-12 mb-5">
             <img src="/Diessnie-logo.png" class="rounded mx-auto d-block" width="100" alt="">
             <a href="{{ route('lahan.create') }}" class="btn btn-primary">+ Buat Lahan</a>
+            <a href="{{ route('lahan.kelola_lahan') }}" class="btn btn-primary">Kelola Lahan</a>
             <hr>
         </div>
         @foreach($lahan as $lahan)

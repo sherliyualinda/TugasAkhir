@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Task;
 use App\Link;
+use App\Lahan;
  
 class GanttController extends Controller
 {

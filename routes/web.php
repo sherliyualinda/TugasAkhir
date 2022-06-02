@@ -3,6 +3,7 @@
 use App\Http\Controllers\GanttController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
+use App\Lahan;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,9 @@ Route::get('/masuk', function(){
 });
 
 
-Route::get('/gantt', function () {
-    return view('gantt');
+Route::get('/gantt/{id}', function ($id) {
+    $lahan = Lahan::select('*')->where('id', $id)->get();
+    return view('gantt',['lahan' => $lahan]);
 })->middleware('auth');
 
 //REFRESH WIDGET
@@ -314,6 +316,8 @@ Route::get('/lahan/kelola_lahan', 'LahanController@kelola_lahan')->name('lahan.k
 Route::get('/lahan/ubah/{id}',  'LahanController@ubahlahan')->name('ubahlahan')->middleware('auth');
 Route::post('/lahan/update', 'LahanController@updatelahan')->name('updatelahan')->middleware('auth');
 Route::get('/lahan/hapus/{id}', 'LahanController@hapus_lahan')->middleware('auth');
+
+Route::post('/tambahgantt', 'TaskController@store')->name('tambahgantt')->middleware('auth');
 
  
 
