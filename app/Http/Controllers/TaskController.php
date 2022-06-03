@@ -6,8 +6,9 @@ use App\Task;
  
 class TaskController extends Controller
 {
-    public function store(Request $request){
- 
+    public function store(Request $request,$id){
+        // dd($request);
+        
         $task = new Task();
  
         $task->text = $request->text;
@@ -16,7 +17,7 @@ class TaskController extends Controller
         $task->progress = $request->has("progress") ? $request->progress : 0;
         $task->parent = $request->parent;
         $task->sortorder = Task::max("sortorder") + 1;
-        $task->id_lahan = 1;
+        $task->id_lahan =$id;
  
         $task->save();
         

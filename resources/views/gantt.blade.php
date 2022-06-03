@@ -15,9 +15,9 @@
     <link href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css" rel="stylesheet">
 
     @foreach ($lahan as $lahan)
-                <form action="{{route('tambahgantt')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('tambahgantt',$lahan->id)}}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
-                 <input type="hidden" name="id_lahan" value="{{$lahan->id}}">
+                <input type="hidden" name="id_lahan" value="{{$lahan->id}}">
     @endforeach
  
     <style type="text/css">

@@ -317,7 +317,7 @@ Route::get('/lahan/ubah/{id}',  'LahanController@ubahlahan')->name('ubahlahan')-
 Route::post('/lahan/update', 'LahanController@updatelahan')->name('updatelahan')->middleware('auth');
 Route::get('/lahan/hapus/{id}', 'LahanController@hapus_lahan')->middleware('auth');
 
-Route::post('/tambahgantt', 'TaskController@store')->name('tambahgantt')->middleware('auth');
+Route::post('/tambahgantt/{id}', 'TaskController@store')->name('tambahgantt')->middleware('auth');
 
  
 
