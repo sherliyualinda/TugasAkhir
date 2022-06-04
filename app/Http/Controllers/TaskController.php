@@ -6,9 +6,9 @@ use App\Task;
  
 class TaskController extends Controller
 {
-    public function store(Request $request,$id){
+    public function store(Request $request){
         // dd($request);
-        
+        session_start();
         $task = new Task();
  
         $task->text = $request->text;
@@ -17,7 +17,7 @@ class TaskController extends Controller
         $task->progress = $request->has("progress") ? $request->progress : 0;
         $task->parent = $request->parent;
         $task->sortorder = Task::max("sortorder") + 1;
-        $task->id_lahan =$id;
+        $task->id_lahan = $_SESSION['id_lahan'];
  
         $task->save();
         

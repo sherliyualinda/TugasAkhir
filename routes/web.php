@@ -22,6 +22,8 @@ Route::get('/masuk', function(){
 
 
 Route::get('/gantt/{id}', function ($id) {
+    session_start();
+    $_SESSION['id_lahan'] = $id;
     $lahan = Lahan::select('*')->where('id', $id)->get();
     return view('gantt',['lahan' => $lahan]);
 })->middleware('auth');
