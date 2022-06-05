@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 
+
 class LahanController extends Controller
 {
     /**
@@ -40,7 +41,7 @@ class LahanController extends Controller
      */
 
     public function lahan(){
-        //$lahan = Lahan::paginate(9);
+        $lahan = Lahan::paginate(9);
         $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id");
         return view('lahan', compact('lahan'));
         // return view('lahan');

@@ -18,7 +18,7 @@
         @foreach($lahan as $lahan)
         <div class="col-md-4">
             <div class="card" >
-              <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }}" class="card-img-top" alt="..." >
+              <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }}" class="card-img-top" alt="..."  >
               <div class="card-body">
                 <h5 class="card-title">{{ $lahan->nama }}</h5>
                 <p class="card-text">
