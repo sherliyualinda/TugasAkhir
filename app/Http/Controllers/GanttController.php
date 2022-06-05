@@ -16,4 +16,5 @@ class GanttController extends Controller
             "links" => $links->all()
         ]);
     }
+    
 }

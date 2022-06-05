@@ -18,6 +18,7 @@
                 <form action="{{route('tambahgantt',$lahan->id)}}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
                 <input type="hidden" name="id_lahan" value="{{$lahan->id}}">
+                
     @endforeach
  
     <style type="text/css">
@@ -31,11 +32,10 @@
     </style>
 </head>
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ url('lahan') }}">Simpan</a></li>
-        <li class="breadcrumb-item active" aria-current="page"></li>
-    </ol>
-</nav>
+                    <ol class="breadcrumb">
+                        <a href="/screenshot" class="btn btn-md btn-info plus mr-auto">Simpan</a>
+                    </ol>
+                </nav>
 <body>
 <div id="gantt_here" style='width:100%; height:100%;'></div>
 <script type="text/javascript">

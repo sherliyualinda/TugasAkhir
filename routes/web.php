@@ -325,5 +325,6 @@ Route::get('/lahan/detail_lahan/{id}', 'LahanController@detail_lahan')->middlewa
 
  
 
+Route::get('/screenshot', 'LahanController@screenshot')->middleware('auth');
 
 Auth::routes();
