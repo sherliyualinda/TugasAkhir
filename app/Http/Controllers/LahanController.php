@@ -14,6 +14,7 @@ use App\Category;
 use App\Transaction;
 use App\ProductGallery;
 use App\TransactionDetail;
+use App\Pengguna;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -113,5 +114,25 @@ class LahanController extends Controller
         $lahan = Lahan::select('*')->where('id', $id)->get();
         // $lahan2 = Lahan::select('*')->where('id', $id)->get();
         return view('detail_lahan',compact('lahan'));  
+    }
+
+    public function ubahSewa($id){
+        $pengguna = Pengguna::select('*')->where('id_pengguna', $id)->get();
+        return view('ubahsewa', compact('pengguna'));  
+    }
+
+    public function updateSewa(Request $request){
+        $file = $request->file('gambar');
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'foto_ktp';
+        $file->move($tujuan_upload,$file->getClientOriginalName());
+        
+        $pengguna = Pengguna::where('id_pengguna', $request->id)->update([
+            'alamat' => $request->alamat,
+            'nik' => $request->nik,
+            'pekerjaan' => $request->pekerjaan,
+            'gambar' => $file->getClientOriginalName()
+        ]);
+        return redirect('lahan');
     }
 }
