@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jun 2022 pada 08.46
+-- Waktu pembuatan: 05 Jun 2022 pada 14.06
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -186,6 +186,13 @@ CREATE TABLE `chat` (
   `media` varchar(255) DEFAULT NULL,
   `status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `chat`
+--
+
+INSERT INTO `chat` (`id_chat`, `id_room_chat`, `tanggal_chat`, `id_pengirim`, `id_penerima`, `isi_chat`, `media`, `status`) VALUES
+(1, 1, '2022-06-05 13:57:26', 45, 42, 'oo', NULL, 'Sudah Dibaca');
 
 -- --------------------------------------------------------
 
@@ -7607,7 +7614,8 @@ CREATE TABLE `lahans` (
 
 INSERT INTO `lahans` (`id`, `category_lahan_id`, `ukuran`, `deskripsi`, `gambar`, `id_user`, `updated_at`) VALUES
 (1, 2, '10 x 50 cm', 'apel', 'Screenshot (3).png', 42, '2022-04-21'),
-(2, 1, '70 x 40', 'yusril dijual mahal', 'WhatsApp Image 2022-04-14 at 12.02.40 (1).jpeg', 42, '2022-04-21');
+(2, 1, '70 x 40', 'yusril dijual mahal', 'WhatsApp Image 2022-04-14 at 12.02.40 (1).jpeg', 42, '2022-04-21'),
+(3, 3, '20x20', 'mahal', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 45, '2022-06-05');
 
 -- --------------------------------------------------------
 
@@ -7771,7 +7779,8 @@ INSERT INTO `pengaturan` (`id`, `notifikasi_menyukai`, `notifikasi_komentar`, `n
 (33, 'dari semua orang', 'dari semua orang', 'dari semua orang', 'tidak', 41),
 (34, 'dari semua orang', 'dari semua orang', 'dari semua orang', 'tidak', 42),
 (35, 'dari semua orang', 'dari semua orang', 'dari semua orang', 'tidak', 43),
-(36, 'dari semua orang', 'dari semua orang', 'dari semua orang', 'tidak', 45);
+(36, 'dari semua orang', 'dari semua orang', 'dari semua orang', 'tidak', 45),
+(37, 'dari semua orang', 'dari semua orang', 'dari semua orang', 'tidak', 46);
 
 -- --------------------------------------------------------
 
@@ -7789,6 +7798,10 @@ CREATE TABLE `pengguna` (
   `village_id` bigint(20) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `nomor_hp` varchar(15) DEFAULT NULL,
+  `alamat` varchar(225) DEFAULT NULL,
+  `nik` varchar(50) DEFAULT NULL,
+  `pekerjaan` varchar(50) DEFAULT NULL,
+  `foto_ktp` varchar(255) DEFAULT NULL,
   `bio` varchar(255) DEFAULT NULL,
   `website` varchar(255) DEFAULT NULL,
   `youtube` varchar(255) DEFAULT NULL,
@@ -7805,44 +7818,45 @@ CREATE TABLE `pengguna` (
 -- Dumping data untuk tabel `pengguna`
 --
 
-INSERT INTO `pengguna` (`id_pengguna`, `id`, `jenis_akun`, `username`, `password`, `nama`, `village_id`, `email`, `nomor_hp`, `bio`, `website`, `youtube`, `marketplace`, `berita`, `musrembang`, `foto_profil`, `foto_sampul`, `tgl_join`, `updated_at`) VALUES
-(2, 2, 'pribadi', 'afraaknim_', '$2y$10$Dx.EQZZaoygHpYECle4IWOqompfFFWH2NhdgPapFgAuhAKMjgAfSu', 'Fakhrunnisa Nur Afra', 3273090003, 'afrakiww@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, NULL, 'IMG_20160323_181535.jpeg', 'erin_1.JPG', '2021-08-11 13:02:32', NULL),
-(3, 3, 'pribadi', 'mderry', '$2y$10$mkbUVmcyKfSBaRGEvv0Xw.5CkgKZQ131yaWT2925fobkuDYWDXnHS', 'Muhammad Derry Salman S', 3273090003, 'mderry3@gmail.com', '082258980578', NULL, NULL, NULL, NULL, NULL, NULL, 'user.jpg', 'sampul.jpg', '2021-08-11 13:10:30', NULL),
-(4, 4, 'desa', 'desa_malasari', 'malasari', 'Desa Malasari', 3201010001, 'desa.malasari@gmail.com', '081536600397', NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201010&desa[]=3201010001&keyword=', 'https://desatube.masuk.web.id/search?query=MALASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3201010001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', '2021-08-11 13:26:56', NULL),
-(5, 5, 'desa', 'desa_purasari', 'purasari', 'Desa Purasari', 3201020001, 'desa.purasari@gmail.com', '081536600397', NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201020&desa[]=3201020001&keyword=', 'https://desatube.masuk.web.id/search?query=PURASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3201020001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', '2021-08-11 13:28:35', NULL),
-(6, 6, 'desa', 'desa_wangunjaya', 'wangunjaya', 'Desa Wangun Jaya', 3201021001, 'desa.wangunjaya@gmail.com', '081536600397', NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201021&desa[]=3201021001&keyword=', 'https://desatube.masuk.web.id/search?query=WANGUN JAYA', 'http://marketpalcedesaku.masuk.web.id/stores/3201021001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', '2021-08-11 13:30:07', NULL),
-(7, 7, 'pribadi', 'hermansyah', '$2y$10$Mb0uetUSi2YaVAAgfGcAfeqXWtbMzLCMbbmV3RUOzR2Ehk3uQRq4a', 'Hermansyah', 3201010001, 'herman@gmail.com', '081221504743', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-11 21:22:15', NULL),
-(8, 8, 'pribadi', 'mughny', '123456', 'Mughny', 3204270004, 'mughny2@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 17:02:15', NULL),
-(9, 9, 'pribadi', 'farhan', '$2y$10$Ov/ArF0qtK4koFlpFEqMi.PHsXHSDKFGYd/EAB/lAJW5EToY307/i', 'Farhan', 3276010003, 'farhan1@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 17:26:49', NULL),
-(11, 11, 'pribadi', 'fadhil', '123456', 'Fadhil', 3204270004, 'fadhil@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:29:19', NULL),
-(12, 12, 'pribadi', 'fadhil-cahya-kesuma', '$2y$10$Eb3XWppXHfReCSBPNW83N.awhqqyZAzG3BHP4pI8F7vFEoeKFS92u', 'Fadhil Cahya Kesuma', 3276010003, 'fadhilkesuma65@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:35:59', NULL),
-(13, 13, 'pribadi', 'ujang', '123456', 'Ujang', 3204270004, 'ujang@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:57:36', NULL),
-(14, 14, 'pribadi', 'mughny-mubarak', '$2y$10$wcui338WylB5xm8i34LcEOPVyHiQVAQiYRu5qMVQituG1aaxmoed6', 'Mughny Mubarak', 3204280005, 'mmughnymubarak@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 23:26:12', NULL),
-(15, 15, 'pribadi', 'fakhri-naufal', '$2y$10$IxnldiOmvbSSoX85Rp/ZE.Cp9tLk75/scynSvoGV5l5cKgU.5D9M.', 'Fakhri Naufal', 3273090004, 'fakhrinfla47@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 00:08:54', NULL),
-(16, 16, 'pribadi', 'fakhrunisa-nur-afra', '$2y$10$Hq1tUmTA3YGojaXa8DPOquq.BuZAAeN3aKMZQTE1qF16mBVV2A/42', 'Fakhrunisa Nur Afra', 3273160005, 'afrakiw@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 00:45:10', NULL),
-(17, 17, 'pribadi', 'riswan-ardinata', '$2y$10$H6yoKRNLV0IjhLUZjZQoDuIJuhGY3fL.nzXgarpYoJZHz7k805l4G', 'Riswan Ardinata', 3204270006, 'riswan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 01:12:40', NULL),
-(18, 18, 'desa', 'desa_cibenda', 'desacibenda', 'Desa Cibenda', 3202010001, 'desa.cibenda@gmail.com', '081536600397', NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3202&kecamatan[]=3202010&desa[]=3202010001', 'https://desatube.masuk.web.id/search?query=CIBENDA', 'http://marketpalcedesaku.masuk.web.id/stores/3202010001', 'https://desaku-desanews.masuk.id/3202010001', NULL, 'user.jpg', 'sampul.jpg', '2021-08-13 18:21:56', NULL),
-(19, 19, 'pribadi', 'afra', '$2y$10$5neuMnM6SNddcBp/denOReNNw1UFCPhKZkwDaRgoFhzZcoEolLRbu', 'Afra', 3204010001, 'afra@gmail.com', '081221504744', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:12:40', NULL),
-(20, 20, 'pribadi', 'mugny', '$2y$10$i1LVqYIlm/8DpM77XTRQKOf7csevIYizfDGf60myz7xLnDl8wIJye', 'Mugny', 3204011001, 'muqny@gmail.com', '0812215047444', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:27:10', NULL),
-(21, 21, 'pribadi', 'arvin', '$2y$10$28540PAS1N2zOx.KrYUhQuNqZ1.jY4dxCswzniedSVzTrihg.I0HG', 'Arvin', 3204020001, 'arvin@gmail.com', '081221504733', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:36:36', NULL),
-(22, 22, 'pribadi', 'fadil', '$2y$10$nMRoe3PE6U5CVHZ4RwEYk.uwyxeWfQHcNhG9SHNJbIupiP/ATafQK', 'Fadil', 3204030001, 'fadil@gmail.com', '08112215949', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:45:27', NULL),
-(23, 23, 'pribadi', 'fakhri', '$2y$10$aayYIG.qbENe2pHGFm.2tuD3SXfD6s9Shxk91cpkigx/OEtv/npES', 'Fakhri', 3204040001, 'fakhri@gmail.com', '081221504744', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:54:29', NULL),
-(24, 24, 'pribadi', 'deby', '$2y$10$AmM6tkfIMcwNR/p4JFJ/9uCbhRiLFAOb1ulzjfw9s53ozDI3bVUo2', 'Deby', 3204050001, 'deby@gmail.com', '081221504749', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:03:48', NULL),
-(25, 25, 'pribadi', 'niki', '$2y$10$inwUxJ6QUV0GSm3aRD8nkep/.WYaaK0STSPmlhoDXZuthtrT9g8Bi', 'Niki', 3204010001, 'niki@gmail.com', '08122150743', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:22:23', NULL),
-(26, 26, 'pribadi', 'dian', '$2y$10$nmF7lCR20VTeMxchiD5IcObs6owUew5/1sgIJ34mhr7THAtYP.tH6', 'Dian', 3204011001, 'dian@gmail.com', '0812218822', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:25:35', NULL),
-(27, 27, 'pribadi', 'agus', '$2y$10$tn.DoSQk0eZ2F.SYbXxQjeEmVO2aX8LemmYZptnQSFB8mclq8zl1.', 'Agus', 3204020001, 'agus@gmail.com', '0812214034732', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:29:50', NULL),
-(28, 28, 'pribadi', 'bimo', '$2y$10$ix849OrQA.kCvEF02UeiHO2zdY5lBjfH3s7t1WL0rnr1MQ/9aSTiG', 'Bimo', 3204030001, 'bimo@gmail.com', '0812218783', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:32:40', NULL),
-(29, 29, 'pribadi', 'riyadi', '$2y$10$dBcOv4pyuG4OynJ2rPXtx.MCFZcODlYnOraEvFFtnG07eoftm87dO', 'Riyadi', 3204040001, 'riyadi@gmail.com', '081221304837', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:34:27', NULL),
-(30, 30, 'pribadi', 'asep', '$2y$10$SWqP69BA5xwib84FbeihvumhP4KWbvZBMOZPkriUXSnQYpkPdU6cW', 'Asep', 3204050001, 'asep@gmail.com', '08122187373', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:36:28', NULL),
-(31, 31, 'desa', 'fadhilkesuma', '12345678', 'Desa Margasari', 3273090002, 'fadhilkesuma13@gmail.com', '081223958715', NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3273&kecamatan[]=3273090&desa[]=3273090002', 'https://desatube.masuk.web.id/search?query=MARGASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3273090002', 'https://desaku-desanews.masuk.id/3273090002', NULL, 'download (2).jpg', 'download.png', '2021-08-14 11:31:13', NULL),
-(32, 32, 'pribadi', 'kesumafadhil', '$2y$10$cObaAdCWIYHmnImHVyCnneti6/6gQXUepuYw8IT5C5pVUk/xDE.uO', 'Fadhil Cahya Kesuma', 3276010003, 'fadhilkesuma13@gmail.com', '081223958715', NULL, NULL, NULL, NULL, NULL, NULL, 'download (2).jpg', 'download.png', '2021-08-14 11:35:35', NULL),
-(34, 34, 'pribadi', 'pajong', '$2y$10$3Iw.EjtoqXDzRDr0LwIPWOVsEr7UNlD6Lv.Vk/lL0KriHhwzUOlZq', 'Fadhil Cahya Kesuma', 3276010003, 'fadhilcahyakesuma@gmail.com', '081223958715', NULL, NULL, NULL, NULL, NULL, NULL, 'download (2).jpg', 'download.png', '2021-08-14 11:37:05', NULL),
-(35, 35, 'pribadi', 'user70239bf39', '123456', 'User70239bf39', 3204270004, 'mughnymubarak14@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-15 00:19:42', NULL),
-(36, 36, 'pribadi', 'ridwan', '123456', 'Ridwan', 3204270004, 'ridwan@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 10:53:26', NULL),
-(41, 41, 'pribadi', 'ridwan-amir', '123456', 'Ridwan Amir', 3204270004, 'ridwanamir@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 11:07:23', NULL),
-(42, 42, 'pribadi', 'sherla', '$2y$10$BpkqUNwXv5iAARXc5YbeMem6x/cwPTLWOdw7BtmOCv70OISldwhdi', 'Sherla', 3203030001, 'sherla@gmail.com', '087765567789', NULL, NULL, NULL, NULL, NULL, NULL, 'WIN_20201124_00_09_32_Pro.jpg', 'WIN_20201124_00_09_32_Pro.jpg', '2022-04-03 03:54:28', NULL),
-(43, 43, 'pribadi', 'jessika', '$2y$10$Vb100zSKHos6PMeNNHZ1v.RgnoxblFk2hG7EcCPLhSzg9GKAx0.sS', 'Jessika', 1504040014, 'jessika@gmail.com', '098765432123', NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', '2022-04-18 14:37:26', NULL),
-(45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', '2022-06-05 13:42:37', NULL);
+INSERT INTO `pengguna` (`id_pengguna`, `id`, `jenis_akun`, `username`, `password`, `nama`, `village_id`, `email`, `nomor_hp`, `alamat`, `nik`, `pekerjaan`, `foto_ktp`, `bio`, `website`, `youtube`, `marketplace`, `berita`, `musrembang`, `foto_profil`, `foto_sampul`, `tgl_join`, `updated_at`) VALUES
+(2, 2, 'pribadi', 'afraaknim_', '$2y$10$Dx.EQZZaoygHpYECle4IWOqompfFFWH2NhdgPapFgAuhAKMjgAfSu', 'Fakhrunnisa Nur Afra', 3273090003, 'afrakiww@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'IMG_20160323_181535.jpeg', 'erin_1.JPG', '2021-08-11 13:02:32', NULL),
+(3, 3, 'pribadi', 'mderry', '$2y$10$mkbUVmcyKfSBaRGEvv0Xw.5CkgKZQ131yaWT2925fobkuDYWDXnHS', 'Muhammad Derry Salman S', 3273090003, 'mderry3@gmail.com', '082258980578', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'user.jpg', 'sampul.jpg', '2021-08-11 13:10:30', NULL),
+(4, 4, 'desa', 'desa_malasari', 'malasari', 'Desa Malasari', 3201010001, 'desa.malasari@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201010&desa[]=3201010001&keyword=', 'https://desatube.masuk.web.id/search?query=MALASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3201010001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', '2021-08-11 13:26:56', NULL),
+(5, 5, 'desa', 'desa_purasari', 'purasari', 'Desa Purasari', 3201020001, 'desa.purasari@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201020&desa[]=3201020001&keyword=', 'https://desatube.masuk.web.id/search?query=PURASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3201020001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', '2021-08-11 13:28:35', NULL),
+(6, 6, 'desa', 'desa_wangunjaya', 'wangunjaya', 'Desa Wangun Jaya', 3201021001, 'desa.wangunjaya@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201021&desa[]=3201021001&keyword=', 'https://desatube.masuk.web.id/search?query=WANGUN JAYA', 'http://marketpalcedesaku.masuk.web.id/stores/3201021001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', '2021-08-11 13:30:07', NULL),
+(7, 7, 'pribadi', 'hermansyah', '$2y$10$Mb0uetUSi2YaVAAgfGcAfeqXWtbMzLCMbbmV3RUOzR2Ehk3uQRq4a', 'Hermansyah', 3201010001, 'herman@gmail.com', '081221504743', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-11 21:22:15', NULL),
+(8, 8, 'pribadi', 'mughny', '123456', 'Mughny', 3204270004, 'mughny2@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 17:02:15', NULL),
+(9, 9, 'pribadi', 'farhan', '$2y$10$Ov/ArF0qtK4koFlpFEqMi.PHsXHSDKFGYd/EAB/lAJW5EToY307/i', 'Farhan', 3276010003, 'farhan1@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 17:26:49', NULL),
+(11, 11, 'pribadi', 'fadhil', '123456', 'Fadhil', 3204270004, 'fadhil@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:29:19', NULL),
+(12, 12, 'pribadi', 'fadhil-cahya-kesuma', '$2y$10$Eb3XWppXHfReCSBPNW83N.awhqqyZAzG3BHP4pI8F7vFEoeKFS92u', 'Fadhil Cahya Kesuma', 3276010003, 'fadhilkesuma65@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:35:59', NULL),
+(13, 13, 'pribadi', 'ujang', '123456', 'Ujang', 3204270004, 'ujang@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:57:36', NULL),
+(14, 14, 'pribadi', 'mughny-mubarak', '$2y$10$wcui338WylB5xm8i34LcEOPVyHiQVAQiYRu5qMVQituG1aaxmoed6', 'Mughny Mubarak', 3204280005, 'mmughnymubarak@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 23:26:12', NULL),
+(15, 15, 'pribadi', 'fakhri-naufal', '$2y$10$IxnldiOmvbSSoX85Rp/ZE.Cp9tLk75/scynSvoGV5l5cKgU.5D9M.', 'Fakhri Naufal', 3273090004, 'fakhrinfla47@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 00:08:54', NULL),
+(16, 16, 'pribadi', 'fakhrunisa-nur-afra', '$2y$10$Hq1tUmTA3YGojaXa8DPOquq.BuZAAeN3aKMZQTE1qF16mBVV2A/42', 'Fakhrunisa Nur Afra', 3273160005, 'afrakiw@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 00:45:10', NULL),
+(17, 17, 'pribadi', 'riswan-ardinata', '$2y$10$H6yoKRNLV0IjhLUZjZQoDuIJuhGY3fL.nzXgarpYoJZHz7k805l4G', 'Riswan Ardinata', 3204270006, 'riswan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 01:12:40', NULL),
+(18, 18, 'desa', 'desa_cibenda', 'desacibenda', 'Desa Cibenda', 3202010001, 'desa.cibenda@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3202&kecamatan[]=3202010&desa[]=3202010001', 'https://desatube.masuk.web.id/search?query=CIBENDA', 'http://marketpalcedesaku.masuk.web.id/stores/3202010001', 'https://desaku-desanews.masuk.id/3202010001', NULL, 'user.jpg', 'sampul.jpg', '2021-08-13 18:21:56', NULL),
+(19, 19, 'pribadi', 'afra', '$2y$10$5neuMnM6SNddcBp/denOReNNw1UFCPhKZkwDaRgoFhzZcoEolLRbu', 'Afra', 3204010001, 'afra@gmail.com', '081221504744', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:12:40', NULL),
+(20, 20, 'pribadi', 'mugny', '$2y$10$i1LVqYIlm/8DpM77XTRQKOf7csevIYizfDGf60myz7xLnDl8wIJye', 'Mugny', 3204011001, 'muqny@gmail.com', '0812215047444', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:27:10', NULL),
+(21, 21, 'pribadi', 'arvin', '$2y$10$28540PAS1N2zOx.KrYUhQuNqZ1.jY4dxCswzniedSVzTrihg.I0HG', 'Arvin', 3204020001, 'arvin@gmail.com', '081221504733', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:36:36', NULL),
+(22, 22, 'pribadi', 'fadil', '$2y$10$nMRoe3PE6U5CVHZ4RwEYk.uwyxeWfQHcNhG9SHNJbIupiP/ATafQK', 'Fadil', 3204030001, 'fadil@gmail.com', '08112215949', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:45:27', NULL),
+(23, 23, 'pribadi', 'fakhri', '$2y$10$aayYIG.qbENe2pHGFm.2tuD3SXfD6s9Shxk91cpkigx/OEtv/npES', 'Fakhri', 3204040001, 'fakhri@gmail.com', '081221504744', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:54:29', NULL),
+(24, 24, 'pribadi', 'deby', '$2y$10$AmM6tkfIMcwNR/p4JFJ/9uCbhRiLFAOb1ulzjfw9s53ozDI3bVUo2', 'Deby', 3204050001, 'deby@gmail.com', '081221504749', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:03:48', NULL),
+(25, 25, 'pribadi', 'niki', '$2y$10$inwUxJ6QUV0GSm3aRD8nkep/.WYaaK0STSPmlhoDXZuthtrT9g8Bi', 'Niki', 3204010001, 'niki@gmail.com', '08122150743', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:22:23', NULL),
+(26, 26, 'pribadi', 'dian', '$2y$10$nmF7lCR20VTeMxchiD5IcObs6owUew5/1sgIJ34mhr7THAtYP.tH6', 'Dian', 3204011001, 'dian@gmail.com', '0812218822', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:25:35', NULL),
+(27, 27, 'pribadi', 'agus', '$2y$10$tn.DoSQk0eZ2F.SYbXxQjeEmVO2aX8LemmYZptnQSFB8mclq8zl1.', 'Agus', 3204020001, 'agus@gmail.com', '0812214034732', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:29:50', NULL),
+(28, 28, 'pribadi', 'bimo', '$2y$10$ix849OrQA.kCvEF02UeiHO2zdY5lBjfH3s7t1WL0rnr1MQ/9aSTiG', 'Bimo', 3204030001, 'bimo@gmail.com', '0812218783', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:32:40', NULL),
+(29, 29, 'pribadi', 'riyadi', '$2y$10$dBcOv4pyuG4OynJ2rPXtx.MCFZcODlYnOraEvFFtnG07eoftm87dO', 'Riyadi', 3204040001, 'riyadi@gmail.com', '081221304837', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:34:27', NULL),
+(30, 30, 'pribadi', 'asep', '$2y$10$SWqP69BA5xwib84FbeihvumhP4KWbvZBMOZPkriUXSnQYpkPdU6cW', 'Asep', 3204050001, 'asep@gmail.com', '08122187373', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:36:28', NULL),
+(31, 31, 'desa', 'fadhilkesuma', '12345678', 'Desa Margasari', 3273090002, 'fadhilkesuma13@gmail.com', '081223958715', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3273&kecamatan[]=3273090&desa[]=3273090002', 'https://desatube.masuk.web.id/search?query=MARGASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3273090002', 'https://desaku-desanews.masuk.id/3273090002', NULL, 'download (2).jpg', 'download.png', '2021-08-14 11:31:13', NULL),
+(32, 32, 'pribadi', 'kesumafadhil', '$2y$10$cObaAdCWIYHmnImHVyCnneti6/6gQXUepuYw8IT5C5pVUk/xDE.uO', 'Fadhil Cahya Kesuma', 3276010003, 'fadhilkesuma13@gmail.com', '081223958715', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download (2).jpg', 'download.png', '2021-08-14 11:35:35', NULL),
+(34, 34, 'pribadi', 'pajong', '$2y$10$3Iw.EjtoqXDzRDr0LwIPWOVsEr7UNlD6Lv.Vk/lL0KriHhwzUOlZq', 'Fadhil Cahya Kesuma', 3276010003, 'fadhilcahyakesuma@gmail.com', '081223958715', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download (2).jpg', 'download.png', '2021-08-14 11:37:05', NULL),
+(35, 35, 'pribadi', 'user70239bf39', '123456', 'User70239bf39', 3204270004, 'mughnymubarak14@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-15 00:19:42', NULL),
+(36, 36, 'pribadi', 'ridwan', '123456', 'Ridwan', 3204270004, 'ridwan@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 10:53:26', NULL),
+(41, 41, 'pribadi', 'ridwan-amir', '123456', 'Ridwan Amir', 3204270004, 'ridwanamir@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 11:07:23', NULL),
+(42, 42, 'pribadi', 'sherla', '$2y$10$BpkqUNwXv5iAARXc5YbeMem6x/cwPTLWOdw7BtmOCv70OISldwhdi', 'Sherla', 3203030001, 'sherla@gmail.com', '087765567789', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WIN_20201124_00_09_32_Pro.jpg', 'WIN_20201124_00_09_32_Pro.jpg', '2022-04-03 03:54:28', NULL),
+(43, 43, 'pribadi', 'jessika', '$2y$10$Vb100zSKHos6PMeNNHZ1v.RgnoxblFk2hG7EcCPLhSzg9GKAx0.sS', 'Jessika', 1504040014, 'jessika@gmail.com', '098765432123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', '2022-04-18 14:37:26', NULL),
+(45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', '2022-06-05 13:42:37', NULL),
+(46, 46, 'pribadi', 'ade', '$2y$10$aWYkPtEBOVO8mU0AfjmJPeZCwkByU7id909343kK.PoTUhuqM7ByW', 'Ade', 1201060015, 'ade@gmail.com', '08234571635', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', '2022-06-05 19:02:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -8755,9 +8769,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 17:19:42', '2021-08-14 17:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-17 03:53:26', '2021-08-17 03:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-17 04:07:23', '2021-08-17 04:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'goe50fvvsEZMMwrHy2q4dcBLW2HrGoVyEAU9fqb04WQcf9xVC4777GpFmust', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'ElFq7Xig26qTRcho5tBYOQs0Q6ajllOPTcDn5ALMcOM9mPJ6UtjBtb6mObxy', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 07:37:26', '2022-04-18 07:37:26', 2),
-(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', NULL, '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2);
+(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', '5ibGegjIuzZCmjyyWFfObltDD9tEfOfp6FX7U0orG35zWSkdV9aC3nATGvub', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
+(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', NULL, '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
 
 -- --------------------------------------------------------
 
@@ -89650,7 +89665,7 @@ ALTER TABLE `category_lahans`
 -- AUTO_INCREMENT untuk tabel `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id_chat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_chat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `comment`
@@ -89686,7 +89701,7 @@ ALTER TABLE `follow_request`
 -- AUTO_INCREMENT untuk tabel `lahans`
 --
 ALTER TABLE `lahans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `links`
@@ -89698,13 +89713,13 @@ ALTER TABLE `links`
 -- AUTO_INCREMENT untuk tabel `pengaturan`
 --
 ALTER TABLE `pengaturan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT untuk tabel `tasks`
