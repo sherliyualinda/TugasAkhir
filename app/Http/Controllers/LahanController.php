@@ -116,17 +116,7 @@ class LahanController extends Controller
         return view('detail_lahan',compact('lahan'));  
     }
     public function screenshot(){
-        $hasil_screenshot_gambar = '';
- 
-	    if(isset($_POST["screenshot"]))
-	    {
-            $url = $_POST["url"];
-            $json_data = file_get_contents("https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=$url&screenshot=true");
-            $hasil_screenshot_result = json_decode($json_data, true);
-            $hasil_screenshot = $hasil_screenshot_result['screenshot']['data'];
-            $hasil_screenshot = str_replace(array('_','-'), array('/', '+'), $hasil_screenshot);
-            $hasil_screenshot_gambar = "<img src=\"data:image/jpeg;base64,".$hasil_screenshot."\" class='img-responsive img-thumbnail'/>";
-	    }
+           
         return view('/ganttscreen');
     }
     
