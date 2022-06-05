@@ -320,6 +320,7 @@ Route::post('/lahan/update', 'LahanController@updatelahan')->name('updatelahan')
 Route::get('/lahan/hapus/{id}', 'LahanController@hapus_lahan')->middleware('auth');
 
 Route::post('/tambahgantt/{id}', 'TaskController@store')->name('tambahgantt')->middleware('auth');
+Route::get('/lahan/detail_lahan/{id}', 'LahanController@detail_lahan')->middleware('auth');
 
  
 

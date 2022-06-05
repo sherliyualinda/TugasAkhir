@@ -105,4 +105,12 @@ class LahanController extends Controller
         DB::table('lahans')->where('id',$id)->delete();
         return redirect('lahan/kelola_lahan');
     }
+    public function detail_lahan($id){
+        // $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id");
+        // return view('detail_lahan');
+        // $categori = category_lahan::all();
+        $lahan = Lahan::select('*')->where('id', $id)->get();
+        // $lahan2 = Lahan::select('*')->where('id', $id)->get();
+        return view('detail_lahan',compact('lahan'));  
+    }
 }

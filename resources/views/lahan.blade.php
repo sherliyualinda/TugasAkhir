@@ -17,8 +17,8 @@
         </div>
         @foreach($lahan as $lahan)
         <div class="col-md-4">
-            <div class="card">
-              <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }}" class="card-img-top" alt="...">
+            <div class="card" >
+              <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }}" class="card-img-top" alt="..." >
               <div class="card-body">
                 <h5 class="card-title">{{ $lahan->nama }}</h5>
                 <p class="card-text">
@@ -30,6 +30,8 @@
                     {{ $lahan->deskripsi }} 
                 </p>
                 <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Pesan</a>
+                <!-- <a href="/detailLahan" class="btn btn-primary"><i class="fa fa-info"></i> Detail Lahan</a> -->
+                <a href="/lahan/detail_lahan/{{$lahan->id}}" class="btn btn-primary"><i class="fa fa-info"></i> Detail Lahan</a>
               </div>
             </div> 
         </div>
