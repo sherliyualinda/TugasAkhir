@@ -32,6 +32,8 @@
                 <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Pesan</a>
                 <!-- <a href="/detailLahan" class="btn btn-primary"><i class="fa fa-info"></i> Detail Lahan</a> -->
                 <a href="/lahan/detail_lahan/{{$lahan->id}}" class="btn btn-primary"><i class="fa fa-info"></i> Detail Lahan</a>
+                <a href="/sosial-media/chat_lahan/{{$lahan->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
+                
               </div>
             </div> 
         </div>

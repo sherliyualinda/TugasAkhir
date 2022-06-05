@@ -1682,7 +1682,19 @@ OR (id_undangan IN
         $notif_pesan = $this->notif_pesan();
         $notif_group = $this->notif_group();
         return view('chat', compact('teman', 'list_chat', 'jumlah', 'notif_pesan', 'list_notif_display', 'total_notif', 'notif_group', 'data_penerima'));
-    }
+    }    
+
+    public function chat_lahan($username){
+        $teman = DB::select("SELECT * FROM pengguna WHERE id_pengguna IN (SELECT id_following FROM following WHERE id_pengguna=(SELECT id_pengguna FROM pengguna WHERE username = '".Auth::user()->pengguna->username."'))");
+        $list_chat = DB::select("SELECT c.*, p.username AS username_pengirim, p.foto_profil AS foto_pengirim, p2.username AS username_penerima, p2.foto_profil AS foto_penerima FROM chat c JOIN pengguna p ON c.id_pengirim=p.id_pengguna JOIN pengguna p2 ON c.id_penerima=p2.id_pengguna WHERE id_chat IN ( SELECT MAX(id_chat) FROM chat WHERE id_pengirim = '".Auth::user()->pengguna->id_pengguna."' OR id_penerima = '".Auth::user()->pengguna->id_pengguna."' GROUP BY id_room_chat ) ORDER BY id_chat DESC");
+        $jumlah = DB::select("SELECT id_room_chat,  COUNT(id_chat) AS jml FROM chat WHERE id_penerima = '".Auth::user()->pengguna->id_pengguna."' AND status = 'Belum Dibaca' GROUP BY id_room_chat");
+        $data_penerima = ModelUser::where('username',$username)->first();
+        $total_notif = $this->total_notif();
+        $list_notif_display = $this->list_notif_display();
+        $notif_pesan = $this->notif_pesan();
+        $notif_group = $this->notif_group();
+        return view('chat', compact('teman', 'list_chat', 'jumlah', 'notif_pesan', 'list_notif_display', 'total_notif', 'notif_group', 'data_penerima'));
+    }    
 
     public function chat_detail($id_room_chat){
         $teman = DB::select("SELECT * FROM pengguna WHERE id_pengguna IN (SELECT id_following FROM following WHERE id_pengguna=(SELECT id_pengguna FROM pengguna WHERE username = '".Auth::user()->pengguna->username."'))");

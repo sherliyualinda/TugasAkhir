@@ -142,6 +142,7 @@ Route::post('/sosial-media/hapus_akun_proses', 'Sosmed_Con@hapus_akun_proses');
 //CHAT
 Route::get('/sosial-media/chat', 'Sosmed_Con@chat');
 Route::get('/sosial-media/chat_new/{username}', 'Sosmed_Con@chat_new');
+Route::get('/sosial-media/chat_lahan/{username}', 'Sosmed_Con@chat_lahan');
 Route::get('/sosial-media/chat/{id_room_chat}', 'Sosmed_Con@chat_detail');
 Route::post('/sosial-media/chat_proses', 'Sosmed_Con@chat_proses');
 Route::get('/sosial-media/cek_chat/{username_penerima}', 'Sosmed_Con@cek_chat');
