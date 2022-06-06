@@ -18,10 +18,9 @@
     @foreach ($lahan as $lahan)
                 <form action="{{route('tambahgantt',$lahan->id)}}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
-                <input type="hidden" name="id_lahan" value="{{$lahan->id}}">
+                <input type="hidden" name="id_lahan" value="{{$lahan->id_user}}">
                 
-    @endforeach
- 
+   
     <style type="text/css">
         html, body{
             height:100%;
@@ -38,8 +37,12 @@
     gantt.config.order_branch = true;
     gantt.config.order_branch_free = true;
 
-    gantt.config.readonly =true;
-    
+    <?php if ($lahan->id_user == Auth::user()->pengguna->id_pengguna){ ?>
+        gantt.config.readonly =false;
+    <?php }else{ ?>
+        gantt.config.readonly =true;
+    <?php } ?>
+
     gantt.init("gantt_here");
     
     gantt.load("/api/data");
@@ -49,5 +52,6 @@
     dp.setTransactionMode("REST");
 </script>
 </body>
-
+@endforeach
+ 
 
