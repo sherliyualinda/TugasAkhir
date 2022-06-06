@@ -32,12 +32,6 @@
 
     </style>
 </head>
-<nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <a href="/screenshot" class="btn btn-md btn-info plus mr-auto">Simpan</a>
-                    </ol>
-                </nav>
-<body>
 <div id="gantt_here" style='width:100%; height:100%;'></div>
 <script type="text/javascript">
     gantt.config.date_format = "%Y-%m-%d %H:%i:%s";

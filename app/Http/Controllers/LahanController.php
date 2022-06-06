@@ -115,11 +115,7 @@ class LahanController extends Controller
         // $lahan2 = Lahan::select('*')->where('id', $id)->get();
         return view('detail_lahan',compact('lahan'));  
     }
-    public function screenshot(){
-           
-        return view('/ganttscreen');
-    }
-    
+   
 
     public function ubahSewa($id){
         $pengguna = Pengguna::select('*')->where('id_pengguna', $id)->get();
