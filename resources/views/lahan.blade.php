@@ -29,11 +29,11 @@
                     <strong>Deskripsi : </strong> <br>
                     {{ $lahan->deskripsi }} 
                 </p>
-                <a href="/lahan/ubahSewa/{{Auth::user()->pengguna->id_pengguna}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Sewa</a>
+                <a href="/lahan/ubahSewa/{{$lahan->id}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Sewa</a>
                 <!-- <a href="/detailLahan" class="btn btn-primary"><i class="fa fa-info"></i> Detail Lahan</a> -->
                 <a href="/lahan/detail_lahan/{{$lahan->id}}" class="btn btn-primary"><i class="fa fa-info"></i> Detail Lahan</a>
                 <a href="/sosial-media/chat_lahan/{{$lahan->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
-                <a href="/gantt/{{$lahan->id}}" class="btn btn-primary"><i class="fa fa-inbox"></i> Gantt</a>
+                
                 
               </div>
             </div> 

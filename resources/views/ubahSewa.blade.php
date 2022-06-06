@@ -29,13 +29,18 @@
                     Tolong diisi
                 </div>
                 <div class="card-body">
-                @foreach ($pengguna as $pengguna)
                 <form action="{{route('updateSewa')}}" method="POST" enctype="multipart/form-data">
+                @foreach ($lahan as $lahan)
+                <input type="hidden" name="id_lahan" value="{{$lahan->id}}">
+                <input type="hidden" name="id_pemilik" value="{{$lahan->id_user}}">
+                @endforeach
+                @foreach ($pengguna as $pengguna)
                  {{ csrf_field() }}
-                 <input type="hidden" name="id" value="{{$pengguna->id}}">
+                 <input type="hidden" name="id_pengguna" value="{{$pengguna->id}}">
                         <div class="form-group">
                             <label>Alamat</label>
                             <input type="input" name="alamat" value="{{old('alamat',$pengguna->alamat)}}" class="form-control form-control-user" placeholder="Alamat">
+                            <input type="hidden" name="id_penyewa" value="{{Auth::user()->pengguna->id_pengguna}}" class="form-control form-control-user" placeholder="Alamat">
                         </div>
                         <div class="form-group">
                             <label>Pekerjaan</label>

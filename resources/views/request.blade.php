@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kelola Lahan</title>
+    <title>Request Lahan</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
@@ -19,35 +19,35 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('lahan.create') }}" class="btn btn-md btn-success mb-3">+ Buat Lahan</a>
-                        
+                       
                         <table class="table table-bordered">
                             <thead>
                               <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Ukuran</th>
-                                <th scope="col">Deskripsi</th>
-                                <th scope="col">Gambar</th>
+                                <th scope="col">Nama Penyewa</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Alamat Penyewa</th>
+                                <th scope="col">KTP</th>
                                 <th colspan="2" >Kelola</th>
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($lahan as $index=>$lahan)
+                            @foreach($sewa as $index=>$sewa)
                                 <tr>
                                     <td>{{ $index+1}}</td>
-                                    <td>{{ $lahan->ukuran}}</td>
-                                    <td>{{ $lahan->deskripsi}}</td>
+                                    <td>{{ $sewa->penyewa}}</td>
+                                    <td>{{ $sewa->NIK}}</td>
+                                    <td>{{ $sewa->alamat}}</td>
                                     <td>
                                         <center>
-                                        <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }} "width="50" height="50">
+                                        <img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50">
                                         </center>
                                     </td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
-                                            <a href="/lahan/ubah/{{$lahan->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
-                                            <a href="/lahan/hapus/{{$lahan->id}}" class="btn btn-sm btn-danger">Delete</a>
-                                            <a href="/gantt/{{$lahan->id}}" class="btn btn-sm btn-success">Gantt Chart</a>
-                                            <a href="/lahan/request/{{$lahan->id}}" class="btn btn-sm btn-info">Request</a>
+                                            <a href="#" class="btn btn-sm btn-danger">Tolak</a>
+                                            <a href="#" class="btn btn-sm btn-success">Terima</a>
+                                            
                                         </form>
                                     </td>
                                 </tr>

@@ -326,5 +326,5 @@ Route::get('/lahan/detail_lahan/{id}', 'LahanController@detail_lahan')->middlewa
 Route::get('/lahan/ubahSewa/{id}', 'LahanController@ubahSewa')->middleware('auth');
 Route::post('/lahan/updateSewa/', 'LahanController@updateSewa')->name('updateSewa')->middleware('auth');
 
-
+Route::get('/lahan/request/{id}', 'LahanController@request')->middleware('auth');
 Auth::routes();
