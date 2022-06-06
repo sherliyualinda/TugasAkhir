@@ -127,16 +127,16 @@ class LahanController extends Controller
     }
 
     public function updateSewa(Request $request){
-        $file = $request->file('gambar');
+        $file = $request->file('foto_ktp');
         // isi dengan nama folder tempat kemana file diupload
         $tujuan_upload = 'foto_ktp';
         $file->move($tujuan_upload,$file->getClientOriginalName());
         
-        $pengguna = Pengguna::where('id_pengguna', $request->id)->update([
+        $pengguna = Pengguna::where('id_pengguna', Auth::user()->pengguna->id_pengguna)->update([
             'alamat' => $request->alamat,
             'nik' => $request->nik,
             'pekerjaan' => $request->pekerjaan,
-            'gambar' => $file->getClientOriginalName()
+            'foto_ktp' => $file->getClientOriginalName()
         ]);
         return redirect('lahan');
     }
