@@ -11,7 +11,7 @@ class TaskController extends Controller
         session_start();
         $task = new Task();
  
-        $task->text = $request->text;
+        $task->text = $request->text ;
         $task->start_date = $request->start_date;
         $task->duration = $request->duration;
         $task->progress = $request->has("progress") ? $request->progress : 0;

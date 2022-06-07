@@ -4,6 +4,9 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.esm.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.js"></script>
 
 <link rel="icon" href="/logo-home.png" type="image/png" sizes="16x16"> 	    
 <link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
@@ -51,6 +54,47 @@
     dp.init(gantt);
     dp.setTransactionMode("REST");
 </script>
+<button id="download"> download</button>
+<script type="text/javascript">
+   
+   jQuery(document).ready(function(){
+       jQuery("#download").click(function(){
+		   screenshot();
+	   });
+   });
+
+   function screenshot(){
+	   html2canvas(document.getElementById("gantt_here")).then(function(canvas){
+          downloadImage(canvas.toDataURL(),"UsersInformation.png");
+	   });
+   }
+
+   function downloadImage(uri, filename){
+	 var link = document.createElement('a');
+	 if(typeof link.download !== 'string'){
+        window.open(uri);
+	 }
+	 else{
+		 link.href = uri;
+		 link.download = filename;
+		 accountForFirefox(clickLink, link);
+	 }
+   }
+
+   function clickLink(link){
+	   link.click();
+   }
+
+   function accountForFirefox(click){
+	   var link = arguments[1];
+	   document.body.appendChild(link);
+	   click(link);
+	   document.body.removeChild(link);
+   }
+
+
+</script>
+
 </body>
 @endforeach
  
