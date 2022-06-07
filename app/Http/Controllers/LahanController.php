@@ -10,6 +10,7 @@ use App\Lahan;
 //use App\Models\Category_lahan;
 use App\Category_lahan;
 use App\Category;
+use App\Sewa_lahan;
 use App\Transaction;
 use App\ProductGallery;
 use App\TransactionDetail;
