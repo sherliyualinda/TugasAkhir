@@ -334,12 +334,9 @@ Route::get('/lahan/acc/{id}', 'LahanController@accRequest')->middleware('auth');
 Route::get('/peralatan', 'PeralatanController@peralatan')->name('peralatan')->middleware('auth');
 Route::get('/peralatan/create', 'PeralatanController@create')->name('peralatan.create')->middleware('auth');
 Route::post('/peralatan/simpan', 'PeralatanController@simpan')->name('peralatan.simpan')->middleware('auth');
+Route::get('/peralatan/kelola_peralatan', 'PeralatanController@kelola_peralatan')->name('peralatan.kelola_peralatan')->middleware('auth');
+Route::get('/peralatan/ubah/{id}',  'PeralatanController@ubahperalatan')->name('ubahperalatan')->middleware('auth');
+Route::post('/peralatan/update', 'PeralatanController@updateperalatan')->name('updateperalatan')->middleware('auth');
+Route::get('/peralatan/hapus_peralatan/{id}', 'PeralatanController@hapus_peralatan')->middleware('auth');
 
 Auth::routes();
-
-Route::get('/lahan/request/{id}', 'LahanController@Request')->middleware('auth');
-Route::post('/lahan/acc/{id}', 'LahanController@accRequest')->middleware('auth');
-
-
-Auth::routes();
-

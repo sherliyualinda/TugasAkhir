@@ -44,10 +44,9 @@ class PeralatanController extends Controller
      */
 
     public function peralatan(){
-        //$lahan = peralatan::paginate(9);
-        //$lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id");
-        //return view('lahan', compact('lahan'));
-        return view('peralatan');
+        $peralatan = DB::select("SELECT p.username, a.id_peralatan, p.nama, p.id_pengguna, a.nama_alat, a.harga, a.deskripsi, a.gambar, a.id_pemilik FROM pengguna p JOIN peralatans a on p.id_pengguna = a.id_pemilik");
+        return view('peralatan', compact('peralatan'));
+        //return view('peralatan');
     }
 
     public function create(){
@@ -77,4 +76,33 @@ class PeralatanController extends Controller
         //$lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
         //return view('tampil_lahan', compact('lahan'));
     }   
+    public function kelola_peralatan(){
+        $peralatan = DB::select("SELECT a.id_peralatan, p.nama, p.id_pengguna, a.nama_alat, a.harga, a.deskripsi, a.gambar, a.id_pemilik FROM pengguna p JOIN peralatans a on p.id_pengguna = a.id_pemilik WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        return view('kelola_peralatan', compact('peralatan'));
+    }    
+    public function ubahperalatan($id){
+        $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();
+        return view('ubahperalatan', compact('peralatan'));  
+    }
+
+    public function updateperalatan(Request $request){
+        $file = $request->file('gambar');
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'gambar_lahan';
+        $file->move($tujuan_upload,$file->getClientOriginalName());
+        
+        $peralatan = Peralatan::where('id_peralatan', $request->id_peralatan)->update([
+            'nama_alat' => $request->nama_alat,
+            'deskripsi' => $request->deskripsi,
+            'harga' => $request->harga,
+            'gambar' => $file->getClientOriginalName(),
+            'updated_at'        => date("Y-m-d H:i:s")
+        ]);
+        return redirect('peralatan/kelola_peralatan');
+    }
+
+    public function hapus_peralatan($id){
+        DB::table('peralatans')->where('id_peralatan',$id)->delete();
+        return redirect('peralatan/kelola_peralatan');
+    }
 }
