@@ -52,12 +52,11 @@
                                             Disetujui
                                         <?php }else{?>
                                             <a href="#" class="btn btn-sm btn-danger">Tolak</a>
-<<<<<<< Updated upstream
                                             <a href="/lahan/acc/{{$sewa->id_penyewa}}" class="btn btn-sm btn-success">Terima</a>
                                         <?php } ?>
-=======
+
                                             <a href="/lahan/acc/{{$sewa->id_lahan}}" class="btn btn-sm btn-success">Terima</a>
->>>>>>> Stashed changes
+
                                         </form>
                                     </td>
                                 </tr>

@@ -335,12 +335,11 @@ Route::get('/peralatan', 'PeralatanController@peralatan')->name('peralatan')->mi
 Route::get('/peralatan/create', 'PeralatanController@create')->name('peralatan.create')->middleware('auth');
 Route::post('/peralatan/simpan', 'PeralatanController@simpan')->name('peralatan.simpan')->middleware('auth');
 
-<<<<<<< Updated upstream
 Auth::routes();
-=======
+
 Route::get('/lahan/request/{id}', 'LahanController@Request')->middleware('auth');
 Route::post('/lahan/acc/{id}', 'LahanController@accRequest')->middleware('auth');
 
 
 Auth::routes();
->>>>>>> Stashed changes
+
