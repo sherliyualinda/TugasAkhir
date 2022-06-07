@@ -45,8 +45,11 @@
                                     </td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="status" class="form-control form-control-user" value="acc">
+                                        <input type="hidden" name="id_penyewa" class="form-control form-control-user" value="{{$sewa->id_penyewa}}">
                                             <a href="#" class="btn btn-sm btn-danger">Tolak</a>
-                                            <a href="#" class="btn btn-sm btn-success">Terima</a>
+                                            <a href="/lahan/request/{{$sewa->id_lahan}}" class="btn btn-sm btn-success">Terima</a>
                                             
                                         </form>
                                     </td>
