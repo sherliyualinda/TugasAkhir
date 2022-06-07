@@ -332,7 +332,7 @@ Route::get('/lahan/request/{id}', 'LahanController@request')->middleware('auth')
 Route::get('/peralatan', 'PeralatanController@peralatan')->name('peralatan')->middleware('auth');
 Route::get('/peralatan/create', 'PeralatanController@create')->name('peralatan.create')->middleware('auth');
 Route::post('/peralatan/simpan', 'PeralatanController@simpan')->name('peralatan.simpan')->middleware('auth');
-=======
+
 Route::get('/lahan/request/{id}', 'LahanController@Request')->middleware('auth');
 // Route::post('/lahan/acc/{id}', 'LahanController@accRequest')->middleware('auth');
 
