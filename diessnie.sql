@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jun 2022 pada 14.06
+-- Waktu pembuatan: 07 Jun 2022 pada 03.24
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -7613,9 +7613,7 @@ CREATE TABLE `lahans` (
 --
 
 INSERT INTO `lahans` (`id`, `category_lahan_id`, `ukuran`, `deskripsi`, `gambar`, `id_user`, `updated_at`) VALUES
-(1, 2, '10 x 50 cm', 'apel', 'Screenshot (3).png', 42, '2022-04-21'),
-(2, 1, '70 x 40', 'yusril dijual mahal', 'WhatsApp Image 2022-04-14 at 12.02.40 (1).jpeg', 42, '2022-04-21'),
-(3, 3, '20x20', 'mahal', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 45, '2022-06-05');
+(4, 2, '70 x 40', 'ayam', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 42, '2022-06-07');
 
 -- --------------------------------------------------------
 
@@ -7853,9 +7851,9 @@ INSERT INTO `pengguna` (`id_pengguna`, `id`, `jenis_akun`, `username`, `password
 (35, 35, 'pribadi', 'user70239bf39', '123456', 'User70239bf39', 3204270004, 'mughnymubarak14@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-15 00:19:42', NULL),
 (36, 36, 'pribadi', 'ridwan', '123456', 'Ridwan', 3204270004, 'ridwan@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 10:53:26', NULL),
 (41, 41, 'pribadi', 'ridwan-amir', '123456', 'Ridwan Amir', 3204270004, 'ridwanamir@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 11:07:23', NULL),
-(42, 42, 'pribadi', 'sherla', '$2y$10$BpkqUNwXv5iAARXc5YbeMem6x/cwPTLWOdw7BtmOCv70OISldwhdi', 'Sherla', 3203030001, 'sherla@gmail.com', '087765567789', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WIN_20201124_00_09_32_Pro.jpg', 'WIN_20201124_00_09_32_Pro.jpg', '2022-04-03 03:54:28', NULL),
+(42, 42, 'pribadi', 'sherla', '$2y$10$BpkqUNwXv5iAARXc5YbeMem6x/cwPTLWOdw7BtmOCv70OISldwhdi', 'Sherla', 3203030001, 'sherla@gmail.com', '087765567789', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, 'WIN_20201124_00_09_32_Pro.jpg', 'WIN_20201124_00_09_32_Pro.jpg', '2022-04-03 03:54:28', '2022-06-06 10:06:55'),
 (43, 43, 'pribadi', 'jessika', '$2y$10$Vb100zSKHos6PMeNNHZ1v.RgnoxblFk2hG7EcCPLhSzg9GKAx0.sS', 'Jessika', 1504040014, 'jessika@gmail.com', '098765432123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', '2022-04-18 14:37:26', NULL),
-(45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', '2022-06-05 13:42:37', NULL),
+(45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', '1.PNG', NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', '2022-06-05 13:42:37', '2022-06-06 14:31:30'),
 (46, 46, 'pribadi', 'ade', '$2y$10$aWYkPtEBOVO8mU0AfjmJPeZCwkByU7id909343kK.PoTUhuqM7ByW', 'Ade', 1201060015, 'ade@gmail.com', '08234571635', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', '2022-06-05 19:02:18', NULL);
 
 -- --------------------------------------------------------
@@ -8589,6 +8587,26 @@ CREATE TABLE `room_chat` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `sewa_lahan`
+--
+
+CREATE TABLE `sewa_lahan` (
+  `id_penyewa` int(25) NOT NULL,
+  `id_pemilik` int(25) NOT NULL,
+  `id_lahan` int(25) NOT NULL,
+  `status` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `sewa_lahan`
+--
+
+INSERT INTO `sewa_lahan` (`id_penyewa`, `id_pemilik`, `id_lahan`, `status`) VALUES
+(45, 42, 4, 'Belum Acc');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tasks`
 --
 
@@ -8613,7 +8631,8 @@ INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent
 (25, 'pertanian', 1, 0.00, '2022-06-03 00:00:00', 0, 1, '2022-06-04 08:14:02', '2022-06-04 08:14:02', 1),
 (26, 'tanam', 1, 0.00, '2022-06-03 00:00:00', 25, 2, '2022-06-04 08:14:07', '2022-06-04 08:14:07', 1),
 (27, 'perikanan', 1, 0.00, '2022-06-05 00:00:00', 0, 3, '2022-06-04 08:14:25', '2022-06-04 08:14:25', 2),
-(28, 'New taskcoba', 1, 0.00, '2022-06-05 00:00:00', 27, 4, '2022-06-04 08:14:39', '2022-06-04 08:14:39', 2);
+(28, 'New taskcoba', 1, 0.00, '2022-06-05 00:00:00', 27, 4, '2022-06-04 08:14:39', '2022-06-04 08:14:39', 2),
+(29, 'New task', 1, 0.00, '2022-06-05 00:00:00', 0, 5, '2022-06-06 06:16:18', '2022-06-06 06:16:18', 4);
 
 -- --------------------------------------------------------
 
@@ -8769,9 +8788,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 17:19:42', '2021-08-14 17:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-17 03:53:26', '2021-08-17 03:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-17 04:07:23', '2021-08-17 04:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'ElFq7Xig26qTRcho5tBYOQs0Q6ajllOPTcDn5ALMcOM9mPJ6UtjBtb6mObxy', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '7CxKRv0FkjYT9yoHvckApI19969NEl9SiAT5NJqYwsDw9Cy7uep5A90WQDY1', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 07:37:26', '2022-04-18 07:37:26', 2),
-(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', '5ibGegjIuzZCmjyyWFfObltDD9tEfOfp6FX7U0orG35zWSkdV9aC3nATGvub', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
+(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'a4GBqIPyuzgqixFwASirWi3VelYYfXXKXYhqYlCk9oMiheWHjolh4tWVEk4X', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
 (46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', NULL, '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
 
 -- --------------------------------------------------------
@@ -89584,6 +89603,13 @@ ALTER TABLE `room_chat`
   ADD PRIMARY KEY (`id_room_chat`);
 
 --
+-- Indeks untuk tabel `sewa_lahan`
+--
+ALTER TABLE `sewa_lahan`
+  ADD KEY `id_pemilik` (`id_pemilik`),
+  ADD KEY `id_lahan` (`id_lahan`);
+
+--
 -- Indeks untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
@@ -89701,7 +89727,7 @@ ALTER TABLE `follow_request`
 -- AUTO_INCREMENT untuk tabel `lahans`
 --
 ALTER TABLE `lahans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `links`
@@ -89725,7 +89751,24 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `lahans`
+--
+ALTER TABLE `lahans`
+  ADD CONSTRAINT `lahans_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `pengguna` (`id_pengguna`);
+
+--
+-- Ketidakleluasaan untuk tabel `sewa_lahan`
+--
+ALTER TABLE `sewa_lahan`
+  ADD CONSTRAINT `sewa_lahan_ibfk_1` FOREIGN KEY (`id_pemilik`) REFERENCES `pengguna` (`id_pengguna`),
+  ADD CONSTRAINT `sewa_lahan_ibfk_2` FOREIGN KEY (`id_lahan`) REFERENCES `lahans` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
