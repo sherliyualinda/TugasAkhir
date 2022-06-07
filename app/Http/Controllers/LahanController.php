@@ -138,11 +138,12 @@ class LahanController extends Controller
             'foto_ktp' => $file->getClientOriginalName()
         ]);
 
-        DB::table('sewa_lahan')->insert([
+        DB::table('sewa_lahans')->insert([
             'id_penyewa'     => Auth::user()->pengguna->id_pengguna,
             'id_pemilik'     => $request->id_pemilik,
             'id_lahan'       => $request->id_lahan,
-            'status'         => "Belum Acc"
+            'status'         => "Belum Acc",
+            'updated_at'     => date("Y-m-d H:i:s")
         ]);
 
         return redirect('lahan');
@@ -153,11 +154,14 @@ class LahanController extends Controller
         return view('request', compact('sewa'));
     }
 
-    public function accRequest(Request $request, $id){
+    public function accRequest($id){
         $sewa= Sewa_lahan::where('id_penyewa', $id)->update([
             'status' => "Acc" ,
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        return redirect('lahan/request');
+        //return redirect('lahan/kelola_lahan');
+        session_start();
+        $sewa = DB::select("SELECT s.id_penyewa, s.id_pemilik, s.id_lahan, s.status, (SELECT p.nama FROM pengguna p join sewa_lahans s WHERE s.id_penyewa = p.id_pengguna) as penyewa, (SELECT p.nik FROM pengguna p join sewa_lahans s WHERE s.id_penyewa = p.id_pengguna) as NIK,(SELECT p.foto_ktp FROM pengguna p join sewa_lahans s WHERE s.id_penyewa = p.id_pengguna) as foto_ktp, (SELECT p.alamat FROM pengguna p join sewa_lahans s WHERE s.id_penyewa = p.id_pengguna) as alamat from sewa_lahans s join pengguna p on s.id_pemilik = p.id_pengguna join lahans l on p.id_pengguna = l.id_user WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        return view('request', compact('sewa'));
     }
 }
