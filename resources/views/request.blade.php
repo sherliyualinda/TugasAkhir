@@ -19,7 +19,13 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                       
+                    <div class="col-md-12 mt-2">
+                        <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ route('lahan.kelola_lahan') }}">Kelola Lahan</a></li>
+                        </ol>
+                        </nav>
+                    </div>
                         <table class="table table-bordered">
                             <thead>
                               <tr>
@@ -51,7 +57,7 @@
                                         <?php if($sewa->status == 'Acc'){?>
                                             Disetujui
                                         <?php }else{?>
-                                            <a href="#" class="btn btn-sm btn-danger">Tolak</a>
+                                            <a href="/lahan/tolak/{{$sewa->id_penyewa}}" class="btn btn-sm btn-danger">Tolak</a>
                                             <a href="/lahan/acc/{{$sewa->id_penyewa}}" class="btn btn-sm btn-success">Terima</a>
                                         <?php } ?>
                                         </form>
