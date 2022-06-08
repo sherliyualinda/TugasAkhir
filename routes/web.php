@@ -332,8 +332,10 @@ Route::get('/lahan/request/{id}', 'LahanController@request')->middleware('auth')
 Route::get('/lahan/acc/{id}', 'LahanController@accRequest')->middleware('auth');
 Route::get('/lahan/tolak/{id}', 'LahanController@tolakRequest')->middleware('auth');
 
-
 Route::get('/wbs/{id}', 'LahanController@wbs')->name('wbs')->middleware('auth');
+Route::get('/wbs/ubah_wbs/{id}', 'LahanController@ubah_wbs')->middleware('auth');
+Route::get('/wbs/wbs_pop/{id}', 'LahanController@simpan_wbs')->name('simpan_wbs')->middleware('auth');
+
 
 //Peralatan
 Route::get('/peralatan', 'PeralatanController@peralatan')->name('peralatan')->middleware('auth');

@@ -43,7 +43,8 @@
                                     <?php }?>
                                     <td>{{ $wbs->duration}}</td>
                                     <td>{{ $wbs->start_date}}</td>
-                                    <form action="{{route('simpan_wbs')}}" method="POST" enctype="multipart/form-data">
+
+                                    <form action="#" method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     
                                     <td>                                    
@@ -56,10 +57,10 @@
                                         <input type="input" name="totalHarga" id='totalHarga' class="form-control form-control-user" placeholder="Masukkan Total Harga">
                                     </td>
     
-                                    <input type="hidden" name="id_kegiatan" id='id_kegiatan' value="{{$wbs->id_kegiatan}}">
+                                    <input type="hidden" name="id" id='id' value="{{$wbs->id}}">
 
                                     <td class="text-center">
-                                        
+                                        <a href="/wbs/ubah_wbs/{{$wbs->id}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Tambah</a>
                                         <a href="#" class="btn btn-sm btn-warning">Update</a>
                                     </td>
                                 </tr>

@@ -175,12 +175,32 @@ class LahanController extends Controller
         return view('request', compact('sewa'));
     }
     public function wbs($id){
-        $wbs = DB::select("SELECT text, duration,start_date, parent, t.id as id_kegiatan FROM tasks t JOIN lahans l on t.id_lahan =l.id");
+        $wbs = DB::select("SELECT text, duration,start_date, parent, t.id  FROM tasks t JOIN lahans l on t.id_lahan =l.id");
         return view('wbs', compact('wbs'));
     }
 
+
+    public function ubah_wbs($id){
+        $wbs = wbs::select('SELECT * FROM wbs w JOIN tasks t on w.id_kegiatan = t.id');
+        return view('wbs_pop', compact('wbs'));  
+    }
+
     public function simpan_wbs(Request $request){
+
+        $task =Task::where('id', $request->id )->update([
+            'id' => $request->id,
+            
+        ]);
         
+        DB::table('wbs')->insert([
+            'qty' => $request->qty,
+            'harga'            => $request->harga,
+            'totalHarga'       => $request->totalHarga,
+            'id_kegiatan'      => $request->id
+        ]);
+
+        return redirect('wbs_pop');
+
     }
     
 }
