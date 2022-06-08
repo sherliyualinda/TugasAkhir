@@ -177,4 +177,15 @@ class LahanController extends Controller
         $wbs = DB::select("SELECT text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id");
         return view('wbs', compact('wbs'));
     }
+
+    public function simpan_wbs(Request $request, $id){
+        DB::table('wbs')->insert([
+            'qty'                => $request>$_POST('qty'),
+            'id_kegiatan'        => $request->$id,
+            'harga'              => $request->harga,
+            'totalHarga'         => $request->qty * $request->harga
+        ])->where('id_task', $id);
+        //return view('kelola_lahan', compact('lahan'));
+    }
+    
 }

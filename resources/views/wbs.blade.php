@@ -29,6 +29,7 @@
                                 <th scope="col">QTY</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col">Total Harga</th>
+                                <th colspan="2" >Kelola</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -43,6 +44,8 @@
                                     <td>{{ $wbs->duration}}</td>
                                     <td>{{ $wbs->start_date}}</td>
                                     <td>
+                                    <form action="#" method="POST" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
                                     <input type="input" name="qty" class="form-control form-control-user" placeholder="Masukkan jumlah">
                                     </td>
                                     <td>
@@ -50,6 +53,10 @@
                                     </td>
                                     <td>
                                     <input type="input" name="totalHarga" class="form-control form-control-user" placeholder="Masukkan Total Harga">
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="/lahan/simpan_wbs/{{$wbs->id}}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i>Tambah</a>
+                                        <a href="#" class="btn btn-sm btn-warning">Update</a>
                                     </td>
                                 </tr>
                               @endforeach   
