@@ -15,6 +15,8 @@ use App\Transaction;
 use App\ProductGallery;
 use App\TransactionDetail;
 use App\Pengguna;
+use App\Task;
+use APp\Link;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -108,11 +110,8 @@ class LahanController extends Controller
         return redirect('lahan/kelola_lahan');
     }
     public function detail_lahan($id){
-        // $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id");
-        // return view('detail_lahan');
-        // $categori = category_lahan::all();
-        $lahan = Lahan::select('*')->where('id', $id)->get();
-        // $lahan2 = Lahan::select('*')->where('id', $id)->get();
+        $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id");
+       
         return view('detail_lahan',compact('lahan'));  
     }
    
@@ -173,5 +172,9 @@ class LahanController extends Controller
         session_start();
         $sewa = DB::select("SELECT nama,alamat, nik, foto_ktp, id_penyewa, s.status FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
         return view('request', compact('sewa'));
+    }
+    public function wbs($id){
+        $wbs = DB::select("SELECT text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id");
+        return view('wbs', compact('wbs'));
     }
 }

@@ -331,6 +331,9 @@ Route::get('/lahan/request/{id}', 'LahanController@request')->middleware('auth')
 Route::get('/lahan/acc/{id}', 'LahanController@accRequest')->middleware('auth');
 Route::get('/lahan/tolak/{id}', 'LahanController@tolakRequest')->middleware('auth');
 
+
+Route::get('/wbs/{id}', 'LahanController@wbs')->name('wbs')->middleware('auth');
+
 //Peralatan
 Route::get('/peralatan', 'PeralatanController@peralatan')->name('peralatan')->middleware('auth');
 Route::get('/peralatan/create', 'PeralatanController@create')->name('peralatan.create')->middleware('auth');
@@ -339,5 +342,6 @@ Route::get('/peralatan/kelola_peralatan', 'PeralatanController@kelola_peralatan'
 Route::get('/peralatan/ubah/{id}',  'PeralatanController@ubahperalatan')->name('ubahperalatan')->middleware('auth');
 Route::post('/peralatan/update', 'PeralatanController@updateperalatan')->name('updateperalatan')->middleware('auth');
 Route::get('/peralatan/hapus_peralatan/{id}', 'PeralatanController@hapus_peralatan')->middleware('auth');
+
 
 Auth::routes();
