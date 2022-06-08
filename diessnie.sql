@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Jun 2022 pada 08.32
--- Versi server: 10.4.21-MariaDB
--- Versi PHP: 7.4.25
+-- Waktu pembuatan: 08 Jun 2022 pada 10.45
+-- Versi server: 10.4.22-MariaDB
+-- Versi PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -8637,7 +8637,7 @@ INSERT INTO `sewa_lahans` (`id_sewa`, `id_penyewa`, `id_pemilik`, `id_lahan`, `s
 --
 
 CREATE TABLE `tasks` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) NOT NULL,
   `text` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `duration` int(11) NOT NULL,
   `progress` double(8,2) NOT NULL,
@@ -8659,7 +8659,8 @@ INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent
 (27, 'perikanan', 1, 0.00, '2022-06-05 00:00:00', 0, 3, '2022-06-04 08:14:25', '2022-06-04 08:14:25', 2),
 (28, 'New taskcoba', 1, 0.00, '2022-06-05 00:00:00', 27, 4, '2022-06-04 08:14:39', '2022-06-04 08:14:39', 2),
 (29, 'New task', 1, 0.00, '2022-06-05 00:00:00', 0, 5, '2022-06-06 06:16:18', '2022-06-06 06:16:18', 4),
-(30, 'yuhuu', 1, 0.00, '2022-06-06 00:00:00', 29, 6, '2022-06-07 10:00:19', '2022-06-07 10:00:19', 4);
+(30, 'yuhuu', 1, 0.00, '2022-06-06 00:00:00', 29, 6, '2022-06-07 10:00:19', '2022-06-07 10:00:19', 4),
+(31, 'bbbbbbbbbbbbb', 1, 0.00, '2022-06-05 00:00:00', 29, 7, '2022-06-08 07:38:52', '2022-06-08 07:38:52', 4);
 
 -- --------------------------------------------------------
 
@@ -89434,6 +89435,20 @@ INSERT INTO `villages` (`id`, `district_id`, `name`) VALUES
 ('9471040007', '9471040', 'TANJUNG RIA'),
 ('9471040008', '9471040', 'KAMPUNG KAYOBATU');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `wbs`
+--
+
+CREATE TABLE `wbs` (
+  `id_wbs` int(15) NOT NULL,
+  `id_kegiatan` int(15) NOT NULL,
+  `qty` int(30) NOT NULL,
+  `harga` int(30) NOT NULL,
+  `totalHarga` int(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
@@ -89683,6 +89698,13 @@ ALTER TABLE `villages`
   ADD KEY `villages_id_index` (`id`);
 
 --
+-- Indeks untuk tabel `wbs`
+--
+ALTER TABLE `wbs`
+  ADD PRIMARY KEY (`id_wbs`),
+  ADD KEY `id_kegiatan` (`id_kegiatan`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -89798,7 +89820,13 @@ ALTER TABLE `sewa_lahans`
 -- AUTO_INCREMENT untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT untuk tabel `wbs`
+--
+ALTER TABLE `wbs`
+  MODIFY `id_wbs` int(15) NOT NULL AUTO_INCREMENT;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -89822,6 +89850,12 @@ ALTER TABLE `peralatans`
 ALTER TABLE `sewa_lahans`
   ADD CONSTRAINT `sewa_lahans_ibfk_1` FOREIGN KEY (`id_pemilik`) REFERENCES `pengguna` (`id_pengguna`),
   ADD CONSTRAINT `sewa_lahans_ibfk_2` FOREIGN KEY (`id_lahan`) REFERENCES `lahans` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `wbs`
+--
+ALTER TABLE `wbs`
+  ADD CONSTRAINT `wbs_ibfk_1` FOREIGN KEY (`id_kegiatan`) REFERENCES `tasks` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
