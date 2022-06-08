@@ -41,12 +41,12 @@
                             @foreach($sewa as $index=>$sewa)
                                 <tr>
                                     <td>{{ $index+1}}</td>
-                                    <td>{{ $sewa->penyewa}}</td>
-                                    <td>{{ $sewa->NIK}}</td>
+                                    <td>{{ $sewa->nama}}</td>
+                                    <td>{{ $sewa->nik}}</td>
                                     <td>{{ $sewa->alamat}}</td>
                                     <td>
                                         <center>
-                                        <img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50">
+                                            <img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50">
                                         </center>
                                     </td>
                                     <td class="text-center">
@@ -56,6 +56,8 @@
                                         <input type="hidden" name="id_penyewa" class="form-control form-control-user" value="{{$sewa->id_penyewa}}">
                                         <?php if($sewa->status == 'Acc'){?>
                                             Disetujui
+                                        <?php }elseif($sewa->status == 'Tolak'){?>
+                                            Tidak Disetujui
                                         <?php }else{?>
                                             <a href="/lahan/tolak/{{$sewa->id_penyewa}}" class="btn btn-sm btn-danger">Tolak</a>
                                             <a href="/lahan/acc/{{$sewa->id_penyewa}}" class="btn btn-sm btn-success">Terima</a>

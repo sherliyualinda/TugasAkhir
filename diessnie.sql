@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Jun 2022 pada 07.18
+-- Waktu pembuatan: 08 Jun 2022 pada 08.32
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.25
 
@@ -8628,7 +8628,7 @@ CREATE TABLE `sewa_lahans` (
 
 INSERT INTO `sewa_lahans` (`id_sewa`, `id_penyewa`, `id_pemilik`, `id_lahan`, `status`, `updated_at`) VALUES
 (1, 45, 42, 4, 'Acc', '2022-06-08 11:27:35'),
-(2, 46, 42, 4, 'Belum Acc', '2022-06-08 11:49:57');
+(2, 46, 42, 4, 'Tolak', '2022-06-08 13:26:53');
 
 -- --------------------------------------------------------
 
