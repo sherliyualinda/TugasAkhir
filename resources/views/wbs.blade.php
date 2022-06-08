@@ -43,19 +43,23 @@
                                     <?php }?>
                                     <td>{{ $wbs->duration}}</td>
                                     <td>{{ $wbs->start_date}}</td>
-                                    <td>
-                                    <form action="#" method="POST" enctype="multipart/form-data">
+                                    <form action="{{route('simpan_wbs')}}" method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
-                                    <input type="input" name="qty" class="form-control form-control-user" placeholder="Masukkan jumlah">
+                                    
+                                    <td>                                    
+                                        <input type="input" name="qty[]" id='qty' class="form-control form-control-user" placeholder="Masukkan jumlah">
                                     </td>
                                     <td>
-                                    <input type="input" name="harga" class="form-control form-control-user" placeholder="Masukkan harga persatuan">
+                                        <input type="input" name="harga" id='harga' class="form-control form-control-user" placeholder="Masukkan harga persatuan">
                                     </td>
                                     <td>
-                                    <input type="input" name="totalHarga" class="form-control form-control-user" placeholder="Masukkan Total Harga">
+                                        <input type="input" name="totalHarga" id='totalHarga' class="form-control form-control-user" placeholder="Masukkan Total Harga">
                                     </td>
+    
+                                    <input type="hidden" name="id_kegiatan" id='id_kegiatan' value="{{$wbs->id_kegiatan}}">
+
                                     <td class="text-center">
-                                        <a href="/lahan/simpan_wbs/{{$wbs->id}}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i>Tambah</a>
+                                        
                                         <a href="#" class="btn btn-sm btn-warning">Update</a>
                                     </td>
                                 </tr>
@@ -72,6 +76,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 </body>
 </html>
