@@ -43,11 +43,13 @@
                                     <?php }?>
                                     <td>{{ $wbs->duration}}</td>
                                     <td>{{ $wbs->start_date}}</td>
+
                                     <td>{{ $wbs->qty}}</td>
                                     <td>{{ $wbs->harga}}</td>
                                     <td>{{ $wbs->totalHarga}}</td>
                                     <td class="text-center">
                                         <a href="/lahan/update_wbs/{{$wbs->id}}" class="btn btn-sm btn-warning">Update</a>
+
                                     </td>
                                 </tr>
                               @endforeach   
@@ -68,6 +70,7 @@
         alert(val)
         }
     </script>
+
 
 </body>
 </html>

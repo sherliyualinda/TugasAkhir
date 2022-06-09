@@ -17,6 +17,7 @@ use App\TransactionDetail;
 use App\Pengguna;
 use App\Task;
 use APp\Link;
+use App\Wbs;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -174,6 +175,7 @@ class LahanController extends Controller
         return view('request', compact('sewa'));
     }
     public function wbs($id){
+
         $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
         return view('wbs', compact('wbs'));
     }
@@ -195,6 +197,7 @@ class LahanController extends Controller
         $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan where id_kegiatan ='".$id."'");
         return view('updateWbs', compact('wbs'));
         //return view('kelola_lahan', compact('lahan'));
+
     }
     
 }
