@@ -35,7 +35,11 @@
     </style>
 </head>
 <div>
-<a href="/wbs/{{$_SESSION['id_lahan']}}" class="btn btn-sm btn-info">WBS</a>
+    <?php if($lahan->id_user == Auth::user()->pengguna->id_pengguna){?>
+        <a href="/wbs/{{$_SESSION['id_lahan']}}" class="btn btn-sm btn-info">WBS</a>
+    <?php }else{ ?>
+
+    <?php } ?>
 </div>
 <div id="gantt_here" style='width:100%; height:100%;'></div>
 <script type="text/javascript">
