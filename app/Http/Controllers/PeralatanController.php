@@ -73,8 +73,8 @@ class PeralatanController extends Controller
             'id_pemilik'        => Auth::user()->pengguna->id_pengguna,
             'updated_at'        => date("Y-m-d H:i:s")
         ]);
-        //$lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-        //return view('tampil_lahan', compact('lahan'));
+        $peralatan = DB::select("SELECT a.id_peralatan, p.nama, p.id_pengguna, a.nama_alat, a.harga, a.deskripsi, a.gambar, a.id_pemilik FROM pengguna p JOIN peralatans a on p.id_pengguna = a.id_pemilik WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        return view('kelola_peralatan', compact('peralatan'));
     }   
     public function kelola_peralatan(){
         $peralatan = DB::select("SELECT a.id_peralatan, p.nama, p.id_pengguna, a.nama_alat, a.harga, a.deskripsi, a.gambar, a.id_pemilik FROM pengguna p JOIN peralatans a on p.id_pengguna = a.id_pemilik WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
@@ -111,4 +111,11 @@ class PeralatanController extends Controller
        
         return view('detail_peralatan',compact('peralatan'));  
     }
+    
+    public function sewaPeralatan($id){
+        $pengguna = Pengguna::select('*')->where('id_pengguna', Auth::user()->pengguna->id_pengguna)->get();
+        $lahan = lahan::select('*')->where('id', $id)->get();
+        return view('ubahsewa', compact('pengguna','lahan'));  
+    }
+
 }
