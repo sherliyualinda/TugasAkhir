@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 use App\Product;
 use App\Lahan;
-use App\Wbs;
 use App\Category_lahan;
 use App\Category;
 use App\Sewa_lahan;
