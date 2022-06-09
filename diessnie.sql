@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Jun 2022 pada 11.52
+-- Waktu pembuatan: 09 Jun 2022 pada 16.11
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -8580,6 +8580,25 @@ CREATE TABLE `reports` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `is_active` smallint(6) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `risks`
+--
+
+CREATE TABLE `risks` (
+  `id_risk` int(30) NOT NULL,
+  `id_sewa` int(30) NOT NULL,
+  `penyebab` varchar(255) NOT NULL,
+  `dampak` varchar(255) NOT NULL,
+  `strategi` varchar(255) NOT NULL,
+  `biaya` int(30) NOT NULL,
+  `probabilitas` int(30) NOT NULL,
+  `impact` int(30) NOT NULL,
+  `levelRisk` varchar(30) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -89688,6 +89707,13 @@ ALTER TABLE `reports`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `risks`
+--
+ALTER TABLE `risks`
+  ADD PRIMARY KEY (`id_risk`),
+  ADD KEY `id_sewa` (`id_sewa`);
+
+--
 -- Indeks untuk tabel `role`
 --
 ALTER TABLE `role`
@@ -89865,6 +89891,12 @@ ALTER TABLE `peralatans`
   MODIFY `id_peralatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT untuk tabel `risks`
+--
+ALTER TABLE `risks`
+  MODIFY `id_risk` int(30) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `sewa_lahans`
 --
 ALTER TABLE `sewa_lahans`
@@ -89903,6 +89935,12 @@ ALTER TABLE `lahans`
 --
 ALTER TABLE `peralatans`
   ADD CONSTRAINT `peralatans_ibfk_1` FOREIGN KEY (`id_pemilik`) REFERENCES `pengguna` (`id_pengguna`);
+
+--
+-- Ketidakleluasaan untuk tabel `risks`
+--
+ALTER TABLE `risks`
+  ADD CONSTRAINT `risks_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`);
 
 --
 -- Ketidakleluasaan untuk tabel `sewa_lahans`
