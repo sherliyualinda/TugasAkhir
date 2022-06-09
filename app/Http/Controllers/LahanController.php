@@ -110,7 +110,7 @@ class LahanController extends Controller
         return redirect('lahan/kelola_lahan');
     }
     public function detail_lahan($id){
-        $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id");
+        $lahan = DB::select("SELECT p.nama as pemilik,l.id_user, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id");
        
         return view('detail_lahan',compact('lahan'));  
     }
@@ -188,11 +188,16 @@ class LahanController extends Controller
         return view('request', compact('sewa'));
     }
     public function wbs($id){
-
+        
         $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
         return view('wbs', compact('wbs'));
     }
-
+    public function wbs_user($id){
+        
+        $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
+        return view('wbs_user', compact('wbs'));
+    
+    }
     public function simpan_wbs(Request $request){
         $total = $request->qty * $request->harga;
         $wbs= Wbs::where('id_kegiatan', $request->id_kegiatan)->update([

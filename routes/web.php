@@ -339,6 +339,7 @@ Route::get('/lahan/tolak/{id}', 'LahanController@tolakRequest')->middleware('aut
 Route::get('/lahan/doneRequest/{id}', 'LahanController@doneRequest')->middleware('auth');
 
 Route::get('/wbs/{id}', 'LahanController@wbs')->name('wbs')->middleware('auth');
+Route::get('/wbs_user/{id}', 'LahanController@wbs_user')->name('wbs')->middleware('auth');
 
 
 

@@ -34,7 +34,7 @@
                                 <th scope="col">Ukuran</th>
                                 <th scope="col">Deskripsi</th>
                                 <th scope="col">Gambar</th>
-                                <th colspan="2" >Kelola</th>
+                                <th scope="col">Kelola</th>
                               </tr>
                             </thead>
                             <tbody>
