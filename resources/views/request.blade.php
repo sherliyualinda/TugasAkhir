@@ -87,7 +87,7 @@
                                     <?php }else{ ?>
                                     <?php } ?>
                                     <td>
-                                        <a href="/lahan/createRisk" class="btn btn-sm btn-info">Kelola</a></td>
+                                        <a href="/lahan/createRisk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Kelola</a></td>
                                     </td>
 
                                 </tr>

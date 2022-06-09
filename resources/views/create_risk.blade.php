@@ -30,13 +30,13 @@
                 </div>
                 <div class="card-body">
           
-                <form action="{{route('simpan_risk')}}" method="POST" enctype="multipart/form-data">
-                @foreach ($risk as $risk)
-                        <div class="form-group">
-                            <input type="text" name="id_sewa" value="{{$risk->id_sewa}}">
-                        </div>
-                @endforeach
+                <form action="{{url('lahan/simpan_risk/{id}')}}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
+                    @foreach ($risk as $risk)
+                        <div class="form-group">
+                            <input type="hidden" name="id_sewa" value="{{$risk->id_sewa}}">
+                        </div>
+                    @endforeach
                         <div class="form-group">
                             <label>Penyebab Resiko</label>
                             <input type="input" name="penyebab" class="form-control form-control-user" placeholder="Penyebab">
@@ -51,11 +51,11 @@
                         </div>
                         <div class="form-group">
                             <label>Biaya</label>
-                            <input type="biaya" name="dampak" class="form-control form-control-user" placeholder="Biaya">
+                            <input type="biaya" name="biaya" class="form-control form-control-user" placeholder="Biaya">
                         </div>
                         <div class="form-group">
                             <label>Probabilitas</label>
-                            <select class="form-control" name="category_lahan_id" placeholder="--Pilih Kategori">
+                            <select class="form-control" name="probabilitas" placeholder="--Pilih Kategori">
                                 <option value="">Skala Probabilitas </option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="form-group">
                             <label>Impact</label>
-                            <select class="form-control" name="category_lahan_id" placeholder="--Pilih Kategori">
+                            <select class="form-control" name="impact" placeholder="--Pilih Kategori">
                                 <option value="">Skala Impact </option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>

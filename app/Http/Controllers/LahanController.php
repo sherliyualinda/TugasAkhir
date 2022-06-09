@@ -231,8 +231,8 @@ class LahanController extends Controller
         //return view('kelola_lahan', compact('lahan'));
 
     }
-    public function createRisk(){
-        $risk=Risk::all();
+    public function createRisk($id){
+        $risk = Sewa_lahan::select('*')->where('id_sewa', $id)->get();
         return view('create_risk',compact('risk'));
     }
 
@@ -255,11 +255,11 @@ class LahanController extends Controller
             'probabilitas'  => $request->probabilitas,
             'impact'        => $request->impact,
             'levelRisk'     => $level,
-            'status'        => $request->status,
+            'status'        => '-',
             'updated_at'    => date("Y-m-d H:i:s")
         ]);
         $risk = DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.status,r.updated_at,s.id_lahan FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa");
-        return view('create_risk', compact('risks'));
-    }
+        return view('create_risk', compact('risk'));
+   }
     
 }
