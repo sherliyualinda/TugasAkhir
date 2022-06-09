@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Jun 2022 pada 10.19
--- Versi server: 10.4.21-MariaDB
--- Versi PHP: 7.4.25
+-- Waktu pembuatan: 09 Jun 2022 pada 11.52
+-- Versi server: 10.4.22-MariaDB
+-- Versi PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -7855,7 +7855,7 @@ INSERT INTO `pengguna` (`id_pengguna`, `id`, `jenis_akun`, `username`, `password
 (41, 41, 'pribadi', 'ridwan-amir', '123456', 'Ridwan Amir', 3204270004, 'ridwanamir@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 11:07:23', NULL),
 (42, 42, 'pribadi', 'sherla', '$2y$10$BpkqUNwXv5iAARXc5YbeMem6x/cwPTLWOdw7BtmOCv70OISldwhdi', 'Sherla', 3203030001, 'sherla@gmail.com', '087765567789', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, 'WIN_20201124_00_09_32_Pro.jpg', 'WIN_20201124_00_09_32_Pro.jpg', '2022-04-03 03:54:28', '2022-06-06 10:06:55'),
 (43, 43, 'pribadi', 'jessika', '$2y$10$Vb100zSKHos6PMeNNHZ1v.RgnoxblFk2hG7EcCPLhSzg9GKAx0.sS', 'Jessika', 1504040014, 'jessika@gmail.com', '098765432123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', '2022-04-18 14:37:26', NULL),
-(45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'Untitled Diagram.drawio (3).png', NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', '2022-06-05 13:42:37', '2022-06-09 13:31:09'),
+(45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'WhatsApp Image 2022-04-14 at 12.00.28.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', '2022-06-05 13:42:37', '2022-06-09 16:51:41'),
 (46, 46, 'pribadi', 'ade', '$2y$10$aWYkPtEBOVO8mU0AfjmJPeZCwkByU7id909343kK.PoTUhuqM7ByW', 'Ade', 1201060015, 'ade@gmail.com', '08234571635', 'Brebes', '1923640281619', 'Mahasiswa', 'Struktur Organisasi Manpro.drawio.png', NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', '2022-06-05 19:02:18', '2022-06-09 13:42:00');
 
 -- --------------------------------------------------------
@@ -7879,7 +7879,8 @@ CREATE TABLE `peralatans` (
 --
 
 INSERT INTO `peralatans` (`id_peralatan`, `nama_alat`, `harga`, `deskripsi`, `gambar`, `id_pemilik`, `updated_at`) VALUES
-(1, 'cangkul', 1000, 'cangkul', 'IMG_20220209_143004.jpg', 42, '2022-06-07');
+(1, 'cangkul', 1000, 'cangkul', 'IMG_20220209_143004.jpg', 42, '2022-06-07'),
+(2, 'ember', 20000, 'yusril nggk kuat buat memiliki', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 45, '2022-06-09');
 
 -- --------------------------------------------------------
 
@@ -8638,6 +8639,33 @@ INSERT INTO `sewa_lahans` (`id_sewa`, `id_penyewa`, `id_pemilik`, `id_lahan`, `s
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `sewa_peralatans`
+--
+
+CREATE TABLE `sewa_peralatans` (
+  `id_sewa` int(30) NOT NULL,
+  `id_pemilik` int(30) NOT NULL,
+  `id_peralatan` int(30) NOT NULL,
+  `id_penyewa` int(30) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `harga` int(30) NOT NULL,
+  `totalHari` int(30) NOT NULL,
+  `totalHarga` int(30) NOT NULL,
+  `statusPinjam` varchar(225) NOT NULL,
+  `qty` int(30) NOT NULL,
+  `updated_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `sewa_peralatans`
+--
+
+INSERT INTO `sewa_peralatans` (`id_sewa`, `id_pemilik`, `id_peralatan`, `id_penyewa`, `status`, `harga`, `totalHari`, `totalHarga`, `statusPinjam`, `qty`, `updated_at`) VALUES
+(1, 42, 1, 45, 'Belum Acc', 1000, 5, 10000, '-', 2, '2022-06-09');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tasks`
 --
 
@@ -8824,7 +8852,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 17:19:42', '2021-08-14 17:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-17 03:53:26', '2021-08-17 03:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-17 04:07:23', '2021-08-17 04:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'PghAN15zgggg6aQe4NzqxU1FeRmZBdFPkv1cB2PGcX4aPwIkgvDgYqwvki1F', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'ThiAnFokNGw5S2mfuRratAJ5ZRdVrWZ9MMs7i7bu42m48Px0QsTrN7PNOFht', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 07:37:26', '2022-04-18 07:37:26', 2),
 (45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'kEvK7ql4MQnZhwLUnftkj0GQRGBLkb4KgbjiSvsCjIC0pffyEK0YpM2cd4go', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
 (46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'o58QwBHNzGQJC3T3uT96DDQBoGpaYx4qxEpVM9jon8zVCQqoRcrVXqzan9nE', '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
@@ -89680,6 +89708,12 @@ ALTER TABLE `sewa_lahans`
   ADD KEY `id_lahan` (`id_lahan`);
 
 --
+-- Indeks untuk tabel `sewa_peralatans`
+--
+ALTER TABLE `sewa_peralatans`
+  ADD PRIMARY KEY (`id_sewa`);
+
+--
 -- Indeks untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
@@ -89828,13 +89862,19 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT untuk tabel `peralatans`
 --
 ALTER TABLE `peralatans`
-  MODIFY `id_peralatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_peralatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `sewa_lahans`
 --
 ALTER TABLE `sewa_lahans`
   MODIFY `id_sewa` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `sewa_peralatans`
+--
+ALTER TABLE `sewa_peralatans`
+  MODIFY `id_sewa` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tasks`

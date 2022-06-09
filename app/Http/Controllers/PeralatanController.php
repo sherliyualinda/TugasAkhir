@@ -114,8 +114,40 @@ class PeralatanController extends Controller
     
     public function sewaPeralatan($id){
         $pengguna = Pengguna::select('*')->where('id_pengguna', Auth::user()->pengguna->id_pengguna)->get();
-        $lahan = lahan::select('*')->where('id', $id)->get();
-        return view('ubahsewa', compact('pengguna','lahan'));  
+        $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();
+        return view('sewaPeralatan', compact('pengguna','peralatan'));  
     }
+    public function updateSewaPeralatan(Request $request){
+        
+
+        $file = $request->file('foto_ktp');
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'foto_ktp';
+        $file->move($tujuan_upload,$file->getClientOriginalName());
+        
+        $pengguna = Pengguna::where('id_pengguna', Auth::user()->pengguna->id_pengguna)->update([
+            'alamat' => $request->alamat,
+            'nik' => $request->nik,
+            'pekerjaan' => $request->pekerjaan,
+            'foto_ktp' => $file->getClientOriginalName()
+        ]);
+        $total = $request->totalHari*$request->harga*$request->qty;
+        DB::table('sewa_peralatans')->insert([
+            'id_penyewa'     => Auth::user()->pengguna->id_pengguna,
+            'id_pemilik'     => $request->id_pemilik,
+            'id_peralatan'   => $request->id_peralatan,
+            'status'         => "Belum Acc",
+            'harga'          => $request->harga,
+            'totalHari'      => $request->totalHari,
+            'totalHarga'     => $total,
+            'statusPinjam'   => "-",
+            'qty'            => $request->qty,            
+            'updated_at'     => date("Y-m-d H:i:s")
+        ]);
+
+        return redirect('lahan');
+    }
+    
+
 
 }
