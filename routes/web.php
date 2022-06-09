@@ -336,6 +336,7 @@ Route::post('/lahan/updateSewa/', 'LahanController@updateSewa')->name('updateSew
 Route::get('/lahan/request/{id}', 'LahanController@request')->middleware('auth');
 Route::get('/lahan/acc/{id}', 'LahanController@accRequest')->middleware('auth');
 Route::get('/lahan/tolak/{id}', 'LahanController@tolakRequest')->middleware('auth');
+Route::get('/lahan/doneRequest/{id}', 'LahanController@doneRequest')->middleware('auth');
 
 Route::get('/wbs/{id}', 'LahanController@wbs')->name('wbs')->middleware('auth');
 

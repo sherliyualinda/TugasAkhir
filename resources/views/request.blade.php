@@ -34,7 +34,9 @@
                                 <th scope="col">NIK</th>
                                 <th scope="col">Alamat Penyewa</th>
                                 <th scope="col">KTP</th>
-                                <th colspan="2" >Kelola</th>
+                                <th scope="col" >Kelola</th>
+                                <th colspan="2" >Progres</th>
+                                
                               </tr>
                             </thead>
                             <tbody>
@@ -52,19 +54,39 @@
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
                                         {{ csrf_field() }}
-                                        <input type="hidden" name="status" class="form-control form-control-user" value="acc">
-                                        <input type="hidden" name="id_penyewa" class="form-control form-control-user" value="{{$sewa->id_penyewa}}">
-                                        <?php if($sewa->status == 'Acc'){?>
-                                            Disetujui
-                                        <?php }elseif($sewa->status == 'Tolak'){?>
-                                            Tidak Disetujui
-                                        <?php }else{?>
-                                            <a href="/lahan/tolak/{{$sewa->id_penyewa}}" class="btn btn-sm btn-danger">Tolak</a>
-                                            <a href="/lahan/acc/{{$sewa->id_penyewa}}" class="btn btn-sm btn-success">Terima</a>
-                                        <?php } ?>
+                                            <input type="hidden" name="status" class="form-control form-control-user" value="acc">
+                                            <input type="hidden" name="id_penyewa" class="form-control form-control-user" value="{{$sewa->id_penyewa}}">
+                                            <?php if($sewa->status == 'Acc'){?>
+                                                Disetujui
+                                            <?php }elseif($sewa->status == 'Tolak'){?>
+                                                Tidak Disetujui
+                                            <?php }else{?>
+                                                <a href="/lahan/tolak/{{$sewa->id_penyewa}}" class="btn btn-sm btn-danger">Tolak</a>
+                                                <a href="/lahan/acc/{{$sewa->id_penyewa}}" class="btn btn-sm btn-success">Terima</a>
+                                            <?php } ?>
                                         </form>
+                                       
                                     </td>
+                                    <td class="text-center">
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
+                                        {{ csrf_field() }}
+                                            <input type="hidden" name="progres" class="form-control form-control-user" value="Done">
+                                            <input type="hidden" name="id_penyewa" class="form-control form-control-user" value="{{$sewa->id_penyewa}}">
+                                            <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
+                                                Proses
+                                            <?php }elseif($sewa->status == 'Acc' && $sewa->progres == 'Done'){?>
+                                                Done
+                                            <?php }else{?>
+                                                Gagal
+                                            <?php } ?>
+                                        </form>
+                                    </td><td>
+                                    <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
+                                    <a href="/lahan/doneRequest/{{$sewa->id_penyewa}}" class="btn btn-sm btn-success">Done</a></td>
+                                    <?php }else{ ?>
+                                        <?php } ?>
                                 </tr>
+                        
                               @endforeach   
                             </tbody>
                           </table>  
