@@ -36,6 +36,7 @@
                                 <th scope="col">KTP</th>
                                 <th scope="col" >Kelola</th>
                                 <th colspan="2" >Progres</th>
+                                <th colspan="2" >Resiko</th>
                                 
                               </tr>
                             </thead>
@@ -84,7 +85,11 @@
                                     <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
                                     <a href="/lahan/doneRequest/{{$sewa->id_sewa}}" class="btn btn-sm btn-success">Done</a></td>
                                     <?php }else{ ?>
-                                        <?php } ?>
+                                    <?php } ?>
+                                    <td>
+                                        <a href="/lahan/createRisk" class="btn btn-sm btn-info">Kelola</a></td>
+                                    </td>
+
                                 </tr>
                         
                               @endforeach   

@@ -341,6 +341,8 @@ Route::get('/lahan/doneRequest/{id}', 'LahanController@doneRequest')->middleware
 Route::get('/wbs/{id}', 'LahanController@wbs')->name('wbs')->middleware('auth');
 Route::get('/wbs_user/{id}', 'LahanController@wbs_user')->name('wbs')->middleware('auth');
 
+Route::get('/lahan/createRisk', 'LahanController@createRisk')->name('create_risk')->middleware('auth');
+Route::post('/lahan/simpan_risk', 'LahanController@simpan_risk')->name('simpan_risk')->middleware('auth');
 
 
 //Peralatan

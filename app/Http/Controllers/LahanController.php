@@ -17,6 +17,7 @@ use App\Pengguna;
 use App\Task;
 use APp\Link;
 use App\Wbs;
+use App\Risk;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -229,6 +230,36 @@ class LahanController extends Controller
         return view('updateWbs', compact('wbs'));
         //return view('kelola_lahan', compact('lahan'));
 
+    }
+    public function createRisk(){
+        $risk=Risk::all();
+        return view('create_risk',compact('risk'));
+    }
+
+    public function simpan_risk(Request $request){
+        // menyimpan data file yang diupload ke variabel $file
+        if($request->probabilitas * $request->impact <= 2){
+            $level = "Low";
+        }elseif($request->probabilitas * $request->impact == 3 or $request->probabilitas * $request->impact == 4 ){
+            $level = "Medium";
+        }else{
+            $level = "High";
+        }
+        
+        DB::table('risks')->insert([
+            'id_sewa'       => $request->id_sewa,
+            'penyebab'      => $request->penyebab,
+            'dampak'        => $request->dampak,
+            'strategi'      => $request->strategi,
+            'biaya'         => $request->biaya,
+            'probabilitas'  => $request->probabilitas,
+            'impact'        => $request->impact,
+            'levelRisk'     => $level,
+            'status'        => $request->status,
+            'updated_at'    => date("Y-m-d H:i:s")
+        ]);
+        $risk = DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.status,r.updated_at,s.id_lahan FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa");
+        return view('create_risk', compact('risks'));
     }
     
 }
