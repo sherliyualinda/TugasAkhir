@@ -51,6 +51,11 @@
                                         <td>:</td>
                                         <td>{{$data->deskripsi}}</td>
                                     </tr> 
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>:</td>
+                                        <td>{{$data->statusLahan}}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Jun 2022 pada 07.49
+-- Waktu pembuatan: 09 Jun 2022 pada 09.12
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.25
 
@@ -7605,6 +7605,7 @@ CREATE TABLE `lahans` (
   `deskripsi` varchar(191) NOT NULL,
   `gambar` varchar(191) NOT NULL,
   `id_user` int(10) NOT NULL,
+  `statusLahan` varchar(30) NOT NULL,
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -7612,8 +7613,9 @@ CREATE TABLE `lahans` (
 -- Dumping data untuk tabel `lahans`
 --
 
-INSERT INTO `lahans` (`id`, `category_lahan_id`, `ukuran`, `deskripsi`, `gambar`, `id_user`, `updated_at`) VALUES
-(4, 2, '70 x 40', 'ayam', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 42, '2022-06-07');
+INSERT INTO `lahans` (`id`, `category_lahan_id`, `ukuran`, `deskripsi`, `gambar`, `id_user`, `statusLahan`, `updated_at`) VALUES
+(4, 2, '70 x 40', 'ayam', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 42, 'Ready', '2022-06-09'),
+(5, 2, '30X40', 'Lebar banget', 'Untitled Diagram.drawio (2).png', 42, 'Ready', '2022-06-09');
 
 -- --------------------------------------------------------
 
@@ -7853,8 +7855,8 @@ INSERT INTO `pengguna` (`id_pengguna`, `id`, `jenis_akun`, `username`, `password
 (41, 41, 'pribadi', 'ridwan-amir', '123456', 'Ridwan Amir', 3204270004, 'ridwanamir@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 11:07:23', NULL),
 (42, 42, 'pribadi', 'sherla', '$2y$10$BpkqUNwXv5iAARXc5YbeMem6x/cwPTLWOdw7BtmOCv70OISldwhdi', 'Sherla', 3203030001, 'sherla@gmail.com', '087765567789', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, 'WIN_20201124_00_09_32_Pro.jpg', 'WIN_20201124_00_09_32_Pro.jpg', '2022-04-03 03:54:28', '2022-06-06 10:06:55'),
 (43, 43, 'pribadi', 'jessika', '$2y$10$Vb100zSKHos6PMeNNHZ1v.RgnoxblFk2hG7EcCPLhSzg9GKAx0.sS', 'Jessika', 1504040014, 'jessika@gmail.com', '098765432123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', '2022-04-18 14:37:26', NULL),
-(45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', '1.PNG', NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', '2022-06-05 13:42:37', '2022-06-06 14:31:30'),
-(46, 46, 'pribadi', 'ade', '$2y$10$aWYkPtEBOVO8mU0AfjmJPeZCwkByU7id909343kK.PoTUhuqM7ByW', 'Ade', 1201060015, 'ade@gmail.com', '08234571635', 'Brebes', '1923640281619', 'Mahasiswa', 'bukti.png', NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', '2022-06-05 19:02:18', '2022-06-08 11:49:57');
+(45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'Untitled Diagram.drawio (3).png', NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', '2022-06-05 13:42:37', '2022-06-09 13:31:09'),
+(46, 46, 'pribadi', 'ade', '$2y$10$aWYkPtEBOVO8mU0AfjmJPeZCwkByU7id909343kK.PoTUhuqM7ByW', 'Ade', 1201060015, 'ade@gmail.com', '08234571635', 'Brebes', '1923640281619', 'Mahasiswa', 'Struktur Organisasi Manpro.drawio.png', NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', '2022-06-05 19:02:18', '2022-06-09 13:42:00');
 
 -- --------------------------------------------------------
 
@@ -8628,8 +8630,10 @@ CREATE TABLE `sewa_lahans` (
 --
 
 INSERT INTO `sewa_lahans` (`id_sewa`, `id_penyewa`, `id_pemilik`, `id_lahan`, `status`, `progres`, `updated_at`) VALUES
-(1, 45, 42, 4, 'Acc', 'Done', '2022-06-09 12:36:42'),
-(2, 46, 42, 4, 'Tolak', '', '2022-06-08 13:26:53');
+(1, 45, 42, 4, 'Acc', 'Done', '2022-06-09 14:03:53'),
+(2, 46, 42, 4, 'Tolak', 'Gagal', '2022-06-09 14:03:10'),
+(3, 45, 42, 5, 'Acc', 'Done', '2022-06-09 13:38:17'),
+(4, 46, 42, 4, 'Tolak', 'Gagal', '2022-06-09 14:03:10');
 
 -- --------------------------------------------------------
 
@@ -8820,10 +8824,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 17:19:42', '2021-08-14 17:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-17 03:53:26', '2021-08-17 03:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-17 04:07:23', '2021-08-17 04:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '33YhkLDhHP5u1X6uIm71Vq2tGCC9OAZyx85cIYDIanm0o2ORbdXVc29hvkIn', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'gDcXS2NYwTM6ZrmMVcFviDU8g4Y7B3XIAVVLRXMWYVKoDTJU0pXjrezRr76w', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 07:37:26', '2022-04-18 07:37:26', 2),
-(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'a4GBqIPyuzgqixFwASirWi3VelYYfXXKXYhqYlCk9oMiheWHjolh4tWVEk4X', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
-(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'kDTYQ5Tm4kmBV6DhlIo5JL7I9zubWodEQxpTzgpaeG8DHeLKLCKCP74YGOYJ', '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
+(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'VMw1JOPFHtzS53Wc9WRAZpa1y3pDMjVvVsG92ZReCvnVPkPKK8S3QHafvf2R', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
+(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'o58QwBHNzGQJC3T3uT96DDQBoGpaYx4qxEpVM9jon8zVCQqoRcrVXqzan9nE', '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
 
 -- --------------------------------------------------------
 
@@ -89800,7 +89804,7 @@ ALTER TABLE `follow_request`
 -- AUTO_INCREMENT untuk tabel `lahans`
 --
 ALTER TABLE `lahans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `links`
@@ -89830,7 +89834,7 @@ ALTER TABLE `peralatans`
 -- AUTO_INCREMENT untuk tabel `sewa_lahans`
 --
 ALTER TABLE `sewa_lahans`
-  MODIFY `id_sewa` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_sewa` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `tasks`

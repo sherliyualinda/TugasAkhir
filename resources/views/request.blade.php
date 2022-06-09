@@ -82,7 +82,7 @@
                                         </form>
                                     </td><td>
                                     <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
-                                    <a href="/lahan/doneRequest/{{$sewa->id_penyewa}}" class="btn btn-sm btn-success">Done</a></td>
+                                    <a href="/lahan/doneRequest/{{$sewa->id_sewa}}" class="btn btn-sm btn-success">Done</a></td>
                                     <?php }else{ ?>
                                         <?php } ?>
                                 </tr>
