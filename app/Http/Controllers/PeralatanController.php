@@ -105,4 +105,10 @@ class PeralatanController extends Controller
         DB::table('peralatans')->where('id_peralatan',$id)->delete();
         return redirect('peralatan/kelola_peralatan');
     }
+    public function detail_peralatan($id){
+
+        $peralatan = DB::select("SELECT p.username, a.id_peralatan, p.nama, p.id_pengguna, a.nama_alat, a.harga, a.deskripsi, a.gambar, a.id_pemilik FROM pengguna p JOIN peralatans a on p.id_pengguna = a.id_pemilik");
+       
+        return view('detail_peralatan',compact('peralatan'));  
+    }
 }

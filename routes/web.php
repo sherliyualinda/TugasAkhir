@@ -351,6 +351,7 @@ Route::get('/peralatan/kelola_peralatan', 'PeralatanController@kelola_peralatan'
 Route::get('/peralatan/ubah/{id}',  'PeralatanController@ubahperalatan')->name('ubahperalatan')->middleware('auth');
 Route::post('/peralatan/update', 'PeralatanController@updateperalatan')->name('updateperalatan')->middleware('auth');
 Route::get('/peralatan/hapus_peralatan/{id}', 'PeralatanController@hapus_peralatan')->middleware('auth');
+Route::get('/lahan/detail_peralatan/{id}', 'PeralatanController@detail_peralatan')->middleware('auth');
 
 
 Auth::routes();
