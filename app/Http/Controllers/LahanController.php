@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Product;
 use App\Lahan;
-//use App\Models\Category_lahan;
+use App\Wbs;
 use App\Category_lahan;
 use App\Category;
 use App\Sewa_lahan;
@@ -174,17 +174,26 @@ class LahanController extends Controller
         return view('request', compact('sewa'));
     }
     public function wbs($id){
-        $wbs = DB::select("SELECT text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id");
+        $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
         return view('wbs', compact('wbs'));
     }
 
-    public function simpan_wbs(Request $request, $id){
-        DB::table('wbs')->insert([
-            'qty'                => $request>$_POST('qty'),
-            'id_kegiatan'        => $request->$id,
-            'harga'              => $request->harga,
-            'totalHarga'         => $request->qty * $request->harga
-        ])->where('id_task', $id);
+    public function simpan_wbs(Request $request){
+        $total = $request->qty * $request->harga;
+        $wbs= Wbs::where('id_kegiatan', $request->id_kegiatan)->update([
+            'qty' => $request->qty,
+            'harga' => $request->harga,
+            'totalHarga' => $total,
+            'updated_at' => date("Y-m-d H:i:s")
+        ]);
+        $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
+        return view('wbs', compact('wbs'));
+        //return view('kelola_lahan', compact('lahan'));
+    }
+
+    public function update_wbs($id){
+        $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan where id_kegiatan ='".$id."'");
+        return view('updateWbs', compact('wbs'));
         //return view('kelola_lahan', compact('lahan'));
     }
     

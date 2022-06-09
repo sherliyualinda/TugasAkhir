@@ -320,7 +320,8 @@ Route::get('/lahan/kelola_lahan', 'LahanController@kelola_lahan')->name('lahan.k
 Route::get('/lahan/ubah/{id}',  'LahanController@ubahlahan')->name('ubahlahan')->middleware('auth');
 Route::post('/lahan/update', 'LahanController@updatelahan')->name('updatelahan')->middleware('auth');
 Route::get('/lahan/hapus/{id}', 'LahanController@hapus_lahan')->middleware('auth');
-Route::get('/lahan/simpan_wbs/{id}', 'LahanController@simpan_wbs')->name('simpan_wbs')->middleware('auth');
+Route::post('/lahan/simpan_wbs', 'LahanController@simpan_wbs')->name('simpan_wbs')->middleware('auth');
+Route::get('/lahan/update_wbs/{id}', 'LahanController@update_wbs')->name('update_wbs')->middleware('auth');
 
 Route::post('/tambahgantt/{id}', 'TaskController@store')->name('tambahgantt')->middleware('auth');
 Route::get('/lahan/detail_lahan/{id}', 'LahanController@detail_lahan')->middleware('auth');

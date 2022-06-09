@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
 use App\Task;
+use Illuminate\Support\Facades\DB;
  
 class TaskController extends Controller
 {
@@ -20,7 +21,12 @@ class TaskController extends Controller
         $task->id_lahan = $_SESSION['id_lahan'];
  
         $task->save();
-        
+        DB::table('wbs')->insert([
+            'id_kegiatan' => $task->id,
+            'qty'   => 0,
+            'harga' => 0,
+            'totalHarga' => 0
+        ]);
  
         return response()->json([
             "action"=> "inserted",
