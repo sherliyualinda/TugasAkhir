@@ -55,21 +55,19 @@
                         </div>
                         <div class="form-group">
                             <label>Probabilitas</label>
-                            <select class="form-control" name="probabilitas" placeholder="--Pilih Kategori">
-                                <option value="">Skala Probabilitas </option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                            <select class="form-control" name="probabilitas" placeholder="--Skala Kemungkinan--">
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
                             
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Impact</label>
-                            <select class="form-control" name="impact" placeholder="--Pilih Kategori">
-                                <option value="">Skala Impact </option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                            <select class="form-control" name="impact" placeholder="--Skala Dampak">
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
                             
                             </select>
                         </div>
