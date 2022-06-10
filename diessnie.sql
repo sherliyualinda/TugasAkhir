@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Jun 2022 pada 17.41
+-- Waktu pembuatan: 10 Jun 2022 pada 06.53
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.25
 
@@ -8600,6 +8600,13 @@ CREATE TABLE `risks` (
   `status` varchar(255) NOT NULL,
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `risks`
+--
+
+INSERT INTO `risks` (`id_risk`, `id_sewa`, `penyebab`, `dampak`, `strategi`, `biaya`, `probabilitas`, `impact`, `levelRisk`, `status`, `updated_at`) VALUES
+(1, 1, 'Hujan', 'tenggelam', 'disel', 100000, 2, 2, 'Medium', '-', '2022-06-10');
 
 -- --------------------------------------------------------
 
@@ -89895,7 +89902,7 @@ ALTER TABLE `peralatans`
 -- AUTO_INCREMENT untuk tabel `risks`
 --
 ALTER TABLE `risks`
-  MODIFY `id_risk` int(30) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_risk` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `sewa_lahans`

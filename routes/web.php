@@ -333,7 +333,7 @@ Route::get('/lahan/detail_lahan/{id}', 'LahanController@detail_lahan')->middlewa
 Route::get('/lahan/ubahSewa/{id}', 'LahanController@ubahSewa')->middleware('auth');
 Route::post('/lahan/updateSewa/', 'LahanController@updateSewa')->name('updateSewa')->middleware('auth');
 
-Route::get('/lahan/request/{id}', 'LahanController@request')->middleware('auth');
+Route::get('/lahan/request/{id}', 'LahanController@request')->name('request')->middleware('auth');
 Route::get('/lahan/acc/{id}', 'LahanController@accRequest')->middleware('auth');
 Route::get('/lahan/tolak/{id}', 'LahanController@tolakRequest')->middleware('auth');
 Route::get('/lahan/doneRequest/{id}', 'LahanController@doneRequest')->middleware('auth');
@@ -344,7 +344,7 @@ Route::get('/wbs_user/{id}', 'LahanController@wbs_user')->name('wbs')->middlewar
 Route::get('/lahan/createRisk/{id}', 'LahanController@createRisk')->name('create_risk')->middleware('auth');
 Route::post('/lahan/simpan_risk/{id}', 'LahanController@simpan_risk')->name('simpan_risk')->middleware('auth');
 
-Route::get('/lahan/kelola_risk', 'LahanController@kelola_risk')->name('kelola_risk')->middleware('auth');
+Route::get('/lahan/kelola_risk/{id}', 'LahanController@risk')->name('kelola_risk')->middleware('auth');
 
 
 Route::get('/lahan/rab/{id}', 'LahanController@createRab')->name('create_rab')->middleware('auth');
