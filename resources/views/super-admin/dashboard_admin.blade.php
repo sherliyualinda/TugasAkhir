@@ -141,6 +141,14 @@ rect.highcharts-background{
             </a>
           </li>
 
+          <!-- Nav Item - Dashboard -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('dashboard') }}">
+              <i class="fa-solid fa-gauge"></i>
+              <span>Marketplace</span>
+            </a>
+          </li>
+
           <!-- Divider -->
           <hr class="sidebar-divider d-none d-md-block">
 

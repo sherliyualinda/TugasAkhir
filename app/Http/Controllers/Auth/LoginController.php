@@ -42,6 +42,8 @@ class LoginController extends Controller
 	{
 		if ($user->id_role == 1) {
 			return redirect('/sosial-media/dashboard-admin');
+		}else if ($user->id_role == 3) {
+			return redirect('/dashboard');
 		}
 
 		return redirect('/sosial-media/beranda');
