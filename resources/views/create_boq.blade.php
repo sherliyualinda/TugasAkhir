@@ -38,13 +38,23 @@
                               </tr>
                             </thead>
                             <tbody>
+                            <?php
+                                $var1 =[];
+                                $var2 =[];
+                                $current_parent ='';
+                            ?>
                             @foreach($boq as $index=>$boq)
+                            <?php if($current_parent == $boq->parent){?>
+                                
+                            <?php }else{?>
+
+                            <?php } ?>
                                 <tr>
                                     <td>{{ $index+1}}</td>
                                     <?php if($boq->parent == 0){?>
-                                        <td><b>{{ $boq->text}}</b></td>
+                                        <td><b>{{ $boq->anak}}</b></td>
                                     <?php }else{?>
-                                        <td>{{ $boq->text}}</td>
+                                        <td>{{ $boq->anak}}</td>
                                     <?php }?>
                                     <td>{{ $boq->duration}}</td>
                                     <td>{{ $boq->start_date}}</td>
@@ -67,7 +77,7 @@
                                     @endforeach   
                                 </tbody>
                             </table>  
-                            <a href="/lahan/update_boq/{{$boq->id}}" class="btn btn-sm btn-success">Save</a>
+                            <a href="#" class="btn btn-sm btn-success">Save</a>
                        
                     </div>
                     <div class="copy hide">
