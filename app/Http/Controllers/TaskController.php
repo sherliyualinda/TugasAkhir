@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
 use App\Task;
+use App\Boq;
+
 use Illuminate\Support\Facades\DB;
  
 class TaskController extends Controller
@@ -21,10 +23,13 @@ class TaskController extends Controller
         $task->id_lahan = $_SESSION['id_lahan'];
  
         $task->save();
-        DB::table('wbs')->insert([
-            'id_kegiatan' => $task->id,
+        DB::table('boq')->insert([
+            'id_task' => $task->id,
             'qty'   => 0,
+            'satuan'   => '',
             'harga' => 0,
+            'kegiatan' => '',
+            'parent' => $request->parent,
             'totalHarga' => 0,
             'updated_at' => date("Y-m-d H:i:s")
         ]);

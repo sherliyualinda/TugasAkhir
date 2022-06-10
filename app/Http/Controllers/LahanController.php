@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Boq;
 use Illuminate\Http\Request;
 
 use App\Product;
@@ -264,9 +264,11 @@ class LahanController extends Controller
             return view('kelola_risk', compact('risk','risk2','risk3'));
         }
 
-        public function createBoq($id){
-            $rab= Lahan::select('*')->where('id', $id)->get();
-            return view('create_boq',compact('rab'));
+        public function createBoq(Request $request){
+        
+        $boq = DB::select("SELECT b.harga, b.qty,b.satuan, b.totalHarga, text, duration,start_date, t.parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN boq b on t.id = b.id_task");
+        return view('create_boq', compact('boq'));
+        //return view('kelola_lahan', compact('lahan'));
         }
 
     public function risk($id){
