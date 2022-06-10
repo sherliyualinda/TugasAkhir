@@ -44,9 +44,9 @@ class PeralatanController extends Controller
      */
 
     public function peralatan(){
+        $peralatan = Peralatan::paginate(9);
         $peralatan = DB::select("SELECT p.username, a.id_peralatan, p.nama, p.id_pengguna, a.nama_alat, a.harga, a.deskripsi, a.gambar, a.id_pemilik FROM pengguna p JOIN peralatans a on p.id_pengguna = a.id_pemilik");
         return view('peralatan', compact('peralatan'));
-        //return view('peralatan');
     }
 
     public function create(){

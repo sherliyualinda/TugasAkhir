@@ -13,7 +13,7 @@
         <a href="{{ route('peralatan.create') }}" class="btn btn-primary">+ Upload</a>
         <a href="{{ route('peralatan.kelola_peralatan') }}" class="btn btn-primary">  Kelola </a>
     </div>
-</div>
+
         @foreach($peralatan as $peralatan)
         <div class="col-md-4">
             <div class="card" >

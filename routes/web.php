@@ -343,7 +343,11 @@ Route::get('/wbs_user/{id}', 'LahanController@wbs_user')->name('wbs')->middlewar
 
 Route::get('/lahan/createRisk/{id}', 'LahanController@createRisk')->name('create_risk')->middleware('auth');
 Route::post('/lahan/simpan_risk/{id}', 'LahanController@simpan_risk')->name('simpan_risk')->middleware('auth');
+
 Route::get('/lahan/kelola_risk', 'LahanController@kelola_risk')->name('kelola_risk')->middleware('auth');
+
+
+Route::get('/lahan/rab/{id}', 'LahanController@createRab')->name('create_rab')->middleware('auth');
 
 
 
