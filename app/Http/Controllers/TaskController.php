@@ -25,7 +25,8 @@ class TaskController extends Controller
             'id_kegiatan' => $task->id,
             'qty'   => 0,
             'harga' => 0,
-            'totalHarga' => 0
+            'totalHarga' => 0,
+            'updated_at' => date("Y-m-d H:i:s")
         ]);
  
         return response()->json([
