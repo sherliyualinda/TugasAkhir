@@ -38,29 +38,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                            <?php
-
-                            $var1 =array();
-                            $var2 =array();
-                            $var3 =array();
-                            $current_parent =0;
-
-                            foreach($boq as $index=>$boq){
-                            if($current_parent == $boq->parent){
-                                 array_push($var1,$boq->text);
-                                 if (count($var3)>0){
-                                    array_push($var2,$var3);
-                                    $var3 =array();
-                                 }
-                                }else{
-                                 array_push($var3, $boq->text);
-                                } 
-                            } 
-                             if (count($var3)>0){
-                                    array_push($var2,$var3);
-                                    $var3 =array();
-                                 } ?>
-
+                            @foreach($boq as $index=>$boq)
                                 <tr>
                                     <td>{{ $index+1}}</td>
                                     <?php if($boq->parent == 0){?>
@@ -86,6 +64,7 @@
                                     <td>{{ $boq->harga}}</td>
                                     <td>{{ $boq->totalHarga}}</td> -->
                                 </tr>
+                                    @endforeach   
                                 </tbody>
                             </table>  
                             <a href="#" class="btn btn-sm btn-success">Save</a>
