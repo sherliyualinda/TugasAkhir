@@ -88,7 +88,7 @@
                                     <?php } ?>
                                     <td>
                                         <!-- <a href="/lahan/createRisk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Kelola</a></td> -->
-                                        <a href="/lahan/kelola_risk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">kelola_lahan</a></td>
+                                        <a href="/lahan/kelola_risk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">kelola Risk</a></td>
                                     </td>
 
                                 </tr>

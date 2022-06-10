@@ -26,16 +26,33 @@
                         </ol>
                         </nav>
                     </div>
-                    @foreach($risk as $index=>$risk)
+                    @foreach($risk2 as $index=>$risk2)
                     <table>
                         <tr>
-                            <th scope="col">Nama Penyewa  : {{ $risk->nama}}</th>     
+                            <th scope="col">Nama Penyewa</th>          
+                            <th scope="col">:</th>     
+                            <td>{{ $risk2->nama}}</td>     
                                                
                         </tr>
                         <tr>
-                            <th scope="col">NIK           : {{ $risk->nik}}</th>                        
+                            <th scope="col" >NIK</th>     
+                            <th scope="col">:</th>     
+                            <td>{{ $risk2->nik}}</td>                         
                         </tr>
+                        
                     </table>
+                    @endforeach
+
+                    @foreach($risk3 as $index=>$risk3)
+                    <table>
+                        <tr>
+                             <td>
+                                 <a href="/lahan/createRisk/{{$risk3->id_sewa}}" class="btn btn-sm btn-info">Tambah Resiko</a>
+                            </td>
+                        </tr>
+                    
+                    </table>
+                    @endforeach
                         <table class="table table-bordered">
                             <thead>
                               <tr>
@@ -48,12 +65,11 @@
                                 <th scope="col">Impact</th>                               
                                 <th scope="col">Level Risk</th>                               
                                 <th scope="col">Status</th>                               
-                                <th olspan="2" >Kelola Risk</th>
                                 
                               </tr>
                             </thead>
                             <tbody>
-
+                            @foreach($risk as $index=>$risk)
                                 <tr>
                                     <td>{{ $index+1}}</td>
                                     <td>{{ $risk->penyebab}}</td>
@@ -64,9 +80,6 @@
                                     <td>{{ $risk->impact}}</td>
                                     <td>{{ $risk->levelRisk}}</td>
                                     <td>{{ $risk->status}}</td>
-                                    <td>
-                                         <a href="/lahan/createRisk/{{$risk->id_sewa}}" class="btn btn-sm btn-info">Tambah Resiko</a>
-                                    </td>
 
                                 </tr>
                         
