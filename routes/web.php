@@ -347,7 +347,7 @@ Route::post('/lahan/simpan_risk/{id}', 'LahanController@simpan_risk')->name('sim
 Route::get('/lahan/kelola_risk/{id}', 'LahanController@risk')->name('kelola_risk')->middleware('auth');
 
 
-Route::get('/lahan/rab/{id}', 'LahanController@createRab')->name('create_rab')->middleware('auth');
+Route::get('/lahan/boq/{id}', 'LahanController@createBoq')->name('create_rab')->middleware('auth');
 
 
 

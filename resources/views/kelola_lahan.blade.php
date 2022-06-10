@@ -53,7 +53,7 @@
                                             <a href="/lahan/ubah/{{$lahan->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
                                             <a href="/lahan/hapus/{{$lahan->id}}" class="btn btn-sm btn-danger">Delete</a>
                                             <a href="/gantt/{{$lahan->id}}" class="btn btn-sm btn-success">Gantt Chart</a>
-                                            <a href="/lahan/rab/{{$lahan->id}}" class="btn btn-sm btn-info">RAB</a>
+                                            <a href="/lahan/boq/{{$lahan->id}}" class="btn btn-sm btn-info">BOQ</a>
                                             <a href="/lahan/request/{{$lahan->id}}" class="btn btn-sm btn-info">Request</a>
                                         </form>
                                     </td>
