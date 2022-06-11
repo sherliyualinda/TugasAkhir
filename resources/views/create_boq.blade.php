@@ -25,7 +25,7 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Kegiatan Induk</th>
-                                <th scope="col">Kegiatan Anak</th>
+                                <!-- <th scope="col">Kegiatan Anak</th> -->
                                 <th scope="col">Durasi</th>
                                 <th scope="col">Tanggal Mulai</th>
                                 <th>
@@ -40,9 +40,78 @@
                             <tbody>
                             @foreach($boq as $index=>$boq)
                                 <tr>
-                                    <td>{{ $index+1}}</td>
-                                    <td><b>{{ $boq->induk}}</b></td>
-                                    <td>{{ $boq->anak}}</td>
+                                    
+                                    <?php 
+                                    if(!isset($last_parent)){
+                                        $last_parent = $boq->induk;
+                                        $Lindex=1;
+                                        $subindex = 1;
+                                        ?>
+                                        <td><b>{{ $Lindex }}</b></td>
+                                        <td><b>{{ $boq->induk }}</b></td>
+                                        <td>{{ $boq->duration}}</td>
+                                        <td>{{ $boq->start_date}}</td>
+                                        <td>
+                                            <?php if($boq->parent != 0){?>
+                                            <button class="btn btn-success add-more" type="button">
+                                                <i class="glyphicon glyphicon-plus"></i> Add
+                                            </button>
+                                            <?php }else {?>
+
+                                            <?php }
+                                            ?>
+                                        </td>
+                                        </tr>
+                                        
+                                        <?php if(!empty($boq->anak) && !empty($boq->duration)){ ?>
+                                            <td>{{ $Lindex.'.'.$subindex }}</td>
+                                            <td>{{ $boq->anak }}</td>
+                                        <?php } 
+                                    }
+
+                                    elseif($last_parent == $boq->induk){
+                                        $subindex+=1;
+                                        ?>
+
+                                        <?php if(!empty($boq->anak) && !empty($boq->duration)){ ?>
+                                        <td>{{ $Lindex.'.'.$subindex }}</td>
+                                        <td>{{ $boq->anak }}</td>
+                                        <?php } ?>
+                                        
+                                        <?php 
+                                        $last_parent = $boq->induk;
+                                    }
+                                    elseif($last_parent != $boq->induk){
+                                        $subindex = 1;
+                                        $Lindex+=1;
+                                        ?>
+                                        <td>{{ $Lindex }}</td>
+                                        <td><b>{{ $boq->induk }}</b></td>
+                                        <td>{{ $boq->duration}}</td>
+                                        <td>{{ $boq->start_date}}</td>
+                                        <td>
+                                            <?php if($boq->parent != 0){?>
+                                            <button class="btn btn-success add-more" type="button">
+                                                <i class="glyphicon glyphicon-plus"></i> Add
+                                            </button>
+                                            <?php }else {?>
+
+                                            <?php }
+                                            ?>
+                                        </td>
+                                        </tr>
+
+                                        <?php if(!empty($boq->anak)){ ?>
+                                            <td>{{ $Lindex.'.'.$subindex }}</td>
+                                            <td>{{ $boq->anak }}</td>
+                                        <?php } 
+                                        $last_parent = $boq->induk;
+                                    } ?>
+
+                                    <!-- <td>{{ $index}}</td> -->
+                                    <!-- <td><b>{{ $boq->induk}}</b></td> -->
+                                    <!-- <td>{{ $boq->anak}}</td> -->
+                                    <?php if(!empty($boq->anak) && !empty($boq->duration)){ ?>
                                     <td>{{ $boq->duration}}</td>
                                     <td>{{ $boq->start_date}}</td>
                                     <td>
@@ -56,6 +125,7 @@
                                         ?>
                                     </td>
                                 </tr>
+                                <?php } ?>
                                     @endforeach   
                                 </tbody>
                             </table>  
