@@ -13,7 +13,6 @@
 	
         @include('nav_barMar')
 
-</div>
 <body style="background: lightgray">
 <form action="proses.php" method="POST">
     <div class="container mt-5">
