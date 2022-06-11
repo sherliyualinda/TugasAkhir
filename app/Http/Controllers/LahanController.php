@@ -270,7 +270,7 @@ class LahanController extends Controller
         
 
         //$boq1 = DB::select("SELECT b.harga, b.qty,b.satuan, b.totalHarga, text, duration,start_date, t.parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN boq b on t.id = b.id_task");
-        return view('create_boq', compact('boq'));
+        return view('cobaBoq', compact('boq'));
         }
 
     public function risk($id){

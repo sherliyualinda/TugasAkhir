@@ -10,7 +10,34 @@
 </head>
 	
         @include('nav_barMar')
+		<body style="background: lightgray">
+<form action="proses.php" method="POST">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card border-0 shadow rounded">
+                    <div class="card-body">                        
+                        <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Kegiatan</th>
+                                <th scope="col">Durasi</th>
+                                <th scope="col">Tanggal Mulai</th>
+                                <th>
+                                    kelola
+                                </th>
+                                <!-- <th scope="col">QTY</th>
+                                <th scope="col">Satuan</th>
+                                <th scope="col">Harga</th>
+                                <th scope="col">Total Harga</th> -->
+                              </tr>
+                            </thead>
+                            <tbody>
+							<tr>
+								
 
+							</tr>
 <?php
 session_start();
 $conn 	= mysqli_connect('localhost', 'root', '', 'diessnie');
@@ -19,6 +46,7 @@ $query 	= mysqli_query($conn, $sql);
 
 while($row = mysqli_fetch_assoc($query))
 {
+
 	$tmp[$row['id']]['text'] = $row['text'];
 
 	if ($row['parent'] == 0) {
