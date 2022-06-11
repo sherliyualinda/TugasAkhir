@@ -23,7 +23,7 @@
                     <div class="card-body">                        
                         <table class="table table-bordered">
                             <thead>
-                              <tr>
+                            <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Kegiatan</th>
                                 <th scope="col">Durasi</th>
