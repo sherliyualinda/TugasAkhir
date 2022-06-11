@@ -267,7 +267,7 @@ class LahanController extends Controller
         public function createBoq(Request $request, $id){
 
 
-            $boq = DB::select("SELECT b.harga, b.qty,b.satuan, b.totalHarga, t.text, s.created_at, s.duration,s.start_date,t.text as induk, s.text as anak, s.parent FROM tasks t LEFT JOIN tasks s ON t.Id = s.parent JOIN lahans l on t.id_lahan =l.id JOIN boqs b on t.id = b.id_task WHERE t.id_lahan = $request->id AND s.text is NOT null ORDER by s.parent ASC, s.created_at ASC");
+            $boq = DB::select("SELECT b.harga, b.qty,b.satuan, b.totalHarga, t.text, s.created_at, t.duration,s.start_date,t.text as induk, s.text as anak, s.parent FROM tasks t LEFT JOIN tasks s ON t.Id = s.parent JOIN lahans l on t.id_lahan =l.id JOIN boqs b on t.id = b.id_task WHERE t.id_lahan = $request->id AND s.text is NOT null ORDER by s.parent ASC, s.created_at ASC");
             
             //$boq1 = DB::select("SELECT b.harga, b.qty,b.satuan, b.totalHarga, text, duration,start_date, t.parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN boq b on t.id = b.id_task");
         
