@@ -11,4 +11,6 @@ class Task extends Model
     public function getOpenAttribute(){
         return true;
     }
+
+    
 }

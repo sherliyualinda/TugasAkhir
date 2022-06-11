@@ -35,45 +35,46 @@
                             </thead>
                             <tbody>
 							<tr>
-								
-
 							</tr>
-<?php
-session_start();
-$conn 	= mysqli_connect('localhost', 'root', '', 'diessnie');
-$sql 	= "SELECT b.harga, b.qty,b.satuan, b.totalHarga, text, duration,start_date, t.parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN boq b on t.id = b.id_task";
-$query 	= mysqli_query($conn, $sql);
+                            <?php
+                            session_start();
+                            $conn 	= mysqli_connect('localhost', 'root', '', 'diessnie');
+                            $sql 	= "SELECT b.harga, b.qty,b.satuan, b.totalHarga, text, duration,start_date, t.parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN boq b on t.id = b.id_task";
+                            $query 	= mysqli_query($conn, $sql);
 
-while($row = mysqli_fetch_assoc($query))
-{
+                            while($row = mysqli_fetch_assoc($query))
+                            {
 
-	$tmp[$row['id']]['text'] = $row['text'];
+                                $tmp[$row['id']]['text'] = $row['text'];
 
-	if ($row['parent'] == 0) {
-		$data[$row['id']] = &$tmp[$row['id']];
-	} 
-	else {
-		$tmp[$row['parent']]['child'][$row['id']] = &$tmp[$row['id']];
-	}
-}
+                                if ($row['parent'] == 0) {
+                                    $data[$row['id']] = &$tmp[$row['id']];
+                                } 
+                                else {
+                                    $tmp[$row['parent']]['child'][$row['id']] = &$tmp[$row['id']];
+                                }
+                            }
 
-function build_cat($array, $child = false) {
-	
-	$html = '<ul>';
-	foreach ($array as $arr) {
-		
-		$html .= '<li>' . $arr['text'];
-		if (key_exists('child', $arr)) {
-			$html .= build_cat($arr['child'], true);
-		}
-		$html .= '</li>' . "\r\n";
-	}
-	$html .= '</ul>';
-	return $html;
-}
+                            function build_cat($array, $child = false, $index=0) {
+                                
+                                $html = '<ul>';
+                                foreach ($array as $arr) {
 
-echo build_cat($data);
-?>
+                                    $html .= '<li>' . $arr['text'];
+                                    if (key_exists('child', $arr)) {
+                                        $html .= build_cat($arr['child'], true);
+                                    }
+                                    $html .= '</li>' . "\r\n";
+                                }
+                                $html .= '</ul>';
+                                return $html;
+                            }
+
+                            echo build_cat($data);
+                            ?>
+
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

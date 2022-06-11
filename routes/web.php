@@ -348,6 +348,7 @@ Route::get('/lahan/kelola_risk/{id}', 'LahanController@risk')->name('kelola_risk
 
 
 Route::get('/lahan/boq/{id}', 'LahanController@createBoq')->name('create_boq')->middleware('auth');
+//Route::get('/lahan/boq/{id}', 'LahanController@showBoq')->name('create_boq')->middleware('auth');
 
 
 

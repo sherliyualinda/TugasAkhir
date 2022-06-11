@@ -24,7 +24,8 @@
                             <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Kegiatan</th>
+                                <th scope="col">Kegiatan Induk</th>
+                                <th scope="col">Kegiatan Anak</th>
                                 <th scope="col">Durasi</th>
                                 <th scope="col">Tanggal Mulai</th>
                                 <th>
@@ -40,11 +41,8 @@
                             @foreach($boq as $index=>$boq)
                                 <tr>
                                     <td>{{ $index+1}}</td>
-                                    <?php if($boq->parent == 0){?>
-                                        <td><b>{{ $boq->anak}}</b></td>
-                                    <?php }else{?>
-                                        <td>{{ $boq->anak}}</td>
-                                    <?php }?>
+                                    <td><b>{{ $boq->induk}}</b></td>
+                                    <td>{{ $boq->anak}}</td>
                                     <td>{{ $boq->duration}}</td>
                                     <td>{{ $boq->start_date}}</td>
                                     <td>
@@ -57,11 +55,6 @@
                                         <?php }
                                         ?>
                                     </td>
-
-                                    <!-- <td>{{ $boq->qty}}</td>
-                                    <td>{{ $boq->satuan}}</td>
-                                    <td>{{ $boq->harga}}</td>
-                                    <td>{{ $boq->totalHarga}}</td> -->
                                 </tr>
                                     @endforeach   
                                 </tbody>

@@ -23,7 +23,7 @@ class TaskController extends Controller
         $task->id_lahan = $_SESSION['id_lahan'];
  
         $task->save();
-        DB::table('boq')->insert([
+        DB::table('boqs')->insert([
             'id_task' => $task->id,
             'qty'   => 0,
             'satuan'   => '',
