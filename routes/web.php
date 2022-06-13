@@ -345,6 +345,8 @@ Route::get('/lahan/createRisk/{id}', 'LahanController@createRisk')->name('create
 Route::post('/lahan/simpan_risk/{id}', 'LahanController@simpan_risk')->name('simpan_risk')->middleware('auth');
 
 Route::get('/lahan/kelola_risk/{id}', 'LahanController@risk')->name('kelola_risk')->middleware('auth');
+Route::get('/lahan/create_formBoq/{id}', 'LahanController@formBoq')->name('formBoq')->middleware('auth');
+Route::post('/lahan/tambahKebutuhanBoq/', 'LahanController@kebutuhanBoq')->name('tambahKebutuhanBoq')->middleware('auth');
 
 
 Route::get('/lahan/boq/{id}', 'LahanController@createBoq')->name('create_boq')->middleware('auth');

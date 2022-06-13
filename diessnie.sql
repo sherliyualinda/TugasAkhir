@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Jun 2022 pada 14.52
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 7.4.28
+-- Waktu pembuatan: 13 Jun 2022 pada 08.51
+-- Versi server: 10.4.21-MariaDB
+-- Versi PHP: 7.4.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -102,10 +102,10 @@ INSERT INTO `anggota_grup` (`id_anggota`, `id_pengguna`, `id_group`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `boq`
+-- Struktur dari tabel `boqs`
 --
 
-CREATE TABLE `boq` (
+CREATE TABLE `boqs` (
   `id_boq` int(30) NOT NULL,
   `id_task` int(30) NOT NULL,
   `parent` int(30) NOT NULL,
@@ -118,17 +118,24 @@ CREATE TABLE `boq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `boq`
+-- Dumping data untuk tabel `boqs`
 --
 
-INSERT INTO `boq` (`id_boq`, `id_task`, `parent`, `kegiatan`, `qty`, `satuan`, `harga`, `totalHarga`, `updated_at`) VALUES
+INSERT INTO `boqs` (`id_boq`, `id_task`, `parent`, `kegiatan`, `qty`, `satuan`, `harga`, `totalHarga`, `updated_at`) VALUES
 (3, 70, 0, '', 0, '', 0, 0, '2022-06-10'),
 (4, 71, 0, '', 0, '', 0, 0, '2022-06-10'),
 (5, 72, 0, '', 0, '', 0, 0, '2022-06-10'),
 (6, 73, 0, '', 0, '', 0, 0, '2022-06-10'),
-(7, 82, 0, '', 0, '', 0, 0, '2022-06-10'),
-(8, 83, 82, '', 0, '', 0, 0, '2022-06-10'),
-(9, 84, 70, '', 0, '', 0, 0, '2022-06-10');
+(10, 89, 0, '', 0, '', 0, 0, '2022-06-11'),
+(11, 90, 89, '', 0, '', 0, 0, '2022-06-11'),
+(14, 93, 70, '', 0, '', 0, 0, '2022-06-11'),
+(15, 94, 70, '', 0, '', 0, 0, '2022-06-11'),
+(16, 95, 0, '', 0, '', 0, 0, '2022-06-11'),
+(17, 96, 95, '', 0, '', 0, 0, '2022-06-11'),
+(18, 97, 0, '', 0, '', 0, 0, '2022-06-11'),
+(19, 98, 89, '', 0, '', 0, 0, '2022-06-13'),
+(20, 99, 89, '', 0, '', 0, 0, '2022-06-13'),
+(21, 71, 4, 'cangkul', 5, 'biji', 1000, 5000, '2022-06-13');
 
 -- --------------------------------------------------------
 
@@ -8753,9 +8760,15 @@ INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent
 (71, 'Pembersihan Lahan', 2, 0.00, '2022-06-04 00:00:00', 70, 6, '2022-06-10 08:29:18', '2022-06-10 08:29:18', 4),
 (72, 'Pembajakan', 2, 0.00, '2022-06-06 00:00:00', 70, 7, '2022-06-10 08:29:33', '2022-06-10 08:29:33', 4),
 (73, 'Perairan', 1, 0.00, '2022-06-08 00:00:00', 70, 8, '2022-06-10 08:29:42', '2022-06-10 08:29:42', 4),
-(82, 'New task', 1, 0.00, '2022-06-04 00:00:00', 0, 9, '2022-06-10 10:09:23', '2022-06-10 10:09:23', 4),
-(83, 'New task 2', 1, 0.00, '2022-06-05 00:00:00', 82, 10, '2022-06-10 10:09:37', '2022-06-10 10:09:37', 4),
-(84, 'cc', 1, 0.00, '2022-06-04 00:00:00', 70, 11, '2022-06-10 10:09:45', '2022-06-10 10:09:45', 4);
+(89, 'ibu', 1, 0.00, '2022-06-04 00:00:00', 0, 14, '2022-06-11 07:32:32', '2022-06-11 07:32:32', 4),
+(90, 'jhghj', 1, 0.00, '2022-06-04 00:00:00', 89, 15, '2022-06-11 07:33:15', '2022-06-11 07:33:15', 4),
+(93, 'vvvvvvvvvvvvvv', 1, 0.00, '2022-06-04 00:00:00', 70, 16, '2022-06-11 07:55:43', '2022-06-11 07:55:43', 4),
+(94, 'New task', 1, 0.00, '2022-06-04 00:00:00', 70, 17, '2022-06-11 11:13:29', '2022-06-11 11:13:29', 4),
+(95, 'ddd', 1, 0.00, '2022-06-04 00:00:00', 0, 18, '2022-06-11 11:17:37', '2022-06-11 11:17:37', 4),
+(96, 'New task', 1, 0.00, '2022-06-04 00:00:00', 95, 19, '2022-06-11 11:17:42', '2022-06-11 11:17:42', 4),
+(97, 'induk', 1, 0.00, '2022-06-04 00:00:00', 0, 20, '2022-06-11 11:25:18', '2022-06-11 11:25:18', 4),
+(98, 'pppppppppppppp', 1, 0.00, '2022-06-08 00:00:00', 89, 21, '2022-06-13 04:39:40', '2022-06-13 04:39:40', 4),
+(99, 'aku', 1, 0.00, '2022-06-04 00:00:00', 89, 22, '2022-06-13 05:46:05', '2022-06-13 05:46:05', 4);
 
 -- --------------------------------------------------------
 
@@ -89568,9 +89581,9 @@ ALTER TABLE `anggota_grup`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
--- Indeks untuk tabel `boq`
+-- Indeks untuk tabel `boqs`
 --
-ALTER TABLE `boq`
+ALTER TABLE `boqs`
   ADD PRIMARY KEY (`id_boq`),
   ADD KEY `boq_ibfk_1` (`id_task`);
 
@@ -89843,10 +89856,10 @@ ALTER TABLE `anggota_grup`
   MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `boq`
+-- AUTO_INCREMENT untuk tabel `boqs`
 --
-ALTER TABLE `boq`
-  MODIFY `id_boq` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+ALTER TABLE `boqs`
+  MODIFY `id_boq` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `carts`
@@ -89954,7 +89967,7 @@ ALTER TABLE `sewa_peralatans`
 -- AUTO_INCREMENT untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT untuk tabel `wbs`
@@ -89967,10 +89980,10 @@ ALTER TABLE `wbs`
 --
 
 --
--- Ketidakleluasaan untuk tabel `boq`
+-- Ketidakleluasaan untuk tabel `boqs`
 --
-ALTER TABLE `boq`
-  ADD CONSTRAINT `boq_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `boqs`
+  ADD CONSTRAINT `boqs_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `lahans`
