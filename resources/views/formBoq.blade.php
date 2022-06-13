@@ -36,7 +36,7 @@
                 
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <input type="hidden" name="id_boq" value="{{$boq->id_boq}}" >
+                    <input type="input" name="id_boq" value="{{$boq->id_boq}}" >
                     <input type="hidden" name="id_task" value="{{$boq->id_task}}">
                 </div>
                 @endforeach

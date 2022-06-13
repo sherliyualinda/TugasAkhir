@@ -267,21 +267,22 @@ class LahanController extends Controller
         public function createBoq(Request $request, $id){
 
 
-            $boq = DB::select("SELECT b.id_boq, b.harga,t.id,s.id, b.qty,b.satuan, b.totalHarga, t.text, s.created_at, t.duration,s.start_date,t.text as induk, s.text as anak, s.parent FROM tasks t LEFT JOIN tasks s ON t.Id = s.parent JOIN lahans l on t.id_lahan =l.id JOIN boqs b on t.id = b.id_task WHERE t.id_lahan = $request->id AND s.text is NOT null ORDER by s.parent ASC, s.created_at ASC");
-                    
+            $boq = DB::select("SELECT b.harga, b.qty,b.satuan, b.totalHarga, t.text, s.created_at, t.duration,s.start_date,t.text as induk, s.text as anak, s.parent FROM tasks t LEFT JOIN tasks s ON t.Id = s.parent JOIN lahans l on t.id_lahan =l.id JOIN boqs b on t.id = b.id_task WHERE t.id_lahan = $request->id AND s.text is NOT null ORDER by s.parent ASC, s.created_at ASC");
+        
             return view('create_boq', compact('boq'));
 
              }
 
 
 
-        public function risk($id){
-        session_start();
-            $risk = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, r.levelRisk,r.status, r.penyebab, r.strategi, r.dampak, r.biaya, r.probabilitas, r.impact,r.levelRisk, r.status FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-            $risk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa");
-            $risk3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
-        return view('kelola_risk', compact('risk','risk2', 'risk3'));
-        }
+    public function risk($id){
+    session_start();
+        $risk = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, r.levelRisk,r.status, r.penyebab, r.strategi, r.dampak, r.biaya, r.probabilitas, r.impact,r.levelRisk, r.status FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $risk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa");
+        $risk3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
+    return view('kelola_risk', compact('risk','risk2', 'risk3'));
+}
+
 
         public function formBoq($id){
             $boq = Boq::select('*')->where('id_task', $id)->get();
@@ -303,7 +304,24 @@ class LahanController extends Controller
                 'totalHarga'        => $total,
                 'updated_at'     => date("Y-m-d H:i:s")
             ]);
-            //return view('wbs', compact('wbs'));
             
+        }
+        public function simpan_Boq(Request $request){
+            // menyimpan data file yang diupload ke variabel $file            
+            DB::table('rab')->insert([
+                'id_sewa'       => $request->id_sewa,
+                'penyebab'      => $request->penyebab,
+                'dampak'        => $request->dampak,
+                'strategi'      => $request->strategi,
+                'biaya'         => $request->biaya,
+                'probabilitas'  => $request->probabilitas,
+                'impact'        => $request->impact,
+                'levelRisk'     => $level,
+                'status'        => '-',
+                'updated_at'    => date("Y-m-d H:i:s")
+
+            ]);
+            $risk = DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.status,r.updated_at,s.id_lahan FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa");
+            return view('kelola_risk', compact('risk'));
         }
 }
