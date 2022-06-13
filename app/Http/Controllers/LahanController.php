@@ -285,10 +285,9 @@ class LahanController extends Controller
 
 
         public function formBoq($id){
-            $boq = Boq::select('*')->where('id_task', $id)->get();
+            $boq = Boq::select('*')->where('id_task', $id)->limit(1)->get();
             $boq1 = Task::select('*')->where('id', $id)->get();
             
-            $yuuu = 0;
             return view('formBoq', compact('boq','boq1'));  
         }
         public function kebutuhanBoq(Request $request){
