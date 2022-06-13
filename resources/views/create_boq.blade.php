@@ -25,6 +25,7 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Kegiatan Induk</th>
                                 <th scope="col">Tanggal Mulai</th>
+                                <th scope="col">Tanggal Mulai</th>
                                 <th>
                                     kelola
                                 </th>
