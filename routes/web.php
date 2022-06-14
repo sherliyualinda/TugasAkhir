@@ -370,5 +370,5 @@ Route::get('/peralatan/acc/{id}', 'peralatanController@accRequest')->middleware(
 Route::get('/peralatan/tolak/{id}', 'peralatanController@tolakRequest')->middleware('auth');
 Route::get('/peralatanan/doneRequest/{id}', 'peralatanController@doneRequest')->middleware('auth');
 
-Auth::routes();
-Auth::routes();
+// Auth::routes();
+// Auth::routes();
