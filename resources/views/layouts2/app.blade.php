@@ -17,7 +17,7 @@
 
 <body>
   {{-- Navbar --}}
-  @include('includes.navbar')
+  @include('theme.nav_bar')
 
 
   {{-- Page Content --}}

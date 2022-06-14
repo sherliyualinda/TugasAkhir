@@ -64,7 +64,7 @@ Auth::routes();
 //LOGIN DAN REGIS
 Route::post('/autoLogin', 'Login_Con@autoLogin');
 Route::post('/api/register', 'Login_Con@register');
-Route::get('/sosial-media', 'Login_Con@login')->name('masuk.login');
+Route::get('/login', 'Login_Con@login')->name('login');
 Route::get('/sosial-media/reset-password', function(){
 	return view('auth/reset');
 });
@@ -173,7 +173,6 @@ Route::post('/sosial-media/get-group-report-list', 'Sosmed_Con@get_group_report_
 //NOTIF
 Route::post('/sosial-media/update_notif', 'Sosmed_Con@update_notif')->name('sosial-media.update_notif');
 
-Auth::routes();
 
 //SUPER ADMIN - MENU DASHBOARD
 Route::get('/sosial-media/dashboard-admin', 'superadmin\menu_dashboard_con@get_jml_akun');
@@ -362,5 +361,3 @@ Route::get('/peralatan/hapus_peralatan/{id}', 'PeralatanController@hapus_peralat
 Route::get('/lahan/detail_peralatan/{id}', 'PeralatanController@detail_peralatan')->middleware('auth');
 Route::get('/peralatan/sewaPeralatan/{id}', 'PeralatanController@sewaPeralatan')->middleware('auth');
 Route::post('/peralatan/updateSewaPeralatan/', 'PeralatanController@updateSewaPeralatan')->name('updateSewaPeralatan')->middleware('auth');
-
-Auth::routes();

@@ -69,6 +69,7 @@
                   <a href="" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown">
                     <img src="/images/icon-store.svg" alt="" class="rounded-circle mr-2 profile-picture">
                     {{ Auth::user()->name }}
+                    {{ Auth::user()->role }}
                   </a>
                 <div class="dropdown-menu">
                     <a href="{{ route('dashboard') }}" class="dropdown-item">Dashborad</a>
