@@ -366,4 +366,9 @@ Route::get('/lahan/detail_peralatan/{id}', 'PeralatanController@detail_peralatan
 Route::get('/peralatan/sewaPeralatan/{id}', 'PeralatanController@sewaPeralatan')->middleware('auth');
 Route::post('/peralatan/updateSewaPeralatan/', 'PeralatanController@updateSewaPeralatan')->name('updateSewaPeralatan')->middleware('auth');
 
+Route::get('/peralatan/request/{id}', 'peralatanController@request')->middleware('auth');
+Route::get('/peralatan/acc/{id}', 'peralatanController@accRequest')->middleware('auth');
+Route::get('/peralatan/tolak/{id}', 'peralatanController@tolakRequest')->middleware('auth');
+Route::get('/peralatanan/doneRequest/{id}', 'peralatanController@doneRequest')->middleware('auth');
+
 Auth::routes();
