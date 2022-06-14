@@ -18,6 +18,7 @@ use App\Task;
 use APp\Link;
 use App\Wbs;
 use App\Risk;
+use App\Traits\NavbarTrait;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Storage;
 
 class LahanController extends Controller
 {
+    use NavbarTrait;
     /**
      * Create a new controller instance.
      *
@@ -47,7 +49,11 @@ class LahanController extends Controller
     public function lahan(){
         $lahan = Lahan::paginate(9);
         $lahan = DB::select("SELECT p.nama as pemilik,l.statusLahan, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
-        return view('lahan', compact('lahan'));
+        $total_notif = $this->total_notif();
+        $list_notif_display = $this->list_notif_display();
+        $notif_pesan = $this->notif_pesan();
+        $notif_group = $this->notif_group();
+        return view('lahan', compact('lahan', 'total_notif', 'list_notif_display', 'notif_pesan', 'notif_group'));
         // return view('lahan');
     }
 
@@ -327,4 +333,6 @@ class LahanController extends Controller
             $risk = DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.status,r.updated_at,s.id_lahan FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa");
             return view('kelola_risk', compact('risk'));
         }
+
+        
 }

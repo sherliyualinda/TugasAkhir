@@ -8663,7 +8663,8 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`id`, `nama`) VALUES
 (1, 'Super Admin'),
-(2, 'Pengguna');
+(2, 'Pengguna'),
+(3, 'Admin Store');
 
 -- --------------------------------------------------------
 
