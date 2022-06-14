@@ -23,7 +23,7 @@
                             <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Kegiatan nenek</th>
+                                <th scope="col">Kegiatan Induk</th>
                                 <th scope="col">Tanggal Mulai</th>
                                 <th>
                                     kelola
@@ -37,13 +37,12 @@
                                     
                                     <?php 
                                     if(!isset($last_parent)){
-                                        $last_parent = $boq->nenek;
+                                        $last_parent = $boq->induk;
                                         $Lindex=1;
                                         $subindex = 1;
-                                        $subsubindex =1;
                                         ?>
                                         <td><b>{{ $Lindex }}</b></td>
-                                        <td><b>{{ $boq->nenek }}</b></td>
+                                        <td><b>{{ $boq->induk }}</b></td>
                                         <td>{{ $boq->start_date}}</td>
                                         <td>
                                             <?php if($boq->parent != 0){?>
@@ -56,38 +55,29 @@
                                         </tr>
                                         
                                         <?php if(!empty($boq->anak) ){ ?>
-                                            <td>{{ $Lindex.'.'.$subindex.'.'.$subsubindex }}</td>
-                                            <td>{{ $boq->anak }}</td>
-                                        <?php }else{ ?>
                                             <td>{{ $Lindex.'.'.$subindex }}</td>
-                                            <td>{{ $boq->induk }}</td>
-                                        <?php }
-                                        
+                                            <td>{{ $boq->anak }}</td>
+                                        <?php } 
                                     }
 
-                                    elseif($last_parent == $boq->nenek){
+                                    elseif($last_parent == $boq->induk){
                                         $subindex+=1;
                                         ?>
 
                                         <?php if(!empty($boq->anak) ){ ?>
-                                        <td>{{ $Lindex.'.'.$subindex.'.'.$subsubindex }}</td>
+                                        <td>{{ $Lindex.'.'.$subindex }}</td>
                                         <td>{{ $boq->anak }}</td>
-                                        <?php } else{ ?>
-                                            <td>{{ $Lindex.'.'.$subindex }}</td>
-                                            <td>{{ $boq->induk }}</td>
-                                        <?php }
-                                        
-                                        ?>
+                                        <?php } ?>
                                         
                                         <?php 
-                                        $last_parent = $boq->nenek;
+                                        $last_parent = $boq->induk;
                                     }
-                                    elseif($last_parent != $boq->nenek){
+                                    elseif($last_parent != $boq->induk){
                                         $subindex = 1;
                                         $Lindex+=1;
                                         ?>
                                         <td><b>{{ $Lindex }}</b></td>
-                                        <td><b>{{ $boq->nenek }}</b></td>
+                                        <td><b>{{ $boq->induk }}</b></td>
                                         <td>{{ $boq->start_date}}</td>
                                         <td>
                                             <?php if($boq->parent != 0){?>
@@ -100,22 +90,19 @@
                                         </tr>
 
                                         <?php if(!empty($boq->anak)){ ?>
-                                            <td>{{ $Lindex.'.'.$subindex.'.'.$subsubindex }}</td>
-                                            <td>{{ $boq->anak }}</td>
-                                        <?php } else{ ?>
                                             <td>{{ $Lindex.'.'.$subindex }}</td>
-                                            <td>{{ $boq->induk }}</td>
-                                        <?php }
-                                        $last_parent = $boq->nenek;
+                                            <td>{{ $boq->anak }}</td>
+                                        <?php } 
+                                        $last_parent = $boq->induk;
                                     } ?>
 
-                                    <?php if(!empty($boq->induk) ){ ?>
+                                    <?php if(!empty($boq->anak) ){ ?>
                                     <td>{{ $boq->start_date}}</td>
                                     <td>
                                         <?php if($boq->parent != 0){?>
                                             <a href="/lahan/create_formBoq/{{$boq->id}}" class="btn btn-sm btn-success">Add</a>
                                         <?php }else {?>
-                                            
+
                                         <?php }
                                         ?>
                                     </td>
