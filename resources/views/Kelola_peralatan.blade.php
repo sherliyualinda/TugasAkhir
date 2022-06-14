@@ -48,7 +48,7 @@
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
                                             <a href="/peralatan/ubah/{{$peralatan->id_peralatan}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
                                             <a href="/peralatan/hapus_peralatan/{{$peralatan->id_peralatan}}" class="btn btn-sm btn-danger">Delete</a>
-                                            <a href="#" class="btn btn-sm btn-info">Request</a>
+                                            <a href="/peralatan/request/{{$peralatan->id_peralatan}}" class="btn btn-sm btn-info">Request</a>
                                         </form>
                                     </td>
                                 </tr>

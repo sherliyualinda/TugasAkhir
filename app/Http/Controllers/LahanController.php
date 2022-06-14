@@ -267,9 +267,10 @@ class LahanController extends Controller
         public function createBoq(Request $request, $id){
 
 
-            $boq1 = DB::select("SELECT b.harga,s.id, b.qty,b.satuan, b.totalHarga, t.text, s.created_at, t.duration,s.start_date,t.text as induk, s.text as anak, s.parent FROM tasks t LEFT JOIN tasks s ON t.Id = s.parent JOIN lahans l on t.id_lahan =l.id JOIN boqs b on t.id = b.id_task WHERE t.id_lahan = $request->id AND s.text is NOT null ORDER by s.parent ASC, s.created_at ASC");
+            $boq = DB::select("SELECT b.harga,s.id, b.qty,b.satuan, b.totalHarga, t.text, s.created_at, t.duration,s.start_date,t.text as induk, s.text as anak, s.parent FROM tasks t LEFT JOIN tasks s ON t.Id = s.parent JOIN lahans l on t.id_lahan =l.id JOIN boqs b on t.id = b.id_task WHERE t.id_lahan = $request->id AND s.text is NOT null ORDER by s.parent ASC, s.created_at ASC");
 
-            $boq = DB::select("SELECT s.id_boq, s.harga,t.id, s.qty,s.satuan, s.totalHarga, k.text as nenek,t.text as induk,k.start_date, s.kegiatan as anak, s.parent, k.id FROM tasks k LEFT join tasks t on k.id= t.parent JOIN lahans l on t.id_lahan =l.id JOIN boqs b on t.id = b.id_task LEFT JOIN boqs s ON b.id_boq = s.parent WHERE t.id_lahan = $request->id AND b.id_boq IS NOT null ORDER by k.id asc, b.id_task ASC ;");
+            $boq1 = DB::select("SELECT s.id_boq, s.harga,t.id, s.qty,s.satuan, s.totalHarga, k.text as nenek,t.text as induk,k.start_date, s.kegiatan as anak, s.parent, k.id FROM tasks k LEFT join tasks t on k.id= t.parent JOIN lahans l on t.id_lahan =l.id JOIN boqs b on t.id = b.id_task LEFT JOIN boqs s ON b.id_boq = s.parent WHERE t.id_lahan = $request->id AND b.id_boq IS NOT null ORDER by k.id asc, b.id_task ASC ");
+
 
         
             return view('create_boq', compact('boq'));
