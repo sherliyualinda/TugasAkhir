@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jun 2022 pada 08.51
--- Versi server: 10.4.21-MariaDB
--- Versi PHP: 7.4.25
+-- Waktu pembuatan: 15 Jun 2022 pada 09.06
+-- Versi server: 10.4.22-MariaDB
+-- Versi PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -116,26 +116,6 @@ CREATE TABLE `boqs` (
   `totalHarga` int(30) NOT NULL,
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `boqs`
---
-
-INSERT INTO `boqs` (`id_boq`, `id_task`, `parent`, `kegiatan`, `qty`, `satuan`, `harga`, `totalHarga`, `updated_at`) VALUES
-(3, 70, 0, '', 0, '', 0, 0, '2022-06-10'),
-(4, 71, 0, '', 0, '', 0, 0, '2022-06-10'),
-(5, 72, 0, '', 0, '', 0, 0, '2022-06-10'),
-(6, 73, 0, '', 0, '', 0, 0, '2022-06-10'),
-(10, 89, 0, '', 0, '', 0, 0, '2022-06-11'),
-(11, 90, 89, '', 0, '', 0, 0, '2022-06-11'),
-(14, 93, 70, '', 0, '', 0, 0, '2022-06-11'),
-(15, 94, 70, '', 0, '', 0, 0, '2022-06-11'),
-(16, 95, 0, '', 0, '', 0, 0, '2022-06-11'),
-(17, 96, 95, '', 0, '', 0, 0, '2022-06-11'),
-(18, 97, 0, '', 0, '', 0, 0, '2022-06-11'),
-(19, 98, 89, '', 0, '', 0, 0, '2022-06-13'),
-(20, 99, 89, '', 0, '', 0, 0, '2022-06-13'),
-(21, 71, 4, 'cangkul', 5, 'biji', 1000, 5000, '2022-06-13');
 
 -- --------------------------------------------------------
 
@@ -8663,8 +8643,7 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`id`, `nama`) VALUES
 (1, 'Super Admin'),
-(2, 'Pengguna'),
-(3, 'Admin Store');
+(2, 'Pengguna');
 
 -- --------------------------------------------------------
 
@@ -8757,19 +8736,12 @@ INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent
 (26, 'tanam', 1, 0.00, '2022-06-03 00:00:00', 25, 2, '2022-06-04 08:14:07', '2022-06-04 08:14:07', 1),
 (27, 'perikanan', 1, 0.00, '2022-06-05 00:00:00', 0, 3, '2022-06-04 08:14:25', '2022-06-04 08:14:25', 2),
 (28, 'New taskcoba', 1, 0.00, '2022-06-05 00:00:00', 27, 4, '2022-06-04 08:14:39', '2022-06-04 08:14:39', 2),
-(70, 'Persiapan Lahan', 5, 0.00, '2022-06-04 00:00:00', 0, 5, '2022-06-10 08:28:54', '2022-06-10 08:29:01', 4),
-(71, 'Pembersihan Lahan', 2, 0.00, '2022-06-04 00:00:00', 70, 6, '2022-06-10 08:29:18', '2022-06-10 08:29:18', 4),
-(72, 'Pembajakan', 2, 0.00, '2022-06-06 00:00:00', 70, 7, '2022-06-10 08:29:33', '2022-06-10 08:29:33', 4),
-(73, 'Perairan', 1, 0.00, '2022-06-08 00:00:00', 70, 8, '2022-06-10 08:29:42', '2022-06-10 08:29:42', 4),
-(89, 'ibu', 1, 0.00, '2022-06-04 00:00:00', 0, 14, '2022-06-11 07:32:32', '2022-06-11 07:32:32', 4),
-(90, 'jhghj', 1, 0.00, '2022-06-04 00:00:00', 89, 15, '2022-06-11 07:33:15', '2022-06-11 07:33:15', 4),
-(93, 'vvvvvvvvvvvvvv', 1, 0.00, '2022-06-04 00:00:00', 70, 16, '2022-06-11 07:55:43', '2022-06-11 07:55:43', 4),
-(94, 'New task', 1, 0.00, '2022-06-04 00:00:00', 70, 17, '2022-06-11 11:13:29', '2022-06-11 11:13:29', 4),
-(95, 'ddd', 1, 0.00, '2022-06-04 00:00:00', 0, 18, '2022-06-11 11:17:37', '2022-06-11 11:17:37', 4),
-(96, 'New task', 1, 0.00, '2022-06-04 00:00:00', 95, 19, '2022-06-11 11:17:42', '2022-06-11 11:17:42', 4),
-(97, 'induk', 1, 0.00, '2022-06-04 00:00:00', 0, 20, '2022-06-11 11:25:18', '2022-06-11 11:25:18', 4),
-(98, 'pppppppppppppp', 1, 0.00, '2022-06-08 00:00:00', 89, 21, '2022-06-13 04:39:40', '2022-06-13 04:39:40', 4),
-(99, 'aku', 1, 0.00, '2022-06-04 00:00:00', 89, 22, '2022-06-13 05:46:05', '2022-06-13 05:46:05', 4);
+(102, 'Persiapan Lahan', 1, 0.00, '2022-06-03 00:00:00', 0, 5, '2022-06-15 05:55:40', '2022-06-15 06:49:10', 4),
+(103, 'Pembersihan Lahan', 1, 0.00, '2022-06-03 00:00:00', 102, 6, '2022-06-15 05:55:45', '2022-06-15 06:49:19', 4),
+(104, 'Pembajakan lahan', 1, 0.00, '2022-06-03 00:00:00', 102, 7, '2022-06-15 05:55:51', '2022-06-15 06:49:35', 4),
+(105, 'Penanaman benih', 1, 0.00, '2022-06-03 00:00:00', 0, 8, '2022-06-15 05:55:57', '2022-06-15 06:49:47', 4),
+(106, 'Pemilihan Benih', 1, 0.00, '2022-06-03 00:00:00', 105, 9, '2022-06-15 05:56:01', '2022-06-15 06:50:00', 4),
+(107, 'Arit', 1, 0.00, '2022-06-03 00:00:00', 103, 10, '2022-06-15 05:57:09', '2022-06-15 06:49:28', 4);
 
 -- --------------------------------------------------------
 
@@ -8894,7 +8866,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (1, 'Super Admin', 'superadmin@gmail.com', '$2a$04$cXLImFpNCHnKqiAstB..TOFtNAzQhqjnpSbmJs7XPRMKg9dQA3qM.', 'A8vOImbEtThybUiIKcPF02L9qhFI7fgnp4rcqh10pIZrG1DADbbJOEe7GQzE', '2021-08-11 06:02:32', '2021-08-11 06:02:32', 1),
 (2, 'Fakhrunnisa Nur Afra', 'afrakiww@gmail.com', '$2y$10$/OY.jgvJsGhqnx8P2UcGw.LfpYBEtjwbd0Gy18Xp3axQ2MDJ3RtZW', 'FM9RPPTPRCxSW0FvjV1RDdOTKnAsNrRCx5fU36RNP0nddiWVEiRCvWaA2YBz', '2021-08-11 06:02:32', '2021-08-11 06:02:32', 2),
 (3, 'Muhammad Derry Salman S', 'mderry3@gmail.com', '$2y$10$2uo5Gfj7w0.PmdnSXyrjKe9FPtsHyqFaAyhYGofaYiptgY3t.x1.K', NULL, '2021-08-11 06:10:30', '2021-08-11 06:10:30', 2),
-(4, 'Desa Malasari', 'desa.malasari@gmail.com', '$2y$10$cL4b6hB5rXUaI16RNYa2iOMUo.d3jHl8SNnBcjvtYlVf3SJ6Ra8SS', '9BS5UtA1POIqW5FIF9so26Ym1qcSZm8DXOI7unZZxjOHCbrzzKikJpklU7OK', '2021-08-11 06:26:56', '2021-08-11 06:26:56', 2),
+(4, 'Desa Malasari', 'desa.malasari@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'eEfBPQ3S4WSRmO6ypT8xbX1ZJQeci6sixH1frgCr6gt0iMWoW4fuiOboYNmJ', '2021-08-11 06:26:56', '2021-08-11 06:26:56', 2),
 (5, 'Desa Purasari', 'desa.purasari@gmail.com', '$2y$10$ABtmoTzCVtIzwSvJFHxtWebtFZzgSRduavNmzGpCHL.j4WXRSGDsG', NULL, '2021-08-11 06:28:35', '2021-08-11 06:28:35', 2),
 (6, 'Desa Wangun Jaya', 'desa.wangunjaya@gmail.com', '$2y$10$aHe.gLO4VkYss66EdMKSXul66hDbe72Rr37bY.VF4iYICx7JA0FHW', 'ZJyv56mRO0y25wsaGNfS6uEVsHhLwmth9tMRNUpc8ur8RpfarETk6gA8xcNP', '2021-08-11 06:30:07', '2021-08-11 06:30:07', 2),
 (7, 'Hermansyah', 'herman@gmail.com', '$2y$10$Mb0uetUSi2YaVAAgfGcAfeqXWtbMzLCMbbmV3RUOzR2Ehk3uQRq4a', 'ikjqjHfrwXREGxJu0MaReZy3jriS0axzLw8iDxuNNG9B6vZkAyCnvFMXzlcE', '2021-08-11 14:22:15', '2021-08-11 14:22:15', 2),
@@ -8925,7 +8897,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 17:19:42', '2021-08-14 17:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-17 03:53:26', '2021-08-17 03:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-17 04:07:23', '2021-08-17 04:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'ThiAnFokNGw5S2mfuRratAJ5ZRdVrWZ9MMs7i7bu42m48Px0QsTrN7PNOFht', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'ZkM2bdK3Iyo1mLa7dGQwGQMR1u4eb7oKvFibaK8z3egrXF8JkVqCSZqgQqQj', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 07:37:26', '2022-04-18 07:37:26', 2),
 (45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'kEvK7ql4MQnZhwLUnftkj0GQRGBLkb4KgbjiSvsCjIC0pffyEK0YpM2cd4go', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
 (46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'o58QwBHNzGQJC3T3uT96DDQBoGpaYx4qxEpVM9jon8zVCQqoRcrVXqzan9nE', '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
@@ -89554,10 +89526,23 @@ CREATE TABLE `wbs` (
   `id_wbs` int(15) NOT NULL,
   `id_kegiatan` int(15) NOT NULL,
   `qty` int(30) NOT NULL,
+  `satuan` varchar(30) NOT NULL,
   `harga` int(30) NOT NULL,
   `totalHarga` int(30) NOT NULL,
   `updated_at` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `wbs`
+--
+
+INSERT INTO `wbs` (`id_wbs`, `id_kegiatan`, `qty`, `satuan`, `harga`, `totalHarga`, `updated_at`) VALUES
+(17, 102, 0, '', 0, 0, '2022-06-15 12:55:40'),
+(18, 103, 0, '', 0, 0, '2022-06-15 12:55:45'),
+(19, 104, 0, '', 0, 0, '2022-06-15 12:55:51'),
+(20, 105, 0, '', 0, 0, '2022-06-15 12:55:57'),
+(21, 106, 0, '', 0, 0, '2022-06-15 12:56:01'),
+(22, 107, 0, '', 0, 0, '2022-06-15 12:57:09');
 
 --
 -- Indexes for dumped tables
@@ -89860,7 +89845,7 @@ ALTER TABLE `anggota_grup`
 -- AUTO_INCREMENT untuk tabel `boqs`
 --
 ALTER TABLE `boqs`
-  MODIFY `id_boq` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_boq` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `carts`
@@ -89968,13 +89953,13 @@ ALTER TABLE `sewa_peralatans`
 -- AUTO_INCREMENT untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT untuk tabel `wbs`
 --
 ALTER TABLE `wbs`
-  MODIFY `id_wbs` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_wbs` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
