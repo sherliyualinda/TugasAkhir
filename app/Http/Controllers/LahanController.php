@@ -207,10 +207,12 @@ class LahanController extends Controller
         $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
         return view('request', compact('sewa'));
     }
-    public function wbs($id){
+    public function wbs(Request $request,$id){
         
-        $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
-        return view('wbs', compact('wbs'));
+        //$wbs = DB::select("SELECT w.harga, w.qty, w.satuan, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
+
+        $wbs = DB::select("SELECT w.harga,t.id as idNenek,s.id as idInduk, k.id as idAnak,w.qty,w.satuan, w.totalHarga, t.text, s.created_at, t.duration,s.start_date,t.text as nenek, s.text as induk, k.text as anak, k.parent FROM tasks t LEFT JOIN tasks s ON t.Id = s.parent LEFT JOIN tasks k on s.id = k.parent JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan WHERE t.id_lahan = $request->id AND s.text is NOT null ORDER by s.parent ASC, s.created_at ASC");
+        return view('create_wbs', compact('wbs'));
     }
     public function wbs_user($id){
         

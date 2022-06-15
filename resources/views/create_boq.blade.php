@@ -32,21 +32,21 @@
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($boq as $index=>$boq)
+                            @foreach($wbs as $index=>$wbs)
                                 <tr>
                                     
                                     <?php 
                                     if(!isset($last_parent)){
-                                        $last_parent = $boq->induk;
+                                        $last_parent = $wbs->induk;
                                         $Lindex=1;
                                         $subindex = 1;
                                         ?>
                                         <td><b>{{ $Lindex }}</b></td>
-                                        <td><b>{{ $boq->induk }}</b></td>
-                                        <td>{{ $boq->start_date}}</td>
+                                        <td><b>{{ $wbs->induk }}</b></td>
+                                        <td>{{ $wbs->start_date}}</td>
                                         <td>
-                                            <?php if($boq->parent != 0){?>
-                                                <a href="/lahan/create_formBoq/{{$boq->id}}" class="btn btn-sm btn-success">Add</a>
+                                            <?php if($wbs->parent != 0){?>
+                                                <a href="/lahan/create_formBoq/{{$wbs->id}}" class="btn btn-sm btn-success">Add</a>
                                             <?php }else {?>
 
                                             <?php }
@@ -54,34 +54,34 @@
                                         </td>
                                         </tr>
                                         
-                                        <?php if(!empty($boq->anak) ){ ?>
+                                        <?php if(!empty($wbs->anak) ){ ?>
                                             <td>{{ $Lindex.'.'.$subindex }}</td>
-                                            <td>{{ $boq->anak }}</td>
+                                            <td>{{ $wbs->anak }}</td>
                                         <?php } 
                                     }
 
-                                    elseif($last_parent == $boq->induk){
+                                    elseif($last_parent == $wbs->induk){
                                         $subindex+=1;
                                         ?>
 
-                                        <?php if(!empty($boq->anak) ){ ?>
+                                        <?php if(!empty($wbs->anak) ){ ?>
                                         <td>{{ $Lindex.'.'.$subindex }}</td>
-                                        <td>{{ $boq->anak }}</td>
+                                        <td>{{ $wbs->anak }}</td>
                                         <?php } ?>
                                         
                                         <?php 
-                                        $last_parent = $boq->induk;
+                                        $last_parent = $wbs->induk;
                                     }
-                                    elseif($last_parent != $boq->induk){
+                                    elseif($last_parent != $wbs->induk){
                                         $subindex = 1;
                                         $Lindex+=1;
                                         ?>
                                         <td><b>{{ $Lindex }}</b></td>
-                                        <td><b>{{ $boq->induk }}</b></td>
-                                        <td>{{ $boq->start_date}}</td>
+                                        <td><b>{{ $wbs->induk }}</b></td>
+                                        <td>{{ $wbs->start_date}}</td>
                                         <td>
-                                            <?php if($boq->parent != 0){?>
-                                                <a href="/lahan/create_formBoq/{{$boq->id}}" class="btn btn-sm btn-success">Add</a>
+                                            <?php if($wbs->parent != 0){?>
+                                                <a href="/lahan/create_formBoq/{{$wbs->id}}" class="btn btn-sm btn-success">Add</a>
                                             <?php }else {?>
 
                                             <?php }
@@ -89,18 +89,18 @@
                                         </td>
                                         </tr>
 
-                                        <?php if(!empty($boq->anak)){ ?>
+                                        <?php if(!empty($wbs->anak)){ ?>
                                             <td>{{ $Lindex.'.'.$subindex }}</td>
-                                            <td>{{ $boq->anak }}</td>
+                                            <td>{{ $wbs->anak }}</td>
                                         <?php } 
-                                        $last_parent = $boq->induk;
+                                        $last_parent = $wbs->induk;
                                     } ?>
 
-                                    <?php if(!empty($boq->anak) ){ ?>
-                                    <td>{{ $boq->start_date}}</td>
+                                    <?php if(!empty($wbs->anak) ){ ?>
+                                    <td>{{ $wbs->start_date}}</td>
                                     <td>
-                                        <?php if($boq->parent != 0){?>
-                                            <a href="/lahan/create_formBoq/{{$boq->id}}" class="btn btn-sm btn-success">Add</a>
+                                        <?php if($wbs->parent != 0){?>
+                                            <a href="/lahan/create_formBoq/{{$wbs->id}}" class="btn btn-sm btn-success">Add</a>
                                         <?php }else {?>
 
                                         <?php }

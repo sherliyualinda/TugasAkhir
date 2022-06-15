@@ -348,8 +348,9 @@ Route::get('/lahan/create_formBoq/{id}', 'LahanController@formBoq')->name('formB
 Route::post('/lahan/tambahKebutuhanBoq/', 'LahanController@kebutuhanBoq')->name('tambahKebutuhanBoq')->middleware('auth');
 
 
-Route::get('/lahan/boq/{id}', 'LahanController@createBoq')->name('create_boq')->middleware('auth');
 //Route::get('/lahan/boq/{id}', 'LahanController@showBoq')->name('create_boq')->middleware('auth');
+Route::get('/lahan/boq/{id}', 'LahanController@createBoq')->name('create_boq')->middleware('auth');
+Route::get('/lahan/wbs/{id}', 'LahanController@createBoq')->name('create_boq')->middleware('auth');
 
 
 
