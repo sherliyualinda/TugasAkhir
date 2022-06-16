@@ -35,9 +35,9 @@
                                 <th scope="col">Alamat Penyewa</th>
                                 <th scope="col">KTP</th>
                                 <th scope="col" >Kelola</th>
+                                <th scope="col" >Resiko</th>
+                                <th scope="col">Laporan Harian</th>
                                 <th colspan="2" >Progres</th>
-                                <th colspan="2" >Resiko</th>
-                                
                               </tr>
                             </thead>
                             <tbody>
@@ -48,9 +48,7 @@
                                     <td>{{ $sewa->nik}}</td>
                                     <td>{{ $sewa->alamat}}</td>
                                     <td>
-                                        <center>
-                                            <img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50">
-                                        </center>
+                                        <img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50">
                                     </td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
@@ -68,6 +66,20 @@
                                         </form>
                                        
                                     </td>
+                                    <td>
+                                        <?php if($sewa->status == 'Acc'){?>
+                                             <a href="/lahan/kelola_risk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">kelola Risk</a>
+                                        <?php }else{?>
+                                            <a href="#" class="btn btn-sm btn-secondary">kelola Risk</a>
+                                        <?php } ?>
+                                    </td>
+                                    <td>
+                                        <?php if($sewa->status == 'Acc'){?>
+                                            <a href="/lahan/kelola_daily/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Laporan Harian</a>
+                                        <?php }else{?>
+                                            <a href="#" class="btn btn-sm btn-secondary">Laporan Harian</a>
+                                        <?php } ?>
+                                    </td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
                                         {{ csrf_field() }}
@@ -81,15 +93,15 @@
                                                 Gagal
                                             <?php } ?>
                                         </form>
-                                    </td><td>
-                                    <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
-                                    <a href="/lahan/doneRequest/{{$sewa->id_sewa}}" class="btn btn-sm btn-success">Done</a></td>
-                                    <?php }else{ ?>
-                                    <?php } ?>
-                                    <td>
-                                        <!-- <a href="/lahan/createRisk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Kelola</a></td> -->
-                                        <a href="/lahan/kelola_risk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">kelola Risk</a></td>
                                     </td>
+                                    <td>
+                                         <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
+                                            <a href="/lahan/doneRequest/{{$sewa->id_sewa}}" class="btn btn-sm btn-success">Done</a>
+                                        <?php }else{ ?>
+                                            <a href="#" class="btn btn-sm btn-secondary">Done</a>
+                                        <?php } ?>
+                                    </td>
+                                  
 
                                 </tr>
                         

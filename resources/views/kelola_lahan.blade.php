@@ -44,9 +44,7 @@
                                     <td>{{ $lahan->ukuran}}</td>
                                     <td>{{ $lahan->deskripsi}}</td>
                                     <td>
-                                        <center>
                                         <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }} "width="50" height="50">
-                                        </center>
                                     </td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">

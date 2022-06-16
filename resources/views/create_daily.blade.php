@@ -34,46 +34,21 @@
                  {{ csrf_field() }}
                     @foreach ($daily as $daily)
                         <div class="form-group">
-                            <input type="hidden" name="id_sewa" value="{{$risk->id_sewa}}">
+                            <input type="hidden" name="id_sewa" value="{{$daily->id_sewa}}">
                         </div>
                     @endforeach
                         <div class="form-group">
-                            <label>Penyebab Resiko</label>
-                            <input type="input" name="penyebab" class="form-control form-control-user" placeholder="Penyebab">
+                            <label>Gambar</label>
+                            <input type="file" name="gambar">
                         </div>
                         <div class="form-group">
-                            <label>Dampak Resiko</label>
-                            <input type="input" name="dampak" class="form-control form-control-user" placeholder="Dampak">
+                            <label>Keterangan</label>
+                            <textarea name="keterangan" class="form-control form-control-user" rows="4" placeholder="Masukkan Keterangan"></textarea>
                         </div>
                         <div class="form-group">
-                            <label>Strategi</label>
-                            <input type="input" name="strategi" class="form-control form-control-user" placeholder="Strategi">
-                        </div>
-                        <div class="form-group">
-                            <label>Biaya</label>
-                            <input type="biaya" name="biaya" class="form-control form-control-user" placeholder="Biaya">
-                        </div>
-                        <div class="form-group">
-                            <label>Probabilitas</label>
-                            <select class="form-control" name="probabilitas" placeholder="--Skala Kemungkinan--">
-                                <option value="1">Low</option>
-                                <option value="2">Medium</option>
-                                <option value="3">High</option>
-                            
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Impact</label>
-                            <select class="form-control" name="impact" placeholder="--Skala Dampak">
-                                <option value="1">Low</option>
-                                <option value="2">Medium</option>
-                                <option value="3">High</option>
-                            
-                            </select>
-                        </div>
-                        
-                    
-                    
+                            <label>Tanggal</label>
+                            <input type="date" name="date" class="form-control form-control-user" placeholder="Tanggal">
+                        </div>                  
                         <button type="submit" class="btn btn-success">SIMPAN</button>                    
                     </form>
                 </div>
