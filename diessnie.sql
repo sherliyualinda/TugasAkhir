@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Jun 2022 pada 07.28
+-- Waktu pembuatan: 16 Jun 2022 pada 11.26
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -7653,6 +7653,32 @@ INSERT INTO `lahans` (`id`, `category_lahan_id`, `ukuran`, `deskripsi`, `gambar`
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `lahan_resources`
+--
+
+CREATE TABLE `lahan_resources` (
+  `id_lahan_resources` int(11) NOT NULL,
+  `resource` varchar(250) NOT NULL,
+  `keterangan` varchar(250) NOT NULL,
+  `id_resources` int(11) NOT NULL,
+  `id_lahan` int(11) NOT NULL,
+  `updated_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `lahan_resources`
+--
+
+INSERT INTO `lahan_resources` (`id_lahan_resources`, `resource`, `keterangan`, `id_resources`, `id_lahan`, `updated_at`) VALUES
+(1, 'pupuk', 'pupuk', 2, 4, '2022-06-16'),
+(2, 'Riko', 'petani', 1, 4, '2022-06-16'),
+(3, 'Ade', 'bersih-bersih', 1, 4, '2022-06-16'),
+(4, 'sekop', 'sekop', 3, 4, '2022-06-16'),
+(5, 'cangkul', 'cangkul', 3, 4, '2022-06-16');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `likes`
 --
 
@@ -8617,6 +8643,26 @@ CREATE TABLE `reports` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `resources`
+--
+
+CREATE TABLE `resources` (
+  `id_resources` int(11) NOT NULL,
+  `keterangan` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `resources`
+--
+
+INSERT INTO `resources` (`id_resources`, `keterangan`) VALUES
+(1, 'Orang'),
+(2, 'Material'),
+(3, 'Alat');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `risks`
 --
 
@@ -8691,7 +8737,7 @@ CREATE TABLE `sewa_lahans` (
 --
 
 INSERT INTO `sewa_lahans` (`id_sewa`, `id_penyewa`, `id_pemilik`, `id_lahan`, `status`, `progres`, `updated_at`) VALUES
-(1, 45, 42, 4, 'Acc', 'Done', '2022-06-09 14:03:53'),
+(1, 45, 42, 4, 'Process', 'Done', '2022-06-09 14:03:53'),
 (2, 46, 42, 4, 'Tolak', 'Gagal', '2022-06-09 14:03:10'),
 (3, 45, 42, 5, 'Acc', 'Done', '2022-06-09 13:38:17'),
 (4, 46, 42, 4, 'Tolak', 'Gagal', '2022-06-09 14:03:10');
@@ -8721,7 +8767,7 @@ CREATE TABLE `sewa_peralatans` (
 --
 
 INSERT INTO `sewa_peralatans` (`id_sewa`, `id_pemilik`, `id_peralatan`, `id_penyewa`, `status`, `harga`, `totalHari`, `totalHarga`, `statusPinjam`, `qty`, `updated_at`) VALUES
-(1, 42, 1, 45, 'Belum Acc', 1000, 5, 10000, '-', 2, '2022-06-09');
+(1, 42, 1, 45, 'Acc', 1000, 5, 10000, '-', 2, '2022-06-16');
 
 -- --------------------------------------------------------
 
@@ -8912,9 +8958,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 17:19:42', '2021-08-14 17:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-17 03:53:26', '2021-08-17 03:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-17 04:07:23', '2021-08-17 04:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'ZkM2bdK3Iyo1mLa7dGQwGQMR1u4eb7oKvFibaK8z3egrXF8JkVqCSZqgQqQj', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '2fvKxV8PhBia0kr2gO6VHtiwW1LnGOnhh4jzWx4ARpqnmGw3jIKWK6MlOix0', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 07:37:26', '2022-04-18 07:37:26', 2),
-(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'kEvK7ql4MQnZhwLUnftkj0GQRGBLkb4KgbjiSvsCjIC0pffyEK0YpM2cd4go', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
+(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'EurxJnK24GjIKzbbcIVMcBJd530NXwiVDdotsdlMfB7N2ec8w5buxbv7LxXQ', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
 (46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'o58QwBHNzGQJC3T3uT96DDQBoGpaYx4qxEpVM9jon8zVCQqoRcrVXqzan9nE', '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
 
 -- --------------------------------------------------------
@@ -89683,6 +89729,14 @@ ALTER TABLE `lahans`
   ADD KEY `id_user` (`id_user`);
 
 --
+-- Indeks untuk tabel `lahan_resources`
+--
+ALTER TABLE `lahan_resources`
+  ADD PRIMARY KEY (`id_lahan_resources`),
+  ADD KEY `id_lahan` (`id_lahan`),
+  ADD KEY `resorces` (`id_resources`);
+
+--
 -- Indeks untuk tabel `likes`
 --
 ALTER TABLE `likes`
@@ -89762,6 +89816,12 @@ ALTER TABLE `regencies`
 --
 ALTER TABLE `reports`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `resources`
+--
+ALTER TABLE `resources`
+  ADD PRIMARY KEY (`id_resources`);
 
 --
 -- Indeks untuk tabel `risks`
@@ -89936,6 +89996,12 @@ ALTER TABLE `lahans`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT untuk tabel `lahan_resources`
+--
+ALTER TABLE `lahan_resources`
+  MODIFY `id_lahan_resources` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT untuk tabel `links`
 --
 ALTER TABLE `links`
@@ -89958,6 +90024,12 @@ ALTER TABLE `pengguna`
 --
 ALTER TABLE `peralatans`
   MODIFY `id_peralatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `resources`
+--
+ALTER TABLE `resources`
+  MODIFY `id_resources` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `risks`
@@ -90012,6 +90084,13 @@ ALTER TABLE `lahans`
   ADD CONSTRAINT `lahans_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `pengguna` (`id_pengguna`);
 
 --
+-- Ketidakleluasaan untuk tabel `lahan_resources`
+--
+ALTER TABLE `lahan_resources`
+  ADD CONSTRAINT `lahan_resources_ibfk_1` FOREIGN KEY (`id_lahan`) REFERENCES `lahans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `resorces` FOREIGN KEY (`id_resources`) REFERENCES `resources` (`id_resources`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Ketidakleluasaan untuk tabel `peralatans`
 --
 ALTER TABLE `peralatans`
@@ -90021,7 +90100,7 @@ ALTER TABLE `peralatans`
 -- Ketidakleluasaan untuk tabel `risks`
 --
 ALTER TABLE `risks`
-  ADD CONSTRAINT `risks_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`);
+  ADD CONSTRAINT `risks_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `sewa_lahans`

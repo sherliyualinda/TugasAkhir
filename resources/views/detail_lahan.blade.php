@@ -61,13 +61,53 @@
                                         <td>{{$data->statusLahan}}</td>
                                     </tr>
                                 </tbody>
+                                @endforeach
+                            </table>
+                            <b> Orang Yang Membantu </b>
+                            <table class="table table-bordered">
+                              <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama</th>
+                              </tr>
+                            @foreach($orang as $index=>$orang)
+                                <tr>
+                                    <td>{{ $index+1}}</td>
+                                    <td>{{ $orang->resource}}</td>
+                                </tr>
+                                @endforeach
+                            </table>
+                            <b>Material Yang Digunakan</b>
+                            <table class="table table-bordered">
+                              <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Material</th>
+                              </tr>
+                            @foreach($material as $index=>$material)
+                                <tr>
+                                    <td>{{ $index+1}}</td>
+                                    <td>{{ $material->resource}}</td>
+                                </tr>
+                                @endforeach
+                            </table>
+                            <b> Alat Yang Digunakan</b>
+                            <table class="table table-bordered">
+                              <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Alat</th>
+                              </tr>
+                            @foreach($alat as $index=>$alat)
+                                <tr>
+                                    <td>{{ $index+1}}</td>
+                                    <td>{{ $alat->resource}}</td>
+                                </tr>
+                                @endforeach
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @endforeach
+       
     </div>
 </div>
 
