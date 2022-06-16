@@ -24,7 +24,9 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Kegiatan Induk</th>
-                                <th scope="col">Tanggal Mulai</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Satuan</th>
+                                <th scope="col">Harga</th>
                                 <th>
                                     kelola
                                 </th>
@@ -33,20 +35,101 @@
                             </thead>
                             <tbody>
                             @foreach($wbs as $index=>$wbs)
-                                <tr> 
-                                    <?php if($wbs->Id_Nenek != null && $wbs->Id_Ibu != null){?>
-                                        <td>{{1 }}</td>
-                                        <td>{{ $wbs->Nenek }}</td>
-                                    
-                                    <?php }elseif ($wbs->Id_Ibu != null){?>
-                                        <td>{{1 }}</td>
+                                <?php
+                                if(!isset($nenek)){
+                                    $nenek  = $wbs->Nenek;
+                                    $ibu    = $wbs->Ibu;
+                                    $iter = array(1,1,1);
+                                    ?>
+                                    <tr>
+                                        <td><b>{{ $iter[0] }}</b></td>
+                                        <td><b>{{ $wbs->Nenek }}</b></td>
+                                        <td>{{ $wbs->qty }}</td>
+                                        <td>{{ $wbs->satuan }}</td>
+                                        <td>{{ $wbs->harga }}</td>
+                                    </tr>
+                                    <?php if(!empty($wbs->Ibu)){ ?>
+
+                                    <tr>
+                                        <td>{{ $iter[0] .".". $iter[1] }}</td>
                                         <td>{{ $wbs->Ibu }}</td>
-                            
-                                    <?php }else{ ?>
-                                         <td>{{1 }}</td>
+                                        <td>{{ $wbs->qty }}</td>
+                                        <td>{{ $wbs->satuan }}</td>
+                                        <td>{{ $wbs->harga }}</td>
+                                    </tr>
+
+                                    <?php } if(!empty($wbs->Cucu)){ ?>
+                                    <tr>
+                                        <td>{{ $iter[0] .".". $iter[1] .".". $iter[2]}}</td>
                                         <td>{{ $wbs->Cucu }}</td>
-                                    <?php }?>                                                                    
-                                </tr>
+                                        <td>{{ $wbs->qty }}</td>
+                                        <td>{{ $wbs->satuan }}</td>
+                                        <td>{{ $wbs->harga }}</td>
+                                    </tr>
+                                    <?php } ?>
+                                <?php } elseif($nenek == $wbs->Nenek && $ibu == $wbs->Ibu){ 
+                                            $iter[2] += 1;
+                                    ?>
+                                    <tr>
+                                        <td>{{ $iter[0] .".". $iter[1] .".". $iter[2]}}</td>
+                                        <td>{{ $wbs->Cucu }}</td>
+                                        <td>{{ $wbs->qty }}</td>
+                                        <td>{{ $wbs->satuan }}</td>
+                                        <td>{{ $wbs->harga }}</td>
+                                    </tr>
+                                <?php } elseif($nenek == $wbs->Nenek && $ibu != $wbs->Ibu && !empty($wbs->Ibu)){ 
+                                            $iter[2] = 1;
+                                            $iter[1] += 1;
+                                            $ibu = $wbs->Ibu;
+                                    ?>
+                                    <tr>
+                                        <td>{{ $iter[0] .".". $iter[1] }}</td>
+                                        <td>{{ $wbs->Ibu }}</td>
+                                        <td>{{ $wbs->qty }}</td>
+                                        <td>{{ $wbs->satuan }}</td>
+                                        <td>{{ $wbs->harga }}</td>
+                                    </tr>
+                                    <?php if(!empty($wbs->Cucu)){ ?>
+                                    <tr>
+                                        <td>{{ $iter[0] .".". $iter[1] .".". $iter[2]}}</td>
+                                        <td>{{ $wbs->Cucu }}</td>
+                                        <td>{{ $wbs->qty }}</td>
+                                        <td>{{ $wbs->satuan }}</td>
+                                        <td>{{ $wbs->harga }}</td>
+                                    </tr>
+                                    <?php } ?>
+                                <?php } elseif($nenek != $wbs->Nenek){ 
+                                            $iter[2] = 1;
+                                            $iter[1] = 1;
+                                            $iter[0] += 1;
+                                            $nenek = $wbs->Nenek;
+                                            $ibu = $wbs->Ibu;
+                                    ?>
+                                    <tr>
+                                        <td><b>{{ $iter[0] }}</b></td>
+                                        <td><b>{{ $wbs->Nenek }}</b></td>
+                                        <td>{{ $wbs->qty }}</td>
+                                        <td>{{ $wbs->satuan }}</td>
+                                        <td>{{ $wbs->harga }}</td>
+                                    </tr>
+                                    <?php if(!empty($wbs->Ibu)){ ?>
+                                    <tr>
+                                        <td>{{ $iter[0] .".". $iter[1] }}</td>
+                                        <td>{{ $wbs->Ibu }}</td>
+                                        <td>{{ $wbs->qty }}</td>
+                                        <td>{{ $wbs->satuan }}</td>
+                                        <td>{{ $wbs->harga }}</td>
+                                    </tr>
+                                        <?php } if(!empty($wbs->Cucu)){ ?>
+                                    <tr>
+                                        <td>{{ $iter[0] .".". $iter[1] .".". $iter[2]}}</td>
+                                        <td>{{ $wbs->Cucu }}</td>
+                                        <td>{{ $wbs->qty }}</td>
+                                        <td>{{ $wbs->satuan }}</td>
+                                        <td>{{ $wbs->harga }}</td>
+                                    </tr>
+                                <?php }} ?>
+                                
                                     @endforeach   
                                 </tbody>
                             </table>  
