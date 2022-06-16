@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
-
+use mysqli;
 
 class LahanController extends Controller
 {
@@ -118,7 +118,7 @@ class LahanController extends Controller
         return redirect('lahan/kelola_lahan');
     }
     public function detail_lahan($id){
-        session_start();
+       
         $lahan = DB::select("SELECT p.nama as pemilik,l.statusLahan,l.id_user, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE l.id = $id");
         $orang = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 1 AND lr.id_lahan = $id");
         $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 2 AND lr.id_lahan = $id");
@@ -161,13 +161,14 @@ class LahanController extends Controller
     }
     public function request($id){
         session_start();
+        $_SESSION['id_lahan'] = $id;
         $sewa = DB::select("SELECT nama,alamat,s.id_sewa,s.id_lahan, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
         return view('request', compact('sewa'));
     }
 
     public function accRequest($id){
         session_start();
-        $lahan= Lahan::where('id',$_SESSION['id_lahan'])->update([
+        $lahan= Lahan::where('id', $_SESSION['id_lahan'])->update([
             'statusLahan' => "Not Ready",
             'updated_at' => date("Y-m-d H:i:s")
         ]);
@@ -199,13 +200,18 @@ class LahanController extends Controller
         return view('request', compact('sewa'));
     }
     public function doneRequest($id){
+        session_start();
+        $lahan= Lahan::where('id', $_SESSION['id_lahan'])->update([
+            'statusLahan' => "Ready",
+            'updated_at' => date("Y-m-d H:i:s")
+        ]);
         $sewa= Sewa_lahan::where('id_sewa', $id)->update([
             'progres' => "Done",
             'updated_at' => date("Y-m-d H:i:s")
 
         ]);
         //return redirect('lahan/kelola_lahan');
-        session_start();
+       
         $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
         return view('request', compact('sewa'));
     }
@@ -279,7 +285,7 @@ class LahanController extends Controller
         }
 
         public function risk($id){
-        session_start();
+        
             $risk = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, r.levelRisk,r.status, r.penyebab, r.strategi, r.dampak, r.biaya, r.probabilitas, r.impact,r.levelRisk, r.status FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
             $risk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa where s.id_sewa = $id");
             $risk3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
@@ -367,7 +373,7 @@ class LahanController extends Controller
 
     
         public function daily($id){
-            session_start();
+           
                 $daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailys d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
                 $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailys d on d.id_sewa = s.id_sewa where s.id_sewa = $id");
                 $daily3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id ");

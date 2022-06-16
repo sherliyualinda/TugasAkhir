@@ -90,7 +90,7 @@
                                             <?php }elseif($sewa->status == 'Acc' && $sewa->progres == 'Done'){?>
                                                 Done
                                             <?php }else{?>
-                                                Gagal
+                                                -
                                             <?php } ?>
                                         </form>
                                     </td>
