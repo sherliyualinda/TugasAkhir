@@ -351,6 +351,12 @@ Route::get('/lahan/kelola_daily/{id}', 'LahanController@daily')->name('kelola_da
 Route::get('/lahan/create_formBoq/{id}', 'LahanController@formBoq')->name('formBoq')->middleware('auth');
 Route::post('/lahan/tambahKebutuhanBoq/', 'LahanController@kebutuhanBoq')->name('tambahKebutuhanBoq')->middleware('auth');
 
+Route::get('/lahan/orang/{id}', 'LahanController@orang')->middleware('auth');
+Route::get('/lahan/material/{id}', 'LahanController@material')->middleware('auth');
+Route::get('/lahan/alat/{id}', 'LahanController@alat')->middleware('auth');
+Route::post('/lahan/simpan_orang/{id}', 'LahanController@simpan_orang')->name('simpanOrang')->middleware('auth');
+Route::post('/lahan/simpan_material/{id}', 'LahanController@simpan_material')->name('tambahMaterial')->middleware('auth');
+Route::post('/lahan/simpan_alat/{id}', 'LahanController@simpan_alat')->name('simpanAlat')->middleware('auth');
 
 //Route::get('/lahan/boq/{id}', 'LahanController@showBoq')->name('create_boq')->middleware('auth');
 Route::get('/lahan/boq/{id}', 'LahanController@createBoq')->name('create_boq')->middleware('auth');

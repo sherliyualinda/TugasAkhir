@@ -7,6 +7,10 @@
     <title>Kelola Lahan</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 	
         @include('nav_barMar')
@@ -35,6 +39,7 @@
                                 <th scope="col">Deskripsi</th>
                                 <th scope="col">Gambar</th>
                                 <th scope="col">Kelola</th>
+                                <th scope="col">Tambah Sumber Daya</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -53,7 +58,20 @@
                                             <a href="/gantt/{{$lahan->id}}" class="btn btn-sm btn-success">Gantt Chart</a>
                                             <a href="/wbs/{{$lahan->id}}" class="btn btn-sm btn-info">BOQ</a>
                                             <a href="/lahan/request/{{$lahan->id}}" class="btn btn-sm btn-info">Request</a>
+                
                                         </form>
+                                    </td>
+                                    <td>
+                                        <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Sumber Daya
+                                                <span></span></button>
+                                                <ul class="dropdown-menu">
+                                                <li><a href="/lahan/orang/{{$lahan->id}}">Orang</a></li>
+                                                <li><a href="/lahan/material/{{$lahan->id}}">Material</a></li>
+                                                <li><a href="/lahan/alat/{{$lahan->id}}">Alat</a></li>
+                                                </ul>
+                                            </div>
+
                                     </td>
                                 </tr>
                               @endforeach   
