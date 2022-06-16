@@ -211,7 +211,11 @@ class LahanController extends Controller
         
         //$wbs = DB::select("SELECT w.harga, w.qty, w.satuan, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
 
-        $wbs = DB::select("SELECT w.harga,t.id as idNenek,s.id as idInduk, k.id as idAnak,w.qty,w.satuan, w.totalHarga, t.text, s.created_at, t.duration,s.start_date,t.text as nenek, s.text as induk, k.text as anak, k.parent FROM tasks t LEFT JOIN tasks s ON t.Id = s.parent LEFT JOIN tasks k on s.id = k.parent JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan WHERE t.id_lahan = $request->id AND s.text is NOT null ORDER by s.parent ASC, s.created_at ASC");
+        $wbs1 = DB::select("SELECT w.harga,t.id as idNenek,s.id as idInduk, k.id as idAnak,w.qty,w.satuan, w.totalHarga, t.text, s.created_at, t.duration,s.start_date,t.text as nenek, s.text as induk, k.text as anak, k.parent FROM tasks t LEFT JOIN tasks s ON t.Id = s.parent LEFT JOIN tasks k on s.id = k.parent JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan WHERE t.id_lahan = $request->id AND s.text is NOT null ORDER by s.parent ASC, s.created_at ASC");
+
+        $wbs = DB::select("SELECT w.harga, w.satuan, w.totalHarga, w.qty, a.start_date, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as parent_Ibu,c.id as Id_Cucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN lahans l on a.id_lahan =l.id JOIN wbs w on a.id = w.id_kegiatan WHERE a.id_lahan = $request->id ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc");
+
+        
         return view('create_wbs', compact('wbs'));
     }
     public function wbs_user($id){
@@ -332,9 +336,29 @@ class LahanController extends Controller
                 'updated_at'    => date("Y-m-d H:i:s")
 
             ]);
-            $risk = DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.status,r.updated_at,s.id_lahan FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa");
+            $boq = DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.status,r.updated_at,s.id_lahan FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa");
             return view('kelola_risk', compact('risk'));
         }
+
+        public function createDaily($id){
+        $daily = Sewa_lahan::select('*')->where('id_sewa', $id)->get();
+        return view('create_daily',compact('daily'));
+    }
+
+    public function simpan_daily(Request $request){
+        // menyimpan data file yang diupload ke variabel $file        
+        DB::table('dailys')->insert([
+            'id_sewa'       => $request->id_sewa,
+            'gambar'        => $request->gambar,
+            'keterangan'    => $request->keterangan,
+            'date'          => $request->date,
+            'updated_at'     => date("Y-m-d H:i:s")
+        ]);
+            $daily = DB::select("SELECT d.id_sewa,d.gambar,d.keterangan,d.date,d.updated_at,s.id_lahan FROM dailys d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $request->id_sewa");
+           
+            return view('kelola_risk', compact('risk'));
+        }
+
 
         
 }

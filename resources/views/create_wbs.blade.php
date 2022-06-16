@@ -25,10 +25,6 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Kegiatan Induk</th>
                                 <th scope="col">Tanggal Mulai</th>
-                                <th scope="col">Qty</th>
-                                <th scope="col">Satuan</th>
-                                <th scope="col">Harga</th>
-                                <th scope="col">Total Harga</th>
                                 <th>
                                     kelola
                                 </th>
@@ -37,44 +33,24 @@
                             </thead>
                             <tbody>
                             @foreach($wbs as $index=>$wbs)
-
-                            <tr>
-                                
-                                <?php
-                                    if($wbs->parent == null && $wbs->idNenek == null){?>
-                                        <td>{{1}}</td>
-                                        <td>{{ $wbs->nenek }}</td>
-                                        <td>{{ $wbs->start_date }}</td>
-                                        <td>{{ $wbs->qty }}</td>
-                                        <td>{{ $wbs->satuan }}</td>
-                                        <td>{{ $wbs->harga }}</td>
-                                        <td>{{ $wbs->totalHarga }}</td>
-                                
-                                <?php }elseif($wbs->parent == null && $wbs->idNenek != null ){?>
-                                        <td>{{1}}</td>
-                                        <td>{{ $wbs->induk }}</td>
-                                        <td>{{ $wbs->start_date }}</td>
-                                        <td>{{ $wbs->qty }}</td>
-                                        <td>{{ $wbs->satuan }}</td>
-                                        <td>{{ $wbs->harga }}</td>
-                                        <td>{{ $wbs->totalHarga }}</td>
-                                
-                                <?php }else{ ?>
-                                        <td>{{1}}</td>
-                                        <td>{{ $wbs->anak }}</td>
-                                        <td>{{ $wbs->start_date }}</td>
-                                        <td>{{ $wbs->qty }}</td>
-                                        <td>{{ $wbs->satuan }}</td>
-                                        <td>{{ $wbs->harga }}</td>
-                                        <td>{{ $wbs->totalHarga }}</td>
-                                        
-                                        <?php } ?>
-                                        
-                                        @endforeach   
-                            </tr>
-                                        </tbody>
-                                        </table>  
-                                        <a href="#" class="btn btn-sm btn-success">Save</a>
+                                <tr> 
+                                    <?php if($wbs->Id_Nenek != null && $wbs->Id_Ibu != null){?>
+                                        <td>{{1 }}</td>
+                                        <td>{{ $wbs->Nenek }}</td>
+                                    
+                                    <?php }elseif ($wbs->Id_Ibu != null){?>
+                                        <td>{{1 }}</td>
+                                        <td>{{ $wbs->Ibu }}</td>
+                            
+                                    <?php }else{ ?>
+                                         <td>{{1 }}</td>
+                                        <td>{{ $wbs->Cucu }}</td>
+                                    <?php }?>                                                                    
+                                </tr>
+                                    @endforeach   
+                                </tbody>
+                            </table>  
+                            <a href="#" class="btn btn-sm btn-success">Save</a>
                        
                     </div>
                 </div>

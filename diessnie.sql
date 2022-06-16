@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Jun 2022 pada 09.06
+-- Waktu pembuatan: 16 Jun 2022 pada 07.28
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -235,6 +235,21 @@ CREATE TABLE `comment` (
 
 INSERT INTO `comment` (`id`, `id_pengguna`, `id_balas_komen`, `isi_komentar`, `tanggal_komen`, `status`, `id_konten`, `is_active`) VALUES
 (1, 2, 0, 'ini vaksin apa?', '2021-08-13 17:56:33', 'Belum Dibaca', 4, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `dailys`
+--
+
+CREATE TABLE `dailys` (
+  `id_daily` int(30) NOT NULL,
+  `id_sewa` int(30) NOT NULL,
+  `gambar` varchar(255) NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `updated_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -89604,6 +89619,13 @@ ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `dailys`
+--
+ALTER TABLE `dailys`
+  ADD PRIMARY KEY (`id_daily`),
+  ADD KEY `id_sewa` (`id_sewa`);
+
+--
 -- Indeks untuk tabel `districts`
 --
 ALTER TABLE `districts`
@@ -89878,6 +89900,12 @@ ALTER TABLE `comment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT untuk tabel `dailys`
+--
+ALTER TABLE `dailys`
+  MODIFY `id_daily` int(30) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -89970,6 +89998,12 @@ ALTER TABLE `wbs`
 --
 ALTER TABLE `boqs`
   ADD CONSTRAINT `boqs_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `dailys`
+--
+ALTER TABLE `dailys`
+  ADD CONSTRAINT `dailys_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `lahans`

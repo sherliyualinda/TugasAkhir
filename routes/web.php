@@ -342,15 +342,19 @@ Route::get('/wbs_user/{id}', 'LahanController@wbs_user')->name('wbs')->middlewar
 
 Route::get('/lahan/createRisk/{id}', 'LahanController@createRisk')->name('create_risk')->middleware('auth');
 Route::post('/lahan/simpan_risk/{id}', 'LahanController@simpan_risk')->name('simpan_risk')->middleware('auth');
-
 Route::get('/lahan/kelola_risk/{id}', 'LahanController@risk')->name('kelola_risk')->middleware('auth');
+
+Route::get('/lahan/createDaily/{id}', 'LahanController@createDaily')->name('create_daily')->middleware('auth');
+Route::post('/lahan/simpan_daily/{id}', 'LahanController@simpan_daily')->name('simpan_daily')->middleware('auth');
+Route::get('/lahan/kelola_daily/{id}', 'LahanController@daily')->name('kelola_daily')->middleware('auth');
+
 Route::get('/lahan/create_formBoq/{id}', 'LahanController@formBoq')->name('formBoq')->middleware('auth');
 Route::post('/lahan/tambahKebutuhanBoq/', 'LahanController@kebutuhanBoq')->name('tambahKebutuhanBoq')->middleware('auth');
 
 
 //Route::get('/lahan/boq/{id}', 'LahanController@showBoq')->name('create_boq')->middleware('auth');
 Route::get('/lahan/boq/{id}', 'LahanController@createBoq')->name('create_boq')->middleware('auth');
-Route::get('/lahan/wbs/{id}', 'LahanController@createBoq')->name('create_boq')->middleware('auth');
+
 
 
 
