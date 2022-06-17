@@ -36,12 +36,19 @@
                               </tr>
                             </thead>
                             <tbody>
+                        
+                            <?php $sum = array(); ?>
                             @foreach($wbs as $index=>$wbs)
+                            
+                            
                                 <?php
+                                $sum[] = $wbs->thCucu;
+                                $Total = array_sum($sum);
+                                echo $Total;
                                 if(!isset($nenek)){
                                     $nenek  = $wbs->Nenek;
                                     $ibu    = $wbs->Ibu;
-                                    //$totN = sum($wbs->totalHarga);
+                                    //$totN = array_sum($arr);
                                     $iter = array(1,1,1);
                                     ?>
                                     <tr>
@@ -51,7 +58,7 @@
                                         <td>{{ $wbs->qtyNenek }}</td>
                                         <td>{{ $wbs->satuanNenek }}</td>
                                         <td>{{ $wbs->hargaNenek }}</td>
-                                        <td>{{ $wbs->thNenek }}</td>
+                                        <td><?php echo $Total?></td>
                                         <td>
                                             <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
                                                 
@@ -160,7 +167,7 @@
                                         <td>{{ $wbs->qtyNenek }}</td>
                                         <td>{{ $wbs->satuanNenek }}</td>
                                         <td>{{ $wbs->hargaNenek }}</td>
-                                        <td>{{ $wbs->thNenek }}</td>
+                                        <td><?php echo $Total?></td>
                                         <td>
                                             <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
                                                 
