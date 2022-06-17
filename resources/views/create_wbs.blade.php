@@ -37,20 +37,21 @@
                             </thead>
                             <tbody>
                         
-                            <?php $sum = array(); ?>
+                            <?php //$sum = array(); ?>
                             @foreach($wbs as $index=>$wbs)
                             
                             
                                 <?php
-                                $sum[] = $wbs->thCucu;
-                                $Total = array_sum($sum);
-                                echo $Total;
+                                // $sum[]= $wbs->thCucu;
+                                // $Total = array_sum($sum);
+                                // echo $Total;
                                 if(!isset($nenek)){
                                     $nenek  = $wbs->Nenek;
                                     $ibu    = $wbs->Ibu;
                                     //$totN = array_sum($arr);
                                     $iter = array(1,1,1);
                                     ?>
+                                    
                                     <tr>
                                         <td><b>{{ $iter[0] }}</b></td>
                                         <td><b>{{ $wbs->Nenek }}</b></td>
@@ -58,11 +59,11 @@
                                         <td>{{ $wbs->qtyNenek }}</td>
                                         <td>{{ $wbs->satuanNenek }}</td>
                                         <td>{{ $wbs->hargaNenek }}</td>
-                                        <td><?php echo $Total?></td>
+                                        <td><?php // echo $Total?></td>
                                         <td>
                                             <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
                                                 
-                                                <a href="/lahan/update_wbs/{{$wbs->Id_Nenek}}" class="btn btn-sm btn-success">Add</a>
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Nenek}}" class="btn btn-sm btn-success">Edit</a>
                                             <?php }else{?>
                                                 
                                                 <?php }?>
@@ -81,7 +82,7 @@
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
                                                 
-                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-success">Add</a>
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-success">Edit</a>
                                             <?php }else{?>
                                                 
                                                 <?php }?>
@@ -98,7 +99,7 @@
                                         <td>{{ $wbs->hargaCucu }}</td>
                                         <td>{{ $wbs->thCucu }}</td>
                                         <td>
-                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Add</a>
+                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Edit</a>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -114,7 +115,7 @@
                                         <td>{{ $wbs->hargaCucu }}</td>
                                         <td>{{ $wbs->thCucu }}</td>
                                         <td>
-                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Add</a>
+                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Edit</a>
                                         </td>
                                     </tr>
                                 <?php } elseif($nenek == $wbs->Nenek && $ibu != $wbs->Ibu && !empty($wbs->Ibu)){ 
@@ -133,7 +134,7 @@
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
                                                 
-                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-success">Add</a>
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-success">Edit</a>
                                             <?php }else{?>
                                                 
                                                 <?php }?>
@@ -149,7 +150,7 @@
                                         <td>{{ $wbs->hargaCucu }}</td>
                                         <td>{{ $wbs->thCucu }}</td>
                                         <td>
-                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Add</a>
+                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Edit</a>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -167,11 +168,11 @@
                                         <td>{{ $wbs->qtyNenek }}</td>
                                         <td>{{ $wbs->satuanNenek }}</td>
                                         <td>{{ $wbs->hargaNenek }}</td>
-                                        <td><?php echo $Total?></td>
+                                        <td><?php //echo $Total?></td>
                                         <td>
                                             <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
                                                 
-                                                <a href="/lahan/update_wbs/{{$wbs->Id_Nenek}}" class="btn btn-sm btn-success">Add</a>
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Nenek}}" class="btn btn-sm btn-success">Edit</a>
                                             <?php }else{?>
                                                 
                                                 <?php }?>
@@ -189,7 +190,7 @@
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
                                                 
-                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-success">Add</a>
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-success">Edit</a>
                                             <?php }else{?>
                                                 
                                                 <?php }?>
@@ -205,7 +206,7 @@
                                         <td>{{ $wbs->hargaCucu }}</td>
                                         <td>{{ $wbs->thCucu }}</td>
                                         <td>
-                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Add</a>
+                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Edit</a>
                                         </td>
                                     </tr>
                                 <?php }} ?>
