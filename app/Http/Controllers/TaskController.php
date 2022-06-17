@@ -21,16 +21,20 @@ class TaskController extends Controller
         $task->parent = $request->parent;
         $task->sortorder = Task::max("sortorder") + 1;
         $task->id_lahan = $_SESSION['id_lahan'];
+        $task->qty = 0;
+        $task->satuan = 0;
+        $task->harga = 0;
+        $task->totalHarga = 0;
  
         $task->save();
-        DB::table('wbs')->insert([
-            'id_kegiatan' => $task->id,
-            'qty'   => 0,
-            'satuan'   => '',
-            'harga' => 0,
-            'totalHarga' => 0,
-            'updated_at' => date("Y-m-d H:i:s")
-        ]);
+        // DB::table('wbs')->insert([
+        //     'id_kegiatan' => $task->id,
+        //     'qty'   => 0,
+        //     'satuan'   => '',
+        //     'harga' => 0,
+        //     'totalHarga' => 0,
+        //     'updated_at' => date("Y-m-d H:i:s")
+        // ]);
  
         return response()->json([
             "action"=> "inserted",
@@ -46,6 +50,7 @@ class TaskController extends Controller
         $task->duration = $request->duration;
         $task->progress = $request->has("progress") ? $request->progress : 0;
         $task->parent = $request->parent;
+      
  
         $task->save();
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Jun 2022 pada 11.26
+-- Waktu pembuatan: 17 Jun 2022 pada 08.52
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -7647,7 +7647,7 @@ CREATE TABLE `lahans` (
 --
 
 INSERT INTO `lahans` (`id`, `category_lahan_id`, `ukuran`, `deskripsi`, `gambar`, `id_user`, `statusLahan`, `updated_at`) VALUES
-(4, 2, '70 x 40', 'ayam', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 42, 'Ready', '2022-06-09'),
+(4, 2, '70 x 40', 'ayam', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 42, 'Ready', '2022-06-16'),
 (5, 2, '30X40', 'Lebar banget', 'Untitled Diagram.drawio (2).png', 42, 'Ready', '2022-06-09');
 
 -- --------------------------------------------------------
@@ -8737,9 +8737,9 @@ CREATE TABLE `sewa_lahans` (
 --
 
 INSERT INTO `sewa_lahans` (`id_sewa`, `id_penyewa`, `id_pemilik`, `id_lahan`, `status`, `progres`, `updated_at`) VALUES
-(1, 45, 42, 4, 'Process', 'Done', '2022-06-09 14:03:53'),
+(1, 45, 42, 4, 'Acc', 'Done', '2022-06-16 17:19:11'),
 (2, 46, 42, 4, 'Tolak', 'Gagal', '2022-06-09 14:03:10'),
-(3, 45, 42, 5, 'Acc', 'Done', '2022-06-09 13:38:17'),
+(3, 45, 42, 5, 'Acc', 'Proses', '2022-06-16 17:19:00'),
 (4, 46, 42, 4, 'Tolak', 'Gagal', '2022-06-09 14:03:10');
 
 -- --------------------------------------------------------
@@ -8785,24 +8785,24 @@ CREATE TABLE `tasks` (
   `sortorder` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `id_lahan` int(11) NOT NULL
+  `id_lahan` int(11) NOT NULL,
+  `qty` int(30) NOT NULL,
+  `satuan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `harga` int(30) NOT NULL,
+  `totalHarga` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data untuk tabel `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent`, `sortorder`, `created_at`, `updated_at`, `id_lahan`) VALUES
-(25, 'pertanian', 1, 0.00, '2022-06-03 00:00:00', 0, 1, '2022-06-04 08:14:02', '2022-06-04 08:14:02', 1),
-(26, 'tanam', 1, 0.00, '2022-06-03 00:00:00', 25, 2, '2022-06-04 08:14:07', '2022-06-04 08:14:07', 1),
-(27, 'perikanan', 1, 0.00, '2022-06-05 00:00:00', 0, 3, '2022-06-04 08:14:25', '2022-06-04 08:14:25', 2),
-(28, 'New taskcoba', 1, 0.00, '2022-06-05 00:00:00', 27, 4, '2022-06-04 08:14:39', '2022-06-04 08:14:39', 2),
-(102, 'Persiapan Lahan', 1, 0.00, '2022-06-03 00:00:00', 0, 5, '2022-06-15 05:55:40', '2022-06-15 06:49:10', 4),
-(103, 'Pembersihan Lahan', 1, 0.00, '2022-06-03 00:00:00', 102, 6, '2022-06-15 05:55:45', '2022-06-15 06:49:19', 4),
-(104, 'Pembajakan lahan', 1, 0.00, '2022-06-03 00:00:00', 102, 7, '2022-06-15 05:55:51', '2022-06-15 06:49:35', 4),
-(105, 'Penanaman benih', 1, 0.00, '2022-06-03 00:00:00', 0, 8, '2022-06-15 05:55:57', '2022-06-15 06:49:47', 4),
-(106, 'Pemilihan Benih', 1, 0.00, '2022-06-03 00:00:00', 105, 9, '2022-06-15 05:56:01', '2022-06-15 06:50:00', 4),
-(107, 'Arit', 1, 0.00, '2022-06-03 00:00:00', 103, 10, '2022-06-15 05:57:09', '2022-06-15 06:49:28', 4);
+INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent`, `sortorder`, `created_at`, `updated_at`, `id_lahan`, `qty`, `satuan`, `harga`, `totalHarga`) VALUES
+(109, 'Persiapan lahan', 1, 0.00, '2022-06-16 00:00:00', 0, 1, '2022-06-17 06:29:17', '2022-06-17 06:29:17', 4, 0, '0', 0, 0),
+(110, 'pembersihan lahan', 1, 0.00, '2022-06-16 00:00:00', 109, 2, '2022-06-17 06:29:37', '2022-06-17 06:29:37', 4, 0, '0', 0, 0),
+(111, 'cangkul', 1, 0.00, '2022-06-16 00:00:00', 110, 3, '2022-06-17 06:29:42', '2022-06-17 06:39:16', 4, 12, 'buah', 20000, 240000),
+(112, 'arit', 1, 0.00, '2022-06-16 00:00:00', 110, 4, '2022-06-17 06:29:52', '2022-06-17 06:49:53', 4, 10, 'buah', 30000, 300000),
+(113, 'pembajakan', 1, 0.00, '2022-06-16 00:00:00', 109, 5, '2022-06-17 06:30:00', '2022-06-17 06:30:00', 4, 0, '0', 0, 0),
+(114, 'aaaaaaaaa', 1, 0.00, '2022-06-16 00:00:00', 0, 6, '2022-06-17 06:30:07', '2022-06-17 06:30:07', 4, 0, '0', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -8958,7 +8958,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 17:19:42', '2021-08-14 17:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-17 03:53:26', '2021-08-17 03:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-17 04:07:23', '2021-08-17 04:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '2fvKxV8PhBia0kr2gO6VHtiwW1LnGOnhh4jzWx4ARpqnmGw3jIKWK6MlOix0', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'JkUoP31uBATede8iKaoftEPMoIhazttdtPJ3l1ej8hbLTAajptsmujjgB401', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 07:37:26', '2022-04-18 07:37:26', 2),
 (45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'EurxJnK24GjIKzbbcIVMcBJd530NXwiVDdotsdlMfB7N2ec8w5buxbv7LxXQ', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
 (46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'o58QwBHNzGQJC3T3uT96DDQBoGpaYx4qxEpVM9jon8zVCQqoRcrVXqzan9nE', '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
@@ -89594,18 +89594,6 @@ CREATE TABLE `wbs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `wbs`
---
-
-INSERT INTO `wbs` (`id_wbs`, `id_kegiatan`, `qty`, `satuan`, `harga`, `totalHarga`, `updated_at`) VALUES
-(17, 102, 0, '', 0, 0, '2022-06-15 12:55:40'),
-(18, 103, 0, '', 0, 0, '2022-06-15 12:55:45'),
-(19, 104, 0, '', 0, 0, '2022-06-15 12:55:51'),
-(20, 105, 0, '', 0, 0, '2022-06-15 12:55:57'),
-(21, 106, 0, '', 0, 0, '2022-06-15 12:56:01'),
-(22, 107, 0, '', 0, 0, '2022-06-15 12:57:09');
-
---
 -- Indexes for dumped tables
 --
 
@@ -90053,13 +90041,13 @@ ALTER TABLE `sewa_peralatans`
 -- AUTO_INCREMENT untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT untuk tabel `wbs`
 --
 ALTER TABLE `wbs`
-  MODIFY `id_wbs` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_wbs` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

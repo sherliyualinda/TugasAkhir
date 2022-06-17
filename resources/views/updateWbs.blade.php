@@ -36,7 +36,7 @@
                 
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <input type="input" name="id_kegiatan" value="{{$wbs->id_kegiatan}}">
+                    <input type="input" name="id" value="{{$wbs->id}}">
                 </div>
                 @endforeach
             

@@ -47,10 +47,10 @@
                                         <td><b>{{ $iter[0] }}</b></td>
                                         <td><b>{{ $wbs->Nenek }}</b></td>
                                         <td>{{ $wbs->tanggalNenek }}</td>
-                                        <td>{{ $wbs->qty }}</td>
-                                        <td>{{ $wbs->satuan }}</td>
-                                        <td>{{ $wbs->harga }}</td>
-                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>{{ $wbs->qtyNenek }}</td>
+                                        <td>{{ $wbs->satuanNenek }}</td>
+                                        <td>{{ $wbs->hargaNenek }}</td>
+                                        <td>{{ $wbs->thNenek }}</td>
                                     </tr>
                                     <?php if(!empty($wbs->Ibu)){ ?>
 
@@ -58,10 +58,10 @@
                                         <td>{{ $iter[0] .".". $iter[1] }}</td>
                                         <td>{{ $wbs->Ibu }}</td>
                                         <td>{{ $wbs->tanggalIbu }}</td>
-                                        <td>{{ $wbs->qty }}</td>
-                                        <td>{{ $wbs->satuan }}</td>
-                                        <td>{{ $wbs->harga }}</td>
-                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>{{ $wbs->qtyIbu }}</td>
+                                        <td>{{ $wbs->satuanIbu }}</td>
+                                        <td>{{ $wbs->hargaIbu }}</td>
+                                        <td>{{ $wbs->thIbu }}</td>
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
                                                 
@@ -77,10 +77,10 @@
                                         <td>{{ $iter[0] .".". $iter[1] .".". $iter[2]}}</td>
                                         <td>{{ $wbs->Cucu }}</td>
                                         <td>{{ $wbs->tanggalCucu }}</td>
-                                        <td>{{ $wbs->qty }}</td>
-                                        <td>{{ $wbs->satuan }}</td>
-                                        <td>{{ $wbs->harga }}</td>
-                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>{{ $wbs->qtyCucu }}</td>
+                                        <td>{{ $wbs->satuanCucu }}</td>
+                                        <td>{{ $wbs->hargaCucu }}</td>
+                                        <td>{{ $wbs->thCucu }}</td>
                                         <td>
                                              <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Add</a>
                                         </td>
@@ -93,10 +93,10 @@
                                         <td>{{ $iter[0] .".". $iter[1] .".". $iter[2]}}</td>
                                         <td>{{ $wbs->Cucu }}</td>
                                         <td>{{ $wbs->tanggalCucu }}</td>
-                                        <td>{{ $wbs->qty }}</td>
-                                        <td>{{ $wbs->satuan }}</td>
-                                        <td>{{ $wbs->harga }}</td>
-                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>{{ $wbs->qtyCucu }}</td>
+                                        <td>{{ $wbs->satuanCucu }}</td>
+                                        <td>{{ $wbs->hargaCucu }}</td>
+                                        <td>{{ $wbs->thCucu }}</td>
                                         <td>
                                              <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Add</a>
                                         </td>
@@ -110,10 +110,10 @@
                                         <td>{{ $iter[0] .".". $iter[1] }}</td>
                                         <td>{{ $wbs->Ibu }}</td>
                                         <td>{{ $wbs->tanggalIbu }}</td>
-                                        <td>{{ $wbs->qty }}</td>
-                                        <td>{{ $wbs->satuan }}</td>
-                                        <td>{{ $wbs->harga }}</td>
-                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>{{ $wbs->qtyIbu }}</td>
+                                        <td>{{ $wbs->satuanIbu }}</td>
+                                        <td>{{ $wbs->hargaIbu }}</td>
+                                        <td>{{ $wbs->thIbu }}</td>
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
                                                 
@@ -128,10 +128,10 @@
                                         <td>{{ $iter[0] .".". $iter[1] .".". $iter[2]}}</td>
                                         <td>{{ $wbs->Cucu }}</td>
                                         <td>{{ $wbs->tanggalCucu }}</td>
-                                        <td>{{ $wbs->qty }}</td>
-                                        <td>{{ $wbs->satuan }}</td>
-                                        <td>{{ $wbs->harga }}</td>
-                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>{{ $wbs->qtyCucu }}</td>
+                                        <td>{{ $wbs->satuanCucu }}</td>
+                                        <td>{{ $wbs->hargaCucu }}</td>
+                                        <td>{{ $wbs->thCucu }}</td>
                                         <td>
                                              <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Add</a>
                                         </td>
@@ -148,20 +148,20 @@
                                         <td><b>{{ $iter[0] }}</b></td>
                                         <td><b>{{ $wbs->Nenek }}</b></td>
                                         <td>{{ $wbs->tanggalNenek }}</td>
-                                        <td>{{ $wbs->qty }}</td>
-                                        <td>{{ $wbs->satuan }}</td>
-                                        <td>{{ $wbs->harga }}</td>
-                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>{{ $wbs->qtyNenek }}</td>
+                                        <td>{{ $wbs->satuanNenek }}</td>
+                                        <td>{{ $wbs->hargaNenek }}</td>
+                                        <td>{{ $wbs->thNenek }}</td>
                                     </tr>
                                     <?php if(!empty($wbs->Ibu)){ ?>
                                     <tr>
                                         <td>{{ $iter[0] .".". $iter[1] }}</td>
                                         <td>{{ $wbs->Ibu }}</td>
                                         <td>{{ $wbs->tanggalIbu }}</td>
-                                        <td>{{ $wbs->qty }}</td>
-                                        <td>{{ $wbs->satuan }}</td>
-                                        <td>{{ $wbs->harga }}</td>
-                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>{{ $wbs->qtyIbu }}</td>
+                                        <td>{{ $wbs->satuanIbu }}</td>
+                                        <td>{{ $wbs->hargaIbu }}</td>
+                                        <td>{{ $wbs->thIbu }}</td>
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
                                                 
@@ -176,10 +176,10 @@
                                         <td>{{ $iter[0] .".". $iter[1] .".". $iter[2]}}</td>
                                         <td>{{ $wbs->Cucu }}</td>
                                         <td>{{ $wbs->tanggalCucu }}</td>
-                                        <td>{{ $wbs->qty }}</td>
-                                        <td>{{ $wbs->satuan }}</td>
-                                        <td>{{ $wbs->harga }}</td>
-                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>{{ $wbs->qtyCucu }}</td>
+                                        <td>{{ $wbs->satuanCucu }}</td>
+                                        <td>{{ $wbs->hargaCucu }}</td>
+                                        <td>{{ $wbs->thCucu }}</td>
                                         <td>
                                              <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Add</a>
                                         </td>
