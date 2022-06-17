@@ -41,6 +41,7 @@
                                 if(!isset($nenek)){
                                     $nenek  = $wbs->Nenek;
                                     $ibu    = $wbs->Ibu;
+                                    //$totN = sum($wbs->totalHarga);
                                     $iter = array(1,1,1);
                                     ?>
                                     <tr>
@@ -51,6 +52,14 @@
                                         <td>{{ $wbs->satuanNenek }}</td>
                                         <td>{{ $wbs->hargaNenek }}</td>
                                         <td>{{ $wbs->thNenek }}</td>
+                                        <td>
+                                            <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
+                                                
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Nenek}}" class="btn btn-sm btn-success">Add</a>
+                                            <?php }else{?>
+                                                
+                                                <?php }?>
+                                        </td>
                                     </tr>
                                     <?php if(!empty($wbs->Ibu)){ ?>
 
@@ -152,6 +161,14 @@
                                         <td>{{ $wbs->satuanNenek }}</td>
                                         <td>{{ $wbs->hargaNenek }}</td>
                                         <td>{{ $wbs->thNenek }}</td>
+                                        <td>
+                                            <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
+                                                
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Nenek}}" class="btn btn-sm btn-success">Add</a>
+                                            <?php }else{?>
+                                                
+                                                <?php }?>
+                                        </td>
                                     </tr>
                                     <?php if(!empty($wbs->Ibu)){ ?>
                                     <tr>
