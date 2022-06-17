@@ -348,8 +348,8 @@ Route::get('/lahan/createDaily/{id}', 'LahanController@createDaily')->name('crea
 Route::post('/lahan/simpan_daily/{id}', 'LahanController@simpan_daily')->name('simpan_daily')->middleware('auth');
 Route::get('/lahan/kelola_daily/{id}', 'LahanController@daily')->name('kelola_daily')->middleware('auth');
 
-Route::get('/lahan/create_formBoq/{id}', 'LahanController@formBoq')->name('formBoq')->middleware('auth');
-Route::post('/lahan/tambahKebutuhanBoq/', 'LahanController@kebutuhanBoq')->name('tambahKebutuhanBoq')->middleware('auth');
+Route::get('/lahan/create_formWbs/{id}', 'LahanController@formWbs')->name('formWbs')->middleware('auth');
+// Route::post('/lahan/tambahKebutuhanWbs/', 'LahanController@kebutuhanWbs')->name('tambahKebutuhanWbs')->middleware('auth');
 
 Route::get('/lahan/orang/{id}', 'LahanController@orang')->middleware('auth');
 Route::get('/lahan/material/{id}', 'LahanController@material')->middleware('auth');

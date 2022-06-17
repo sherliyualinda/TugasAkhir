@@ -219,9 +219,9 @@ class LahanController extends Controller
         
         //$wbs = DB::select("SELECT w.harga, w.qty, w.satuan, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
 
-        $wbs1 = DB::select("SELECT w.harga,t.id as idNenek,s.id as idInduk, k.id as idAnak,w.qty,w.satuan, w.totalHarga, t.text, s.created_at, t.duration,s.start_date,t.text as nenek, s.text as induk, k.text as anak, k.parent FROM tasks t LEFT JOIN tasks s ON t.Id = s.parent LEFT JOIN tasks k on s.id = k.parent JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan WHERE t.id_lahan = $request->id AND s.text is NOT null ORDER by s.parent ASC, s.created_at ASC");
+        // $wbs1 = DB::select("SELECT w.harga,t.id as idNenek,s.id as idInduk, k.id as idAnak,w.qty,w.satuan, w.totalHarga, t.text, s.created_at, t.duration,s.start_date,t.text as nenek, s.text as induk, k.text as anak, k.parent FROM tasks t LEFT JOIN tasks s ON t.Id = s.parent LEFT JOIN tasks k on s.id = k.parent JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan WHERE t.id_lahan = $request->id AND s.text is NOT null ORDER by s.parent ASC, s.created_at ASC");
 
-        $wbs = DB::select("SELECT w.harga, w.satuan, w.totalHarga, w.qty, a.start_date, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as parent_Ibu,c.id as Id_Cucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN lahans l on a.id_lahan =l.id JOIN wbs w on a.id = w.id_kegiatan WHERE a.id_lahan = $request->id  AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc");
+        $wbs = DB::select("SELECT w.harga, w.satuan, w.totalHarga, w.id_wbs, w.qty, a.start_date as tanggalNenek ,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as parent_Ibu,c.id as Id_Cucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN lahans l on a.id_lahan =l.id JOIN wbs w on a.id = w.id_kegiatan WHERE a.id_lahan = $request->id  AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc");
 
         
         return view('create_wbs', compact('wbs'));
@@ -233,24 +233,48 @@ class LahanController extends Controller
     
     }
     public function simpan_wbs(Request $request){
+        session_start();
         $total = $request->qty * $request->harga;
         $wbs= Wbs::where('id_kegiatan', $request->id_kegiatan)->update([
             'qty' => $request->qty,
+            'satuan' => $request->satuan,
             'harga' => $request->harga,
             'totalHarga' => $total,
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
-        return view('wbs', compact('wbs'));
-        //return view('kelola_lahan', compact('lahan'));
+       // $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
+        $wbs = DB::select("SELECT w.harga, w.satuan, w.totalHarga, w.id_wbs, w.qty, a.start_date as tanggalNenek ,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as parent_Ibu,c.id as Id_Cucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN lahans l on a.id_lahan =l.id JOIN wbs w on a.id = w.id_kegiatan WHERE a.id_lahan = '".$_SESSION['id_lahan']."'  AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc");
+
+       return view('create_wbs', compact('wbs'));
+       
     }
 
     public function update_wbs($id){
-        $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan where id_kegiatan ='".$id."'");
-        return view('updateWbs', compact('wbs'));
+        $wbs1 = Task::select('*')->where('id', $id)->get();
+        $wbs = DB::select("SELECT w.harga, w.qty,w.satuan, w.totalHarga,w.id_kegiatan, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan where id_kegiatan ='".$id."'");
+        return view('updateWbs', compact('wbs','wbs1'));
         //return view('kelola_lahan', compact('lahan'));
 
     }
+    // public function formWbs($id){
+    //     $wbs = Boq::select('*')->where('id_task', $id)->limit(1)->get();
+        
+    //     return view('formWbs', compact('wbs','wbs1'));  
+    // }
+    // public function kebutuhanWbs(Request $request){
+    //     $total = $request->qty * $request->harga;
+    //     DB::table('wbs')->insert([
+            
+    //         'id_kegiatan'     => $request->id_kegiatan,
+    //         'qty'             => $request->qty,
+    //         'satuan'          => $request->satuan,
+    //         'harga'           => $request->harga,
+    //         'totalHarga'      => $total,
+    //         'updated_at'      => date("Y-m-d H:i:s")
+    //     ]);
+    //     return view('wbs', compact('wbs'));
+        
+    // }
     public function createRisk($id){
         $risk = Sewa_lahan::select('*')->where('id_sewa', $id)->get();
         return view('create_risk',compact('risk'));
@@ -305,27 +329,7 @@ class LahanController extends Controller
              }
 
 
-        public function formBoq($id){
-            $boq = Boq::select('*')->where('id_task', $id)->limit(1)->get();
-            $boq1 = Task::select('*')->where('id', $id)->get();
-            
-            return view('formBoq', compact('boq','boq1'));  
-        }
-        public function kebutuhanBoq(Request $request){
-            $total = $request->qty * $request->harga;
-            DB::table('boqs')->insert([
-                
-                'id_task'     => $request->id_task,
-                'parent'       => $request->id_boq,
-                'kegiatan'         => $request->kegiatan,
-                'qty'        => $request->qty,
-                'satuan'        => $request->satuan,
-                'harga'        => $request->harga,
-                'totalHarga'        => $total,
-                'updated_at'     => date("Y-m-d H:i:s")
-            ]);
-            
-        }
+        
         public function simpan_Boq(Request $request){
             // menyimpan data file yang diupload ke variabel $file            
             DB::table('rab')->insert([

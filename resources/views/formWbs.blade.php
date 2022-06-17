@@ -16,7 +16,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <title>Tambah BOQ</title>
+    <title>Tambah WBS</title>
 </head>
 
 <body>
@@ -24,26 +24,22 @@
 <div class="container" style="margin-top: 50px">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-        @foreach ($boq1 as $boq1)
+        @foreach ($wbs1 as $wbs1)
             <div class="card">
                 <div class="card-header">
-                    Isi Kebutuhan dari <?php echo $boq1->text?>
+                    Isi Kebutuhan dari <?php echo $wbs1->text?>
                 </div>
                 @endforeach
                 <div class="card-body">
-                    <form action="{{route('tambahKebutuhanBoq')}}" method="POST" enctype="multipart/form-data">
-                @foreach ($boq as $boq)
+                    <form action="{{route('simpan_wbs')}}" method="POST" enctype="multipart/form-data">
+                @foreach ($wbs as $wbs)
                 
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <input type="input" name="id_boq" value="{{$boq->id_boq}}" >
-                    <input type="hidden" name="id_task" value="{{$boq->id_task}}">
+                    <input type="text" name="id_task" value="{{$wbs->id_task}}">
                 </div>
                 @endforeach
-                <div class="form-group">
-                            <label>Kebutuhan</label>
-                            <input type="input" name="kegiatan"  class="form-control form-control-user" placeholder="kebutuhan">
-                        </div>
+            
                         <div class="form-group">
                             <label>QTY</label>
                             <input type="input" name="qty" class="form-control form-control-user" rows="4" placeholder="qty">

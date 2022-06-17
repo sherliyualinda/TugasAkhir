@@ -24,9 +24,11 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Kegiatan Induk</th>
+                                <th scope="col">Tanggal Mulai</th>
                                 <th scope="col">Qty</th>
                                 <th scope="col">Satuan</th>
                                 <th scope="col">Harga</th>
+                                <th scope="col">Total Harga</th>
                                 <th>
                                     kelola
                                 </th>
@@ -44,27 +46,44 @@
                                     <tr>
                                         <td><b>{{ $iter[0] }}</b></td>
                                         <td><b>{{ $wbs->Nenek }}</b></td>
+                                        <td>{{ $wbs->tanggalNenek }}</td>
                                         <td>{{ $wbs->qty }}</td>
                                         <td>{{ $wbs->satuan }}</td>
                                         <td>{{ $wbs->harga }}</td>
+                                        <td>{{ $wbs->totalHarga }}</td>
                                     </tr>
                                     <?php if(!empty($wbs->Ibu)){ ?>
 
                                     <tr>
                                         <td>{{ $iter[0] .".". $iter[1] }}</td>
                                         <td>{{ $wbs->Ibu }}</td>
+                                        <td>{{ $wbs->tanggalIbu }}</td>
                                         <td>{{ $wbs->qty }}</td>
                                         <td>{{ $wbs->satuan }}</td>
                                         <td>{{ $wbs->harga }}</td>
+                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>
+                                            <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
+                                                
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-success">Add</a>
+                                            <?php }else{?>
+                                                
+                                                <?php }?>
+                                        </td>
                                     </tr>
 
                                     <?php } if(!empty($wbs->Cucu)){ ?>
                                     <tr>
                                         <td>{{ $iter[0] .".". $iter[1] .".". $iter[2]}}</td>
                                         <td>{{ $wbs->Cucu }}</td>
+                                        <td>{{ $wbs->tanggalCucu }}</td>
                                         <td>{{ $wbs->qty }}</td>
                                         <td>{{ $wbs->satuan }}</td>
                                         <td>{{ $wbs->harga }}</td>
+                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>
+                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Add</a>
+                                        </td>
                                     </tr>
                                     <?php } ?>
                                 <?php } elseif($nenek == $wbs->Nenek && $ibu == $wbs->Ibu){ 
@@ -73,9 +92,14 @@
                                     <tr>
                                         <td>{{ $iter[0] .".". $iter[1] .".". $iter[2]}}</td>
                                         <td>{{ $wbs->Cucu }}</td>
+                                        <td>{{ $wbs->tanggalCucu }}</td>
                                         <td>{{ $wbs->qty }}</td>
                                         <td>{{ $wbs->satuan }}</td>
                                         <td>{{ $wbs->harga }}</td>
+                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>
+                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Add</a>
+                                        </td>
                                     </tr>
                                 <?php } elseif($nenek == $wbs->Nenek && $ibu != $wbs->Ibu && !empty($wbs->Ibu)){ 
                                             $iter[2] = 1;
@@ -85,17 +109,32 @@
                                     <tr>
                                         <td>{{ $iter[0] .".". $iter[1] }}</td>
                                         <td>{{ $wbs->Ibu }}</td>
+                                        <td>{{ $wbs->tanggalIbu }}</td>
                                         <td>{{ $wbs->qty }}</td>
                                         <td>{{ $wbs->satuan }}</td>
                                         <td>{{ $wbs->harga }}</td>
+                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>
+                                            <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
+                                                
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-success">Add</a>
+                                            <?php }else{?>
+                                                
+                                                <?php }?>
+                                        </td>
                                     </tr>
                                     <?php if(!empty($wbs->Cucu)){ ?>
                                     <tr>
                                         <td>{{ $iter[0] .".". $iter[1] .".". $iter[2]}}</td>
                                         <td>{{ $wbs->Cucu }}</td>
+                                        <td>{{ $wbs->tanggalCucu }}</td>
                                         <td>{{ $wbs->qty }}</td>
                                         <td>{{ $wbs->satuan }}</td>
                                         <td>{{ $wbs->harga }}</td>
+                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>
+                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Add</a>
+                                        </td>
                                     </tr>
                                     <?php } ?>
                                 <?php } elseif($nenek != $wbs->Nenek){ 
@@ -108,25 +147,42 @@
                                     <tr>
                                         <td><b>{{ $iter[0] }}</b></td>
                                         <td><b>{{ $wbs->Nenek }}</b></td>
+                                        <td>{{ $wbs->tanggalNenek }}</td>
                                         <td>{{ $wbs->qty }}</td>
                                         <td>{{ $wbs->satuan }}</td>
                                         <td>{{ $wbs->harga }}</td>
+                                        <td>{{ $wbs->totalHarga }}</td>
                                     </tr>
                                     <?php if(!empty($wbs->Ibu)){ ?>
                                     <tr>
                                         <td>{{ $iter[0] .".". $iter[1] }}</td>
                                         <td>{{ $wbs->Ibu }}</td>
+                                        <td>{{ $wbs->tanggalIbu }}</td>
                                         <td>{{ $wbs->qty }}</td>
                                         <td>{{ $wbs->satuan }}</td>
                                         <td>{{ $wbs->harga }}</td>
+                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>
+                                            <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
+                                                
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-success">Add</a>
+                                            <?php }else{?>
+                                                
+                                                <?php }?>
+                                        </td>
                                     </tr>
                                         <?php } if(!empty($wbs->Cucu)){ ?>
                                     <tr>
                                         <td>{{ $iter[0] .".". $iter[1] .".". $iter[2]}}</td>
                                         <td>{{ $wbs->Cucu }}</td>
+                                        <td>{{ $wbs->tanggalCucu }}</td>
                                         <td>{{ $wbs->qty }}</td>
                                         <td>{{ $wbs->satuan }}</td>
                                         <td>{{ $wbs->harga }}</td>
+                                        <td>{{ $wbs->totalHarga }}</td>
+                                        <td>
+                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Add</a>
+                                        </td>
                                     </tr>
                                 <?php }} ?>
                                 

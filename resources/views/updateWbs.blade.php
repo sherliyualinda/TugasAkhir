@@ -16,7 +16,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <title>Ubah WBS</title>
+    <title>Tambah WBS</title>
 </head>
 
 <body>
@@ -24,26 +24,36 @@
 <div class="container" style="margin-top: 50px">
     <div class="row">
         <div class="col-md-8 offset-md-2">
+        @foreach ($wbs1 as $wbs1)
             <div class="card">
                 <div class="card-header">
-                    Ubah WBS
+                    Isi Kebutuhan dari <?php echo $wbs1->text?>
                 </div>
+                @endforeach
                 <div class="card-body">
+                    <form action="{{route('simpan_wbs')}}" method="POST" enctype="multipart/form-data">
                 @foreach ($wbs as $wbs)
-                <form action="{{route('simpan_wbs')}}" method="POST" enctype="multipart/form-data">
-                 {{ csrf_field() }}
-                 <input type="hidden" name="id_kegiatan" value="{{$wbs->id}}">  
+                
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <input type="input" name="id_kegiatan" value="{{$wbs->id_kegiatan}}">
+                </div>
+                @endforeach
+            
                         <div class="form-group">
-                            <label>Harga</label>
-                            <input type="input" name="harga" value="{{old('harga',$wbs->harga)}}" class="form-control form-control-user" placeholder="Harga">
+                            <label>QTY</label>
+                            <input type="input" name="qty" class="form-control form-control-user" rows="4" placeholder="qty">
                         </div>
                         <div class="form-group">
-                            <label>Qty</label>
-                            <input type="input" name="qty" value="{{old('qty',$wbs->qty)}}" class="form-control form-control-user" rows="4" placeholder="Masukkan Jumlah">
+                            <label>Satuan</label>
+                            <input type="input" name="satuan"  class="form-control form-control-user" rows="4" placeholder="satuan">
                         </div>
-                        @endforeach
-                        <!-- <button type="submit" class="btn btn-success">SIMPAN</button> -->
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>                    
+                        <div class="form-group">
+                            <label>Harga Per Satuan</label>
+                            <input type="input" name="harga"  class="form-control form-control-user" rows="4" placeholder="harga">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Tambah</button>                    
                     </form>
                 </div>
             </div>
