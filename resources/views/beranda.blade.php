@@ -35,7 +35,9 @@
 	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 		@include('theme.nav_bar')
 	</nav>
-		
+		@php
+				var_dump(auth()->user()->pengguna->jenis_akun)
+		@endphp
 	<section>
 		<div class="gap grey-bg" style="padding-top: 100px;">
 			<div class="container-fluid">
@@ -228,6 +230,9 @@
 														@endforeach
 												  	</div>
 												</div>
+											</div>
+											<div class="text-center">
+												<a href="{{ route('dashboard') }}" class="btn btn-sm btn-primary">Beranda</a>
 											</div>
 										</div>
 									</div><!-- page like widget -->

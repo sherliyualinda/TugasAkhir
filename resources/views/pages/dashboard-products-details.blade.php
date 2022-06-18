@@ -27,9 +27,8 @@ Store Dashboard Products Details Pages
             </ul>
           </div>
           @endif
-          <form action="{{ route('dashboard-product-update', $product->id) }}" method="POST"
-            enctype="multipart/form-data">
-            @csrf
+          <form action="{{ route('dashboard-product-update', $product->id) }}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
             <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
             <div class="card">
               <div class="card-body">
@@ -107,7 +106,7 @@ Store Dashboard Products Details Pages
                 <div class="col-12">
                   <form action="{{ route('dashboard-product-gallery-upload') }}" method="POST"
                     enctype="multipart/form-data">
-                    @csrf
+                    {{ csrf_field() }}
                     <input type="hidden" name="products_id" value="{{ $product->id }}" class="d-none" multiple>
                     <input type="file" id="file" name="photos" class="d-none" onchange="form.submit()">
 
