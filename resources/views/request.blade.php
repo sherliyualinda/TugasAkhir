@@ -38,6 +38,8 @@
                                 <th scope="col" >Resiko</th>
                                 <th scope="col">Laporan Harian</th>
                                 <th colspan="2" >Progres</th>
+                                <th colspan="2">Struk Pembayaran</th>
+
                               </tr>
                             </thead>
                             <tbody>
@@ -67,17 +69,17 @@
                                        
                                     </td>
                                     <td>
-                                        <?php if($sewa->status == 'Acc'){?>
-                                             <a href="/lahan/kelola_risk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">kelola Risk</a>
+                                        <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
+                                             <a href="/lahan/kelola_risk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Tambah</a>
                                         <?php }else{?>
-                                            <a href="#" class="btn btn-sm btn-secondary">kelola Risk</a>
+                                            <a href="#" class="btn btn-sm btn-secondary"> Tambah</a>
                                         <?php } ?>
                                     </td>
                                     <td>
-                                        <?php if($sewa->status == 'Acc'){?>
-                                            <a href="/lahan/kelola_daily/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Laporan Harian</a>
+                                        <?php if($sewa->status == 'Acc'&& $sewa->progres != 'Done'){?>
+                                            <a href="/lahan/kelola_daily/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Tambah</a>
                                         <?php }else{?>
-                                            <a href="#" class="btn btn-sm btn-secondary">Laporan Harian</a>
+                                            <a href="#" class="btn btn-sm btn-secondary">Tambah</a>
                                         <?php } ?>
                                     </td>
                                     <td class="text-center">
@@ -100,6 +102,10 @@
                                         <?php }else{ ?>
                                             <a href="#" class="btn btn-sm btn-secondary">Done</a>
                                         <?php } ?>
+                                    </td>
+                                    <td>
+                                        <a href="/lahan/struk/{{$sewa->id_sewa}}" class="btn btn-sm btn-success">Tambah</a>
+                                        <a href="/lahan/kelola_struk/{{$sewa->id_sewa}}" class="btn btn-sm btn-success">kelola</a>
                                     </td>
                                   
 

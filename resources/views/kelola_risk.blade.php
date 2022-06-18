@@ -64,7 +64,7 @@
                                 <th scope="col">Probabilitas</th>                               
                                 <th scope="col">Impact</th>                               
                                 <th scope="col">Level Risk</th>                               
-                                <th scope="col">Status</th>                               
+                                <th scope="col">Kelola</th>                               
                                 
                               </tr>
                             </thead>
@@ -76,10 +76,12 @@
                                     <td>{{ $risk->dampak}}</td>
                                     <td>{{ $risk->strategi}}</td>
                                     <td>{{ $risk->biaya}}</td>
-                                    <td>{{ $risk->probabilitas}}</td>
-                                    <td>{{ $risk->impact}}</td>
+                                    <td>{{ $risk->ket}}</td>
+                                    <td>{{ $risk->ket_impact}}</td>
                                     <td>{{ $risk->levelRisk}}</td>
-                                    <td>{{ $risk->status}}</td>
+                                    <td>
+                                        <a href="/lahan/ubah_risk/{{$risk->id_risk}}" class="btn btn-sm btn-warning">Edit</a>
+                                    </td>
 
                                 </tr>
                         
