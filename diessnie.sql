@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Jun 2022 pada 08.52
+-- Waktu pembuatan: 18 Jun 2022 pada 12.22
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -239,10 +239,10 @@ INSERT INTO `comment` (`id`, `id_pengguna`, `id_balas_komen`, `isi_komentar`, `t
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dailys`
+-- Struktur dari tabel `dailies`
 --
 
-CREATE TABLE `dailys` (
+CREATE TABLE `dailies` (
   `id_daily` int(30) NOT NULL,
   `id_sewa` int(30) NOT NULL,
   `gambar` varchar(255) NOT NULL,
@@ -250,6 +250,14 @@ CREATE TABLE `dailys` (
   `date` date NOT NULL,
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `dailies`
+--
+
+INSERT INTO `dailies` (`id_daily`, `id_sewa`, `gambar`, `keterangan`, `date`, `updated_at`) VALUES
+(1, 1, '3.PNG', 'banjir woy', '2022-06-19', '2022-06-18'),
+(3, 1, '1.PNG', 'banjir banget hhhh', '2022-06-18', '2022-06-18');
 
 -- --------------------------------------------------------
 
@@ -7595,6 +7603,26 @@ CREATE TABLE `hapus_akun` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `impacts`
+--
+
+CREATE TABLE `impacts` (
+  `id_impact` int(11) NOT NULL,
+  `ket_impact` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `impacts`
+--
+
+INSERT INTO `impacts` (`id_impact`, `ket_impact`) VALUES
+(1, 'Low'),
+(2, 'Medium'),
+(3, 'High');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `konten`
 --
 
@@ -7647,7 +7675,7 @@ CREATE TABLE `lahans` (
 --
 
 INSERT INTO `lahans` (`id`, `category_lahan_id`, `ukuran`, `deskripsi`, `gambar`, `id_user`, `statusLahan`, `updated_at`) VALUES
-(4, 2, '70 x 40', 'ayam', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 42, 'Ready', '2022-06-16'),
+(4, 1, '70 x 30', 'Ayam2an', '1.PNG', 42, 'Ready', '2022-06-18'),
 (5, 2, '30X40', 'Lebar banget', 'Untitled Diagram.drawio (2).png', 42, 'Ready', '2022-06-09');
 
 -- --------------------------------------------------------
@@ -7940,6 +7968,26 @@ CREATE TABLE `peralatans` (
 INSERT INTO `peralatans` (`id_peralatan`, `nama_alat`, `harga`, `deskripsi`, `gambar`, `id_pemilik`, `updated_at`) VALUES
 (1, 'cangkul', 1000, 'cangkul', 'IMG_20220209_143004.jpg', 42, '2022-06-07'),
 (2, 'ember', 20000, 'yusril nggk kuat buat memiliki', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 45, '2022-06-09');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `probabilitas`
+--
+
+CREATE TABLE `probabilitas` (
+  `id_probabilitas` int(11) NOT NULL,
+  `ket` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `probabilitas`
+--
+
+INSERT INTO `probabilitas` (`id_probabilitas`, `ket`) VALUES
+(1, 'Low'),
+(2, 'Medium'),
+(3, 'High');
 
 -- --------------------------------------------------------
 
@@ -8676,7 +8724,6 @@ CREATE TABLE `risks` (
   `probabilitas` int(30) NOT NULL,
   `impact` int(30) NOT NULL,
   `levelRisk` varchar(30) NOT NULL,
-  `status` varchar(255) NOT NULL,
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -8684,8 +8731,9 @@ CREATE TABLE `risks` (
 -- Dumping data untuk tabel `risks`
 --
 
-INSERT INTO `risks` (`id_risk`, `id_sewa`, `penyebab`, `dampak`, `strategi`, `biaya`, `probabilitas`, `impact`, `levelRisk`, `status`, `updated_at`) VALUES
-(1, 1, 'Hujan', 'tenggelam', 'disel', 100000, 2, 2, 'Medium', '-', '2022-06-10');
+INSERT INTO `risks` (`id_risk`, `id_sewa`, `penyebab`, `dampak`, `strategi`, `biaya`, `probabilitas`, `impact`, `levelRisk`, `updated_at`) VALUES
+(5, 1, 'kemarau', 'mati', 'air', 100000, 3, 1, 'Medium', '2022-06-18'),
+(6, 1, 'banjir nih', 'mati', 'disel', 60, 3, 3, 'High', '2022-06-18');
 
 -- --------------------------------------------------------
 
@@ -8737,7 +8785,7 @@ CREATE TABLE `sewa_lahans` (
 --
 
 INSERT INTO `sewa_lahans` (`id_sewa`, `id_penyewa`, `id_pemilik`, `id_lahan`, `status`, `progres`, `updated_at`) VALUES
-(1, 45, 42, 4, 'Acc', 'Done', '2022-06-16 17:19:11'),
+(1, 45, 42, 4, 'Acc', 'proses', '2022-06-16 17:19:11'),
 (2, 46, 42, 4, 'Tolak', 'Gagal', '2022-06-09 14:03:10'),
 (3, 45, 42, 5, 'Acc', 'Proses', '2022-06-16 17:19:00'),
 (4, 46, 42, 4, 'Tolak', 'Gagal', '2022-06-09 14:03:10');
@@ -8772,6 +8820,21 @@ INSERT INTO `sewa_peralatans` (`id_sewa`, `id_pemilik`, `id_peralatan`, `id_peny
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `struks`
+--
+
+CREATE TABLE `struks` (
+  `id_struk` int(11) NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `gambar` varchar(255) NOT NULL,
+  `tanggal` date NOT NULL,
+  `updated_at` date NOT NULL,
+  `id_sewa` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tasks`
 --
 
@@ -8802,7 +8865,8 @@ INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent
 (111, 'cangkul', 1, 0.00, '2022-06-16 00:00:00', 110, 3, '2022-06-17 06:29:42', '2022-06-17 06:39:16', 4, 12, 'buah', 20000, 240000),
 (112, 'arit', 1, 0.00, '2022-06-16 00:00:00', 110, 4, '2022-06-17 06:29:52', '2022-06-17 06:49:53', 4, 10, 'buah', 30000, 300000),
 (113, 'pembajakan', 1, 0.00, '2022-06-16 00:00:00', 109, 5, '2022-06-17 06:30:00', '2022-06-17 06:30:00', 4, 0, '0', 0, 0),
-(114, 'aaaaaaaaa', 1, 0.00, '2022-06-16 00:00:00', 0, 6, '2022-06-17 06:30:07', '2022-06-17 06:30:07', 4, 0, '0', 0, 0);
+(114, 'aaaaaaaaa', 1, 0.00, '2022-06-16 00:00:00', 0, 6, '2022-06-17 06:30:07', '2022-06-17 06:30:07', 4, 0, '0', 0, 0),
+(116, 'bbbbb', 1, 0.00, '2022-06-16 00:00:00', 114, 7, '2022-06-17 07:24:57', '2022-06-17 07:24:57', 4, 0, '0', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -89653,9 +89717,9 @@ ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `dailys`
+-- Indeks untuk tabel `dailies`
 --
-ALTER TABLE `dailys`
+ALTER TABLE `dailies`
   ADD PRIMARY KEY (`id_daily`),
   ADD KEY `id_sewa` (`id_sewa`);
 
@@ -89701,6 +89765,12 @@ ALTER TABLE `grup`
 --
 ALTER TABLE `hapus_akun`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `impacts`
+--
+ALTER TABLE `impacts`
+  ADD PRIMARY KEY (`id_impact`);
 
 --
 -- Indeks untuk tabel `konten`
@@ -89775,6 +89845,12 @@ ALTER TABLE `peralatans`
   ADD KEY `id_pemilik` (`id_pemilik`);
 
 --
+-- Indeks untuk tabel `probabilitas`
+--
+ALTER TABLE `probabilitas`
+  ADD PRIMARY KEY (`id_probabilitas`);
+
+--
 -- Indeks untuk tabel `products`
 --
 ALTER TABLE `products`
@@ -89816,7 +89892,9 @@ ALTER TABLE `resources`
 --
 ALTER TABLE `risks`
   ADD PRIMARY KEY (`id_risk`),
-  ADD KEY `id_sewa` (`id_sewa`);
+  ADD KEY `id_sewa` (`id_sewa`),
+  ADD KEY `a` (`probabilitas`),
+  ADD KEY `b` (`impact`);
 
 --
 -- Indeks untuk tabel `role`
@@ -89843,6 +89921,13 @@ ALTER TABLE `sewa_lahans`
 --
 ALTER TABLE `sewa_peralatans`
   ADD PRIMARY KEY (`id_sewa`);
+
+--
+-- Indeks untuk tabel `struks`
+--
+ALTER TABLE `struks`
+  ADD PRIMARY KEY (`id_struk`),
+  ADD KEY `id_sewa` (`id_sewa`);
 
 --
 -- Indeks untuk tabel `tasks`
@@ -89948,10 +90033,10 @@ ALTER TABLE `comment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `dailys`
+-- AUTO_INCREMENT untuk tabel `dailies`
 --
-ALTER TABLE `dailys`
-  MODIFY `id_daily` int(30) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `dailies`
+  MODIFY `id_daily` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -89976,6 +90061,12 @@ ALTER TABLE `following`
 --
 ALTER TABLE `follow_request`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `impacts`
+--
+ALTER TABLE `impacts`
+  MODIFY `id_impact` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `lahans`
@@ -90014,6 +90105,12 @@ ALTER TABLE `peralatans`
   MODIFY `id_peralatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT untuk tabel `probabilitas`
+--
+ALTER TABLE `probabilitas`
+  MODIFY `id_probabilitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `resources`
 --
 ALTER TABLE `resources`
@@ -90023,7 +90120,7 @@ ALTER TABLE `resources`
 -- AUTO_INCREMENT untuk tabel `risks`
 --
 ALTER TABLE `risks`
-  MODIFY `id_risk` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_risk` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `sewa_lahans`
@@ -90038,10 +90135,16 @@ ALTER TABLE `sewa_peralatans`
   MODIFY `id_sewa` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT untuk tabel `struks`
+--
+ALTER TABLE `struks`
+  MODIFY `id_struk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT untuk tabel `wbs`
@@ -90060,10 +90163,10 @@ ALTER TABLE `boqs`
   ADD CONSTRAINT `boqs_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `dailys`
+-- Ketidakleluasaan untuk tabel `dailies`
 --
-ALTER TABLE `dailys`
-  ADD CONSTRAINT `dailys_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `dailies`
+  ADD CONSTRAINT `dailies_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `lahans`
@@ -90088,6 +90191,8 @@ ALTER TABLE `peralatans`
 -- Ketidakleluasaan untuk tabel `risks`
 --
 ALTER TABLE `risks`
+  ADD CONSTRAINT `a` FOREIGN KEY (`probabilitas`) REFERENCES `probabilitas` (`id_probabilitas`),
+  ADD CONSTRAINT `b` FOREIGN KEY (`impact`) REFERENCES `impacts` (`id_impact`),
   ADD CONSTRAINT `risks_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -90096,6 +90201,12 @@ ALTER TABLE `risks`
 ALTER TABLE `sewa_lahans`
   ADD CONSTRAINT `sewa_lahans_ibfk_1` FOREIGN KEY (`id_pemilik`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sewa_lahans_ibfk_2` FOREIGN KEY (`id_lahan`) REFERENCES `lahans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `struks`
+--
+ALTER TABLE `struks`
+  ADD CONSTRAINT `struks_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `wbs`

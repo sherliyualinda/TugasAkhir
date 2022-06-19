@@ -339,6 +339,16 @@ Route::get('/lahan/acc/{id}', 'LahanController@accRequest')->middleware('auth');
 Route::get('/lahan/tolak/{id}', 'LahanController@tolakRequest')->middleware('auth');
 Route::get('/lahan/doneRequest/{id}', 'LahanController@doneRequest')->middleware('auth');
 
+Route::get('/lahan/struk/{id}', 'LahanController@strukPembayaran')->middleware('auth');
+Route::get('/lahan/kelola_struk/{id}', 'LahanController@kelolaStruk')->middleware('auth');
+Route::get('/lahan/ubah_struk/{id}',  'LahanController@ubahStruk')->middleware('auth');
+Route::post('/lahan/update_struk', 'LahanController@updateStruk')->name('updateStruk')->middleware('auth');
+Route::get('/lahan/hapus_Struk/{id}', 'LahanController@hapusStruk')->middleware('auth');
+
+Route::post('/lahan/simpan_struk', 'LahanController@simpan_struk')->name('simpan_struk')->middleware('auth');
+Route::get('/lahan/ubah_risk/{id}',  'LahanController@ubahRisk')->middleware('auth');
+Route::post('/lahan/update_risk', 'LahanController@updateRisk')->name('updateRisk')->middleware('auth');
+
 Route::get('/wbs/{id}', 'LahanController@wbs')->name('wbs')->middleware('auth');
 Route::get('/wbs_user/{id}', 'LahanController@wbs_user')->name('wbs')->middleware('auth');
 
@@ -346,6 +356,8 @@ Route::get('/lahan/createRisk/{id}', 'LahanController@createRisk')->name('create
 Route::post('/lahan/simpan_risk/{id}', 'LahanController@simpan_risk')->name('simpan_risk')->middleware('auth');
 Route::get('/lahan/kelola_risk/{id}', 'LahanController@risk')->name('kelola_risk')->middleware('auth');
 
+Route::get('/lahan/ubah_daily/{id}',  'LahanController@ubahDaily')->middleware('auth');
+Route::post('/lahan/update_daily', 'LahanController@updateDaily')->name('updateDaily')->middleware('auth');
 Route::get('/lahan/createDaily/{id}', 'LahanController@createDaily')->name('create_daily')->middleware('auth');
 Route::post('/lahan/simpan_daily/{id}', 'LahanController@simpan_daily')->name('simpan_daily')->middleware('auth');
 Route::get('/lahan/kelola_daily/{id}', 'LahanController@daily')->name('kelola_daily')->middleware('auth');
