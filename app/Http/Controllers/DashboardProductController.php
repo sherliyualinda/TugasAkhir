@@ -8,7 +8,7 @@ use App\ProductGallery;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Admin\ProductRequest;
+use App\Http\Request\ProductRequest;
 
 class DashboardProductController extends Controller
 {
@@ -34,6 +34,14 @@ class DashboardProductController extends Controller
         return view('pages.dashboard-products-details',[
             'product' => $product,
             'categories' => $categories,
+        ]);
+    }
+
+    public function show(Request $request, $id)
+    {
+        $product = Product::with(['galleries','user','category'])->findOrFail($id);
+        return view('pages.dashboard-products-show',[
+            'product' => $product,
         ]);
     }
 
@@ -100,6 +108,15 @@ class DashboardProductController extends Controller
         $item->update($data);
 
         return redirect()->route('dashboard-product');
+    }
+     
+    public function approve(Request $request, $id)
+    {
+        $item = Product::findOrfail($id);
+        $item->status = 'APPROVE';
+        $item->save();
+
+        return redirect()->route('dashboard-product-show', $id);
     }
 
 

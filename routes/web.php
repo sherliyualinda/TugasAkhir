@@ -238,7 +238,9 @@ Route::get('/dashboard/products', 'DashboardProductController@index')->name('das
 Route::get('/dashboard/products/create', 'DashboardProductController@create')->name('dashboard-product-create');
 Route::post('/dashboard/products', 'DashboardProductController@store')->name('dashboard-product-store');
 Route::get('/dashboard/products/{id}', 'DashboardProductController@details')->name('dashboard-product-details');
+Route::get('/dashboard/products/show/{id}', 'DashboardProductController@show')->name('dashboard-product-show');
 Route::post('/dashboard/products/{id}', 'DashboardProductController@update')->name('dashboard-product-update');
+Route::post('/dashboard/products/approve/{id}', 'DashboardProductController@approve')->name('dashboard-product-approve');
 
 Route::post('/dashboard/products/gallery/upload', 'DashboardProductController@uploadGallery')->name('dashboard-product-gallery-upload');
 Route::get('/dashboard/products/gallery/delete/{id}', 'DashboardProductController@deleteGallery')->name('dashboard-product-gallery-delete');

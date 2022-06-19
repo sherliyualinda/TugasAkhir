@@ -22,17 +22,18 @@ Store Dashboard Products Pages
                 @php 
                 $product = App\Product::with('user')->where('users_id',Auth::user()->id)->count()     
                 @endphp
-                @if (Auth::user()->store_name)
+                {{-- @if (Auth::user()->store_name) --}}
                   <a href="{{ route('dashboard-product-create') }}" class="btn btn-success">Tambah Produk</a>
-                @else
+                {{-- @else
                   <a href="{{ route('dashboard-settings-store') }}" class="btn btn-warning text-white">Buat Toko</a>
-                @endif     
+                @endif      --}}
                 </div>
               </div>
               <div class="row mt-4">
               @foreach ($products as $product)
                  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                  <a href="{{ route('dashboard-product-details', $product->id) }}" class="card card-dashboard-product d-block">
+                  <div class="card card-dashboard-product d-block">
+                  {{-- <a href="{{ route('dashboard-product-details', $product->id) }}" class="card card-dashboard-product d-block"> --}}
                     <div class="card-body">
                       <img src="{{ Storage::url($product->galleries->first()->photos ?? '') }}" class="w-100 mb-2" alt="">
                       <div class="product-title">
@@ -47,10 +48,7 @@ Store Dashboard Products Pages
                           
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="d-flex justify-content-end">
-                                @if ($product->status == 'APPROVE')
+                            @if ($product->status == 'APPROVE')
                                 <span style="font-size:13px; color:#29a867; ">
                                     APPROVE
                                 </span>
@@ -63,14 +61,23 @@ Store Dashboard Products Pages
                                     NOTAPPROVE
                                 </span>
                                 @endif
-        
+                        </div>
+                        <div class="col-3">
+                            <div class="justify-content-end">
+                                <a href="{{ route('dashboard-product-show', $product->id) }}" class="pr-3">
+                                  <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="{{ route('dashboard-product-details', $product->id) }}" class="pr-3">
+                                  <i class="fa fa-pencil"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
 
                       
                     </div>
-                  </a>
+                  </div>
+                  {{-- </a> --}}
                 </div>
               @endforeach
               </div>
