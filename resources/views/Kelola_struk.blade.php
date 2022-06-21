@@ -26,7 +26,15 @@
                         </ol>
                         </nav>
                     </div>
-                
+                    <table>
+                    @foreach($struk2 as $index=>$struk2)
+                        <tr>
+                             <td>
+                                 <a href="/lahan/struk/{{$struk2->id_sewa}}" class="btn btn-sm btn-success" class="btn btn-sm btn-info">Tambah Struk</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </table>
                         <table class="table table-bordered">
                             <thead>
                               <tr>

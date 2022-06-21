@@ -166,7 +166,7 @@ class LahanController extends Controller
     public function request($id){
         session_start();
         $_SESSION['id_lahan'] = $id;
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa,s.id_lahan, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $sewa = DB::select("SELECT nama,alamat,s.id_sewa,s.id_lahan, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
         return view('request', compact('sewa'));
     }
 
@@ -184,7 +184,7 @@ class LahanController extends Controller
         ]);
         //return redirect('lahan/kelola_lahan');
        
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp,s.id_lahan, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp,s.id_lahan, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id or ");
         return view('request', compact('sewa'));
     }
     public function tolakRequest($id){
@@ -200,7 +200,7 @@ class LahanController extends Controller
         ]);
         //return redirect('lahan/kelola_lahan');
         
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp,s.id_lahan, id_penyewa,s.id_sewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp,s.id_lahan, id_penyewa,s.id_sewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id ");
         return view('request', compact('sewa'));
     }
     public function doneRequest($id){
@@ -216,7 +216,7 @@ class LahanController extends Controller
         ]);
         //return redirect('lahan/kelola_lahan');
        
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id or ");
         return view('request', compact('sewa'));
     }
     public function wbs(Request $request,$id){
@@ -525,7 +525,8 @@ class LahanController extends Controller
                         }
                     public function kelolaStruk($id){
                             $struk = Struk::select('*')->where('id_sewa', $id)->get();
-                            return view('Kelola_struk', compact('struk'));
+                            $struk2 = Struk::select('*')->where('id_sewa', $id)->get();
+                            return view('Kelola_struk', compact('struk','struk2'));
                         }
                         public function ubahStruk($id){
                             $struk = Struk::select('*')->where('id_struk',$id)->get();
