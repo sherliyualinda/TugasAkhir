@@ -129,6 +129,24 @@ class LahanController extends Controller
         $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 3 AND lr.id_lahan = $id");
         return view('detail_lahan',compact('lahan','orang','material','alat'));  
     }
+    public function projek_user($id){
+        session_start();
+        $_SESSION['id_lahan'] = $id;
+        $projek = DB::select("SELECT l.gambar, sl.id_lahan,l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc' And id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+        
+        return view('projek', compact('projek'));
+    }
+
+    public function Dprojek_user($id){
+        
+        $sewa =DB::select("SELECT l.gambar, l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc'  And sl.id_lahan =$id And id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+       
+        
+        $orang = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 1 AND sl.status ='Acc' AND lr.id_lahan =$id");
+        $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 2 AND sl.status ='Acc' AND lr.id_lahan =$id");
+        $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 3 AND sl.status ='Acc' AND lr.id_lahan =$id");
+        return view('projek_user',compact('sewa','orang','material','alat'));  
+    }
    
 
     public function ubahSewa($id){
@@ -157,7 +175,7 @@ class LahanController extends Controller
             'id_pemilik'     => $request->id_pemilik,
             'id_lahan'       => $request->id_lahan,
             'status'         => "Belum Acc",
-            'progres'        => "Belum",
+            'progres'        => "-",
             'updated_at'     => date("Y-m-d H:i:s")
         ]);
 
@@ -176,16 +194,25 @@ class LahanController extends Controller
             'statusLahan' => "Not Ready",
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        $sewa= Sewa_lahan::where('id_penyewa', $id)->update([
+
+        $sewa= Sewa_lahan::where('id_penyewa', $id)->where('id_lahan',$_SESSION['id_lahan'])->update([
             'status' => "Acc" ,
             'progres' => "Proses",
             'updated_at' => date("Y-m-d H:i:s")
 
         ]);
+
+        $sewa= Sewa_lahan::where('status', 'Belum Acc')->where('id_lahan',$_SESSION['id_lahan'])->update([
+            'status' => "Tolak" ,
+            'progres' => "-",
+            'updated_at' => date("Y-m-d H:i:s")
+
+        ]);
         //return redirect('lahan/kelola_lahan');
        
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp,s.id_lahan, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id or ");
-        return view('request', compact('sewa'));
+        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp,s.id_lahan, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
+        //return view('request', compact('sewa'));
+        return redirect()->route('request',$_SESSION['id_lahan']);
     }
     public function tolakRequest($id){
         session_start();
@@ -193,7 +220,7 @@ class LahanController extends Controller
             'statusLahan' => "Ready",
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        $sewa= Sewa_lahan::where('id_penyewa', $id)->update([
+        $sewa= Sewa_lahan::where('id_penyewa', $id)->where('id_lahan',$_SESSION['id_lahan'])->update([
             'status' => "Tolak" ,
             'progres' => "Gagal",
             'updated_at' => date("Y-m-d H:i:s")
@@ -201,7 +228,8 @@ class LahanController extends Controller
         //return redirect('lahan/kelola_lahan');
         
         $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp,s.id_lahan, id_penyewa,s.id_sewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id ");
-        return view('request', compact('sewa'));
+        //return view('request', compact('sewa'));
+        return redirect()->route('request',$_SESSION['id_lahan']);
     }
     public function doneRequest($id){
         session_start();
@@ -216,8 +244,9 @@ class LahanController extends Controller
         ]);
         //return redirect('lahan/kelola_lahan');
        
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id or ");
-        return view('request', compact('sewa'));
+        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
+        //return view('request', compact('sewa'));
+        return redirect()->route('request',$_SESSION['id_lahan']);
     }
     public function wbs(Request $request,$id){
         

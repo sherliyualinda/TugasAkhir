@@ -328,11 +328,13 @@ Route::get('/lahan/update_wbs/{id}', 'LahanController@update_wbs')->name('update
 
 Route::post('/tambahgantt/{id}', 'TaskController@store')->name('tambahgantt')->middleware('auth');
 Route::get('/lahan/detail_lahan/{id}', 'LahanController@detail_lahan')->middleware('auth');
+Route::get('/lahan/Dprojek_user/{id}', 'LahanController@Dprojek_user')->middleware('auth');
+Route::get('/lahan/projek_user/{id}', 'LahanController@projek_user')->middleware('auth');
 
 Route::get('/lahan/ubahSewa/{id}', 'LahanController@ubahSewa')->middleware('auth');
 Route::post('/lahan/updateSewa/', 'LahanController@updateSewa')->name('updateSewa')->middleware('auth');
 
-Route::get('/lahan/request/{id}', 'LahanController@request')->middleware('auth');
+Route::get('/lahan/request/{id}', 'LahanController@request')->name('request')->middleware('auth');
 Route::get('/lahan/acc/{id}', 'LahanController@accRequest')->middleware('auth');
 Route::get('/lahan/tolak/{id}', 'LahanController@tolakRequest')->middleware('auth');
 Route::get('/lahan/doneRequest/{id}', 'LahanController@doneRequest')->middleware('auth');

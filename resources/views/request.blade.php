@@ -76,12 +76,17 @@
                                             <a href="#" class="btn btn-sm btn-secondary"> Kelola</a>
                                         <?php } ?>
                                     </td>
-                                    <td>
-                                        <a href="/lahan/kelola_struk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">kelola</a>
-                                    </td>
+                                  
                                     <td>
                                         <?php if($sewa->status == 'Acc'&& $sewa->progres != 'Done'){?>
                                             <a href="/lahan/kelola_daily/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Kelola</a>
+                                        <?php }else{?>
+                                            <a href="#" class="btn btn-sm btn-secondary">Kelola</a>
+                                        <?php } ?>
+                                    </td>
+                                    <td>
+                                        <?php if($sewa->status == 'Acc'&& $sewa->progres != 'Done'){?>
+                                            <a href="/lahan/kelola_struk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">kelola</a>
                                         <?php }else{?>
                                             <a href="#" class="btn btn-sm btn-secondary">Kelola</a>
                                         <?php } ?>
