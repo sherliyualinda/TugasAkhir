@@ -464,6 +464,11 @@ class LahanController extends Controller
             return view('alat',compact('sdm'));
         }
 
+        public function Kelola_resource($id){
+            $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $id ORDER BY r.keterangan;");
+            return view('kelola_resource', compact('resource'));
+        }
+
         public function simpan_material(Request $request, $id){   
             DB::table('lahan_resources')->insert([
                 'resource'        => $request->resource,
