@@ -314,7 +314,7 @@ Route::prefix('adminstore')
 });
 
 //LAHAN
-Route::get('/lahan', 'LahanController@lahan')->middleware('auth');
+Route::get('/lahan', 'LahanController@lahan')->name('lahan')->middleware('auth');
 Route::get('/lahan/create', 'LahanController@create')->name('lahan.create')->middleware('auth');
 Route::post('/lahan/simpan', 'LahanController@simpan')->name('lahan.simpan')->middleware('auth');
 Route::get('/lahan/kelola_lahan', 'LahanController@kelola_lahan')->name('lahan.kelola_lahan')->middleware('auth');
@@ -330,11 +330,13 @@ Route::get('/lahan/update_wbs/{id}', 'LahanController@update_wbs')->name('update
 
 Route::post('/tambahgantt/{id}', 'TaskController@store')->name('tambahgantt')->middleware('auth');
 Route::get('/lahan/detail_lahan/{id}', 'LahanController@detail_lahan')->middleware('auth');
+Route::get('/lahan/Dprojek_user/{id}', 'LahanController@Dprojek_user')->middleware('auth');
+Route::get('/lahan/projek_user/{id}', 'LahanController@projek_user')->middleware('auth');
 
 Route::get('/lahan/ubahSewa/{id}', 'LahanController@ubahSewa')->middleware('auth');
 Route::post('/lahan/updateSewa/', 'LahanController@updateSewa')->name('updateSewa')->middleware('auth');
 
-Route::get('/lahan/request/{id}', 'LahanController@request')->middleware('auth');
+Route::get('/lahan/request/{id}', 'LahanController@request')->name('request')->middleware('auth');
 Route::get('/lahan/acc/{id}', 'LahanController@accRequest')->middleware('auth');
 Route::get('/lahan/tolak/{id}', 'LahanController@tolakRequest')->middleware('auth');
 Route::get('/lahan/doneRequest/{id}', 'LahanController@doneRequest')->middleware('auth');
@@ -361,6 +363,8 @@ Route::post('/lahan/update_daily', 'LahanController@updateDaily')->name('updateD
 Route::get('/lahan/createDaily/{id}', 'LahanController@createDaily')->name('create_daily')->middleware('auth');
 Route::post('/lahan/simpan_daily/{id}', 'LahanController@simpan_daily')->name('simpan_daily')->middleware('auth');
 Route::get('/lahan/kelola_daily/{id}', 'LahanController@daily')->name('kelola_daily')->middleware('auth');
+
+Route::get('/lahan/kelola_resource/{id}', 'LahanController@kelola_resource')->middleware('auth');
 
 Route::get('/lahan/create_formWbs/{id}', 'LahanController@formWbs')->name('formWbs')->middleware('auth');
 // Route::post('/lahan/tambahKebutuhanWbs/', 'LahanController@kebutuhanWbs')->name('tambahKebutuhanWbs')->middleware('auth');

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kelola Struk Pembayaran</title>
+    <title>Projek Saya</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
@@ -22,46 +22,35 @@
                     <div class="col-md-12 mt-2">
                         <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                        <?php session_start(); ?>
-                        <li class="breadcrumb-item"><a href="/lahan/request/{{$_SESSION['id_lahan']}}">Back</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('lahan') }}">Back</a></li>
                         </ol>
                         </nav>
                     </div>
-                    <table>
-                    @foreach($struk2 as $index=>$struk2)
-                        <tr>
-                             <td>
-                                 <a href="/lahan/struk/{{$struk2->id_sewa}}" class="btn btn-sm btn-success" class="btn btn-sm btn-info">Tambah Struk</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </table>
                         <table class="table table-bordered">
                             <thead>
                               <tr>
-                                <th scope="col">No</th>                                
+                                <th scope="col">No</th>
+                                <th scope="col">Jenis</th>
                                 <th scope="col">Gambar</th>
-                                <th scope="col">Keterangan</th>                               
-                                <th scope="col">Tanggal</th>  
-                                <th scope="col">Kelola</th>                               
-                                
+                                <th scope="col">Deskripsi</th>
+                                <th colspan="2" >Detail Sewa Lahan</th>
+                               
+
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($struk as $index=>$struk)
+                            @foreach($projek as $index=>$projek)
                                 <tr>
                                     <td>{{ $index+1}}</td>
+                                    <td>{{$projek->nama}}</td>
                                     <td>
-                                        <img src="{{ url('gambar_struk') }}/{{ $struk->gambar }} "width="50" height="50">
+                                        <img src="{{ url('gambar_lahan') }}/{{ $projek->gambar }} "width="50" height="50">
                                     </td>
-                                    <td>{{ $struk->keterangan}}</td>
-                                    <td>{{ $struk->tanggal}}</td>
-                    
-                                    <td>
-                                        <a href="/lahan/ubah_struk/{{$struk->id_struk}}" class="btn btn-sm btn-warning">Edit</a>
-                                        <a href="/lahan/hapus_Struk/{{$struk->id_struk}}" class="btn btn-sm btn-danger">Hapus</a>
-                                    </td>
-
+                                   <td>{{$projek->deskripsi}}</td>
+                                   <td>
+                                        <a href="/lahan/Dprojek_user/{{$projek->id_lahan}}" class="btn btn-primary">lihat</a>
+                                   </td>
+                                    
                                 </tr>
                         
                               @endforeach   

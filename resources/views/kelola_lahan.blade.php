@@ -66,6 +66,7 @@
                                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Sumber Daya
                                                 <span></span></button>
                                                 <ul class="dropdown-menu">
+                                                <li><a href="/lahan/kelola_resource/{{$lahan->id}}"><b>Kelola</b></a></li>
                                                 <li><a href="/lahan/orang/{{$lahan->id}}">Orang</a></li>
                                                 <li><a href="/lahan/material/{{$lahan->id}}">Material</a></li>
                                                 <li><a href="/lahan/alat/{{$lahan->id}}">Alat</a></li>

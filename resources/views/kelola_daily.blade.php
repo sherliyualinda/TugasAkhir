@@ -22,7 +22,8 @@
                     <div class="col-md-12 mt-2">
                         <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{url('/lahan/request/{id}')}}">Back</a></li>
+                        <?php session_start(); ?>
+                        <li class="breadcrumb-item"><a href="/lahan/request/{{$_SESSION['id_lahan']}}">Back</a></li>
                         </ol>
                         </nav>
                     </div>
