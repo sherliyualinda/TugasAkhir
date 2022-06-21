@@ -24,36 +24,31 @@
 <div class="container" style="margin-top: 50px">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-        @foreach ($wbs1 as $wbs1)
             <div class="card">
                 <div class="card-header">
-                    Isi Kebutuhan dari <?php echo $wbs1->text?>
+                    Isi Kebutuhan dari {{ $wbs->text }}
                 </div>
-                @endforeach
                 <div class="card-body">
-                    <form action="{{route('simpan_wbs')}}" method="POST" enctype="multipart/form-data">
-                @foreach ($wbs as $wbs)
-                
-                {{ csrf_field() }}
-                <div class="form-group">
-                    <input type="hidden" name="id" value="{{$wbs->id}}">
-                </div>
-                @endforeach
-            
+                    <form action="{{route('simpan_wbs')}}" method="POST" enctype="multipart/form-data">                
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <input type="hidden" name="id" value="{{$wbs->id}}">
+                            <input type="hidden" name="parent" value="{{$wbs->parent}}">
+                        </div>
                         <div class="form-group">
                             <label>QTY</label>
-                            <input type="input" name="qty" class="form-control form-control-user" rows="4" placeholder="qty">
+                            <input type="number" name="qty" class="form-control form-control-user" placeholder="qty" value="{{ $wbs->qty }}">
                         </div>
                         <div class="form-group">
                             <label>Satuan</label>
-                            <input type="input" name="satuan"  class="form-control form-control-user" rows="4" placeholder="satuan">
+                            <input type="text" name="satuan" class="form-control form-control-user" placeholder="satuan" value="{{ $wbs->satuan }}">
                         </div>
                         <div class="form-group">
                             <label>Harga Per Satuan</label>
-                            <input type="input" name="harga"  class="form-control form-control-user" rows="4" placeholder="harga">
+                            <input type="number" name="harga" class="form-control form-control-user" placeholder="harga" value="{{ $wbs->harga }}">
                         </div>
                         
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Tambah</button>                    
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>                    
                     </form>
                 </div>
             </div>

@@ -59,7 +59,7 @@
                                         <td>{{ $wbs->qtyNenek }}</td>
                                         <td>{{ $wbs->satuanNenek }}</td>
                                         <td>{{ $wbs->hargaNenek }}</td>
-                                        <td><?php // echo $Total?></td>
+                                        <td>{{ $wbs->thNenek }}</td>
                                         <td>
                                             <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
                                                 
@@ -168,7 +168,7 @@
                                         <td>{{ $wbs->qtyNenek }}</td>
                                         <td>{{ $wbs->satuanNenek }}</td>
                                         <td>{{ $wbs->hargaNenek }}</td>
-                                        <td><?php //echo $Total?></td>
+                                        <td>{{ $wbs->thNenek }}</td>
                                         <td>
                                             <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
                                                 

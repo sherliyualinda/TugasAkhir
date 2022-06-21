@@ -267,6 +267,27 @@ class LahanController extends Controller
     }
     public function simpan_wbs(Request $request){
         session_start();
+        if ($request->parent !== 0 || $request->parent !== "0"){
+            $tasks = Task::where('parent', $request->parent)->get();
+            $qty = 0;
+            $harga = 0;
+            foreach ($tasks as $key => $value) {
+                if ($value->id !== (int)$request->id){
+                    $qty += $value->qty;
+                    $harga += $value->harga;
+                }
+            }
+            $qty = $qty + (int)$request->qty;
+            $harga = $harga + (int)$request->harga;
+            $sub_total = $qty * $harga;
+            Task::where('id', $request->parent)->update([
+                'qty' => $qty,
+                'satuan' => $request->satuan,
+                'harga' => $harga,
+                'totalHarga' => $sub_total,
+                'updated_at' => date("Y-m-d H:i:s")
+            ]);
+        }
         $total = $request->qty * $request->harga;
         $wbs= Task::where('id', $request->id)->update([
             'qty' => $request->qty,
@@ -283,10 +304,9 @@ class LahanController extends Controller
     }
 
     public function update_wbs($id){
-        $wbs = Task::select('*')->where('id', $id)->get();
-        $wbs1 = Task::select('*')->where('id', $id)->get();
+        $wbs = Task::where('id', $id)->first();
         
-        return view('updateWbs', compact('wbs','wbs1'));
+        return view('updateWbs', compact('wbs'));
         
 
     }
