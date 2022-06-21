@@ -54,11 +54,11 @@
                                     
                                     <tr>
                                         <td><b>{{ $iter[0] }}</b></td>
-                                        <td><b>{{ $wbs->Nenek }}</b></td>
+                                        <td><b>{{$wbs->Nenek}}</b></td>
                                         <td>{{ $wbs->tanggalNenek }}</td>
-                                        <td>{{ $wbs->qtyNenek }}</td>
-                                        <td>{{ $wbs->satuanNenek }}</td>
-                                        <td>{{ $wbs->hargaNenek }}</td>
+                                        <td>{{ (int)$wbs->qtyNenek > 0 ? $wbs->qtyNenek : "-" }}</td>
+                                        <td>{{ (int)$wbs->qtyNenek > 0 ? $wbs->satuanNenek : "-" }}</td>
+                                        <td>{{ (int)$wbs->hargaNenek > 0 ? $wbs->hargaNenek : "-" }}</td>
                                         <td>{{ $wbs->thNenek }}</td>
                                         <td>
                                             <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
@@ -75,9 +75,9 @@
                                         <td>{{ $iter[0] .".". $iter[1] }}</td>
                                         <td>{{ $wbs->Ibu }}</td>
                                         <td>{{ $wbs->tanggalIbu }}</td>
-                                        <td>{{ $wbs->qtyIbu }}</td>
-                                        <td>{{ $wbs->satuanIbu }}</td>
-                                        <td>{{ $wbs->hargaIbu }}</td>
+                                        <td>{{ (int)$wbs->qtyIbu > 0 ? $wbs->qtyIbu : "-" }}</td>
+                                        <td>{{ (int)$wbs->qtyIbu > 0 ? $wbs->satuanIbu : "-" }}</td>
+                                        <td>{{ $wbs->hargaIbu > 0 ? $wbs->hargaIbu : "-" }}</td>
                                         <td>{{ $wbs->thIbu }}</td>
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
@@ -127,9 +127,9 @@
                                         <td>{{ $iter[0] .".". $iter[1] }}</td>
                                         <td>{{ $wbs->Ibu }}</td>
                                         <td>{{ $wbs->tanggalIbu }}</td>
-                                        <td>{{ $wbs->qtyIbu }}</td>
-                                        <td>{{ $wbs->satuanIbu }}</td>
-                                        <td>{{ $wbs->hargaIbu }}</td>
+                                        <td>{{ (int)$wbs->qtyIbu > 0 ? $wbs->qtyIbu : "-" }}</td>
+                                        <td>{{ (int)$wbs->qtyIbu > 0 ? $wbs->satuanIbu : "-" }}</td>
+                                        <td>{{ $wbs->hargaIbu > 0 ? $wbs->hargaIbu : "-" }}</td>
                                         <td>{{ $wbs->thIbu }}</td>
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
@@ -165,9 +165,9 @@
                                         <td><b>{{ $iter[0] }}</b></td>
                                         <td><b>{{ $wbs->Nenek }}</b></td>
                                         <td>{{ $wbs->tanggalNenek }}</td>
-                                        <td>{{ $wbs->qtyNenek }}</td>
-                                        <td>{{ $wbs->satuanNenek }}</td>
-                                        <td>{{ $wbs->hargaNenek }}</td>
+                                        <td>{{ (int)$wbs->qtyNenek > 0 ? $wbs->qtyNenek : "-" }}</td>
+                                        <td>{{ (int)$wbs->qtyNenek > 0 ? $wbs->satuanNenek : "-" }}</td>
+                                        <td>{{ (int)$wbs->hargaNenek > 0 ? $wbs->hargaNenek : "-" }}</td>
                                         <td>{{ $wbs->thNenek }}</td>
                                         <td>
                                             <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
@@ -183,9 +183,9 @@
                                         <td>{{ $iter[0] .".". $iter[1] }}</td>
                                         <td>{{ $wbs->Ibu }}</td>
                                         <td>{{ $wbs->tanggalIbu }}</td>
-                                        <td>{{ $wbs->qtyIbu }}</td>
-                                        <td>{{ $wbs->satuanIbu }}</td>
-                                        <td>{{ $wbs->hargaIbu }}</td>
+                                        <td>{{ (int)$wbs->qtyIbu > 0 ? $wbs->qtyIbu : "-" }}</td>
+                                        <td>{{ (int)$wbs->qtyIbu > 0 ? $wbs->satuanIbu : "-" }}</td>
+                                        <td>{{ $wbs->hargaIbu > 0 ? $wbs->hargaIbu : "-" }}</td>
                                         <td>{{ $wbs->thIbu }}</td>
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
