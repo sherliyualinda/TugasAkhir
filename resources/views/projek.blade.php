@@ -22,7 +22,7 @@
                     <div class="col-md-12 mt-2">
                         <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('lahan.kelola_lahan') }}">Kelola Lahan</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('lahan') }}">Back</a></li>
                         </ol>
                         </nav>
                     </div>
