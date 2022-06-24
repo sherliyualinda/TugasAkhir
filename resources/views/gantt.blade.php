@@ -40,7 +40,11 @@
         <ol class="breadcrumb">
                           
             <li>
-                <a href="/lahan/request/{{$sewa->id_lahan}}">Back</a>
+                <?php if($sewa->id_pemilik == Auth::user()->pengguna->id_pengguna){?>
+                    <a href="/lahan/request/{{$sewa->id_lahan}}">Back</a>
+                <?php }else{ ?>
+                    <a href="/lahan/Dprojek_user/{{$sewa->id_lahan}}">Back</a>
+                <?php } ?>
             </li>
             <li>
                 <?php if($sewa->id_pemilik == Auth::user()->pengguna->id_pengguna){?>

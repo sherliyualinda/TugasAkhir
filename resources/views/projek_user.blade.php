@@ -45,8 +45,24 @@
                                     aria-selected="false">Sumber Daya</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-                                    aria-selected="false">Contact</a>
+                                    <a class="nav-link" id="gantt-tab" data-toggle="tab" href="#gantt" role="tab" aria-controls="gantt"
+                                    aria-selected="false">Gantt Chart</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="risiko-tab" data-toggle="tab" href="#risiko" role="tab" aria-controls="risiko"
+                                    aria-selected="false">Risiko</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="boq-tab" data-toggle="tab" href="#boq" role="tab" aria-controls="boq"
+                                    aria-selected="false">Boq</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Daily-tab" data-toggle="tab" href="#Daily" role="tab" aria-controls="Daily"
+                                    aria-selected="false">Laporan Harian</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Struk-tab" data-toggle="tab" href="#Struk" role="tab" aria-controls="Struk"
+                                    aria-selected="false">Struk</a>
                                 </li>
                             </ul>
                     
@@ -118,8 +134,52 @@
                                     @endforeach
                                 </table>
                                     </div>
-                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                        <h3>Contact</h3>
+                                    <div class="tab-pane fade" id="gantt" role="tabpanel" aria-labelledby="gantt-tab">
+                                        <a href="/gantt/{{$data->id_sewa}}">gantt</a>
+                                    </div>
+                                    <div class="tab-pane fade" id="risiko" role="tabpanel" aria-labelledby="risiko-tab">
+                                       
+                                        <div>
+                                            <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">No</th>                                
+                                                <th scope="col">Penyebab</th>
+                                                <th scope="col">Dampak</th>                               
+                                                <th scope="col">Strategi</th>                               
+                                                <th scope="col">Biaya</th>                               
+                                                <th scope="col">Level Risiko</th>                                                          
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                    @foreach($risk as $index=>$risk)
+                                        <tr>
+                                            <td>{{ $index+1}}</td>
+                                            <td>{{ $risk->penyebab}}</td>
+                                            <td>{{ $risk->dampak}}</td>
+                                            <td>{{ $risk->strategi}}</td>
+                                            <td>{{ $risk->biaya}}</td>
+                                            <td>{{ $risk->levelRisk}}</td>
+                                    
+                                        </tr>
+                        
+                                                @endforeach   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                      
+                                    </div>
+                                    <div class="tab-pane fade" id="boq" role="tabpanel" aria-labelledby="boq-tab">
+                                        <h3>BOQ</h3>
+                                      
+                                    </div>
+                                    <div class="tab-pane fade" id="Daily" role="tabpanel" aria-labelledby="Daily-tab">
+                                        <h3>Laporan Harian</h3>
+                                      
+                                    </div>
+                                    <div class="tab-pane fade" id="Struk" role="tabpanel" aria-labelledby="Struk-tab">
+                                        <h3>Struk</h3>
+                                      
                                     </div>
                                 
                             </div>
