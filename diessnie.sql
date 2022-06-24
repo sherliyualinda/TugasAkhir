@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Jun 2022 pada 12.22
+-- Waktu pembuatan: 24 Jun 2022 pada 09.49
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -256,8 +256,7 @@ CREATE TABLE `dailies` (
 --
 
 INSERT INTO `dailies` (`id_daily`, `id_sewa`, `gambar`, `keterangan`, `date`, `updated_at`) VALUES
-(1, 1, '3.PNG', 'banjir woy', '2022-06-19', '2022-06-18'),
-(3, 1, '1.PNG', 'banjir banget hhhh', '2022-06-18', '2022-06-18');
+(4, 7, '1.PNG', 'apa aja', '2022-06-21', '2022-06-21');
 
 -- --------------------------------------------------------
 
@@ -7675,8 +7674,8 @@ CREATE TABLE `lahans` (
 --
 
 INSERT INTO `lahans` (`id`, `category_lahan_id`, `ukuran`, `deskripsi`, `gambar`, `id_user`, `statusLahan`, `updated_at`) VALUES
-(4, 1, '70 x 30', 'Ayam2an', '1.PNG', 42, 'Ready', '2022-06-18'),
-(5, 2, '30X40', 'Lebar banget', 'Untitled Diagram.drawio (2).png', 42, 'Ready', '2022-06-09');
+(4, 1, '70 x 30', 'Ayam2an', '1.PNG', 42, 'Not Ready', '2022-06-21'),
+(5, 2, '30X40', 'Lebar banget', 'Untitled Diagram.drawio (2).png', 42, 'Not Ready', '2022-06-21');
 
 -- --------------------------------------------------------
 
@@ -7942,8 +7941,8 @@ INSERT INTO `pengguna` (`id_pengguna`, `id`, `jenis_akun`, `username`, `password
 (41, 41, 'pribadi', 'ridwan-amir', '123456', 'Ridwan Amir', 3204270004, 'ridwanamir@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 11:07:23', NULL),
 (42, 42, 'pribadi', 'sherla', '$2y$10$BpkqUNwXv5iAARXc5YbeMem6x/cwPTLWOdw7BtmOCv70OISldwhdi', 'Sherla', 3203030001, 'sherla@gmail.com', '087765567789', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, 'WIN_20201124_00_09_32_Pro.jpg', 'WIN_20201124_00_09_32_Pro.jpg', '2022-04-03 03:54:28', '2022-06-06 10:06:55'),
 (43, 43, 'pribadi', 'jessika', '$2y$10$Vb100zSKHos6PMeNNHZ1v.RgnoxblFk2hG7EcCPLhSzg9GKAx0.sS', 'Jessika', 1504040014, 'jessika@gmail.com', '098765432123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', '2022-04-18 14:37:26', NULL),
-(45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'WhatsApp Image 2022-04-14 at 12.00.28.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', '2022-06-05 13:42:37', '2022-06-09 16:51:41'),
-(46, 46, 'pribadi', 'ade', '$2y$10$aWYkPtEBOVO8mU0AfjmJPeZCwkByU7id909343kK.PoTUhuqM7ByW', 'Ade', 1201060015, 'ade@gmail.com', '08234571635', 'Brebes', '1923640281619', 'Mahasiswa', 'Struktur Organisasi Manpro.drawio.png', NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', '2022-06-05 19:02:18', '2022-06-09 13:42:00');
+(45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', '1.PNG', NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', '2022-06-05 13:42:37', '2022-06-21 13:28:59'),
+(46, 46, 'pribadi', 'ade', '$2y$10$aWYkPtEBOVO8mU0AfjmJPeZCwkByU7id909343kK.PoTUhuqM7ByW', 'Ade', 1201060015, 'ade@gmail.com', '08234571635', 'Brebes', '1923640281619', 'Mahasiswa', '1.PNG', NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', '2022-06-05 19:02:18', '2022-06-21 13:27:32');
 
 -- --------------------------------------------------------
 
@@ -8727,14 +8726,6 @@ CREATE TABLE `risks` (
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `risks`
---
-
-INSERT INTO `risks` (`id_risk`, `id_sewa`, `penyebab`, `dampak`, `strategi`, `biaya`, `probabilitas`, `impact`, `levelRisk`, `updated_at`) VALUES
-(5, 1, 'kemarau', 'mati', 'air', 100000, 3, 1, 'Medium', '2022-06-18'),
-(6, 1, 'banjir nih', 'mati', 'disel', 60, 3, 3, 'High', '2022-06-18');
-
 -- --------------------------------------------------------
 
 --
@@ -8785,10 +8776,10 @@ CREATE TABLE `sewa_lahans` (
 --
 
 INSERT INTO `sewa_lahans` (`id_sewa`, `id_penyewa`, `id_pemilik`, `id_lahan`, `status`, `progres`, `updated_at`) VALUES
-(1, 45, 42, 4, 'Acc', 'proses', '2022-06-16 17:19:11'),
-(2, 46, 42, 4, 'Tolak', 'Gagal', '2022-06-09 14:03:10'),
-(3, 45, 42, 5, 'Acc', 'Proses', '2022-06-16 17:19:00'),
-(4, 46, 42, 4, 'Tolak', 'Gagal', '2022-06-09 14:03:10');
+(3, 45, 42, 5, 'Acc', 'Done', '2022-06-21 13:03:46'),
+(6, 46, 42, 5, 'Acc', 'Proses', '2022-06-21 13:18:34'),
+(7, 46, 42, 4, 'Acc', 'Proses', '2022-06-21 13:34:15'),
+(8, 45, 42, 4, 'Tolak', '-', '2022-06-21 13:34:15');
 
 -- --------------------------------------------------------
 
@@ -8848,7 +8839,7 @@ CREATE TABLE `tasks` (
   `sortorder` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `id_lahan` int(11) NOT NULL,
+  `id_sewa` int(11) NOT NULL,
   `qty` int(30) NOT NULL,
   `satuan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `harga` int(30) NOT NULL,
@@ -8859,14 +8850,12 @@ CREATE TABLE `tasks` (
 -- Dumping data untuk tabel `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent`, `sortorder`, `created_at`, `updated_at`, `id_lahan`, `qty`, `satuan`, `harga`, `totalHarga`) VALUES
-(109, 'Persiapan lahan', 1, 0.00, '2022-06-16 00:00:00', 0, 1, '2022-06-17 06:29:17', '2022-06-17 06:29:17', 4, 0, '0', 0, 0),
-(110, 'pembersihan lahan', 1, 0.00, '2022-06-16 00:00:00', 109, 2, '2022-06-17 06:29:37', '2022-06-17 06:29:37', 4, 0, '0', 0, 0),
-(111, 'cangkul', 1, 0.00, '2022-06-16 00:00:00', 110, 3, '2022-06-17 06:29:42', '2022-06-17 06:39:16', 4, 12, 'buah', 20000, 240000),
-(112, 'arit', 1, 0.00, '2022-06-16 00:00:00', 110, 4, '2022-06-17 06:29:52', '2022-06-17 06:49:53', 4, 10, 'buah', 30000, 300000),
-(113, 'pembajakan', 1, 0.00, '2022-06-16 00:00:00', 109, 5, '2022-06-17 06:30:00', '2022-06-17 06:30:00', 4, 0, '0', 0, 0),
-(114, 'aaaaaaaaa', 1, 0.00, '2022-06-16 00:00:00', 0, 6, '2022-06-17 06:30:07', '2022-06-17 06:30:07', 4, 0, '0', 0, 0),
-(116, 'bbbbb', 1, 0.00, '2022-06-16 00:00:00', 114, 7, '2022-06-17 07:24:57', '2022-06-17 07:24:57', 4, 0, '0', 0, 0);
+INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent`, `sortorder`, `created_at`, `updated_at`, `id_sewa`, `qty`, `satuan`, `harga`, `totalHarga`) VALUES
+(120, 'persiapan lahan', 1, 0.00, '2022-06-23 00:00:00', 0, 1, '2022-06-24 07:10:57', '2022-06-24 07:22:51', 7, 0, '', 0, 25500),
+(121, 'pembersihan lahan', 1, 0.00, '2022-06-23 00:00:00', 120, 2, '2022-06-24 07:19:17', '2022-06-24 07:22:28', 7, 0, '', 0, 24000),
+(122, 'arit', 1, 0.00, '2022-06-23 00:00:00', 121, 3, '2022-06-24 07:19:25', '2022-06-24 07:22:12', 7, 20, 'buah', 1000, 20000),
+(123, 'cangkul', 1, 0.00, '2022-06-23 00:00:00', 121, 4, '2022-06-24 07:19:35', '2022-06-24 07:22:28', 7, 2, 'buah', 2000, 4000),
+(124, 'pembajakan', 1, 0.00, '2022-06-23 00:00:00', 120, 5, '2022-06-24 07:19:45', '2022-06-24 07:22:51', 7, 3, 'buah', 500, 1500);
 
 -- --------------------------------------------------------
 
@@ -9022,10 +9011,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 17:19:42', '2021-08-14 17:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-17 03:53:26', '2021-08-17 03:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-17 04:07:23', '2021-08-17 04:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'JkUoP31uBATede8iKaoftEPMoIhazttdtPJ3l1ej8hbLTAajptsmujjgB401', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '0n7CkCSH7ygYkQ7DEuiGvidlPkmFMIiRKxghTUXkqlbbBHdfC2ChMAugvVxF', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 07:37:26', '2022-04-18 07:37:26', 2),
-(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'EurxJnK24GjIKzbbcIVMcBJd530NXwiVDdotsdlMfB7N2ec8w5buxbv7LxXQ', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
-(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'o58QwBHNzGQJC3T3uT96DDQBoGpaYx4qxEpVM9jon8zVCQqoRcrVXqzan9nE', '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
+(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'c7d9Sl5G6NW815OzWr07UIz3a6GeJYTpikCAKZp4AnuJfW5TR9IOdmocHa0I', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
+(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'AO9Ut3CqPnF3WBk0uAXCPX49qmzurVFKnKeP0flisd4bBXRZdxP0CM7ujFFX', '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
 
 -- --------------------------------------------------------
 
@@ -89933,7 +89922,8 @@ ALTER TABLE `struks`
 -- Indeks untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_sewa` (`id_sewa`);
 
 --
 -- Indeks untuk tabel `transactions`
@@ -90036,7 +90026,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT untuk tabel `dailies`
 --
 ALTER TABLE `dailies`
-  MODIFY `id_daily` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_daily` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -90126,7 +90116,7 @@ ALTER TABLE `risks`
 -- AUTO_INCREMENT untuk tabel `sewa_lahans`
 --
 ALTER TABLE `sewa_lahans`
-  MODIFY `id_sewa` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_sewa` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `sewa_peralatans`
@@ -90144,7 +90134,7 @@ ALTER TABLE `struks`
 -- AUTO_INCREMENT untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT untuk tabel `wbs`
@@ -90207,6 +90197,12 @@ ALTER TABLE `sewa_lahans`
 --
 ALTER TABLE `struks`
   ADD CONSTRAINT `struks_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `tasks`
+--
+ALTER TABLE `tasks`
+  ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`);
 
 --
 -- Ketidakleluasaan untuk tabel `wbs`

@@ -20,7 +20,8 @@ class TaskController extends Controller
         $task->progress = $request->has("progress") ? $request->progress : 0;
         $task->parent = $request->parent;
         $task->sortorder = Task::max("sortorder") + 1;
-        $task->id_lahan = $_SESSION['id_lahan'];
+        // $task->id_lahan = $_SESSION['id_lahan'];
+        $task->id_sewa = $_SESSION['id_sewa'];
         $task->qty = 0;
         $task->satuan = 0;
         $task->harga = 0;

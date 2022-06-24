@@ -18,7 +18,15 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
-                    <div class="card-body">                        
+                    <div class="card-body">
+                    <div class="col-md-12 mt-2">
+                        <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <?php session_start();?>
+                            <li class="breadcrumb-item"><a href="/gantt/{{$_SESSION['id_sewa']}}">Back</a></li>
+                        </ol>
+                        </nav>
+                    </div>                        
                         <table class="table table-bordered">
                             <thead>
                             <tr>

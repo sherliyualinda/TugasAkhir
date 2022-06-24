@@ -18,10 +18,11 @@
     <script src="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js"></script>
     <link href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css" rel="stylesheet">
 
-    @foreach ($lahan as $lahan)
-                <form action="{{route('tambahgantt',$lahan->id)}}" method="POST" enctype="multipart/form-data">
+    @foreach ($sewa as $sewa)
+                <form action="{{route('tambahgantt',$sewa->id_sewa)}}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
-                <input type="hidden" name="id_lahan" value="{{$lahan->id_user}}">
+                <input type="hidden" name="id_sewa" value="{{$sewa->id_sewa}}">
+                
                 
    
     <style type="text/css">
@@ -34,20 +35,31 @@
 
     </style>
 </head>
-<div>
-    <?php if($lahan->id_user == Auth::user()->pengguna->id_pengguna){?>
-        <a href="/wbs/{{$_SESSION['id_lahan']}}" class="btn btn-sm btn-info">WBS</a>
-    <?php }else{ ?>
+<div class="col-md-12 mt-2">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+                          
+            <li>
+                <a href="/lahan/request/{{$sewa->id_lahan}}">Back</a>
+            </li>
+            <li>
+                <?php if($sewa->id_pemilik == Auth::user()->pengguna->id_pengguna){?>
+                    <a href="/wbs/{{$_SESSION['id_sewa']}}" class="btn btn-sm btn-info">WBS</a>
+                <?php }else{ ?>
 
-    <?php } ?>
+                <?php } ?>
+            </li>
+        </ol>
+    </nav>
 </div>
+
 <div id="gantt_here" style='width:100%; height:100%;'></div>
 <script type="text/javascript">
     gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
     gantt.config.order_branch = true;
     gantt.config.order_branch_free = true;
 
-    <?php if ($lahan->id_user == Auth::user()->pengguna->id_pengguna){ ?>
+    <?php if ($sewa->id_pemilik == Auth::user()->pengguna->id_pengguna){ ?>
         gantt.config.readonly =false;
     <?php }else{ ?>
         gantt.config.readonly =true;
@@ -61,7 +73,7 @@
     dp.init(gantt);
     dp.setTransactionMode("REST");
 </script>
-<button id="download"> download</button>
+
 <script type="text/javascript">
    
    jQuery(document).ready(function(){

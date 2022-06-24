@@ -35,6 +35,7 @@
                                 <th scope="col">Alamat Penyewa</th>
                                 <th scope="col">KTP</th>
                                 <th scope="col" >Kelola</th>
+                                <th scope="col">Gantt Chart</th>
                                 <th scope="col" >Resiko</th>
                                 <th scope="col">Laporan Harian</th>
                                 <th scope="col">Struk Pembayaran</th>
@@ -68,6 +69,16 @@
                                             <?php } ?>
                                         </form>
                                        
+                                    </td>
+                                    <td>
+
+                                    <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
+                                        <a href="/gantt/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Kelola</a>
+                                        <?php }else{?>
+                                            <a href="#" class="btn btn-sm btn-secondary"> Kelola</a>
+                                        <?php } ?>
+
+                                        
                                     </td>
                                     <td>
                                         <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>

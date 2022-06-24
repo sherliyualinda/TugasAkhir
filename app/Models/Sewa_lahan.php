@@ -29,7 +29,7 @@ class Sewa_lahan extends Model
     public $timestamps = false;
     //protected $primaryKey = "id_penyewa";
     protected $fillable = [
-        'id_penyewa','id_pemilik','id_lahan','status'];
+        'id_penyewa','id_pemilik','id_lahan','status','progres','update_at'];
 
     /**
      * Province has many regencies.

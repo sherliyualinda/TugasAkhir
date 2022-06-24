@@ -4,7 +4,8 @@ use App\Http\Controllers\GanttController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use App\Lahan;
-
+//use App\Models\Sewa_lahan;
+use App\Sewa_lahan;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +25,13 @@ Route::get('/masuk', function(){
 
 Route::get('/gantt/{id}', function ($id) {
     session_start();
-    $_SESSION['id_lahan'] = $id;
-    $lahan = Lahan::select('*')->where('id', $id)->get();
-    return view('gantt',['lahan' => $lahan]);
+    //$_SESSION['id_lahan'] = $id;
+    $_SESSION['id_sewa'] = $id;
+    //$lahan = Lahan::select('*')->where('id', $id)->get();
+    //$sewa = Sewa_lahan::select('*')->where('id_lahan', $id)->get();
+    $sewa = Sewa_lahan::select('*')->where('id_sewa', $id)->get();
+    //return view('gantt',['lahan' => $lahan]);
+    return view('gantt',['sewa' => $sewa]);
 })->middleware('auth');
 
 //REFRESH WIDGET

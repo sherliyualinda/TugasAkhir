@@ -22,8 +22,8 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('lahan') }}">Home</a></li>
                 <?php if($data->id_user != Auth::user()->pengguna->id_pengguna){?>
-                    <li class="breadcrumb-item"><a href="/gantt/{{$data->id}}">Gantt Chart Lahan</a></li>
-                    <li class="breadcrumb-item"><a href="/wbs_user/{{$data->id}}">Work Breakdown Structure</a></li>
+                    <!-- <li class="breadcrumb-item"><a href="/gantt/{{$data->id}}">Gantt Chart Lahan</a></li>
+                    <li class="breadcrumb-item"><a href="/wbs_user/{{$data->id}}">Work Breakdown Structure</a></li> -->
                     <?php }else{ ?>
                 <?php } ?>
             </ol>
