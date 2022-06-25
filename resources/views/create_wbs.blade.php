@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Halaman BOQ</title>
+    <title>Halaman WBS</title>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -218,12 +218,13 @@
                                         </td>
                                     </tr>
                                 <?php }} ?>
-                                
-                                    @endforeach   
+                                @endforeach
+                                      
                                 </tbody>
                             </table>  
-                            <a href="#" class="btn btn-sm btn-success">Save</a>
-                       
+                            @foreach($wbs2 as $index=>$wbs2)
+                            <a href="/lahan/simpan_history/{{$wbs2->id_sewa}}" class="btn btn-sm btn-success">Save</a>
+                            @endforeach
                     </div>
                 </div>
             </div>

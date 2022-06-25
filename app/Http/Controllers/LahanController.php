@@ -17,6 +17,7 @@ use App\Transaction;
 use App\ProductGallery;
 use App\TransactionDetail;
 use App\Pengguna;
+use App\Task_histori;
 use App\Task;
 use APp\Link;
 use App\Probabilitas;
@@ -132,14 +133,14 @@ class LahanController extends Controller
     public function projek_user($id){
         session_start();
         $_SESSION['id_lahan'] = $id;
-        $projek = DB::select("SELECT sl.id_sewa, l.gambar, sl.id_lahan,l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc' And id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+        $projek = DB::select("SELECT l.gambar, sl.id_lahan,l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc' And id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
         
         return view('projek', compact('projek'));
     }
 
     public function Dprojek_user($id){
         
-        $sewa =DB::select("SELECT l.gambar, l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status,sl.id_sewa FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc'  And sl.id_lahan =7 And id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+        $sewa =DB::select("SELECT l.gambar, l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status,sl.id_sewa FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc'  And sl.id_lahan =$id And id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
 
         $risk=DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan, r.id_risk FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa where r.id_sewa = 7 ");
        
@@ -254,14 +255,17 @@ class LahanController extends Controller
         
         //$wbs = DB::select("SELECT w.harga, w.qty, w.satuan, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
 
-        $wbs = DB::select("SELECT a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa = $id AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc;");
+        $wbs = DB::select("SELECT a.id_sewa, a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa = $id AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc;");
+
+        $wbs2 = Task::select('*')->where('id_sewa', $id)->limit(1)->get();
+
 
        // $wbs1 = DB::select("SELECT a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN lahans l on a.id_lahan =l.id WHERE a.id_lahan = $request->id AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc");
 
 
 
         
-        return view('create_wbs', compact('wbs'));
+        return view('create_wbs', compact('wbs','wbs2'));
     }
     public function wbs_user($id){
         
@@ -311,7 +315,7 @@ class LahanController extends Controller
        // $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
         //$wbs = DB::select("SELECT a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN lahans l on a.id_lahan =l.id WHERE a.id_lahan = '".$_SESSION['id_lahan']."' AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc");
         
-        $wbs = DB::select("SELECT a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa =  '".$_SESSION['id_sewa']."' AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc;");
+        $wbs = DB::select("SELECT a.id_sewa, a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa =  '".$_SESSION['id_sewa']."' AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc;");
 
 
         
@@ -626,4 +630,15 @@ class LahanController extends Controller
                             return view('kelola_struk',compact('struk'));
                         }
 
+                        public function simpan_history($id){   
+    
+                            // DB::table('task_historis')->insertUsing([
+                            //     'id_task', 'text', 'duration', 'progress', 'start_date', 'parent', 'sortorder', 'created_at', 'updated_at', 'id_sewa', 'qty', 'satuan', 'harga', 'totalHarga' 
+                            // ], DB::table('tasks')->select(
+                            //     'id_task', 'text', 'duration', 'progress', 'start_date', 'parent', 'sortorder', 'created_at', 'updated_at', 'id_sewa', 'qty', 'satuan', 'harga', 'totalHarga')->where('id', $id));
+                            //     //return view('kelola_risk', compact('risk'));
+                            // 
+
+                            DB::insert("Insert Into task_historis(id_task, text, duration, progress, start_date, parent, sortorder, created_at, updated_at, id_sewa, qty, satuan, harga, totalHarga) SELECT id, text, duration, progress, start_date, parent, sortorder, created_at, updated_at, id_sewa, qty, satuan, harga, totalHarga From tasks WHERE id_sewa = $id");
+                        }
 }

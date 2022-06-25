@@ -330,7 +330,7 @@ Route::get('/lahan/hapus/{id}', 'LahanController@hapus_lahan')->middleware('auth
 Route::post('/lahan/simpan_wbs', 'LahanController@simpan_wbs')->name('simpan_wbs')->middleware('auth');
 Route::get('/lahan/update_wbs/{id}', 'LahanController@update_wbs')->name('update_wbs')->middleware('auth');
 
-
+Route::get('/lahan/simpan_history/{id}', 'LahanController@simpan_history')->middleware('auth');
 
 
 Route::post('/tambahgantt/{id}', 'TaskController@store')->name('tambahgantt')->middleware('auth');
