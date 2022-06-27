@@ -48,7 +48,7 @@
                                     </td>
                                    <td>{{$projek->deskripsi}}</td>
                                    <td>
-                                        <a href="/lahan/Dprojek_user/{{$projek->id_lahan}}" class="btn btn-primary">lihat</a>
+                                        <a href="/lahan/Dprojek_user/{{$projek->id_sewa}}" class="btn btn-primary">lihat</a>
                                    </td>
                                     
                                 </tr>

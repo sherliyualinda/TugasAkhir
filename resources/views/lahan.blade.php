@@ -14,7 +14,7 @@
             <a href="{{ route('lahan.create') }}" class="btn btn-primary">+ Buat Lahan</a>
             <a href="{{ route('lahan.kelola_lahan') }}" class="btn btn-primary">Kelola Lahan</a>
             <a href="{{ route('peralatan') }}" class="btn btn-primary">Peralatan</a>
-            <a href="/lahan/projek_user/{{Auth::user()->pengguna->id_pengguna}}" class="btn btn-primary">Projek Saya</a>
+            <a href="/lahan/projek_user" class="btn btn-primary">Projek Saya</a>
             <hr>
         </div>
         @foreach($lahan as $lahan)

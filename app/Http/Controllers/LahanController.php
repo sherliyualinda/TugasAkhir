@@ -55,6 +55,7 @@ class LahanController extends Controller
     public function lahan(){
         $lahan = Lahan::paginate(9);
         $lahan = DB::select("SELECT p.nama as pemilik,l.statusLahan, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
+        $lahans = DB::select("SELECT p.nama as pemilik,l.statusLahan, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
         $total_notif = $this->total_notif();
         $list_notif_display = $this->list_notif_display();
         $notif_pesan = $this->notif_pesan();
@@ -131,24 +132,22 @@ class LahanController extends Controller
         $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 3 AND lr.id_lahan = $id");
         return view('detail_lahan',compact('lahan','orang','material','alat'));  
     }
-    public function projek_user($id){
-        session_start();
-        $_SESSION['id_lahan'] = $id;
-        $projek = DB::select("SELECT l.gambar, sl.id_lahan,l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc' And id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+    public function projek_user(){
+        $projek = DB::select("SELECT sl.id_sewa, l.gambar, sl.id_lahan,l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc' And id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
         
         return view('projek', compact('projek'));
     }
 
     public function Dprojek_user($id){
-        
-        $sewa =DB::select("SELECT l.gambar, l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status,sl.id_sewa FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc'  And sl.id_lahan =$id And id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+        session_start();
+        $_SESSION['id_sewa'] = $id;
+        $sewa =DB::select("SELECT l.gambar, l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status,sl.id_sewa FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc' And id_sewa = $id AND id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
 
-        $risk=DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan, r.id_risk FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa where r.id_sewa = 7 ");
+        $risk=DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan, r.id_risk FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa where r.id_sewa = $id ");
        
-        
-        $orang = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 1 AND sl.status ='Acc' AND lr.id_lahan =$id");
-        $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 2 AND sl.status ='Acc' AND lr.id_lahan =$id");
-        $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 3 AND sl.status ='Acc' AND lr.id_lahan =$id");
+        $orang = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 1 AND sl.status ='Acc' AND lr.id_lahan ='".$_SESSION['id_lahan']."'");
+        $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 2 AND sl.status ='Acc' AND lr.id_lahan ='".$_SESSION['id_lahan']."'");
+        $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 3 AND sl.status ='Acc' AND lr.id_lahan ='".$_SESSION['id_lahan']."'");
         return view('projek_user',compact('sewa','orang','material','alat','risk'));  
     }
    
@@ -379,7 +378,7 @@ class LahanController extends Controller
             'levelRisk'     => $level,
             'updated_at'    => date("Y-m-d H:i:s")
         ]);
-            $risk = DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan, r.id_risk FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa where r.id_sewa = $request->id_sewa");
+            $risk = DB::select("SELECT ps.ket, i.ket_impact, r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan, r.id_risk FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa JOIN probabilitas ps ON r.probabilitas=ps.id_probabilitas JOIN impacts i ON r.impact = i.id_impact where r.id_sewa = $request->id_sewa");
             $risk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa where s.id_sewa = $request->id_sewa");
             $risk3 = DB::select("SELECT id_sewa FROM sewa_lahans where id_sewa = $request->id_sewa");
             return view('kelola_risk', compact('risk','risk2','risk3'));

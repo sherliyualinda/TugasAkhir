@@ -23,7 +23,7 @@
         <div class="col-md-12 mt-2">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/lahan/projek_user/{{Auth::user()->pengguna->id_pengguna}}">Back</a></li>
+                    <li class="breadcrumb-item"><a href="/lahan/projek_user">Back</a></li>
                 </ol>
             </nav>
         </div>
@@ -135,7 +135,9 @@
                                 </table>
                                     </div>
                                     <div class="tab-pane fade" id="gantt" role="tabpanel" aria-labelledby="gantt-tab">
-                                        <a href="/gantt/{{$data->id_sewa}}">gantt</a>
+                                    
+                                        <a href="/gantt/{{$_SESSION['id_sewa']}}">gantt</a>
+                                   
                                     </div>
                                     <div class="tab-pane fade" id="risiko" role="tabpanel" aria-labelledby="risiko-tab">
                                        
