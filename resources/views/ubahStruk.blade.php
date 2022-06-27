@@ -33,6 +33,7 @@
                 <form action="{{route('updateStruk')}}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
                  <input type="hidden" name="id_struk" value="{{$struk->id_struk}}">
+                 <input type="hidden" name="id_sewa" value="{{$struk->id_sewa}}">
                 
                         <div class="form-group">
                             <label>Keterangan</label>

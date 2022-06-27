@@ -43,7 +43,7 @@
                 <?php if($sewa->id_pemilik == Auth::user()->pengguna->id_pengguna){?>
                     <a href="/lahan/request/{{$sewa->id_lahan}}">Back</a>
                 <?php }else{ ?>
-                    <a href="/lahan/Dprojek_user/{{$sewa->id_lahan}}">Back</a>
+                    <a href="/lahan/Dprojek_user/{{$_SESSION['id_sewa']}}">Back</a>
                 <?php } ?>
             </li>
             <li>

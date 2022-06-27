@@ -143,12 +143,16 @@ class LahanController extends Controller
         $_SESSION['id_sewa'] = $id;
         $sewa =DB::select("SELECT l.gambar, l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status,sl.id_sewa FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc' And id_sewa = $id AND id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
 
+        $daily = DB::select("SELECT d.id_sewa,d.gambar,d.keterangan,d.date,d.updated_at,s.id_lahan, d.id_daily FROM dailies d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $id");
+
+        $struk = DB::select("SELECT d.keterangan,d.gambar,d.tanggal,d.updated_at,s.id_lahan, d.id_struk FROM struks d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $id");
+
         $risk=DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan, r.id_risk FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa where r.id_sewa = $id ");
        
         $orang = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 1 AND sl.status ='Acc' AND lr.id_lahan ='".$_SESSION['id_lahan']."'");
         $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 2 AND sl.status ='Acc' AND lr.id_lahan ='".$_SESSION['id_lahan']."'");
         $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 3 AND sl.status ='Acc' AND lr.id_lahan ='".$_SESSION['id_lahan']."'");
-        return view('projek_user',compact('sewa','orang','material','alat','risk'));  
+        return view('projek_user',compact('sewa','orang','material','alat','risk','daily','struk'));  
     }
    
 
@@ -455,7 +459,7 @@ class LahanController extends Controller
                 'updated_at'    => date("Y-m-d H:i:s")
 
             ]);
-            $boq = DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa");
+            $boq = DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa where id_sewa = $request->id_sewa");
             return view('kelola_risk', compact('risk'));
         }
 
@@ -583,7 +587,7 @@ class LahanController extends Controller
                         return view('struk', compact('sewa'));
                     }
 
-                    public function simpan_struk(Request $request){   
+                    public function simpan_struk(Request $request){        
                         $file = $request->file('gambar');
                         $tujuan_upload = 'gambar_struk';
                         $file->move($tujuan_upload,$file->getClientOriginalName());
@@ -595,14 +599,17 @@ class LahanController extends Controller
                             'gambar'            => $file->getClientOriginalName(),
                             'updated_at'        => date("Y-m-d H:i:s")
                         ]);
-                        
+                       
+                        $struk = Struk::select('*')->where('id_sewa', $request->id_sewa )->get();
+                        //$struk2 = Struk::select('*')->where('id_sewa', $_SESSION['id_sewa'])->get();
+                        return view('Kelola_struk', compact('struk'));
                            
                             //return view('kelola_risk', compact('risk'));
                         }
                     public function kelolaStruk($id){
                             $struk = Struk::select('*')->where('id_sewa', $id)->get();
-                            $struk2 = Struk::select('*')->where('id_sewa', $id)->get();
-                            return view('Kelola_struk', compact('struk','struk2'));
+                            //$struk2 = Struk::select('*')->where('id_sewa', $id)->get();
+                            return view('Kelola_struk', compact('struk'));
                         }
                         public function ubahStruk($id){
                             $struk = Struk::select('*')->where('id_struk',$id)->get();
@@ -622,14 +629,12 @@ class LahanController extends Controller
                                 'updated_at' => date("Y-m-d H:i:s"),
                                 'gambar' => $file->getClientOriginalName()
                             ]);
-                            $struk = Struk::select('*')->where('id_sewa', $request->id_struk)->get();
-                            return view('kelola_struk',compact('struk'));
+                            return redirect()->route('kelolaStruk',$request->id_sewa);
                         }
                         public function hapusStruk($id){
-
+                            session_start();
                             DB::table('struks')->where('id_struk',$id)->delete();
-                            $struk = Struk::select('*')->where('id_sewa', $id)->get();
-                            return view('kelola_struk',compact('struk'));
+                            return redirect()->route('kelolaStruk',$_SESSION['id_sewa']);
                         }
 
                         public function simpan_history($id){   

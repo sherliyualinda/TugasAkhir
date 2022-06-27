@@ -177,11 +177,49 @@
                                     </div>
                                     <div class="tab-pane fade" id="Daily" role="tabpanel" aria-labelledby="Daily-tab">
                                         <h3>Laporan Harian</h3>
+                                        <table class="table table-bordered">
+
+                              <tr>
+                                <th scope="col">No</th>                                
+                                <th scope="col">Gambar</th>
+                                <th scope="col">keterangan</th>                               
+                                <th scope="col">date</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($daily as $index=>$daily)
+                                <tr>
+                                    <td>{{ $index+1}}</td>
+                                    <td><img src="{{ url('gambar_daily') }}/{{ $daily->gambar }} "width="50" height="50"></td>
+                                    <td>{{ $daily->keterangan}}</td>
+                                    <td>{{ $daily->date}}</td>
+                                </tr>
+                        
+                              @endforeach   
+                          </table>  
                                       
                                     </div>
                                     <div class="tab-pane fade" id="Struk" role="tabpanel" aria-labelledby="Struk-tab">
                                         <h3>Struk</h3>
-                                      
+                                      <table class="table table-bordered">
+
+                              <tr>
+                                <th scope="col">No</th>                                
+                                <th scope="col">Gambar</th>
+                                <th scope="col">Keterangan</th>                               
+                                <th scope="col">Tanggal</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($struk as $index=>$struk)
+                                <tr>
+                                    <td>{{ $index+1}}</td>
+                                    <td><img src="{{ url('gambar_struk') }}/{{ $struk->gambar }} "width="50" height="50"></td>
+                                    <td>{{ $struk->keterangan}}</td>
+                                    <td>{{ $struk->tanggal}}</td>
+                                </tr>
+                        
+                              @endforeach   
                                     </div>
                                 
                             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2022 at 07:22 AM
+-- Generation Time: Jun 27, 2022 at 10:26 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -7697,11 +7697,9 @@ CREATE TABLE `lahan_resources` (
 --
 
 INSERT INTO `lahan_resources` (`id_lahan_resources`, `resource`, `keterangan`, `id_resources`, `id_lahan`, `updated_at`) VALUES
-(1, 'pupuk', 'pupuk', 2, 4, '2022-06-16'),
-(2, 'Riko', 'petani', 1, 4, '2022-06-16'),
-(3, 'Ade', 'bersih-bersih', 1, 4, '2022-06-16'),
-(4, 'sekop', 'sekop', 3, 4, '2022-06-16'),
-(5, 'cangkul', 'cangkul', 3, 4, '2022-06-16');
+(11, 'pak tarnoxx', 'petani yo', 1, 4, '2022-06-27'),
+(12, 'pupuk kandang', 'supaya subur', 2, 4, '2022-06-27'),
+(13, 'cangkul', 'cangkul 3', 3, 4, '2022-06-27');
 
 -- --------------------------------------------------------
 
@@ -8726,6 +8724,14 @@ CREATE TABLE `risks` (
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `risks`
+--
+
+INSERT INTO `risks` (`id_risk`, `id_sewa`, `penyebab`, `dampak`, `strategi`, `biaya`, `probabilitas`, `impact`, `levelRisk`, `updated_at`) VALUES
+(7, 7, 'hujan', 'gak bisa beli pupuk', 'minjem duit', 2000, 3, 2, 'High', '2022-06-27'),
+(8, 7, 'hujan gede', 'gak bisa beli pupuk', 'apa aja', 10000, 3, 3, 'High', '2022-06-27');
+
 -- --------------------------------------------------------
 
 --
@@ -8822,6 +8828,14 @@ CREATE TABLE `struks` (
   `updated_at` date NOT NULL,
   `id_sewa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `struks`
+--
+
+INSERT INTO `struks` (`id_struk`, `keterangan`, `gambar`, `tanggal`, `updated_at`, `id_sewa`) VALUES
+(2, 'beli pupuk 2', 'sawah.jpg', '2022-06-27', '2022-06-27', 7),
+(8, 'beli cangkul', 'IMG_20220209_143004.jpg', '2022-06-27', '2022-06-27', 7);
 
 -- --------------------------------------------------------
 
@@ -9035,10 +9049,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 17:19:42', '2021-08-14 17:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-17 03:53:26', '2021-08-17 03:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-17 04:07:23', '2021-08-17 04:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '0n7CkCSH7ygYkQ7DEuiGvidlPkmFMIiRKxghTUXkqlbbBHdfC2ChMAugvVxF', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '6UdrDR6hbMkA5HYQTVYKlubQhj338GxxTPUCgFfvJN56xCJfNFWAxyUwP2XF', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 07:37:26', '2022-04-18 07:37:26', 2),
 (45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'xjD0yt31aDHf8mlJvbCIIBz4YiV0zRwM7v89tMksr9JS2CqTMRsEwDtfYLvE', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
-(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'jbCqjDi7rPSBXN0eUKVyqYFUmtruAZgWArXdJUOG2cVM6L5VYfVyZRFkwfDC', '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
+(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'U3kgr32nre3FRk0u3Z5ysIN4KV07zfjh2mUZ6fybo23nMJkSFXggxGDszuX8', '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
 
 -- --------------------------------------------------------
 
@@ -90099,7 +90113,7 @@ ALTER TABLE `lahans`
 -- AUTO_INCREMENT for table `lahan_resources`
 --
 ALTER TABLE `lahan_resources`
-  MODIFY `id_lahan_resources` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_lahan_resources` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `links`
@@ -90141,7 +90155,7 @@ ALTER TABLE `resources`
 -- AUTO_INCREMENT for table `risks`
 --
 ALTER TABLE `risks`
-  MODIFY `id_risk` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_risk` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `sewa_lahans`
@@ -90159,7 +90173,7 @@ ALTER TABLE `sewa_peralatans`
 -- AUTO_INCREMENT for table `struks`
 --
 ALTER TABLE `struks`
-  MODIFY `id_struk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_struk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tasks`

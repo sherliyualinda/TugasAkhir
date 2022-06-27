@@ -347,7 +347,7 @@ Route::get('/lahan/tolak/{id}', 'LahanController@tolakRequest')->middleware('aut
 Route::get('/lahan/doneRequest/{id}', 'LahanController@doneRequest')->middleware('auth');
 
 Route::get('/lahan/struk/{id}', 'LahanController@strukPembayaran')->middleware('auth');
-Route::get('/lahan/kelola_struk/{id}', 'LahanController@kelolaStruk')->middleware('auth');
+Route::get('/lahan/kelola_struk/{id}', 'LahanController@kelolaStruk')->name('kelolaStruk')->middleware('auth');
 Route::get('/lahan/ubah_struk/{id}',  'LahanController@ubahStruk')->middleware('auth');
 Route::post('/lahan/update_struk', 'LahanController@updateStruk')->name('updateStruk')->middleware('auth');
 Route::get('/lahan/hapus_Struk/{id}', 'LahanController@hapusStruk')->middleware('auth');
