@@ -22,6 +22,7 @@ use App\Task;
 use APp\Link;
 use App\Probabilitas;
 use App\Wbs;
+use App\Lahan_resources;
 use App\Risk;
 use App\Traits\NavbarTrait;
 use Illuminate\Support\Facades\DB;
@@ -534,6 +535,8 @@ class LahanController extends Controller
         }
 
         public function Kelola_resource($id){
+            session_start();
+            $_SESSION['id_lahan'] = $id;
             $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $id ORDER BY r.keterangan;");
             return view('kelola_resource', compact('resource'));
         }
@@ -640,5 +643,28 @@ class LahanController extends Controller
                             // 
 
                             DB::insert("Insert Into task_historis(id_task, text, duration, progress, start_date, parent, sortorder, created_at, updated_at, id_sewa, qty, satuan, harga, totalHarga) SELECT id, text, duration, progress, start_date, parent, sortorder, created_at, updated_at, id_sewa, qty, satuan, harga, totalHarga From tasks WHERE id_sewa = $id");
+                        }
+
+                        public function ubahSDM($id){
+                            $resource = Lahan_resources::select('*')->where('id_lahan_resources',$id)->get();
+                            return view('ubahSDM', compact('resource'));  
+                        }
+                    
+                        public function updateSDM(Request $request){
+                            
+                            $resource = Lahan_resources::where('id_lahan_resources',$request->id_lahan_resources)->update([
+                                'resource' => $request->resource,
+                                'keterangan' => $request->keterangan,
+                                'updated_at' => date("Y-m-d H:i:s"),
+                            ]);
+                            $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $request->id_lahan ORDER BY r.keterangan;");
+                            return view('kelola_resource', compact('resource'));
+                           
+                        }
+                        public function hapusSDM($id){
+                            session_start();
+                            DB::table('lahan_resources')->where('id_lahan_resources',$id)->delete();
+                            $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = '".$_SESSION['id_lahan']."' Order by r.keterangan");
+                            return view('kelola_resource', compact('resource'));
                         }
 }

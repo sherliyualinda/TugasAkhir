@@ -381,6 +381,10 @@ Route::post('/lahan/simpan_orang/{id}', 'LahanController@simpan_orang')->name('s
 Route::post('/lahan/simpan_material/{id}', 'LahanController@simpan_material')->name('tambahMaterial')->middleware('auth');
 Route::post('/lahan/simpan_alat/{id}', 'LahanController@simpan_alat')->name('simpanAlat')->middleware('auth');
 
+Route::get('/lahan/ubah_sdm/{id}',  'LahanController@ubahSDM')->middleware('auth');
+Route::post('/lahan/update_sdm', 'LahanController@updateSDM')->name('updateSDM')->middleware('auth');
+Route::get('/lahan/hapus_sdm/{id}', 'LahanController@hapusSDM')->middleware('auth');
+
 //Route::get('/lahan/boq/{id}', 'LahanController@showBoq')->name('create_boq')->middleware('auth');
 Route::get('/lahan/boq/{id}', 'LahanController@createBoq')->name('create_boq')->middleware('auth');
 

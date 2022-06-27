@@ -37,8 +37,8 @@
                                     <td>{{ $resource->keterangan}}</td>
                                     <td>{{ $resource->role}}</td>
                                     <td class="text-center">
-                                            <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
-                                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                            <a href="/lahan/ubah_sdm/{{$resource->id_lahan_resources}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
+                                            <a href="/lahan/hapus_sdm/{{$resource->id_lahan_resources}}" class="btn btn-sm btn-danger">Delete</a>
                                         </form>
                                     </td>
                                 </tr>
