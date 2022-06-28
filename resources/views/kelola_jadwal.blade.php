@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kelola Struk Pembayaran</title>
+    <title>Kelola Jadwal Ketemu</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
@@ -27,57 +27,55 @@
                         </ol>
                         </nav>
                     </div>
-                    @foreach($struk2 as $index=>$struk2)
+                    @foreach($jadwal2 as $index=>$jadwal2)
                     <table>
                         <tr>
                             <th scope="col">Nama Penyewa</th>          
                             <th scope="col">:</th>     
-                            <td>{{ $struk2->nama}}</td>     
+                            <td>{{ $jadwal2->nama}}</td>     
                                                
                         </tr>
                         <tr>
                             <th scope="col" >NIK</th>     
                             <th scope="col">:</th>     
-                            <td>{{ $struk2->nik}}</td>                         
+                            <td>{{ $jadwal2->nik}}</td>                         
                         </tr>
                         
                     </table>
                     @endforeach
-                    <table>
 
+                    @foreach($jadwal3 as $index=>$jadwal3)
+                    <table>
                         <tr>
                              <td>
-                                 <a href="/lahan/struk/{{$_SESSION['id_sewa']}}" class="btn btn-sm btn-success" class="btn btn-sm btn-info">Tambah Struk</a>
+                                 <a href="/lahan/createJadwal/{{$jadwal3->id_sewa}}" class="btn btn-sm btn-info">Tambah Jadwal</a>
                             </td>
                         </tr>
-                
+                    
                     </table>
+                    @endforeach
                         <table class="table table-bordered">
                             <thead>
                               <tr>
                                 <th scope="col">No</th>                                
-                                <th scope="col">Gambar</th>
-                                <th scope="col">Keterangan</th>                               
-                                <th scope="col">Tanggal</th>  
-                                <th scope="col">Kelola</th>                               
-                                
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Agenda</th>                               
+                                <th scope="col">Keterangan</th>
+                                <th scope="col">Link Meet</th>
+                                <th scope="col">Kelola</th>
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($struk as $index=>$struk)
+                            @foreach($jadwal as $index=>$jadwal)
                                 <tr>
                                     <td>{{ $index+1}}</td>
+                                    <td>{{$jadwal->date}}</td>
+                                    <td>{{$jadwal->agenda}}</td>
+                                    <td>{{$jadwal->keterangan}}</td>
+                                    <td>{{$jadwal->linkMeet}}</td>
                                     <td>
-                                        <img src="{{ url('gambar_struk') }}/{{ $struk->gambar }} "width="50" height="50">
+                                        <a href="/lahan/ubah_jadwal/{{$jadwal->id_jadwal}}" class="btn btn-sm btn-warning">Edit</a>
                                     </td>
-                                    <td>{{ $struk->keterangan}}</td>
-                                    <td>{{ $struk->tanggal}}</td>
-                    
-                                    <td>
-                                        <a href="/lahan/ubah_struk/{{$struk->id_struk}}" class="btn btn-sm btn-warning">Edit</a>
-                                        <a href="/lahan/hapus_Struk/{{$struk->id_struk}}" class="btn btn-sm btn-danger">Hapus</a>
-                                    </td>
-
                                 </tr>
                         
                               @endforeach   

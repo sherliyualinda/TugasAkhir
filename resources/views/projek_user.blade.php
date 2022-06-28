@@ -27,7 +27,7 @@
                 </ol>
             </nav>
         </div>
-        <div class="col-md-12 mt-1">
+        <div class="col-md-50 mt-1">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -64,8 +64,12 @@
                                     <a class="nav-link" id="Struk-tab" data-toggle="tab" href="#Struk" role="tab" aria-controls="Struk"
                                     aria-selected="false">Struk</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Jadwal-tab" data-toggle="tab" href="#Jadwal" role="tab" aria-controls="Jadwal"
+                                    aria-selected="false">Jadwal</a>
+                                </li>
                             </ul>
-                    
+                                
 
                             <div class="tab-content" id="myTabContent">
                                 
@@ -198,19 +202,18 @@
                               @endforeach   
                           </table>  
                                       
-                                    </div>
-                                    <div class="tab-pane fade" id="Struk" role="tabpanel" aria-labelledby="Struk-tab">
-                                        <h3>Struk</h3>
-                                      <table class="table table-bordered">
+                                </div>
 
+                            <div class="tab-pane fade" id="Struk" role="tabpanel" aria-labelledby="Struk-tab">
+                                <h3>Struk</h3>
+                            <table class="table table-bordered">
                               <tr>
                                 <th scope="col">No</th>                                
                                 <th scope="col">Gambar</th>
                                 <th scope="col">Keterangan</th>                               
                                 <th scope="col">Tanggal</th>
                               </tr>
-                            </thead>
-                            <tbody>
+                            
                             @foreach($struk as $index=>$struk)
                                 <tr>
                                     <td>{{ $index+1}}</td>
@@ -218,15 +221,36 @@
                                     <td>{{ $struk->keterangan}}</td>
                                     <td>{{ $struk->tanggal}}</td>
                                 </tr>
-                        
-                              @endforeach   
+                                @endforeach   
+                            </table>
+                            </div>
+
+                            <div class="tab-pane fade" id="Jadwal" role="tabpanel" aria-labelledby="Jadwal-tab">
+                                <h3>Jadwal Pertemuan</h3>
+                            <table class="table table-bordered">
+
+                              <tr>
+                                <th scope="col">No</th>                                
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Agenda</th>                               
+                                <th scope="col">Keterangan</th>
+                                <th scope="col">Link Meet</th>
+                              </tr>
+                            
+                            @foreach($jadwal as $index=>$jadwal)
+                                <tr>
+                                    <td>{{ $index+1}}</td>
+                                    <td>{{ $jadwal->date}}</td>
+                                    <td>{{ $jadwal->agenda}}</td>
+                                    <td>{{ $jadwal->keterangan}}</td>
+                                    <td>{{ $jadwal->linkMeet}}</td>
+                                </tr>
+                                @endforeach   
+                            </table>
                                     </div>
                                 
                             </div>
                         </div>
-                   
-
-                       
                     </div>
                 </div>
             </div>

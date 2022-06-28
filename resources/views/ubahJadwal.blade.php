@@ -16,7 +16,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <title>Ubah Laporan Harian</title>
+    <title>Ubah Jadwal Ketemu</title>
 </head>
 
 <body>
@@ -26,28 +26,30 @@
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-header">
-                    Ubah Laporan Harian
+                    Ubah Jadwal Ketemu
                 </div>
                 <div class="card-body">
-                @foreach ($daily as $daily)
-                <form action="{{route('updateDaily')}}" method="POST" enctype="multipart/form-data">
+                @foreach ($jadwal as $jadwal)
+                <form action="{{route('updateJadwal')}}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
-                 <input type="hidden" name="id_daily" value="{{$daily->id_daily}}">
-                 <input type="hidden" name="id_sewa" value="{{$daily->id_sewa}}">
-                
-                        <div class="form-group">
-                            <label>Gambar</label><br>
-                            <img src="{{ url('gambar_struk') }}/{{ $daily->gambar }} "width="50" height="50">
-                            <input type="file" name="gambar" value="{{old('gambar',$daily->gambar)}}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Keterangan</label>
-                            <input type="input" name="keterangan" value="{{old('keterangan',$daily->keterangan)}}" class="form-control form-control-user" placeholder="Keterangan">
-                        </div>
-                        <div class="form-group">
-                            <label>Tanggal</label>
-                            <input type="date" name="date" value="{{old('date',$daily->date)}}" class="form-control form-control-user" rows="4" placeholder="Masukkan Tanggal">
-                        </div>
+                 <input type="hidden" name="id_jadwal" value="{{$jadwal->id_jadwal}}">
+                 <input type="hidden" name="id_sewa" value="{{$jadwal->id_sewa}}">
+                    <div class="form-group">
+                     <label>Tanggal</label>
+                     <input type="date" name="date" value="{{old('date',$jadwal->date)}}" class="form-control form-control-user" rows="4" placeholder="Masukkan Tanggal">
+                    </div>
+                    <div class="form-group">
+                        <label>Agenda</label>
+                        <input type="input" name="agenda" value="{{old('agenda',$jadwal->agenda)}}" class="form-control form-control-user" placeholder="Keterangan">
+                    </div>
+                    <div class="form-group">
+                        <label>Keterangan</label>
+                        <input type="input" name="keterangan" value="{{old('keterangan',$jadwal->keterangan)}}" class="form-control form-control-user" placeholder="Keterangan">
+                    </div>
+                    <div class="form-group">
+                        <label>Link Meet</label>
+                        <input type="input" name="linkMeet" value="{{old('linkMeet',$jadwal->linkMeet)}}" class="form-control form-control-user" placeholder="Keterangan">
+                    </div>
                         @endforeach
                         <!-- <button type="submit" class="btn btn-success">SIMPAN</button> -->
                         <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Update Data</button>                    
