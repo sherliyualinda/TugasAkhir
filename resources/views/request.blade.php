@@ -16,7 +16,7 @@
 
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-20">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                     <div class="col-md-12 mt-2">
@@ -37,6 +37,7 @@
                                 <th scope="col" >Kelola</th>
                                 <th scope="col">Gantt Chart</th>
                                 <th scope="col" >Resiko</th>
+                                <th scope="col" >Jadwal Ketemu</th>
                                 <th scope="col">Laporan Harian</th>
                                 <th scope="col">Struk Pembayaran</th>
                                 <th colspan="2" >Progres</th>
@@ -86,6 +87,15 @@
                                         <?php }else{?>
                                             <a href="#" class="btn btn-sm btn-secondary"> Kelola</a>
                                         <?php } ?>
+                                    </td>
+                                    <td>
+                                        <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
+                                            <a href="/jadwal/kelola/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">kelola</a>
+                                        <?php }else{?>
+                                            <a href="#" class="btn btn-sm btn-secondary"> Kelola</a>
+                                        <?php } ?>
+
+                                        
                                     </td>
                                   
                                     <td>

@@ -413,5 +413,10 @@ Route::get('/peralatan/acc/{id}', 'peralatanController@accRequest')->middleware(
 Route::get('/peralatan/tolak/{id}', 'peralatanController@tolakRequest')->middleware('auth');
 Route::get('/peralatanan/doneRequest/{id}', 'peralatanController@doneRequest')->middleware('auth');
 
+Route::get('/lahan/createJadwal/{id}', 'LahanController@createJadwal')->name('create_jadwal')->middleware('auth');
+Route::get('/jadwal/kelola/{id}', 'LahanController@kelola_jadwal')->name('kelola_jadwal')->middleware('auth');
+Route::post('/jadwal/simpan_jadwal/{id}', 'LahanController@simpan_jadwal')->name('simpan_jadwal')->middleware('auth');
+Route::get('/lahan/ubah_jadwal/{id}',  'LahanController@ubahJadwal')->middleware('auth');
+Route::post('/lahan/update_jadwal', 'LahanController@updateJadwal')->name('updateJadwal')->middleware('auth');
 // Auth::routes();
 // Auth::routes();
