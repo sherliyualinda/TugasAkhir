@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Product;
 use App\Category;
+use App\Pengguna;
 use App\Models\Regency;
 use App\Models\Village;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
@@ -88,7 +90,26 @@ class StoreController extends Controller
         ]);
     }
 
-    
+    public function storePending()
+    {
+        $pengguna = Pengguna::where('status_pengajuan_store', 'PENDING')->where('village_id', Auth::user()->pengguna->village_id)->get();
+        return view('pages.adminstore.store.index',compact('pengguna'));
+    }
+
+    public function storeDetail($id)
+    {
+        $pengguna = Pengguna::where('id_pengguna', $id)->first();
+        return view('pages.adminstore.store.show',compact('pengguna'));
+    } 
+
+    public function storeApprove(Request $request, $id)
+    {
+        $item = Pengguna::findOrfail($id);
+        $item->status_pengajuan_store = 'APPROVE';
+        $item->save();
+
+        return redirect()->route('dashboard.store-pending-show', $id);
+    }
 }
 
 

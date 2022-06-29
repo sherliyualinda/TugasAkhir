@@ -254,6 +254,11 @@ Route::get('/dashboard/transactions', 'DashboardTransactionController@index')->n
 Route::get('/dashboard/transactions/{id}', 'DashboardTransactionController@details')->name('dashboard-transaction-details');
 Route::post('/dashboard/transactions/{id}', 'DashboardTransactionController@update')->name('dashboard-transaction-update');
 
+// store
+Route::get('/dashboard/stores-pending', 'StoreController@storePending')->name('dashboard.store-pending');
+Route::get('/dashboard/stores-pending-detail/{id}', 'StoreController@storeDetail')->name('dashboard.store-pending-show');
+Route::post('/dashboard/stores/approve/{id}', 'StoreController@storeApprove')->name('dashboard.store-approve');
+
 
 Route::get('/konfirmasistatuscustomer/{id}', 'DashboardTransactionController@konfirmasistatuscustomer')->name('konfirmasistatuscustomer');
 Route::get('/konfirmasistatuspenjual/{id}', 'DashboardTransactionController@konfirmasistatuspenjual')->name('konfirmasistatuspenjual');
