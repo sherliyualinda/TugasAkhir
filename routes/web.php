@@ -178,7 +178,7 @@ Route::post('/sosial-media/get-group-report-list', 'Sosmed_Con@get_group_report_
 //NOTIF
 Route::post('/sosial-media/update_notif', 'Sosmed_Con@update_notif')->name('sosial-media.update_notif');
 
-
+//SUPER ADMIN AREA
 //SUPER ADMIN - MENU DASHBOARD
 Route::get('/sosial-media/dashboard-admin', 'superadmin\menu_dashboard_con@get_jml_akun');
 Route::get('/sosial-media/getData/{x}', 'superadmin\menu_dashboard_con@get_data');
@@ -195,6 +195,10 @@ Route::post('/sosial-media/get-report-list', 'superadmin\menu_report_con@get_rep
 //SUPER ADMIN - MENU LIST PENGGUNA
 Route::get('/sosial-media/list-pengguna', 'superadmin\menu_pengguna_con@get_all_akun');
 
+//VIDEO
+Route::get('/sosial-media/video', 'superadmin\VideoController@index');
+
+//END SUPER ADMIN AREA
 //Marketplace
 Route::get('/sosial-media/marketplace', 'HomeController@marketplace');
 
