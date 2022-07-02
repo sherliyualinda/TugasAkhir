@@ -18,12 +18,13 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-style.css') }}">
+    @yield('css')
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    @yield('css')
 </head>
 <style>
 .highcharts-figure, .highcharts-data-table table {
@@ -122,6 +123,13 @@ rect.highcharts-background{
               {{-- @if(COUNT($get) != 0)
                   <span class="badge badge-danger" style="font-size: 10px;"> {{ COUNT($get) }} </span>
               @endif --}}
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('superadmin.sosial-media.video.index')}}">
+              <i class="fa fa-play"></i>
+              <span>Video</span>
             </a>
           </li>
 

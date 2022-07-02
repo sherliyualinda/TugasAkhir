@@ -196,7 +196,12 @@ Route::post('/sosial-media/get-report-list', 'superadmin\menu_report_con@get_rep
 Route::get('/sosial-media/list-pengguna', 'superadmin\menu_pengguna_con@get_all_akun');
 
 //VIDEO
-Route::get('/sosial-media/video', 'superadmin\VideoController@index');
+Route::prefix('superadmin')
+->name('superadmin.sosial-media.')
+->namespace('superadmin')
+->group(function() {
+    Route::resource('/sosial-media/video', 'VideoController');
+});
 
 //END SUPER ADMIN AREA
 //Marketplace

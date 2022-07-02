@@ -8,80 +8,54 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">List Video</h1>
-      <a href="#">Tambah</a>
-      {{-- <br>
-      <ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
-          <li class="nav-item">
-              <a class="nav-link active" data-toggle="pill" href="#pills-desa" role="tab" aria-controls="pills-desa" aria-selected="true">Akun Desa</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" id="pills-pribadi-tab" data-toggle="pill" href="#pills-pribadi" role="tab" aria-controls="pills-pribadi" aria-selected="false">Akun Pribadi</a>
-          </li>
-      </ul> --}}
+      <a href="{{route('superadmin.sosial-media.video.create')}}" class="btn btn-primary">Tambah</a>
   </div>
-
+  @if($errors->any())
+  <div class="alert alert-danger">
+      <ul>
+          @foreach($errors->all() as $error)
+          <li> {{ $error }} </li>
+          @endforeach
+      </ul>
+  </div>
+  @endif
+  @if (\Session::has('success'))
+  <div class="alert alert-success">
+      <ul>
+          <li>{!! \Session::get('success') !!}</li>
+      </ul>
+  </div>
+@endif
 <!-- Content Row -->
   <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-desa" role="tabpanel" aria-labelledby="pills-desa-tab">
           <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Akun Desa</h6>
-              </div>
               <div class="card-body">
                   <div class="table-responsive">
                       <table class="table table-bordered" id="dataTableX" width="100%" cellspacing="0">
                           <thead class="thead-light">
                               <tr align="center">
                                   <th>No.</th>
-                                  <th>Tanggal Join</th>
-                                  <th>Foto Profil</th>
-                                  <th>Nama</th>
-                                  <th>Username</th>
+                                  <th>Judul</th>
+                                  <th>Deskripsi</th>
+                                  <th>Thumbnail</th>
+                                  <th>Aksi</th>
                               </tr>
                           </thead>
                           <tbody>
-                              {{-- @foreach($akun_desa as $data)
+                              @foreach($videos as $key => $item)
                               <tr align="center">
-                                  <td>{{ $i++ }}.</td>
-                                  <td>{{ date_format(date_create($data->tgl_join), "d M Y H:i A") }}</td>
-                                  <td><img class="img-profile rounded-circle" src="{{ $data->foto_profil != null ? url('/data_file/'.$data->username.'/foto_profil/'.$data->foto_profil) : asset('user.jpg') }}"></td>
-                                  <td>{{ $data->nama }}</td>
-                                  <td>{{ $data->username }}</td>
-                              </tr>
-                              @endforeach --}}
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="tab-pane fade" id="pills-pribadi" role="tabpanel" aria-labelledby="pills-pribadi-tab">
-          <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Akun Pribadi</h6>
-              </div>
-              <div class="card-body">
-                  <div class="table-responsive">
-                      <table class="table table-bordered" id="dataTableY" width="100%" cellspacing="0">
-                          <thead class="thead-light">
-                              <tr align="center">
-                                  <th>No.</th>
-                                  <th>Tanggal Join</th>
-                                  <th>Foto Profil</th>
-                                  <th>Nama</th>
-                                  <th>Username</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              {{-- @foreach($akun_pribadi as $data)
-                              <tr align="center">
-                                  <td>{{ $i++ }}.</td>
-                                  <td>{{ date_format(date_create($data->tgl_join), "d M Y H:i A") }}</td>
-                                  <td><img class="img-profile rounded-circle" src="{{ $data->foto_profil != null ? url('/data_file/'.$data->username.'/foto_profil/'.$data->foto_profil) : asset('user.jpg') }}"></td>
-                                  <td>{{ $data->nama }}</td>
-                                  <td>{{ $data->username }}</td>
-                              </tr>
-                              @endforeach --}}
+                                  <td>{{ $key+1 }}.</td>
+                                  <td>{{ $item->title }}</td>
+                                  <td>{{ $item->description }}</td>
+                                  <td><img class="img-profile rounded-circle" src="{{ $item->thumbnail != null ? asset($item->thumbnail) : asset('user.jpg') }}"></td>
+                                    <td>
+                                        <a href="{{route('superadmin.sosial-media.video.show', $item->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
+                                        <a href="{{route('superadmin.sosial-media.video.edit', $item->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                                        <a href="#" class="btn btn-danger delete btn-sm" data-toggle="modal" data-target="#deleteModal" data-url={{ route('superadmin.sosial-media.video.destroy', $item->id) }}><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                              @endforeach
                           </tbody>
                       </table>
                   </div>
@@ -89,4 +63,39 @@
           </div>
       </div>
   </div>
+
+  <!-- Delete Warning Modal -->
+<div class="modal modal-danger fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Video</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form action="" method="post">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="delete" />
+                <h5 class="text-center">Yakin mau hapus video ini?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-sm btn-danger">Ya, Hapus Video</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+        <!-- End Delete Modal --> 
+@endsection
+
+@section('js')
+<script>
+     $(document).on('click','.delete',function(){
+         let url = $(this).attr('data-url');
+         $('#deleteModal form').attr('action',url);
+    });
+</script>
 @endsection
