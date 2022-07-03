@@ -89719,6 +89719,21 @@ CREATE TABLE `wbs` (
   `updated_at` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+-- Dumping structure for table diessnie.videos
+CREATE TABLE IF NOT EXISTS `videos` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL DEFAULT '',
+  `description` text,
+  `url` varchar(255) DEFAULT '',
+  `thumbnail` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `id_pengguna` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+
+
 --
 -- Indexes for dumped tables
 --
