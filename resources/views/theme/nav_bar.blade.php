@@ -58,6 +58,17 @@
 							@endif
 						</div>
 					</div>
+					<div class="row" style="margin-right: 0; margin-left: 0;">
+						<div class="col desa-col">
+						    @if(Auth::check())
+							<a href="{{ route('desatube.index') }}" class="dropdown-item">
+							    <img src="/desatube-logo.png" style="min-width: 150px;">
+								<br>
+								<small style="white-space: normal!important;">Konten video desa di DesaTube!</small>
+							</a>
+							@endif
+						</div>
+					</div>
 				</div>
 			</li>
 		</ul>

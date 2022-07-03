@@ -204,6 +204,12 @@ Route::prefix('superadmin')
 });
 
 //END SUPER ADMIN AREA
+
+// DesaTube
+Route::resource('/desatube', 'DesaTube\VideoController');
+
+// DesaTube
+
 //Marketplace
 Route::get('/sosial-media/marketplace', 'HomeController@marketplace');
 

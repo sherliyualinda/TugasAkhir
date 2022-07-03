@@ -59,6 +59,11 @@
                           </tbody>
                       </table>
                   </div>
+                  <div class="row">
+                    <div class="col-12 mt-4">
+                      {{ $videos->links() }}
+                    </div>
+                  </div>
               </div>
           </div>
       </div>
