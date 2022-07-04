@@ -99,7 +99,11 @@ class StoreController extends Controller
     public function storeDetail($id)
     {
         $pengguna = Pengguna::where('id_pengguna', $id)->first();
-        return view('pages.adminstore.store.show',compact('pengguna'));
+        $total_notif = $this->total_notif();
+        $list_notif_display = $this->list_notif_display();
+        $notif_pesan = $this->notif_pesan();
+        $notif_group = $this->notif_group();
+        return view('pages.adminstore.store.show',compact('pengguna','total_notif', 'list_notif_display', 'notif_pesan', 'notif_group'));
     } 
 
     public function storeApprove(Request $request, $id)
