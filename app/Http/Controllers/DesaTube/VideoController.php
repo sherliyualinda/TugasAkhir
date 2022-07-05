@@ -14,13 +14,18 @@ class VideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $total_notif = NavbarTrait::total_notif();
         $list_notif_display = NavbarTrait::list_notif_display();
         $notif_pesan = NavbarTrait::notif_pesan();
         $notif_group = NavbarTrait::notif_group();
-        $videos = Video::with('pengguna')->paginate(10);
+        $search = $request->get('search');
+        if($search){
+            $videos = Video::where('title', 'LIKE', "%$search%")->with('pengguna')->paginate(10);
+        }else{
+            $videos = Video::with('pengguna')->paginate(10);            
+        }
         return view('pages.desatube.index', compact('videos', 'total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
     }
 
