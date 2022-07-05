@@ -11,4 +11,8 @@ class Video extends Model
     public function pengguna(){
         return $this->belongsTo('App\Pengguna', 'id_pengguna', 'id_pengguna');
     }
+    
+    public function detail(){
+        return $this->hasOne('App\Models\VideoDetail', 'video_id', 'id');
+    }
 }
