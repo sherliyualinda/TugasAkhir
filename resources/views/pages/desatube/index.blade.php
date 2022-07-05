@@ -1,7 +1,34 @@
 @extends('layouts2.app')
 
+@push('addon-style')
+<style>
+.video-title-scope{
+  font-family: "Roboto","Arial",sans-serif;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  font-weight: 500;
+  max-height: 4rem;
+  overflow: hidden;
+  display: block;
+  -webkit-line-clamp: 2;
+  display: box;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.identity-scope{
+  display: grid;
+  font-family: "Roboto","Arial",sans-serif;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  font-weight: 400;
+}  
+</style>    
+@endpush
+
 @section('title')
-Desaku Video Page
+DesaTube
 @endsection
 
 @section('content')
@@ -33,11 +60,16 @@ Desaku Video Page
               </div>
             </div>
             <div class="products-text">
-              {{ $item->title }}
+              <div class="video-title-scope">
+                {{ $item->title }}
+              </div>
+              <div class="identity-scope">
+                <span>{{ $item->pengguna->nama }}</span>
+                <span>{{ $item->created_at->diffForHumans() }}</span>
+              </div>
             </div>
           </a>
         </div>
-
         @empty
       <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
               Data Tidak Di Temukan

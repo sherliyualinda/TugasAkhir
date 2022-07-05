@@ -20,7 +20,7 @@ class VideoController extends Controller
         $list_notif_display = NavbarTrait::list_notif_display();
         $notif_pesan = NavbarTrait::notif_pesan();
         $notif_group = NavbarTrait::notif_group();
-        $videos = Video::paginate(10);
+        $videos = Video::with('pengguna')->paginate(10);
         return view('pages.desatube.index', compact('videos', 'total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
     }
 
