@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use mysqli;
+use Carbon\Carbon;
 
 class LahanController extends Controller
 {
@@ -339,6 +340,49 @@ class LahanController extends Controller
         
 
     }
+
+    public function scurve(Request $request,$id){
+        $aktual = DB::select("SELECT a.id_sewa, a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa = $id AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc;");
+        $tanggal = [];
+        $total_aktual = [];
+        foreach ($aktual as $key => $value) {
+            if ($value->tanggalNenek !== null && !in_array($value->thNenek, $total_aktual)) {
+                $total_aktual[] = $value->thNenek;
+            }
+            if ($value->tanggalIbu !== null && !in_array($value->thIbu, $total_aktual)) {
+                $total_aktual[] = $value->thIbu;
+            }
+            if ($value->tanggalNenek !== null && !in_array(Carbon::parse($value->tanggalNenek)->format('d-m-Y'), $tanggal)) {
+                $tanggal[] = Carbon::parse($value->tanggalNenek)->format('d-m-Y');
+            }
+        }
+        
+        $total_history = [];
+        $history = DB::select("SELECT a.id_sewa, a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id_history as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id_history as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id_history as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from task_historis a left join task_historis b on a.id_history = b.parent LEFT JOIN task_historis c on b.id_history = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa = $id AND a.parent =0 ORDER BY a.id_history asc,a.parent asc,b.id_history asc, b.parent asc,c.id_history asc, c.parent asc;");
+        foreach ($history as $key => $value) {
+            if ($value->tanggalNenek !== null && !in_array($value->thNenek, $total_history)) {
+                $total_history[] = $value->thNenek;
+            }
+            if ($value->tanggalIbu !== null && !in_array($value->thIbu, $total_history)) {
+                $total_history[] = $value->thIbu;
+            }
+            if ($value->tanggalNenek !== null && !in_array(Carbon::parse($value->tanggalNenek)->format('d-m-Y'), $tanggal)) {
+                $tanggal[] = Carbon::parse($value->tanggalNenek)->format('d-m-Y');
+            }
+        }
+        usort($tanggal, function ($a, $b) {
+            return strtotime($a) - strtotime($b);
+        });
+        // dd($aktual);
+
+        $data = [
+            'data_tanggal' => $tanggal,
+            'total_aktual' => $total_aktual,
+            'total_history' => $total_history
+        ];
+        return view('scurve_wbs', compact('data'));
+    }
+
     // public function formWbs($id){
     //     $wbs = Boq::select('*')->where('id_task', $id)->limit(1)->get();
         

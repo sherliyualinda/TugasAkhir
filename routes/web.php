@@ -363,6 +363,7 @@ Route::post('/lahan/update_risk', 'LahanController@updateRisk')->name('updateRis
 
 Route::get('/wbs/{id}', 'LahanController@wbs')->name('wbs')->middleware('auth');
 Route::get('/wbs_user/{id}', 'LahanController@wbs_user')->name('wbs')->middleware('auth');
+Route::get('/s-curve/wbs/{id}', 'LahanController@scurve')->name('scurve')->middleware('auth');
 
 Route::get('/lahan/createRisk/{id}', 'LahanController@createRisk')->name('create_risk')->middleware('auth');
 Route::post('/lahan/simpan_risk/{id}', 'LahanController@simpan_risk')->name('simpan_risk')->middleware('auth');
