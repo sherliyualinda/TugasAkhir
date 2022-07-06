@@ -22,7 +22,50 @@
     <link rel="stylesheet" href="{{ asset('css/slideshow.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/read-less-more.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/profil.css') }}">
-
+	<style>
+		.video-title-scope{
+			font-family: "Roboto","Arial",sans-serif;
+			font-size: 1.4rem;
+			line-height: 2rem;
+			font-weight: 500;
+			max-height: 4rem;
+			overflow: hidden;
+			display: block;
+			-webkit-line-clamp: 2;
+			display: box;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			text-overflow: ellipsis;
+			white-space: normal;
+		}
+		.identity-scope{
+			display: grid;
+			font-family: "Roboto","Arial",sans-serif;
+			font-size: 0.8rem;
+			line-height: 1rem;
+			font-weight: 400;
+		}
+		.channel::after{
+			content: "•";
+			margin: 0 4px;
+		}
+		.video-thumbnail {
+			width: 100%;
+			height: 150px;
+			border-radius: 8px;
+			overflow: hidden;
+			position: relative;
+			z-index: 1;
+		}
+		.detail-thumbnail{
+			width: 100%;
+			height: 100%;
+			background-color: #ddd;
+			background-position: center;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+		</style>  
 </head>
 <body>
 <!--<div class="se-pre-con"></div>-->
@@ -241,6 +284,50 @@
 		</div>
 		<div class="col-lg-4 col-sm-4"></div>
 	</section>
+
+	<div class="container">
+		<div class="row">
+			<div class="pt-3 pb-3">
+				<h4>History Video</h4>
+			</div>
+		</div>
+		<div class="row">
+			@if ($video_history_view)
+				@foreach ($video_history_view as $item)
+				<div class="col-6 col-md-4 col-lg-3" data-aos="fade-up">
+					<a href="{{ route('desatube.show', $item->id_video) }}" class="component-products d-block">
+						<div class="video-thumbnail">
+							<div class="detail-thumbnail" style="
+							@if (!empty($item->video->thumbnail))
+									background-image: url('{{ asset($item->video->thumbnail) }}')
+							@else
+									background-image: #eee
+							@endif 
+							">
+							</div>
+						</div>
+						<div class="products-text">
+							<div class="video-title-scope">
+								{{ $item->video->title }}
+							</div>
+							<div class="identity-scope">
+								<span>{{ $item->video->pengguna->nama }}</span>
+								@if (!is_null($item->video->detail))
+								<span class="channel">{{ number_format($item->video->detail->views) . ' x ditonton' }}</span>
+								@endif
+								<span>{{ $item->video->created_at->diffForHumans() }}</span>
+							</div>
+						</div>
+					</a>
+				</div>
+				@endforeach
+			@else
+			<div class="col-lg" style="padding-bottom:15px;">
+				<strong style="font-size: 16px;">Belum Ada Video Dilihat</strong>
+			</div>
+			@endif
+		</div>
+	</div>
 
 	@if(Auth::check())
 		<div class="modal fade" id="myModalFollowers" role="dialog">

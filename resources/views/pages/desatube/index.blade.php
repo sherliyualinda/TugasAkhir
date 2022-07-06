@@ -23,7 +23,11 @@
   font-size: 0.8rem;
   line-height: 1rem;
   font-weight: 400;
-}  
+}
+.channel::after{
+  content: "•";
+  margin: 0 4px;
+}
 </style>    
 @endpush
 
@@ -69,6 +73,9 @@ DesaTube
                   </div>
                   <div class="identity-scope">
                     <span>{{ $item->pengguna->nama }}</span>
+                    @if (!is_null($item->detail))
+                    <span class="channel">{{ number_format($item->detail->views) . ' x ditonton' }}</span>
+                    @endif
                     <span>{{ $item->created_at->diffForHumans() }}</span>
                   </div>
                 </div>

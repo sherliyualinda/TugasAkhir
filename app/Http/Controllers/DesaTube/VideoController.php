@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Video;
 use App\Models\VideoDetail;
+use App\Models\VideoView;
 use App\Traits\NavbarTrait;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class VideoController extends Controller
 {
@@ -23,10 +26,11 @@ class VideoController extends Controller
         $notif_group = NavbarTrait::notif_group();
         $search = $request->get('search');
         if($search){
-            $videos = Video::where('title', 'LIKE', "%$search%")->with('pengguna')->paginate(10);
+            $videos = Video::where('title', 'LIKE', "%$search%")->with(['pengguna','detail'])->paginate(10);
         }else{
-            $videos = Video::with('pengguna')->paginate(10);            
+            $videos = Video::with(['pengguna','detail'])->paginate(10);            
         }
+        // dd(is_null($videos[2]->detail));
         return view('pages.desatube.index', compact('videos', 'total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
     }
 
@@ -57,25 +61,44 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $total_notif = NavbarTrait::total_notif();
         $list_notif_display = NavbarTrait::list_notif_display();
         $notif_pesan = NavbarTrait::notif_pesan();
         $notif_group = NavbarTrait::notif_group();
-        $video = Video::find($id)->with('detail')->first();
+        $video = Video::where('id', $id)->with('detail')->first();
         $videos = Video::with('pengguna')->limit(5)->orderBy('created_at', 'DESC')->get();
-        $detail = VideoDetail::where('video_id', $id)->first();
+        $detail = VideoDetail::where('id_video', $id)->first();
         if ($detail) {
-            $views = $detail->views;
-            $detail->views = $views+1;
-            $detail->save();
+            $views = VideoView::where('id_video', $id)->whereDate('created_at', Carbon::today())->first();
+            if(!$views){
+                $views = $detail->views;
+                $detail->views = $views+1;
+                $detail->save();
+
+                $data_view = [
+                    'id_video' => $video->id,
+                    'id_user' => Auth::user()->id,
+                    'ip_address' => $request->ip(),
+                    'user_agent' => $request->userAgent()
+                ];
+                VideoView::create($data_view);
+            }
         }else{
             $data = [
-                'video_id' => $video->id,
+                'id_video' => $video->id,
+                'id_user' => Auth::user()->id,
                 'views' => 1
             ];
+            $data_view = [
+                'id_video' => $video->id,
+                'id_user' => Auth::user()->id,
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->userAgent()
+            ];
             VideoDetail::create($data);
+            VideoView::create($data_view);
         }
         // dd($video);
         return view('pages.desatube.detail', compact('video', 'videos', 'total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));

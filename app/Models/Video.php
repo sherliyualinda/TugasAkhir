@@ -13,6 +13,6 @@ class Video extends Model
     }
     
     public function detail(){
-        return $this->hasOne('App\Models\VideoDetail', 'video_id', 'id');
+        return $this->hasOne('App\Models\VideoDetail', 'id_video', 'id');
     }
 }

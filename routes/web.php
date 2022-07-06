@@ -118,7 +118,7 @@ Route::post('/sosial-media/menyukai_proses/{id_konten}', 'Sosmed_Con@menyukai_pr
 Route::post('/sosial-media/batal_menyukai_proses/{id}', 'Sosmed_Con@batal_menyukai_proses');
 
 //PROFIL
-Route::get('/sosial-media/profil/{username}', 'Sosmed_Con@lihat_profil');
+// Route::get('/sosial-media/profil/{username}', 'Sosmed_Con@lihat_profil');
 Route::get('/sosial-media/profil/{username}', 'Sosmed_Con@lihat_profil')->name('sosial-media.profil');
 Route::get('/sosial-media/tambah_teman2/{username}', 'Sosmed_Con@tambah_teman2');
 Route::get('/sosial-media/hapus_following/{username}', 'Sosmed_Con@hapus_following');

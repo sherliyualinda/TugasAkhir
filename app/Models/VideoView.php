@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VideoDetail extends Model
+class VideoView extends Model
 {
-    protected $fillable = ['id_video', 'views', 'subscribes', 'like', 'dont_like','id_user'];
+    protected $fillable = ['id_video', 'ip_address', 'user_agent','id_user'];
 
     public function video(){
         return $this->belongsTo('App\Models\Video', 'id_video');

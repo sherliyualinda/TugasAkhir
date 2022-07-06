@@ -55,7 +55,9 @@
           </video>
           <h3>{{ $video->title }}</h3>
           <div class="identity-detail-scope">
-            <span class="channel">{{ ($video->detail->views == 0) ? '': $video->detail->views . ' x ditonton' }}</span>
+            @if (!is_null($video->detail))
+            <span class="channel">{{ number_format($video->detail->views) . ' x ditonton' }}</span>
+            @endif
             <span>{{ $video->created_at->diffForHumans() }}</span>
           </div>
           <hr>
