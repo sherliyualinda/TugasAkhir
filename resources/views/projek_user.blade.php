@@ -176,8 +176,86 @@
                                       
                                     </div>
                                     <div class="tab-pane fade" id="boq" role="tabpanel" aria-labelledby="boq-tab">
-                                        <h3>BOQ</h3>
-                                      
+                                        <div class="row">
+                                            <div class="col-3 pt-3">
+                                              <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                <a class="nav-link active" id="v-pills-aktual-tab" data-toggle="pill" href="#v-pills-aktual" role="tab" aria-controls="v-pills-aktual" aria-selected="true">Aktual</a>
+                                                <a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">Histori</a>
+                                               </div>
+                                            </div>
+                                            <div class="col-9">
+                                              <div class="tab-content" id="v-pills-tabContent">
+                                                <div class="tab-pane fade show active" id="v-pills-aktual" role="tabpanel" aria-labelledby="v-pills-aktual-tab">
+                                                    <table class="table">
+                                                        <thead>
+                                                          <tr>
+                                                            <th scope="col">No.</th>
+                                                            <th scope="col">Uraian Pekerjaan</th>
+                                                            <th scope="col">Jumlah Harga</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @php
+                                                                $i = 1;
+                                                            @endphp
+                                                            @foreach ($boq_aktual as $parent)
+                                                            @if ($parent->parent == 0)
+                                                                <tr>
+                                                                    <th scope="row">{{$i++}}</th>
+                                                                    <td>{{$parent->text}}</td>
+                                                                    <td>{{$parent->totalHarga}}</td>
+                                                                </tr>
+                                                                @foreach ($parent->children as $child)
+                                                                    @if($child->totalHarga > 0)
+                                                                    <tr>
+                                                                        <th scope="row">{{$i++}}</th>
+                                                                        <td>{{$child->text}}</td>
+                                                                        <td>{{$child->totalHarga}}</td>
+                                                                    </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                            @endforeach
+                                                        </tbody>
+                                                      </table>
+                                                </div>
+                                                <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
+                                                    <table class="table">
+                                                        <thead>
+                                                          <tr>
+                                                            <th scope="col">No.</th>
+                                                            <th scope="col">Uraian Pekerjaan</th>
+                                                            <th scope="col">Jumlah Harga</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @php
+                                                                $i = 1;
+                                                            @endphp
+                                                            @foreach ($boq_history as $parent)
+                                                            @if ($parent->parent == 0)
+                                                                <tr>
+                                                                    <th scope="row">{{$i++}}</th>
+                                                                    <td>{{$parent->text}}</td>
+                                                                    <td>{{$parent->totalHarga}}</td>
+                                                                </tr>
+                                                                @foreach ($parent->children as $child)
+                                                                    @if($child->totalHarga > 0)
+                                                                    <tr>
+                                                                        <th scope="row">{{$i++}}</th>
+                                                                        <td>{{$child->text}}</td>
+                                                                        <td>{{$child->totalHarga}}</td>
+                                                                    </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                            @endforeach
+                                                        </tbody>
+                                                      </table>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
                                     </div>
                                     <div class="tab-pane fade" id="Daily" role="tabpanel" aria-labelledby="Daily-tab">
                                         <h3>Laporan Harian</h3>

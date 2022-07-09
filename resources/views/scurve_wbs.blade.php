@@ -15,8 +15,39 @@
     
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <canvas id="Aktual" width="600" height="400"></canvas>
+            <div class="col-md-12">
+                <div class="card border-0 shadow rounded">
+                    <div class="card-header text-center"><h2>S-Curve</h2></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <canvas id="Aktual" width="600" height="400"></canvas>
+                            </div>
+                            <div class="col-md-3">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Tanggal</th>
+                                        <th scope="col">Kegiatan</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($data['data_kegiatan'] as $key => $item)
+                                            <tr>
+                                                <td>{{$key}}</td>
+                                                <td>
+                                                @foreach ($item as $value)
+                                                    {{$value}},
+                                                @endforeach
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
             </div>
@@ -34,20 +65,33 @@
         var data_tanggal = @json($data['data_tanggal']);
         var total_aktual = @json($data['total_aktual']);
         var total_history = @json($data['total_history']);
-            console.log(total_aktual);
-            console.log(total_history);
-
+        
+        var arrFirst = [];
+            for (const key in total_aktual) {
+                if (Object.hasOwnProperty.call(total_aktual, key)) {
+                    const data = total_aktual[key];
+                    arrFirst.push(data)
+                }
+            }
+            
         var dataFirst = {
             label: "Aktual",
-            data: total_aktual,
+            data: arrFirst,
             lineTension: 0,
             fill: false,
             borderColor: 'red'
         };
 
+        var arrSecond = [];
+            for (const key in total_history) {
+                if (Object.hasOwnProperty.call(total_history, key)) {
+                    const data = total_history[key];
+                    arrSecond.push(data)
+                }
+            }
         var dataSecond = {
             label: "Histori",
-            data: total_history,
+            data: arrSecond,
             lineTension: 0,
             fill: false,
             borderColor: 'blue'

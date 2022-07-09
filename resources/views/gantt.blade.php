@@ -45,8 +45,9 @@
             <li>
                 <?php if($sewa->id_pemilik == Auth::user()->pengguna->id_pengguna){?>
                     <a href="/wbs/{{$_SESSION['id_sewa']}}" class="btn btn-sm btn-info">WBS</a>
+                    <a href="{{route('boq-wbs', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">BOQ</a>
                     <a href="{{route('scurve', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">S-Curve</a>
-                <?php }else{ ?>
+                    <?php }else{ ?>
 
                 <?php } ?>
             </li>
