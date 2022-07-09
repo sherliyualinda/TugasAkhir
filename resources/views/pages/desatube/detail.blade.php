@@ -34,6 +34,18 @@
   content: "•";
   margin: 0 4px;
 }
+.btn-like a{
+  color: #212529;
+  text-decoration: none;
+  cursor: pointer;
+}
+.text-blue{
+  color: #0056b3 !important;
+}
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
 </style>    
 @endpush
 
@@ -54,15 +66,18 @@
               Your browser does not support the video tag.
           </video>
           <h3>{{ $video->title }}</h3>
-          <div class="identity-detail-scope">
+          <div class="d-block identity-detail-scope">
             @if (!is_null($video->detail))
             <span class="channel">{{ number_format($video->detail->views) . ' x ditonton' }}</span>
             @endif
             <span>{{ $video->created_at->diffForHumans() }}</span>
+            <span class="float-right pr-2 pl-2 btn-like"><a id="onDislike" class="{{ ($videoLike && $videoLike->type === 'dont_like') ? 'text-blue':'' }} {{ ($videoLike && $videoLike->type === 'like') ? 'disabled':'' }}" data-id="{{$video->id}}"><i class="fa fa-thumbs-down"></i> {{($video->detail->dont_like > 0) ? $video->detail->dont_like:'' }} Tidak Suka</a></span>
+            <span class="float-right btn-like"><a id="onLike" class="{{ ($videoLike && $videoLike->type === 'like') ? 'text-blue':'' }}" data-id="{{$video->id}} {{ ($videoLike && $videoLike->type === 'dont_like') ? 'disabled':'' }}"><i class="fa fa-thumbs-up"></i> {{($video->detail->like > 0) ? $video->detail->like:'' }} Suka</a></span>
           </div>
           <hr>
-          <div class="pengguna">
+          <div class="d-block pengguna">
             <span>{{ $video->pengguna->nama }}</span>
+            <button type="submit" class="btn btn-danger float-right">SUBSCRIBE</button>
           </div>
           <p>
             {{ $video->description }}
@@ -107,4 +122,38 @@
     </div>
   </section>
 </div>
+@endsection
+
+@section('script')
+    <script>
+        $('#onLike').click(function(){
+          $.ajax({
+            url: '/desatube/like/'+this.dataset.id +'/like',
+            type: 'get',
+            success: function (data) {
+              if (data.message == 'success') {
+                $('#onLike').addClass('text-blue')
+              }else{
+                $('#onLike').removeClass('text-blue')
+              }
+              location.reload()
+            }
+          });
+        });
+
+        $('#onDislike').click(function(){
+          $.ajax({
+            url: '/desatube/like/'+this.dataset.id +'/dont_like',
+            type: 'get',
+            success: function (data) {
+              if (data.message == 'success') {
+                $('#onDislike').addClass('text-blue')
+              }else{
+                $('#onDislike').removeClass('text-blue')
+              }
+                location.reload()
+            }
+          });
+        });
+    </script>
 @endsection

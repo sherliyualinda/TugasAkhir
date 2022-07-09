@@ -206,8 +206,8 @@ Route::prefix('superadmin')
 //END SUPER ADMIN AREA
 
 // DesaTube
-Route::resource('/desatube', 'DesaTube\VideoController');
-
+Route::resource('/desatube', 'DesaTube\VideoController')->only(['show','index']);
+Route::get('/desatube/like/{id}/{type}', 'DesaTube\VideoController@like')->name('desatube.like');
 // DesaTube
 
 //Marketplace

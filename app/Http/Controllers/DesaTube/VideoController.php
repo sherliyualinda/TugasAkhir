@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Video;
 use App\Models\VideoDetail;
 use App\Models\VideoView;
+use App\Models\VideoLike;
 use App\Traits\NavbarTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -35,27 +36,6 @@ class VideoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -70,6 +50,7 @@ class VideoController extends Controller
         $video = Video::where('id', $id)->with('detail')->first();
         $videos = Video::with('pengguna')->limit(5)->orderBy('created_at', 'DESC')->get();
         $detail = VideoDetail::where('id_video', $id)->first();
+        $videoLike = VideoLike::where('id_video', $id)->first();
         if ($detail) {
             $views = VideoView::where('id_video', $id)->whereDate('created_at', Carbon::today())->first();
             if(!$views){
@@ -100,41 +81,38 @@ class VideoController extends Controller
             VideoDetail::create($data);
             VideoView::create($data_view);
         }
-        // dd($video);
-        return view('pages.desatube.detail', compact('video', 'videos', 'total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
+        return view('pages.desatube.detail', compact('video','videos','videoLike','total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function like(Request $request, $id, $type)
     {
-        //
+        $detail = VideoDetail::where('id_video', $id)->first();
+        $videoLike = VideoLike::where('id_video', $id)->first();
+        if ($videoLike) {
+            $videoLike->delete();
+
+            $like = $detail->$type;
+            $detail->$type = $like-1;
+            $detail->save();
+            return response()->json(['message'=> 'data deleted'], 200);
+        }else{
+            if($detail){
+                $data = [
+                    'id_video' => $id,
+                    'id_user' => Auth::user()->id,
+                    'ip_address' => $request->ip(),
+                    'user_agent' => $request->userAgent(),
+                    'type' => $type,
+                    'created_at' => Carbon::now()
+                ];
+                VideoLike::insert($data);
+                $like = $detail->$type;
+                $detail->$type = $like+1;
+                $detail->save();
+                $data['message'] = 'success';
+            }
+            return response()->json($data, 200);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
