@@ -75,7 +75,7 @@
                     
                                     <td>
                                         <a href="/lahan/ubah_struk/{{$struk->id_struk}}" class="btn btn-sm btn-warning">Edit</a>
-                                        <a href="/lahan/hapus_Struk/{{$struk->id_struk}}" class="btn btn-sm btn-danger">Hapus</a>
+                                        <a href="/lahan/hapus_Struk/{{$struk->id_struk}}" class="btn btn-sm btn-danger">Hapussss</a>
                                     </td>
 
                                 </tr>
