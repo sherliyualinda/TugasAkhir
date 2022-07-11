@@ -73,7 +73,7 @@ class VideoController extends Controller
             $thumbnailSrc = '/'.$destinationPath.'/'.$fileName;
             $data['thumbnail'] = $thumbnailSrc;
 
-            $data['id_pengguna'] = (Auth::user()->id == 1 ) ? 1 : Auth::user()->pengguna->id_pengguna;
+            $data['id_pengguna'] = (Auth::user()->id == 1 ) ? 4 : Auth::user()->id;
 
             Video::create($data);
 
@@ -163,12 +163,12 @@ class VideoController extends Controller
 
             $video->title = $request->title;
             $video->description = $request->description;
-            $video->id_pengguna = (Auth::user()->id == 1 ) ? 1 : Auth::user()->pengguna->id_pengguna;
+            $video->id_pengguna = (Auth::user()->id == 1 ) ? 4 : Auth::user()->id;
             $video->save();
             return redirect()->route('superadmin.sosial-media.video.index')
                     ->with('success', 'Sukses simpan data');
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            // dd($th->getMessage());
             return redirect()->back()
                 ->with('errors', 'Gagal edit data');
         }

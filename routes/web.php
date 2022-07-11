@@ -208,6 +208,7 @@ Route::prefix('superadmin')
 // DesaTube
 Route::resource('/desatube', 'DesaTube\VideoController')->only(['show','index']);
 Route::get('/desatube/like/{id}/{type}', 'DesaTube\VideoController@like')->name('desatube.like');
+Route::post('/desatube/comment', 'DesaTube\VideoController@comment')->name('desatube.comment');
 // DesaTube
 
 //Marketplace

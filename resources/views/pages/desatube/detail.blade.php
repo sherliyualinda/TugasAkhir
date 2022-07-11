@@ -76,13 +76,36 @@ a.disabled {
           </div>
           <hr>
           <div class="d-block pengguna">
-            <span>{{ $video->pengguna->nama }}</span>
+            <span>{{ $video->user->name }}</span>
             <button type="submit" class="btn btn-danger float-right">SUBSCRIBE</button>
           </div>
           <p>
             {{ $video->description }}
           </p>
+          <hr>
+          <form action="{{route('desatube.comment')}}" method="POST">
+            <input type="hidden" name="id_video" value="{{$video->id}}">
+            {{csrf_field()}}
+            <div class="form-group">
+              <textarea name="content" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="form-group text-right">
+              <button type="submit" class="btn btn-primary">Kirim</button>
+            </div>
+          </form>
+
+          <div class="list-command">
+            <div class="row">
+              @foreach ($comments as $item)
+              <div class="col-12">
+                
+                {{$item->content}}
+              </div>
+              @endforeach
+            </div>
+          </div>
         </div>
+
         <div class="col-4">
           <div class="pl-3 pb-2">
             <h4>Video Terbaru</h4>
@@ -105,7 +128,7 @@ a.disabled {
                     {{ $item->title }}
                   </div>
                   <div class="identity-scope">
-                    <span class="channel">{{ $item->pengguna->nama }}</span>
+                    <span class="channel">{{ $item->user->name }}</span>
                     <span class="time">{{ $item->created_at->diffForHumans() }}</span>
                   </div>
                 </div>

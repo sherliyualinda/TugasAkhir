@@ -72,7 +72,7 @@ DesaTube
                     {{ $item->title }}
                   </div>
                   <div class="identity-scope">
-                    <span>{{ $item->pengguna->nama }}</span>
+                    <span>{{ $item->user->name }}</span>
                     @if (!is_null($item->detail))
                     <span class="channel">{{ number_format($item->detail->views) . ' x ditonton' }}</span>
                     @endif

@@ -8,8 +8,8 @@ class Video extends Model
 {
     protected $fillable = ['title', 'description', 'thumbnail', 'url', 'id_pengguna'];
 
-    public function pengguna(){
-        return $this->belongsTo('App\Pengguna', 'id_pengguna', 'id_pengguna');
+    public function user(){
+        return $this->belongsTo('App\User', 'id_pengguna');
     }
     
     public function detail(){
