@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function pengguna(){
         return $this->hasOne('App\Pengguna', 'id_pengguna', 'id');
     }
+
+    public function role(){
+        return $this->belongsTo('App\Role', 'id_role');
+    }
 }

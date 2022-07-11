@@ -65,12 +65,15 @@
         var data_tanggal = @json($data['data_tanggal']);
         var total_aktual = @json($data['total_aktual']);
         var total_history = @json($data['total_history']);
-        
+        //line one
         var arrFirst = [];
+        var tempArrFirst = 0;
             for (const key in total_aktual) {
                 if (Object.hasOwnProperty.call(total_aktual, key)) {
                     const data = total_aktual[key];
-                    arrFirst.push(data)
+                    const chart_data = data + tempArrFirst;
+                    tempArrFirst = chart_data;
+                    arrFirst.push(chart_data)
                 }
             }
             
@@ -79,16 +82,21 @@
             data: arrFirst,
             lineTension: 0,
             fill: false,
-            borderColor: 'red'
+            borderColor: 'green'
         };
-
+        // line two
         var arrSecond = [];
+        var tempArrSecond = 0;
             for (const key in total_history) {
                 if (Object.hasOwnProperty.call(total_history, key)) {
                     const data = total_history[key];
-                    arrSecond.push(data)
+                    const chart_data = data + tempArrSecond;
+                    tempArrSecond = chart_data;
+                    arrSecond.push(chart_data)
                 }
             }
+            console.log(arrFirst);
+            console.log(arrSecond);
         var dataSecond = {
             label: "Histori",
             data: arrSecond,
@@ -97,9 +105,28 @@
             borderColor: 'blue'
         };
 
+        // line three
+        var arrDifference = [];
+        var tempArrDifference = 0;
+            for (let index = 0; index < arrFirst.length; index++) {
+                const difference = arrFirst[index] - arrSecond[index];
+                const chart_data = difference + tempArrDifference;
+                tempArrDifference = chart_data;
+                arrDifference.push(chart_data);
+            }
+
+        var dataDifference = {
+            label: "Selisih",
+            data: arrDifference,
+            lineTension: 0,
+            fill: false,
+            borderColor: 'red'
+        };
+            
+
         var speedData = {
             labels: data_tanggal,
-            datasets: [dataFirst, dataSecond]
+            datasets: [dataFirst, dataSecond,dataDifference]
         };
 
         var chartOptions = {

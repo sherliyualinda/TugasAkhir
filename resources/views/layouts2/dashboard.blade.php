@@ -27,7 +27,7 @@
         <div class="list-group list-group-flush">
           <a href="{{ route('dashboard') }}" 
              class="list-group-item list-group-item-action {{ Request::is('dashboard') ? 'active' : '' }}">Dashboard</a>
-         @if (Auth::user()->roles == 'ADMINSTORE')
+         @if (Auth::user()->role->nama == 'Admin Store')
                     <a href="{{ route('admin-store-dashboard') }}" 
              class="list-group-item list-group-item-action {{ Request::is('admin-store-dashboard') ? 'active' : '' }}">Dashboard Utama</a>
                         

@@ -159,7 +159,69 @@ class LahanController extends Controller
         $boq_aktual = Task::where('id_sewa', $id)->with('children')->get();
         $boq_history = Task_histori::where('id_sewa', $id)->with('children')->get();
 
-        return view('projek_user',compact('sewa','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history'));  
+        // Scurve
+        $aktual = Task::where('id_sewa', $id)->with('children')->get();
+        $tanggalAll = [];
+        $tanggal = [];
+        $data_kegiatan = [];
+        $total_aktual = [];
+        foreach ($aktual as $key => $parent) {
+           if ($parent->parent == 0) {
+            $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
+            $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+            $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+            foreach ($parent->children as $child) {
+                if($child->totalHarga > 0){
+                    if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
+                        $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
+                    }else{
+                        $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
+                        $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
+                    }
+                    $data_kegiatan[Carbon::parse($child->start_date)->format('d-m-Y')][] = $child->text;
+                }
+            }
+           }
+        }
+        
+        $total_history = [];
+        $history = Task_histori::where('id_sewa', $id)->with('children')->get();
+        foreach ($history as $key => $parent) {
+            if ($parent->parent == 0) {
+             $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+             $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+             if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+             }
+             foreach ($parent->children as $child) {
+                 if($child->totalHarga > 0){
+                     if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
+                         $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
+                     }else{
+                        if (!in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggalAll)) {
+                            $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
+                         }
+                         $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
+                     }
+                 }
+             }
+            }
+         }
+
+        usort($tanggalAll, function ($a, $b) {
+            return strtotime($a) - strtotime($b);
+        });
+
+        $dataScurve = [
+            'data_tanggal' => $tanggalAll,
+            'total_aktual' => $total_aktual,
+            'total_history' => $total_history,
+            'data_kegiatan' => $data_kegiatan
+        ];
+        // scurve
+
+        return view('projek_user',compact('sewa','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history','dataScurve'));  
 
     }
    

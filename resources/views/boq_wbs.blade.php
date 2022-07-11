@@ -30,25 +30,38 @@
                             <tbody>
                                 @php
                                     $i = 1;
+                                    $total = 0;
                                 @endphp
                                 @foreach ($history as $parent)
                                 @if ($parent->parent == 0)
                                     <tr>
                                         <th scope="row">{{$i++}}</th>
                                         <td>{{$parent->text}}</td>
-                                        <td>{{$parent->totalHarga}}</td>
+                                        <td>{{number_format($parent->totalHarga)}}
+                                            @php
+                                                $total += $parent->totalHarga
+                                            @endphp
+                                        </td>
                                     </tr>
                                     @foreach ($parent->children as $child)
                                         @if($child->totalHarga > 0)
                                         <tr>
                                             <th scope="row">{{$i++}}</th>
                                             <td>{{$child->text}}</td>
-                                            <td>{{$child->totalHarga}}</td>
+                                            <td>{{number_format($child->totalHarga)}}
+                                                @php
+                                                    $total += $child->totalHarga
+                                                @endphp
+                                            </td>
                                         </tr>
                                         @endif
                                     @endforeach
                                 @endif
                                 @endforeach
+                                <tr>
+                                    <td colspan="2" class="text-right h5">Total</td>
+                                    <td class="h5">{{number_format($total)}}</td>
+                                </tr>
                             </tbody>
                           </table>
                     </div>
