@@ -393,6 +393,14 @@ Route::get('/lahan/ubah_sdm/{id}',  'LahanController@ubahSDM')->middleware('auth
 Route::post('/lahan/update_sdm', 'LahanController@updateSDM')->name('updateSDM')->middleware('auth');
 Route::get('/lahan/hapus_sdm/{id}', 'LahanController@hapusSDM')->middleware('auth');
 
+
+Route::get('/lahan/createManual', 'LahanController@createManual')->name('create_manual')->middleware('auth');
+Route::post('/lahan/simpan_manual', 'LahanController@simpan_manual')->name('simpan_manual')->middleware('auth');
+Route::get('/lahan/manualBook', 'LahanController@manualBook')->name('manualBook')->middleware('auth');
+Route::get('/lahan/ubah_manual/{id}',  'LahanController@ubahManual')->middleware('auth');
+Route::post('/lahan/update_manual', 'LahanController@updateManual')->name('updateManual')->middleware('auth');
+Route::get('/lahan/hapus_manual/{id}', 'LahanController@hapusManual')->middleware('auth');
+
 //Route::get('/lahan/boq/{id}', 'LahanController@showBoq')->name('create_boq')->middleware('auth');
 Route::get('/lahan/boq/{id}', 'LahanController@createBoq')->name('create_boq')->middleware('auth');
 

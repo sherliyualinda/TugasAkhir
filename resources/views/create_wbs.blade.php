@@ -22,7 +22,7 @@
                     <div class="col-md-12 mt-2">
                         <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <?php session_start();?>
+                           
                             <li class="breadcrumb-item"><a href="/gantt/{{$_SESSION['id_sewa']}}">Back</a></li>
                         </ol>
                         </nav>

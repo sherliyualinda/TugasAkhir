@@ -22,7 +22,7 @@
                     <div class="col-md-12 mt-2">
                         <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                        <?php session_start(); ?>
+                       
                         <li class="breadcrumb-item"><a href="/lahan/request/{{$_SESSION['id_lahan']}}">Back</a></li>
                         </ol>
                         </nav>
@@ -75,7 +75,7 @@
                     
                                     <td>
                                         <a href="/lahan/ubah_struk/{{$struk->id_struk}}" class="btn btn-sm btn-warning">Edit</a>
-                                        <a href="/lahan/hapus_Struk/{{$struk->id_struk}}" class="btn btn-sm btn-danger">Hapussss</a>
+                                        <a href="/lahan/hapus_Struk/{{$struk->id_struk}}" class="btn btn-sm btn-danger">Hapus</a>
                                     </td>
 
                                 </tr>
