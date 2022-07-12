@@ -41,6 +41,16 @@
 	width: 100%;
 	max-width: 500px;
 }
+#myDIV {
+  height:300px;
+  background-color:#FFFFFF;
+}
+.ex1 {
+  
+  width: 400px;
+  height: 150px;
+  overflow-y: scroll;
+}
 .highcharts-data-table caption {
   padding: 1em 0;
   font-size: 1.2em;
@@ -200,6 +210,7 @@ rect.highcharts-background{
                               <tr>
                                 <th scope="col">No</th>                                
                                 <th scope="col">Kategori Lahan</th>
+                                <th scope="col">Gambar</th>                                
                                 <th scope="col">Jenis Lahan</th>                               
                                 <th scope="col">Langkah-Langkah</th>                               
                                 <th scope="col">Sumber</th>                               
@@ -212,8 +223,15 @@ rect.highcharts-background{
                                 <tr>
                                     <td>{{ $index+1}}</td>
                                     <td>{{ $manual->nama}}</td>
+                                    <td><img src="{{ url('gambar_manual') }}/{{ $manual->gambar }} "width="50" height="50"></td>
                                     <td>{{ $manual->jenis_lahan}}</td>
-                                    <td>{{ $manual->deskripsi}}</td>
+                                    <td>
+                                      <div id="myDIV">
+                                        <div class="ex1">
+                                            {{ $manual->deskripsi}}
+                                        </div>
+                                      </div>
+                                    </td>
                                     <td>{{ $manual->sumber}}</td>
                                     <td>
                                         <a href="/lahan/ubah_manual/{{$manual->id_manual}}" class="btn btn-sm btn-warning">Edit</a>

@@ -15,6 +15,9 @@
 <body style="background: lightgray">
     <div class="container">
     <div class="row">
+    @foreach ($lahan4 as $data4)
+    <li class="breadcrumb-item"><a href="/lahan/halmanual/{{$data4->category_lahan_id}}">Manual Book</a></li>
+    @endforeach
         @foreach ($lahan as $data)
         
         <div class="col-md-12 mt-2">

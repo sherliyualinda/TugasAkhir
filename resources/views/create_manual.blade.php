@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -177,8 +178,6 @@ rect.highcharts-background{
 
             </nav>
             <!-- End of Topbar -->
-
-
 <div class="container" style="margin-top: 50px" >
     <div class="row">
         <div class="col-md-8 offset-md-2">
@@ -200,6 +199,10 @@ rect.highcharts-background{
                                     <option value="4">Peternakan</option>
                                 
                                 </select>
+                            </div>
+                            <div class="form-group">
+                              <label>Gambar</label>
+                              <input type="file" name="gambar">
                             </div>
                             <label>Jenis Lahan</label>
                             <input type="input" name="jenis_lahan" class="form-control form-control-user" placeholder="Jenis Lahan">
@@ -225,16 +228,16 @@ rect.highcharts-background{
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace( 'content' );
-</script>
-<script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> 
     <script src="{{ asset('js/sb-admin-2.js') }}"></script>
     <script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+    <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+
 </body>
 </html>

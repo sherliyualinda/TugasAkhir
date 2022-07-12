@@ -379,6 +379,8 @@ Route::get('/lahan/kelola_daily/{id}', 'LahanController@daily')->name('kelola_da
 
 Route::get('/lahan/kelola_resource/{id}', 'LahanController@kelola_resource')->middleware('auth');
 
+Route::get('/lahan/halmanual/{id}', 'LahanController@detailManual')->middleware('auth');
+
 Route::get('/lahan/create_formWbs/{id}', 'LahanController@formWbs')->name('formWbs')->middleware('auth');
 // Route::post('/lahan/tambahKebutuhanWbs/', 'LahanController@kebutuhanWbs')->name('tambahKebutuhanWbs')->middleware('auth');
 

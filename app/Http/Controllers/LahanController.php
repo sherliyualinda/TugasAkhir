@@ -133,7 +133,8 @@ class LahanController extends Controller
         $orang = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 1 AND lr.id_lahan = $id");
         $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 2 AND lr.id_lahan = $id");
         $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 3 AND lr.id_lahan = $id");
-        return view('detail_lahan',compact('lahan','orang','material','alat'));  
+        $lahan4 = DB::select("SELECT l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE l.id = $id limit 1");
+        return view('detail_lahan',compact('lahan','orang','material','alat','lahan4'));  
     }
     public function projek_user(){
         $projek = DB::select("SELECT p.username,sl.id_sewa, l.gambar, sl.id_lahan,l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status FROM lahans l JOIN pengguna p on l.id_user = p.id_pengguna JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan WHERE sl.status='Acc' And id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
@@ -869,49 +870,65 @@ class LahanController extends Controller
         }
     
         public function simpan_manual(Request $request){
+            $file = $request->file('gambar');
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'gambar_manual';
+            $file->move($tujuan_upload,$file->getClientOriginalName());
             // menyimpan data file yang diupload ke variabel $file
           
             DB::table('manual_books')->insert([
                 'id_categoryLahan'     => $request->id_categoryLahan,
+                'gambar'               => $file->getClientOriginalName(),
                 'jenis_lahan'        => $request->jenis_lahan,
                 'deskripsi'      => $request->deskripsi,
                 'sumber'         => $request->sumber,
                 'updated_at'    => date("Y-m-d H:i:s")
             ]);
                 
-                $manual = DB::select("SELECT c.nama, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+                $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
                 return view('kelola_manual', compact('manual'));
             }
     
             public function manualBook(){
             
-                $manual = DB::select("SELECT c.nama, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+                $manual = DB::select("SELECT c.nama, m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
             return view('kelola_manual', compact('manual'));
             }
             public function ubahManual($id){
                 //$risk = Risk::select('*')->where('id_risk',$id)->get();
-                $manual = DB::select("SELECT c.nama, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id WHERE m.id_manual = $id");
+                $manual = DB::select("SELECT c.nama, m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id WHERE m.id_manual = $id");
                 $category = Category_lahan::all();
                 return view('ubahManual', compact('manual','category'));  
             }
         
             public function updateManual(Request $request){
+                $file = $request->file('gambar');
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload = 'gambar_manual';
+                $file->move($tujuan_upload,$file->getClientOriginalName());
              
                 $manual = Manual_book::where('id_manual',$request->id_manual)->update([
-                    'id_categoryLahan'     => $request->id_categoryLahan,
-                    'jenis_lahan'        => $request->jenis_lahan,
-                    'deskripsi'      => $request->deskripsi,
-                    'sumber'         => $request->sumber,
-                    'updated_at'    => date("Y-m-d H:i:s")
+                    'id_categoryLahan'      => $request->id_categoryLahan,
+                    'gambar'                =>$file->getClientOriginalName(),
+                    'jenis_lahan'           => $request->jenis_lahan,
+                    'deskripsi'             => $request->deskripsi,
+                    'sumber'                => $request->sumber,
+                    'updated_at'            => date("Y-m-d H:i:s")
                     
                 ]);
-                $manual = DB::select("SELECT c.nama, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+                $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
                 return view('kelola_manual', compact('manual'));
             }
             public function hapusManual($id){
                 DB::table('manual_books')->where('id_manual',$id)->delete();
-                $manual = DB::select("SELECT c.nama, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+                $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
                 return view('kelola_manual', compact('manual'));
+            }
+
+            public function detailManual($id){
+                //DB::table('manual_books')->where('id_manual',$id)->delete();
+                $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id where id_categoryLahan = $id");
+                return view('halManual', compact('manual'));
             }
     
 }

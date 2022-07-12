@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jul 2022 pada 10.51
+-- Waktu pembuatan: 12 Jul 2022 pada 10.54
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -234,7 +234,8 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id`, `id_pengguna`, `id_balas_komen`, `isi_komentar`, `tanggal_komen`, `status`, `id_konten`, `is_active`) VALUES
-(1, 2, 0, 'ini vaksin apa?', '2021-08-13 17:56:33', 'Belum Dibaca', 4, 1);
+(1, 2, 0, 'ini vaksin apa?', '2021-08-13 17:56:33', 'Belum Dibaca', 4, 1),
+(2, 46, 0, 'hgfhgjfghfhj\r\nnjbkjlnjk\r\njkhkjhlkj\r\nkl', '2022-07-12 15:49:02', 'Belum Dibaca', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -7770,8 +7771,9 @@ CREATE TABLE `links` (
 CREATE TABLE `manual_books` (
   `id_manual` int(30) NOT NULL,
   `id_categoryLahan` int(30) NOT NULL,
+  `gambar` varchar(255) NOT NULL,
   `jenis_lahan` varchar(255) NOT NULL,
-  `deskripsi` varchar(255) NOT NULL,
+  `deskripsi` text NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `sumber` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -7780,8 +7782,10 @@ CREATE TABLE `manual_books` (
 -- Dumping data untuk tabel `manual_books`
 --
 
-INSERT INTO `manual_books` (`id_manual`, `id_categoryLahan`, `jenis_lahan`, `deskripsi`, `updated_at`, `sumber`) VALUES
-(3, 2, 'apel', '1\r\n2\r\n3\r\n4', '2022-07-11 08:06:35', 'wwwwwwk');
+INSERT INTO `manual_books` (`id_manual`, `id_categoryLahan`, `gambar`, `jenis_lahan`, `deskripsi`, `updated_at`, `sumber`) VALUES
+(8, 1, 'padi.PNG', 'Pertanian Padi', '1. Persiapan media tanam\r\n\r\nMedia tanam untuk menanam padi haruslah disiapkan minimal dua minggu sebelum penanaman. Persiapan dilakukan dengan mengolah tanah sebagai media tanam. Tanah harus dipastikan bebas dari gulma dan rumput liar. Jangan sampai pertumbuhan tanaman padi terganggu karena harus berbagi nutrisi dan air dengan rumput-rumput liar. Jika sudah bebas dari tanaman liar, basahi tanah dengan air lalu lakukan pembajakan. Pembajakan dilakukan untuk mempersiapkan tanah dalam keadaan lunak dan gembur serta cocok untuk penanaman. Di zaman modern ini pembajakan tidak lagi dilakukan dengan mencangkul tetapi dengan menggunakan sapi ataupun traktor. Setelah melalui pembajakan, kembali genangi media tanam dengan air. Air diberikan dalam jumlah banyak untuk menutupi seluruh lahan dengan ketinggian hingga 10 cm. Biarkan air pada media tanam terus menggenang. Air yang menggenang selama dua minggu akan menyebabkan media tanam menjadi berlumbur dan racun pun dapat hilang karena ternetralisir.\r\n\r\n2. Pemilihan bibit\r\n\r\nBibit pada tanaman padi harus melalui pengujian terlebih dahulu untuk menentukan kualitasnya. Pengujian dilakukan dengan merendam sekitar 100 butir benih padi dalam air. Setelah dua jam periksalah benih tersebut. Cara menanam benih padi yaitu dengan Pemeriksaan benih dilakukan dengan mengidentifikasi perubahan pada benih. Jika terdapat lebih dari 90 butir benih atau lebih dari 90% benih mengeluarkan kecambah, maka artinya benih tersebut berkualitas unggul dan bermutu tinggi. Tentu benih yang berkualitas unggul dan bermutu tinggi inilah yang layak untuk dibudidayakan. Sedangkan jika benih tidak menunjukkan tanda seperti yang disebutkan diatas, artinya benih tersebut tidak disarankan untuk dibudidayakan. Setelah menentukan benih yang akan dijadikan bibit, maka dapat dilakukan persemaian segera.\r\n\r\n3. Persemaian\r\n\r\nPersemaian dilakukan setelah menentukan bibit yang unggul. Bibit unggul tersebut kemudian akan disemai di wadah persemaian. Wadah persemaian terlebih dahulu harus disiapkan. Kebutuhan wadah semai diberikan dalam perbandingan sebesar 1 : 20. Misalkan akan menggunakan lahan sawah sebesar 1 hektar maka wadah persemaiannya sekitar 500 m2. Lahan pada wadah persemaian haruslah juga berair dan berlumpur. Berikan pupuk urea dan pupuk TSP pada lahan persemaian dengan dosis masing-masing 10 gr per 1 m2. Jika lahan persemaian sudah siap, sebarkan benih yang telah berkecambah dengan merata.\r\n\r\n4. Penanaman\r\n\r\nProses penanaman dilakukan setelah benih pada proses persemaian telah tumbuh daun sempurna sebanyak tiga hingga empat helai. Jangka waktu dari persemaian ke bibit siap tanam umumnya sekitar 12 hingga 14 hari saja. Jika sudah siap tanam, pindahkan bibit dari lahan semai ke lahan tanam. Pemidahan dilakukan dengan hati-hati dan tidak merusak tanaman. Penanaman dilakukan pada lubang-lubang tanam yang telah disiapkan. Khusus untuk tanaman padi dalam satu lubang dapat ditanam dua bibit sekaligus. Penanaman dilakukan dengan memasukkan bagian akar membentuk huruf L agar akar dapat tumbuh dengan sempurna. Kedalaman bibit ditanam pun ditentukan berkisar pada rentang 1 cm hingga 15 cm. Masa penanaman padi lebih baik dilakukan dua kali dalam setahun berdasarkan masa penanamannya yang ideal.\r\n\r\n5. Perawatan lahan\r\n\r\nPerawatan dilakukan dengan tiga hal yaitu penyiangan, pengairan, dan pemupukan. Penyiangan dilakukan dengan menjaga kebersihan lahan dari tanaman pengganggu. Penyiangan harus dilakukan rutin setiap periode waktu tertentu. Bisa dilakukan dua minggu sekali atau tiga minggu sekali. Pengairan diberikan sesuai kebutuhan. Seperti pada tanaman lainnya, pastikan tidak ada kekurangan atau kelebihan air. Selanjutnya untuk pemupukan, dilakukan pertama kali setelah tanaman padi berusia satu minggu. Jenis pupuk yang diberikan adalah pupuk urea dengan dosis 100 kg per hektar dan pupuk TPS dengan dosis 50 kg per hektar. Pemupukan selanjutnya dilakukan setelah 25 hari hingga 30 hari setelah penanaman. Diberikan kembali pupuk urea dengan dosis 50 kg per hektar dan pupuk Phonska dengan dosis 100 kg per hektar.\r\n\r\n6. Pencegahan hama dan penyakit\r\n\r\nHama dan penyakit dapat dicegah dengan memberikan pestisida.\r\n\r\n7. Pemanenan\r\n\r\nPanen dilakukan dengan tanda-tanda padi yang sudah menguning dan merunduk. Gunakan sabit gerigi untuk memanen dan letakkan hasil panen pada tikar dengan merontokkan beras dari dalam bulir-bulir padi yang ada.', '2022-07-12 08:11:12', 'http://carakumenanam.com/padi/'),
+(9, 3, 'ikan.jpg', 'Perikanan ikan nila', '1. Persiapan media tanam\r\n\r\nMedia tanam untuk menanam padi haruslah disiapkan minimal dua minggu sebelum penanaman. Persiapan dilakukan dengan mengolah tanah sebagai media tanam. Tanah harus dipastikan bebas dari gulma dan rumput liar. Jangan sampai pertumbuhan tanaman padi terganggu karena harus berbagi nutrisi dan air dengan rumput-rumput liar. Jika sudah bebas dari tanaman liar, basahi tanah dengan air lalu lakukan pembajakan. Pembajakan dilakukan untuk mempersiapkan tanah dalam keadaan lunak dan gembur serta cocok untuk penanaman. Di zaman modern ini pembajakan tidak lagi dilakukan dengan mencangkul tetapi dengan menggunakan sapi ataupun traktor. Setelah melalui pembajakan, kembali genangi media tanam dengan air. Air diberikan dalam jumlah banyak untuk menutupi seluruh lahan dengan ketinggian hingga 10 cm. Biarkan air pada media tanam terus menggenang. Air yang menggenang selama dua minggu akan menyebabkan media tanam menjadi berlumbur dan racun pun dapat hilang karena ternetralisir.\r\n\r\n2. Pemilihan bibit\r\n\r\nBibit pada tanaman padi harus melalui pengujian terlebih dahulu untuk menentukan kualitasnya. Pengujian dilakukan dengan merendam sekitar 100 butir benih padi dalam air. Setelah dua jam periksalah benih tersebut. Cara menanam benih padi yaitu dengan Pemeriksaan benih dilakukan dengan mengidentifikasi perubahan pada benih. Jika terdapat lebih dari 90 butir benih atau lebih dari 90% benih mengeluarkan kecambah, maka artinya benih tersebut berkualitas unggul dan bermutu tinggi. Tentu benih yang berkualitas unggul dan bermutu tinggi inilah yang layak untuk dibudidayakan. Sedangkan jika benih tidak menunjukkan tanda seperti yang disebutkan diatas, artinya benih tersebut tidak disarankan untuk dibudidayakan. Setelah menentukan benih yang akan dijadikan bibit, maka dapat dilakukan persemaian segera.\r\n\r\n3. Persemaian\r\n\r\nPersemaian dilakukan setelah menentukan bibit yang unggul. Bibit unggul tersebut kemudian akan disemai di wadah persemaian. Wadah persemaian terlebih dahulu harus disiapkan. Kebutuhan wadah semai diberikan dalam perbandingan sebesar 1 : 20. Misalkan akan menggunakan lahan sawah sebesar 1 hektar maka wadah persemaiannya sekitar 500 m2. Lahan pada wadah persemaian haruslah juga berair dan berlumpur. Berikan pupuk urea dan pupuk TSP pada lahan persemaian dengan dosis masing-masing 10 gr per 1 m2. Jika lahan persemaian sudah siap, sebarkan benih yang telah berkecambah dengan merata.\r\n\r\n4. Penanaman\r\n\r\nProses penanaman dilakukan setelah benih pada proses persemaian telah tumbuh daun sempurna sebanyak tiga hingga empat helai. Jangka waktu dari persemaian ke bibit siap tanam umumnya sekitar 12 hingga 14 hari saja. Jika sudah siap tanam, pindahkan bibit dari lahan semai ke lahan tanam. Pemidahan dilakukan dengan hati-hati dan tidak merusak tanaman. Penanaman dilakukan pada lubang-lubang tanam yang telah disiapkan. Khusus untuk tanaman padi dalam satu lubang dapat ditanam dua bibit sekaligus. Penanaman dilakukan dengan memasukkan bagian akar membentuk huruf L agar akar dapat tumbuh dengan sempurna. Kedalaman bibit ditanam pun ditentukan berkisar pada rentang 1 cm hingga 15 cm. Masa penanaman padi lebih baik dilakukan dua kali dalam setahun berdasarkan masa penanamannya yang ideal.\r\n\r\n5. Perawatan lahan\r\n\r\nPerawatan dilakukan dengan tiga hal yaitu penyiangan, pengairan, dan pemupukan. Penyiangan dilakukan dengan menjaga kebersihan lahan dari tanaman pengganggu. Penyiangan harus dilakukan rutin setiap periode waktu tertentu. Bisa dilakukan dua minggu sekali atau tiga minggu sekali. Pengairan diberikan sesuai kebutuhan. Seperti pada tanaman lainnya, pastikan tidak ada kekurangan atau kelebihan air. Selanjutnya untuk pemupukan, dilakukan pertama kali setelah tanaman padi berusia satu minggu. Jenis pupuk yang diberikan adalah pupuk urea dengan dosis 100 kg per hektar dan pupuk TPS dengan dosis 50 kg per hektar. Pemupukan selanjutnya dilakukan setelah 25 hari hingga 30 hari setelah penanaman. Diberikan kembali pupuk urea dengan dosis 50 kg per hektar dan pupuk Phonska dengan dosis 100 kg per hektar.\r\n\r\n6. Pencegahan hama dan penyakit\r\n\r\nHama dan penyakit dapat dicegah dengan memberikan pestisida.\r\n\r\n7. Pemanenan\r\n\r\nPanen dilakukan dengan tanda-tanda padi yang sudah menguning dan merunduk. Gunakan sabit gerigi untuk memanen dan letakkan hasil panen pada tikar dengan merontokkan beras dari dalam bulir-bulir padi yang ada.', '2022-07-12 08:07:25', 'http://carakumenanam.com/ikan/'),
+(10, 1, 'jagung.jpg', 'jagung', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2022-07-12 08:22:48', 'www');
 
 -- --------------------------------------------------------
 
@@ -7840,7 +7844,8 @@ CREATE TABLE `notif` (
 INSERT INTO `notif` (`id_notif`, `jenis_notif`, `isi_notif`, `created_at`, `id_likes`, `id_comment`, `id_konten`, `id_undangan`, `id_followers`, `id_anggota`, `status`, `is_active`) VALUES
 (1, 'Followers', 'desa_wangunjaya mulai mengikuti Anda', '2021-08-11 13:46:30', NULL, NULL, NULL, NULL, 1, NULL, 'Belum Dibaca', 1),
 (2, 'Menyukai', 'afraaknim_ menyukai postingan anda', '2021-08-13 17:55:01', 1, NULL, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1),
-(3, 'Komentar', 'afraaknim_ mengomentari postingan Anda', '2021-08-13 17:56:33', NULL, 1, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1);
+(3, 'Komentar', 'afraaknim_ mengomentari postingan Anda', '2021-08-13 17:56:33', NULL, 1, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1),
+(4, 'Komentar', 'ade mengomentari postingan Anda', '2022-07-12 15:49:02', NULL, 2, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1);
 
 -- --------------------------------------------------------
 
@@ -9095,7 +9100,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 17:19:42', '2021-08-14 17:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-17 03:53:26', '2021-08-17 03:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-17 04:07:23', '2021-08-17 04:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'yptNWO8Q31ZQOtRe9L94KFxM0EGpR16LieNszXdv84VQaJuBBeP8ps1L9ZkN', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '8JP8MhdksDt3DDyeIjBGlvHxFR1v7UcSQUN2KXeC1kRjJeCVrkINxoGKh1zp', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 07:37:26', '2022-04-18 07:37:26', 2),
 (45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'H2vUjlkGF3onyepRlBNql5W73dmPGciBWBz4qEgbV5CiPXx6h2G76I5NDfLP', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
 (46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'ssEF6bXjm4s16mdh0ZL6PBR5gUQGZvOMIgZW1Tu0kbX0HOqiVpilXA8RVQT7', '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
@@ -90125,7 +90130,7 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT untuk tabel `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `dailies`
@@ -90191,13 +90196,13 @@ ALTER TABLE `links`
 -- AUTO_INCREMENT untuk tabel `manual_books`
 --
 ALTER TABLE `manual_books`
-  MODIFY `id_manual` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_manual` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `notif`
 --
 ALTER TABLE `notif`
-  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengaturan`
@@ -90281,7 +90286,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT untuk tabel `task_historis`
 --
 ALTER TABLE `task_historis`
-  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT untuk tabel `transactions`
