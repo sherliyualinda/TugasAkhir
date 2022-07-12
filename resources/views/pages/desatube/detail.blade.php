@@ -46,6 +46,9 @@ a.disabled {
   pointer-events: none;
   cursor: default;
 }
+.mini-text{
+  font-size: 11px;
+}
 </style>    
 @endpush
 
@@ -83,6 +86,11 @@ a.disabled {
             {{ $video->description }}
           </p>
           <hr>
+          <div class="row">
+            <div class="col-12">
+              <h5>{{($video->detail->comment > 0) ? $video->detail->comment .' Komentar': ''}} </h5>
+            </div>
+          </div>
           <form action="{{route('desatube.comment')}}" method="POST">
             <input type="hidden" name="id_video" value="{{$video->id}}">
             {{csrf_field()}}
@@ -98,8 +106,15 @@ a.disabled {
             <div class="row">
               @foreach ($comments as $item)
               <div class="col-12">
-                
-                {{$item->content}}
+                <div class="d-block pengguna">
+                  <span>{{ $item->user->name }}</span>
+                  <span class="mini-text">{{ $item->created_at->diffForHumans() }}</span>
+                </div>
+                @if ($item->user->id == auth()->user()->id)
+                <i class="fa fa-trash" style="float: right;"></i>
+                @endif
+                <p>{{$item->content}}</p>
+                <hr>
               </div>
               @endforeach
             </div>

@@ -12,6 +12,7 @@ use App\Models\VideoComment;
 use App\Traits\NavbarTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class VideoController extends Controller
 {
@@ -119,11 +120,21 @@ class VideoController extends Controller
 
     public function comment(Request $request)
     {
-        $detail = VideoDetail::where('id_video', $request->post('id_video'))->first();
-        $request->request->add(['id_user' => Auth::user()->id]);
-        VideoComment::create($request->all());
-
-        return redirect()->back()->with('success', 'Komentar di tambahkan');
+        DB::beginTransaction();
+        try {
+            $request->request->add(['id_user' => Auth::user()->id]);
+            VideoComment::create($request->all());
+            $detail = VideoDetail::where('id_video', $request->post('id_video'))->first();
+            $comment = $detail->comment;
+            $detail->comment = $comment+1;
+            $detail->save();
+            DB::commit();
+            return redirect()->back()->with('success', 'Komentar di tambahkan');
+        } catch (\Throwable $th) {
+            //throw $th;
+            DB::rollback();
+            return redirect()->back()->with('errors', 'Komentar gagal terkirim');
+        }
     }
 
 }
