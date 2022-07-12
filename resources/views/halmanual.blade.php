@@ -13,8 +13,17 @@
 div.b {  
   width: 100%;
   word-wrap: break-word;
-
 }  
+pre {
+        white-space: pre-wrap; 
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word; 
+        text-align: justify;   
+        /* font-size: 10px; */
+        /* margin: 0% 8% 0px 8%;  */
+    }
 </style>
 	
         @include('nav_barMar')
@@ -28,11 +37,13 @@ div.b {
 
 <b><h2>{{ $manual->nama}}</h2><br>
 <img src="{{ url('gambar_manual') }}/{{ $manual->gambar }} ">
-<br>{{ $manual->jenis_lahan}}</br>
-Langkahnya adalah :<br></b>
+<br>{{ $manual->jenis_lahan}}</br><br>
+Langkahnya adalah :<br><br></b>
 <p style="align:justify">
 <div class="b">
-    {{$manual->deskripsi}}
+    <pre>
+        {{$manual->deskripsi}}
+    </pre>
 </div>
 
 </p>
