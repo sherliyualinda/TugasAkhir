@@ -34,10 +34,10 @@
                     @endif
           <a href="{{ route('dashboard-product') }}" 
              class="list-group-item list-group-item-action {{ Request::is('dashboard/products') ? 'active' : '' }} ">Produk Pending</a>
-          {{-- <a href="{{ route('dashboard-transaction') }}" 
-             class="list-group-item list-group-item-action {{ Request::is('dashboard/transactions') ? 'active' : '' }}">Transaksi</a> --}}
-          <a href="{{ route('dashboard.store-pending') }}" 
+             <a href="{{ route('dashboard.store-pending') }}" 
              class="list-group-item list-group-item-action {{ Request::is('dashboard/stores-pending') ? 'active' : '' }}">Store Pending</a>
+             <a href="{{ route('dashboard.lahan-pending') }}" 
+                class="list-group-item list-group-item-action {{ Request::is('dashboard/lahan-pending') ? 'active' : '' }}">Lahan Pending</a>
           {{-- <a href="{{ route('dashboard-settings-account') }}" 
              class="list-group-item list-group-item-action {{ Request::is('dashboard/account') ? 'active' : '' }}">Akun</a> --}}
           <a href="{{ route('logout') }}" onclick="event.preventDefault();

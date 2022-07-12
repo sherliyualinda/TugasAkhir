@@ -7690,7 +7690,8 @@ CREATE TABLE `lahans` (
   `gambar` varchar(191) NOT NULL,
   `id_user` int(10) NOT NULL,
   `statusLahan` varchar(30) NOT NULL,
-  `updated_at` date NOT NULL
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

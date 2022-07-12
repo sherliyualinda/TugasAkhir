@@ -264,13 +264,14 @@ Route::post('/dashboard/stores/approve/{id}', 'StoreController@storeApprove')->n
 Route::get('/konfirmasistatuscustomer/{id}', 'DashboardTransactionController@konfirmasistatuscustomer')->name('konfirmasistatuscustomer');
 Route::get('/konfirmasistatuspenjual/{id}', 'DashboardTransactionController@konfirmasistatuspenjual')->name('konfirmasistatuspenjual');
 
-
-
 Route::get('/dashboard/settings', 'DashboardSettingController@store')->name('dashboard-settings-store');
 Route::get('/dashboard/account', 'DashboardSettingController@account')->name('dashboard-settings-account');
 Route::post('/dashboard/account/{redirect}', 'DashboardSettingController@update')->name('dashboard-settings-redirect');
 
-
+// lahan
+Route::get('/dashboard/lahan-pending', 'Admin\LahanController@index')->name('dashboard.lahan-pending');
+Route::get('/dashboard/lahan-pending-detail/{id}', 'Admin\LahanController@show')->name('dashboard.lahan-pending-show');
+Route::post('/dashboard/lahan/approval/{id}', 'Admin\LahanController@approval')->name('dashboard.lahan.approval');
 
 
 
