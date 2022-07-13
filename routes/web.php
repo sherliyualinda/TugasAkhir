@@ -426,6 +426,10 @@ Route::get('/peralatan/request/{id}', 'peralatanController@request')->middleware
 Route::get('/peralatan/acc/{id}', 'peralatanController@accRequest')->middleware('auth');
 Route::get('/peralatan/tolak/{id}', 'peralatanController@tolakRequest')->middleware('auth');
 Route::get('/peralatanan/doneRequest/{id}', 'peralatanController@doneRequest')->middleware('auth');
+// admin peralatan
+Route::get('/dashboard/peralatan/pending', 'Admin\PeralatanController@index')->name('dashboard.peralatan-pending')->middleware('auth');
+Route::get('/dashboard/peralatan/pending/show/{id}', 'Admin\PeralatanController@show')->name('dashboard.peralatan-pending-show')->middleware('auth');
+Route::post('/dashboard/peralatan/approval/{id}', 'Admin\PeralatanController@approval')->name('dashboard.peralatan-pending.approval')->middleware('auth');
 
 Route::get('/lahan/createJadwal/{id}', 'LahanController@createJadwal')->name('create_jadwal')->middleware('auth');
 Route::get('/jadwal/kelola/{id}', 'LahanController@kelola_jadwal')->name('kelola_jadwal')->middleware('auth');

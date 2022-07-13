@@ -14,7 +14,7 @@
         <a href="{{ route('peralatan.kelola_peralatan') }}" class="btn btn-primary">  Kelola </a>
     </div>
 
-        @foreach($peralatan as $peralatan)
+        @foreach($peralatans as $peralatan)
         <div class="col-md-4">
             <div class="card" >
               <img src="{{ url('gambar_peralatan') }}/{{ $peralatan->gambar }}" class="card-img-top" alt="..."  >
@@ -29,7 +29,7 @@
                 <a href="/peralatan/sewaPeralatan/{{$peralatan->id_peralatan}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Sewa</a>
                 <!-- <a href="#" class="btn btn-primary"><i class="fa fa-info"></i> Detail Lahan</a> -->
                 <a href="/lahan/detail_peralatan/{{$peralatan->id_peralatan}}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
-                <a href="/sosial-media/chat_lahan/{{$peralatan->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
+                <a href="/sosial-media/chat_lahan/{{$peralatan->pengguna->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
               </div>
             </div> 
         </div>

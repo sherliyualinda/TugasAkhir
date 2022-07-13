@@ -58,7 +58,7 @@
                                             <a href="/lahan/ubah/{{$lahan->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
                                             <a href="/lahan/hapus/{{$lahan->id}}" class="btn btn-sm btn-danger">Delete</a>
                                             <!-- <a href="/wbs/{{$lahan->id}}" class="btn btn-sm btn-info">BOQ</a> -->
-                                            @if ($lahan->statusLahan !== 'Waiting')
+                                            @if ($lahan->statusLahan === 'Ready')
                                             <a href="/lahan/request/{{$lahan->id}}" class="btn btn-sm btn-info">Request</a>
                                             @endif
                 

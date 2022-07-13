@@ -45,9 +45,8 @@ class PeralatanController extends Controller
      */
 
     public function peralatan(){
-        $peralatan = Peralatan::paginate(9);
-        $peralatan = DB::select("SELECT p.username, a.id_peralatan, p.nama, p.id_pengguna, a.nama_alat, a.harga, a.deskripsi, a.gambar, a.id_pemilik FROM pengguna p JOIN peralatans a on p.id_pengguna = a.id_pemilik");
-        return view('peralatan', compact('peralatan'));
+        $peralatans = Peralatan::where('status', 'Ready')->with('pengguna')->paginate(9);
+        return view('peralatan', compact('peralatans'));
     }
 
     public function create(){
@@ -74,12 +73,11 @@ class PeralatanController extends Controller
             'id_pemilik'        => Auth::user()->pengguna->id_pengguna,
             'updated_at'        => date("Y-m-d H:i:s")
         ]);
-        $peralatan = DB::select("SELECT a.id_peralatan, p.nama, p.id_pengguna, a.nama_alat, a.harga, a.deskripsi, a.gambar, a.id_pemilik FROM pengguna p JOIN peralatans a on p.id_pengguna = a.id_pemilik WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-        return view('kelola_peralatan', compact('peralatan'));
+        return redirect()->route('peralatan.kelola_peralatan');
     }   
     public function kelola_peralatan(){
-        $peralatan = DB::select("SELECT a.id_peralatan, p.nama, p.id_pengguna, a.nama_alat, a.harga, a.deskripsi, a.gambar, a.id_pemilik FROM pengguna p JOIN peralatans a on p.id_pengguna = a.id_pemilik WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-        return view('kelola_peralatan', compact('peralatan'));
+        $peralatans = Peralatan::where('id_pemilik', Auth::user()->pengguna->id_pengguna)->paginate(10);
+        return view('kelola_peralatan', compact('peralatans'));
     }    
     public function ubahperalatan($id){
         $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();

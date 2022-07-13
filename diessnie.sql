@@ -8008,7 +8008,7 @@ CREATE TABLE `peralatans` (
   `deskripsi` varchar(255) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `id_pemilik` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
+  `status` varchar(50) NOT NULL DEFAULT 'Waiting',
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -8016,9 +8016,9 @@ CREATE TABLE `peralatans` (
 -- Dumping data untuk tabel `peralatans`
 --
 
-INSERT INTO `peralatans` (`id_peralatan`, `nama_alat`, `harga`, `deskripsi`, `gambar`, `id_pemilik`, `updated_at`) VALUES
-(1, 'cangkul', 1000, 'cangkul', 'IMG_20220209_143004.jpg', 42, '2022-06-07'),
-(2, 'ember', 20000, 'yusril nggk kuat buat memiliki', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 45, '2022-06-09');
+INSERT INTO `peralatans` (`id_peralatan`, `nama_alat`, `harga`, `deskripsi`, `gambar`, `id_pemilik`, 'Waiting', `updated_at`) VALUES
+(1, 'cangkul', 1000, 'cangkul', 'IMG_20220209_143004.jpg', 42, 'Waiting', '2022-06-07'),
+(2, 'ember', 20000, 'yusril nggk kuat buat memiliki', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 45, 'Waiting', '2022-06-09');
 
 -- --------------------------------------------------------
 
