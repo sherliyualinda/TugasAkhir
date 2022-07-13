@@ -8016,9 +8016,9 @@ CREATE TABLE `peralatans` (
 -- Dumping data untuk tabel `peralatans`
 --
 
-INSERT INTO `peralatans` (`id_peralatan`, `nama_alat`, `harga`, `deskripsi`, `gambar`, `id_pemilik`, 'Waiting', `updated_at`) VALUES
-(1, 'cangkul', 1000, 'cangkul', 'IMG_20220209_143004.jpg', 42, 'Waiting', '2022-06-07'),
-(2, 'ember', 20000, 'yusril nggk kuat buat memiliki', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 45, 'Waiting', '2022-06-09');
+-- INSERT INTO `peralatans` (`id_peralatan`, `nama_alat`, `harga`, `deskripsi`, `gambar`, `id_pemilik`, 'Waiting', `updated_at`) VALUES
+-- (1, 'cangkul', 1000, 'cangkul', 'IMG_20220209_143004.jpg', 42, 'Waiting', '2022-06-07'),
+-- (2, 'ember', 20000, 'yusril nggk kuat buat memiliki', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 45, 'Waiting', '2022-06-09');
 
 -- --------------------------------------------------------
 
