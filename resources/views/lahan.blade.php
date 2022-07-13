@@ -10,7 +10,6 @@
 <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-md-12 mt-5">
-            <img src="/Diessnie-logo.png" class="rounded mx-auto d-block" width="100" alt="">
             <a href="{{ route('lahan.create') }}" class="btn btn-primary">+ Buat Lahan</a>
             <a href="{{ route('lahan.kelola_lahan') }}" class="btn btn-primary">Kelola Lahan</a>
             <a href="{{ route('peralatan') }}" class="btn btn-primary">Peralatan</a>

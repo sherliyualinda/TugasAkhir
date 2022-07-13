@@ -65,6 +65,9 @@
                                     </tr>
                                 </tbody>
                                 @endforeach
+                                @foreach($sewa as $index=>$sewa)
+                                    <b>Sudah disewa {{$sewa->totSewa}} kali</b>
+                                @endforeach
                             </table>
                             <b> Orang Yang Membantu </b>
                             <table class="table table-bordered">
