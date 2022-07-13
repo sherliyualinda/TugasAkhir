@@ -92,6 +92,7 @@ class LahanController extends Controller
             'gambar'            => $file->getClientOriginalName(),
             'id_user'           => Auth::user()->pengguna->id_pengguna,
             'statusLahan'       => "Waiting",
+            'created_at'        => date("Y-m-d H:i:s"),
             'updated_at'        => date("Y-m-d H:i:s")
         ]);
         $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, l.statusLahan, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
