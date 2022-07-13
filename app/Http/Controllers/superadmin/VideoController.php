@@ -18,7 +18,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = Video::paginate(10);
+        $videos = Video::with('detail')->paginate(10);
         return view('super-admin.videos.index', compact('videos'));
     }
 
@@ -94,7 +94,7 @@ class VideoController extends Controller
      */
     public function show($id)
     {
-        $video = Video::find($id);
+        $video = Video::with('detail')->where('id', $id)->first();
         return view('super-admin.videos.show', compact('video'));
     }
 

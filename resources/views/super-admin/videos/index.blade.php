@@ -4,6 +4,20 @@
     Daftar Video
 @endsection
 
+@section('css')
+    <style>
+        .video-title-scope{
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+            display: box;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            white-space: normal;
+        }
+    </style>
+@endsection
+
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -37,7 +51,7 @@
                               <tr align="center">
                                   <th>No.</th>
                                   <th>Judul</th>
-                                  <th>Deskripsi</th>
+                                  <th>Status</th>
                                   <th>Thumbnail</th>
                                   <th>Aksi</th>
                               </tr>
@@ -47,7 +61,12 @@
                               <tr align="center">
                                   <td>{{ $key+1 }}.</td>
                                   <td>{{ $item->title }}</td>
-                                  <td>{{ $item->description }}</td>
+                                  <td>
+                                    <span class="badge badge-secondary pl-2">Views {{ ($item->detail) ? number_format($item->detail['views']) : '0' }}</span>
+                                    <span class="badge badge-secondary pl-2">Like {{ ($item->detail) ? number_format($item->detail['like']) : '0' }}</span>
+                                    <span class="badge badge-secondary pl-2">Comment {{ ($item->detail) ? number_format($item->detail['comment']) : '0' }}</span>
+                                    <span class="badge badge-secondary pl-2">Subscribe {{ ($item->detail) ? number_format($item->detail['subscribes']) : '0' }}</span>
+                                  </td>
                                   <td><img class="img-profile rounded-circle" src="{{ $item->thumbnail != null ? asset($item->thumbnail) : asset('user.jpg') }}"></td>
                                     <td>
                                         <a href="{{route('superadmin.sosial-media.video.show', $item->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>

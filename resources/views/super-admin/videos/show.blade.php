@@ -13,11 +13,11 @@
 <!-- Content Row -->
   <div class="card">
     <div class="card-body">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
             <div class="p-5">
                 <div class="form-group">
                         <label for="">Judul</label>
-                        <input type="text" name="title" class="form-control border-1" readonly value="{{ $video->title }}">
+                        <p>{{ $video->title }}</p>
                     </div>
                     <div class="form-group">
                         <label for="">Deskripsi</label>
@@ -36,11 +36,31 @@
                           Your browser does not support the video tag.
                       </video>
                     </div>
-                    <div class="form-group">
-                        <a href="{{route('superadmin.sosial-media.video.index')}}" class="btn btn-warning btn-user">Kembali</a>
-                    </div>
             </div>
         </div>
+        <div class="col-lg-12">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Views</th>
+                    <th scope="col">Like</th>
+                    <th scope="col">Don't Like</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Subscribe</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ ($video->detail) ? number_format($video->detail['views']) : '0' }}</td>
+                    <td>{{ ($video->detail) ? number_format($video->detail['like']) : '0' }}</td>
+                    <td>{{ ($video->detail) ? number_format($video->detail['dont_like']) : '0' }}</td>
+                    <td>{{ ($video->detail) ? number_format($video->detail['comment']) : '0' }}</td>
+                    <td>{{ ($video->detail) ? number_format($video->detail['subscribes']) : '0' }}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <a href="{{route('superadmin.sosial-media.video.index')}}" class="btn btn-warning btn-user">Kembali</a>
     </div>
   </div>
 @endsection

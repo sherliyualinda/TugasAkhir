@@ -77,6 +77,17 @@
 							@endif
 						</div>
 					</div>
+					<div class="row" style="margin-right: 0; margin-left: 0;">
+						<div class="col desa-col">
+							<a class="dropdown-item teman-desaku" href="{{ route('desatube.index') }}">
+								<img class="zoom-logo" src="{{ asset('img/desatube.png') }}">
+								<br>
+								<small style="white-space: normal!important;">Publish video tentang
+										desa,
+										kegiatan desa dan cerita desa di DesaTube!</small>
+						</a>
+						</div>
+					</div>
 				</div>
 			</li>
 			<li>

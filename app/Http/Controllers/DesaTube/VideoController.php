@@ -9,6 +9,7 @@ use App\Models\VideoDetail;
 use App\Models\VideoView;
 use App\Models\VideoLike;
 use App\Models\VideoComment;
+use App\Models\VideoSubscribe;
 use App\Traits\NavbarTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -53,6 +54,7 @@ class VideoController extends Controller
         $videos = Video::with('user')->limit(5)->orderBy('created_at', 'DESC')->get();
         $detail = VideoDetail::where('id_video', $id)->first();
         $videoLike = VideoLike::where('id_video', $id)->first();
+        $videoSubscribe = VideoSubscribe::where(['id_video' => $id, 'id_user' =>  Auth::user()->id])->first();
         $comments = VideoComment::where('id_video', $id)->get();
         if ($detail) {
             $views = VideoView::where('id_video', $id)->whereDate('created_at', Carbon::today())->first();
@@ -84,7 +86,7 @@ class VideoController extends Controller
             VideoDetail::create($data);
             VideoView::create($data_view);
         }
-        return view('pages.desatube.detail', compact('video','videos','videoLike','comments','total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
+        return view('pages.desatube.detail', compact('video','videos','videoLike','comments','videoSubscribe','total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
     }
 
     public function like(Request $request, $id, $type)
@@ -137,4 +139,19 @@ class VideoController extends Controller
         }
     }
 
+    public function subscribe($id)
+    {
+        VideoSubscribe::create([
+            'id_video' => $id,
+            'id_user' => Auth::user()->id
+        ]);
+        return redirect()->back()->with('success', 'Komentar di tambahkan');
+    }
+    
+    public function unsubscribe($id)
+    {
+        $subscribe = VideoSubscribe::where(['id_video' => $id, 'id_user' =>  Auth::user()->id])->first();
+        $subscribe->delete();
+        return redirect()->back()->with('success', 'Komentar di tambahkan');
+    }
 }

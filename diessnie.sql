@@ -89730,8 +89730,20 @@ CREATE TABLE IF NOT EXISTS `videos` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `id_pengguna` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_pengguna` (`id_pengguna`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
+
+-- Dumping structure for table diessnie.video_comments
+CREATE TABLE IF NOT EXISTS `video_comments` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `content` text,
+  `id_user` int NOT NULL,
+  `id_video` int NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping structure for table diessnie.video_details
 CREATE TABLE IF NOT EXISTS `video_details` (
@@ -89741,11 +89753,35 @@ CREATE TABLE IF NOT EXISTS `video_details` (
   `subscribes` int NOT NULL DEFAULT '0',
   `like` int NOT NULL DEFAULT '0',
   `dont_like` int NOT NULL DEFAULT '0',
+  `comment` int NOT NULL DEFAULT '0',
   `id_user` int DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+
+-- Dumping structure for table diessnie.video_likes
+CREATE TABLE IF NOT EXISTS `video_likes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL DEFAULT '0',
+  `id_video` int NOT NULL DEFAULT '0',
+  `type` char(50) DEFAULT NULL,
+  `ip_address` varchar(50) DEFAULT NULL,
+  `user_agent` text,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+
+-- Dumping structure for table diessnie.video_subscribes
+CREATE TABLE IF NOT EXISTS `video_subscribes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_video` int NOT NULL DEFAULT '0',
+  `id_user` int NOT NULL DEFAULT '0',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- Dumping structure for table diessnie.video_views
 CREATE TABLE IF NOT EXISTS `video_views` (
@@ -89757,7 +89793,7 @@ CREATE TABLE IF NOT EXISTS `video_views` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Indexes for dumped tables

@@ -74,13 +74,17 @@ a.disabled {
             <span class="channel">{{ number_format($video->detail->views) . ' x ditonton' }}</span>
             @endif
             <span>{{ $video->created_at->diffForHumans() }}</span>
-            <span class="float-right pr-2 pl-2 btn-like"><a id="onDislike" class="{{ ($videoLike && $videoLike->type === 'dont_like') ? 'text-blue':'' }} {{ ($videoLike && $videoLike->type === 'like') ? 'disabled':'' }}" data-id="{{$video->id}}"><i class="fa fa-thumbs-down"></i> {{($video->detail->dont_like > 0) ? $video->detail->dont_like:'' }} Tidak Suka</a></span>
-            <span class="float-right btn-like"><a id="onLike" class="{{ ($videoLike && $videoLike->type === 'like') ? 'text-blue':'' }}" data-id="{{$video->id}} {{ ($videoLike && $videoLike->type === 'dont_like') ? 'disabled':'' }}"><i class="fa fa-thumbs-up"></i> {{($video->detail->like > 0) ? $video->detail->like:'' }} Suka</a></span>
+            <span class="float-right pr-2 pl-2 btn-like"><a id="onDislike" class="{{ (isset($videoLike) && $videoLike->type === 'dont_like') ? 'text-blue':'' }} {{ ($videoLike && $videoLike->type === 'like') ? 'disabled':'' }}" data-id="{{$video->id}}"><i class="fa fa-thumbs-down"></i> {{($video->detail->dont_like > 0) ? $video->detail->dont_like:'' }} Tidak Suka</a></span>
+            <span class="float-right btn-like"><a id="onLike" class="{{ (isset($videoLike) && $videoLike->type === 'like') ? 'text-blue':'' }}" data-id="{{$video->id}} {{ ($videoLike && $videoLike->type === 'dont_like') ? 'disabled':'' }}"><i class="fa fa-thumbs-up"></i> {{($video->detail->like > 0) ? $video->detail->like:'' }} Suka</a></span>
           </div>
           <hr>
           <div class="d-block pengguna">
-            <span>{{ $video->user->name }}</span>
-            <button type="submit" class="btn btn-danger float-right">SUBSCRIBE</button>
+            <span><b>{{ $video->user->name }}</b></span>
+            @if ($videoSubscribe)
+              <a href="{{ route('desatube.unsubscribe', $video->id) }}" class="btn btn-danger float-right">UNSUBSCRIBE</a>
+            @else
+              <a href="{{ route('desatube.subscribe', $video->id) }}" class="btn btn-danger float-right">SUBSCRIBE</a>
+            @endif
           </div>
           <p>
             {{ $video->description }}
