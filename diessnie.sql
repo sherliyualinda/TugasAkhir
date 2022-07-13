@@ -7946,6 +7946,7 @@ CREATE TABLE `pengguna` (
   `musrembang` varchar(255) DEFAULT NULL,
   `foto_profil` varchar(255) DEFAULT NULL,
   `foto_sampul` varchar(255) DEFAULT NULL,
+  `status_pengajuan_store` varchar(50) DEFAULT NULL,
   `tgl_join` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -8007,7 +8008,8 @@ CREATE TABLE `peralatans` (
   `deskripsi` varchar(255) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `id_pemilik` int(11) NOT NULL,
-  `updated_at` date NOT NULL
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
