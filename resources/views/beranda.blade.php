@@ -247,7 +247,7 @@
 									<div class="widget friend-list stick-widget">
 										<h4 class="widget-title">Video Desa Terbaru</h4>
 										<ul class="friendz-list" id="widget_video">
-										    @include('theme.widget_video')
+										    @include('theme.widget_video_local', $video_news)
 										</ul>
 									</div>
 								</aside>

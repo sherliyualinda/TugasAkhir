@@ -13,4 +13,8 @@ class Pengguna extends Model
     	// return $this->belongsTo('App\Kategori', 'id_kategori');
         return $this->belongsTo('App\User', 'id_pengguna', 'id');
     }
+    
+    public function videos(){
+        return $this->hasMany('App\Models\Video', 'id_pengguna');
+    }
 }

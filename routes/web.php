@@ -118,7 +118,7 @@ Route::post('/sosial-media/menyukai_proses/{id_konten}', 'Sosmed_Con@menyukai_pr
 Route::post('/sosial-media/batal_menyukai_proses/{id}', 'Sosmed_Con@batal_menyukai_proses');
 
 //PROFIL
-Route::get('/sosial-media/profil/{username}', 'Sosmed_Con@lihat_profil');
+// Route::get('/sosial-media/profil/{username}', 'Sosmed_Con@lihat_profil');
 Route::get('/sosial-media/profil/{username}', 'Sosmed_Con@lihat_profil')->name('sosial-media.profil');
 Route::get('/sosial-media/tambah_teman2/{username}', 'Sosmed_Con@tambah_teman2');
 Route::get('/sosial-media/hapus_following/{username}', 'Sosmed_Con@hapus_following');
@@ -180,7 +180,7 @@ Route::post('/sosial-media/get-group-report-list', 'Sosmed_Con@get_group_report_
 //NOTIF
 Route::post('/sosial-media/update_notif', 'Sosmed_Con@update_notif')->name('sosial-media.update_notif');
 
-
+//SUPER ADMIN AREA
 //SUPER ADMIN - MENU DASHBOARD
 Route::get('/sosial-media/dashboard-admin', 'superadmin\menu_dashboard_con@get_jml_akun');
 Route::get('/sosial-media/getData/{x}', 'superadmin\menu_dashboard_con@get_data');
@@ -196,6 +196,24 @@ Route::post('/sosial-media/get-report-list', 'superadmin\menu_report_con@get_rep
 
 //SUPER ADMIN - MENU LIST PENGGUNA
 Route::get('/sosial-media/list-pengguna', 'superadmin\menu_pengguna_con@get_all_akun');
+
+//VIDEO
+Route::prefix('superadmin')
+->name('superadmin.sosial-media.')
+->namespace('superadmin')
+->group(function() {
+    Route::resource('/sosial-media/video', 'VideoController');
+});
+
+//END SUPER ADMIN AREA
+
+// DesaTube
+Route::resource('/desatube', 'DesaTube\VideoController')->only(['show','index']);
+Route::get('/desatube/like/{id}/{type}', 'DesaTube\VideoController@like')->name('desatube.like');
+Route::post('/desatube/comment', 'DesaTube\VideoController@comment')->name('desatube.comment');
+Route::get('/desatube/subscribe/{id}', 'DesaTube\VideoController@subscribe')->name('desatube.subscribe');
+Route::get('/desatube/unsubscribe/{id}', 'DesaTube\VideoController@unsubscribe')->name('desatube.unsubscribe');
+// DesaTube
 
 //Marketplace
 Route::get('/sosial-media/marketplace', 'HomeController@marketplace');

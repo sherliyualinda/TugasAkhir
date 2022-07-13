@@ -141,6 +141,13 @@ rect.highcharts-background{
             </a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('superadmin.sosial-media.video.index')}}">
+              <i class="fa fa-play"></i>
+              <span>Video</span>
+            </a>
+          </li>
+
           <!-- Nav Item - Dashboard -->
           <li class="nav-item">
             <a class="nav-link" href="{{ route('dashboard') }}">

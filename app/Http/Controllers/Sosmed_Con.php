@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\File_Gambar;
+use App\Models\VideoView;
+use App\Models\Video;
 use File;
 use Auth;
 
@@ -244,7 +246,8 @@ class Sosmed_Con extends Controller{
         $data_followers_week = DB::select("SELECT COUNT(followers.id) AS jml FROM followers JOIN notif ON followers.id = notif.id_followers WHERE followers.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'  AND notif.created_at > (now() - INTERVAL 7 day)");
         $likes_desa = DB::select("SELECT * FROM likes JOIN pengguna ON likes.id_pengguna = pengguna.id_pengguna WHERE id_konten IN (SELECT id_konten FROM konten JOIN pengguna ON konten.id_pengguna=pengguna.id_pengguna WHERE konten.is_active = 1 AND konten.id_group = 0 AND konten.id_pengguna IN (SELECT id_pengguna FROM pengguna WHERE jenis_akun = 'desa') ORDER BY konten.created_at DESC)");
         $likes_all_desa = DB::select("SELECT * FROM likes JOIN pengguna ON likes.id_pengguna = pengguna.id_pengguna WHERE id_konten IN (SELECT id_konten FROM konten JOIN pengguna ON konten.id_pengguna=pengguna.id_pengguna WHERE konten.is_active = 1 AND konten.id_group = 0 AND konten.id_pengguna IN (SELECT id_pengguna FROM pengguna WHERE jenis_akun = 'desa') ORDER BY konten.created_at DESC)");
-        return view('beranda', compact('jml_konten', 'teman', 'rekomendasi', 'konten', 'komentar', 'balas_komentar', 'notif_pesan', 'likes', 'likes_all', 'notif_group', 'total_notif', 'list_notif_display', 'list_all_group', 'rekomendasi_teman', 'data_likes_total', 'data_likes_week', 'data_followers_total', 'data_followers_week', 'konten_desa', 'komentar_desa', 'balas_komentar_desa', 'likes_desa', 'likes_all_desa'));
+        $video_news = Video::orderBy('created_at', 'desc')->with('user')->limit(3)->get();
+        return view('beranda', compact('jml_konten', 'video_news', 'teman', 'rekomendasi', 'konten', 'komentar', 'balas_komentar', 'notif_pesan', 'likes', 'likes_all', 'notif_group', 'total_notif', 'list_notif_display', 'list_all_group', 'rekomendasi_teman', 'data_likes_total', 'data_likes_week', 'data_followers_total', 'data_followers_week', 'konten_desa', 'komentar_desa', 'balas_komentar_desa', 'likes_desa', 'likes_all_desa'));
     }
 
     public function menyukai_proses($id_konten){
@@ -1249,7 +1252,8 @@ class Sosmed_Con extends Controller{
             // $url_api = 'http://marketpalcedesaku.masuk.web.id/api/productvillage/'.$data->village_id;
             // $api_product = json_decode( file_get_contents($url_api), true );
             // $api_product = '';
-            return view('profil', compact('teman', 'teman_saya', 'jml_konten', 'konten', 'jml_teman', 'profil', 'followers', 'followers_saya', 'jml_followers', 'komentar', 'balas_komentar', 'notif_pesan', 'list_notif_display', 'total_notif', 'notif_group', 'likes', 'likes_all', 'pengaturan', 'follow_request'));
+            $video_history_view = VideoView::where('id_user', Auth::user()->id)->with('video')->orderBy('created_at', 'desc')->limit(4)->get();
+            return view('profil', compact('teman', 'teman_saya', 'jml_konten', 'konten', 'jml_teman', 'profil', 'followers', 'followers_saya', 'jml_followers', 'komentar', 'balas_komentar', 'notif_pesan', 'list_notif_display', 'total_notif', 'notif_group', 'likes', 'likes_all', 'pengaturan', 'follow_request','video_history_view'));
         }else{
             return redirect('/sosial-media/beranda');
         }
