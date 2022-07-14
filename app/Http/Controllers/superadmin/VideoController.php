@@ -5,7 +5,10 @@ namespace App\Http\Controllers\superadmin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Video;
+use App\Models\Notification;
+use App\Models\VideoSubscribe;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use Image;
 
@@ -45,6 +48,7 @@ class VideoController extends Controller
         'video'  => 'required|mimes:mp4,mov,3gp|max:20000',
         'title'  => 'required',
         ]);
+        DB::beginTransaction();
 
         try {
             $data = $request->all();
@@ -75,12 +79,33 @@ class VideoController extends Controller
 
             $data['id_pengguna'] = (Auth::user()->id == 1 ) ? 4 : Auth::user()->id;
 
-            Video::create($data);
+            $video = Video::create($data);
 
+            $subscribers = VideoSubscribe::where('id_channel', (Auth::user()->id == 1 ) ? 4 : Auth::user()->id)->get();
+            $ids_user = [];
+            foreach($subscribers as $value){
+                if(!in_array($value->id_user, $ids_user, true)){
+                    array_push($ids_user, $value->id_user);
+                }
+            }
+            $notif = [];
+            foreach ($ids_user as $id_user) {
+                $notif[] = [
+                    'jenis_notif' =>  'Subscriber',
+                    'id_video' => $video->id,
+                    'isi_notif' => 'Channel '. $video->user->name .' telah mengunggah video baru',
+                    'status' => 'Belum Dibaca',
+                    'id_user' => $id_user,
+                    'created_at' => date("Y-m-d H:i:s")
+                ];
+            }
+            Notification::insert($notif);
+            DB::commit();
             return redirect()->route('superadmin.sosial-media.video.index')
                 ->with('success', 'Sukses simpan data');
         } catch (\Throwable $th) {
-            // dd($th->getMessage());
+            dd($th->getMessage());
+            DB::rollback();
             return redirect()->back()
                 ->with('errors', 'Gagal simpan data');
         }

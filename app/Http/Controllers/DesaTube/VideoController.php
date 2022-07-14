@@ -11,6 +11,7 @@ use App\Models\VideoLike;
 use App\Models\VideoComment;
 use App\Models\VideoSubscribe;
 use App\Traits\NavbarTrait;
+use App\Models\Notification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +35,7 @@ class VideoController extends Controller
         }else{
             $videos = Video::with(['user','detail'])->paginate(10);            
         }
-        // dd($videos);
+        // dd($list_notif_display);
         return view('pages.desatube.index', compact('videos', 'total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
     }
 
@@ -85,6 +86,12 @@ class VideoController extends Controller
             ];
             VideoDetail::create($data);
             VideoView::create($data_view);
+        }
+        if ($request->get('notification')) {
+            $notif = Notification::where('id_notif', $request->get('notification'))->first();
+            $notif->status = 'Sudah Dibaca';
+            $notif->is_active = 0;
+            $notif->save();
         }
         return view('pages.desatube.detail', compact('video','videos','videoLike','comments','videoSubscribe','total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
     }
@@ -139,19 +146,20 @@ class VideoController extends Controller
         }
     }
 
-    public function subscribe($id)
+    public function subscribe($id, $channel)
     {
         VideoSubscribe::create([
             'id_video' => $id,
-            'id_user' => Auth::user()->id
+            'id_user' => Auth::user()->id,
+            'id_channel' => $channel
         ]);
-        return redirect()->back()->with('success', 'Komentar di tambahkan');
+        return redirect()->back()->with('success', 'Subscribe di tambahkan');
     }
     
     public function unsubscribe($id)
     {
         $subscribe = VideoSubscribe::where(['id_video' => $id, 'id_user' =>  Auth::user()->id])->first();
         $subscribe->delete();
-        return redirect()->back()->with('success', 'Komentar di tambahkan');
+        return redirect()->back()->with('success', 'Subscribe dibatalkan');
     }
 }

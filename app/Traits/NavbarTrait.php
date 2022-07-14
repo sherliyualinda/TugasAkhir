@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Notification;
 
 trait NavbarTrait {
   public static function total_notif(){
@@ -38,8 +39,10 @@ trait NavbarTrait {
 
     $kondisi[] = "follow_request.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'";
 
+    $kondisi[] = "video_subscribes.id_user = '".Auth::user()->id."'";
+
     $all_kondisi = ' WHERE '.implode(" OR ", $kondisi);
-    $list_notif = DB::select("SELECT notif.jenis_notif jenis_notif, pengguna_likes.username username_likers, likes.tanggal_like tanggal_like, konten_likes.foto_video_konten foto_video_konten, pengguna_likes.foto_profil foto_profil_likers, pengguna_comment.foto_profil foto_profil_commentor, pengguna_comment.username username_commentor, comment.isi_komentar isi_komentar, comment.tanggal_komen tanggal_komen, konten_comment.foto_video_konten foto_video_konten_komen, pengguna_grup.foto_profil foto_profil_post, pengguna_grup.username username_post, grup.nama_group nama_group, konten_group.created_at created_at, pengundang.foto_profil foto_pengirim, pengundang.username username_pengirim, grup_undangan.nama_group nama_group_undangan, undangan_grup.tanggal_undangan tanggal_undangan, undangan_grup.id id, pengguna_followers.foto_profil foto_profil_followers, pengguna_followers.username username_followers, notif.created_at tanggal_follow, pengguna_requester.foto_profil foto_requester, pengguna_requester.username username_requester, grup_adm.nama_group nama_group_adm, admin_penambah.foto_profil foto_admin_penambah, admin_penambah.username username_admin_penambah, notif.created_at tanggal_admin FROM notif 
+    $list_notif = DB::select("SELECT DISTINCT notif.jenis_notif jenis_notif, pengguna_likes.username username_likers, likes.tanggal_like tanggal_like, konten_likes.foto_video_konten foto_video_konten, pengguna_likes.foto_profil foto_profil_likers, pengguna_comment.foto_profil foto_profil_commentor, pengguna_comment.username username_commentor, comment.isi_komentar isi_komentar, comment.tanggal_komen tanggal_komen, konten_comment.foto_video_konten foto_video_konten_komen, pengguna_grup.foto_profil foto_profil_post, pengguna_grup.username username_post, grup.nama_group nama_group, konten_group.created_at created_at, pengundang.foto_profil foto_pengirim, pengundang.username username_pengirim, grup_undangan.nama_group nama_group_undangan, undangan_grup.tanggal_undangan tanggal_undangan, undangan_grup.id id, pengguna_followers.foto_profil foto_profil_followers, pengguna_followers.username username_followers, notif.created_at tanggal_follow, pengguna_requester.foto_profil foto_requester, pengguna_requester.username username_requester, grup_adm.nama_group nama_group_adm, admin_penambah.foto_profil foto_admin_penambah, admin_penambah.username username_admin_penambah, notif.created_at tanggal_admin FROM notif 
         LEFT JOIN likes ON notif.id_likes = likes.id AND notif.jenis_notif = 'Menyukai' AND notif.status = 'Belum Dibaca'
         LEFT JOIN konten konten_likes ON likes.id_konten = konten_likes.id_konten 
         LEFT JOIN pengguna pengguna_likes ON likes.id_pengguna = pengguna_likes.id_pengguna 
@@ -60,6 +63,8 @@ trait NavbarTrait {
         LEFT JOIN followers ON notif.id_followers = followers.id AND notif.jenis_notif = 'Followers' AND notif.status = 'Belum Dibaca'
         LEFT JOIN pengguna pengguna_followers ON followers.id_followers = pengguna_followers.id_pengguna 
         LEFT JOIN follow_request ON notif.id_followers = follow_request.id AND notif.jenis_notif = 'Followers' AND notif.status = 'Belum Dibaca'
+        LEFT JOIN videos ON notif.id_video = videos.id AND notif.jenis_notif = 'Subscriber' AND notif.status = 'Belum Dibaca'
+        LEFT JOIN video_subscribes ON notif.id_video = videos.id
         LEFT JOIN pengguna pengguna_requester ON follow_request.id_requester = pengguna_requester.id_pengguna $all_kondisi ORDER BY notif.created_at DESC");
 
     return $total_notif = sizeof($list_notif);
@@ -97,8 +102,10 @@ trait NavbarTrait {
 
     $kondisi[] = "follow_request.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'";
 
+    $kondisi[] = "video_subscribes.id_user = '".Auth::user()->id."'";
+
     $all_kondisi = ' WHERE '.implode(" OR ", $kondisi);
-    return $list_notif_display = DB::select("SELECT notif.isi_notif isi_notif, notif.jenis_notif jenis_notif,  pengguna_konten.username username_konten, pengguna_likes.username username_likers, likes.tanggal_like tanggal_like, konten_likes.id_konten id_konten_likes, konten_likes.created_at tgl_konten, konten_likes.foto_video_konten foto_video_konten, konten_likes.slug slugg, pengguna_likes.foto_profil foto_profil_likers, pengguna_konten_2.username username_konten_2, pengguna_comment.foto_profil foto_profil_commentor, pengguna_comment.username username_commentor, comment.isi_komentar isi_komentar, comment.tanggal_komen tanggal_komen, konten_comment.created_at tgl_konten_2, konten_comment.id_konten id_konten_komen, konten_comment.foto_video_konten foto_video_konten_komen, konten_comment.slug slug, pengguna_grup.foto_profil foto_profil_post, pengguna_grup.username username_post, grup.nama_group nama_group, grup.id_group id_group, konten_group.created_at created_at, pengundang.foto_profil foto_pengirim, pengundang.username username_pengirim, grup_undangan.nama_group nama_group_undangan, undangan_grup.tanggal_undangan tanggal_undangan, undangan_grup.id id, pengguna_followers.foto_profil foto_profil_followers, pengguna_followers.username username_followers, pengguna_requester.foto_profil foto_requester, pengguna_requester.username username_requester, follow_request.id id_request, follow_request.status status_request, notif.created_at tanggal_follow, grup_adm.nama_group nama_group_adm, grup_adm.id_group id_group_adm, admin_penambah.foto_profil foto_admin_penambah, admin_penambah.username username_admin_penambah, notif.created_at tanggal_admin FROM notif 
+    return $list_notif_display = DB::select("SELECT DISTINCT notif.id_notif id_notification, notif.isi_notif isi_notif, notif.jenis_notif jenis_notif,  pengguna_konten.username username_konten, pengguna_likes.username username_likers, likes.tanggal_like tanggal_like, konten_likes.id_konten id_konten_likes, konten_likes.created_at tgl_konten, konten_likes.foto_video_konten foto_video_konten, konten_likes.slug slugg, pengguna_likes.foto_profil foto_profil_likers, pengguna_konten_2.username username_konten_2, pengguna_comment.foto_profil foto_profil_commentor, pengguna_comment.username username_commentor, comment.isi_komentar isi_komentar, comment.tanggal_komen tanggal_komen, konten_comment.created_at tgl_konten_2, konten_comment.id_konten id_konten_komen, konten_comment.foto_video_konten foto_video_konten_komen, konten_comment.slug slug, pengguna_grup.foto_profil foto_profil_post, pengguna_grup.username username_post, grup.nama_group nama_group, grup.id_group id_group, konten_group.created_at created_at, pengundang.foto_profil foto_pengirim, pengundang.username username_pengirim, grup_undangan.nama_group nama_group_undangan, undangan_grup.tanggal_undangan tanggal_undangan, undangan_grup.id id, pengguna_followers.foto_profil foto_profil_followers, pengguna_followers.username username_followers, pengguna_requester.foto_profil foto_requester, pengguna_requester.username username_requester, follow_request.id id_request, follow_request.status status_request, notif.created_at tanggal_follow, grup_adm.nama_group nama_group_adm, grup_adm.id_group id_group_adm, admin_penambah.foto_profil foto_admin_penambah, admin_penambah.username username_admin_penambah, notif.created_at tanggal_admin, videos.title judul_video, videos.thumbnail video_thumbnail, videos.id id_video FROM notif 
         LEFT JOIN likes ON notif.id_likes = likes.id AND notif.jenis_notif = 'Menyukai' 
         LEFT JOIN konten konten_likes ON likes.id_konten = konten_likes.id_konten 
         LEFT JOIN pengguna pengguna_konten ON konten_likes.id_pengguna = pengguna_konten.id_pengguna
@@ -121,6 +128,8 @@ trait NavbarTrait {
         LEFT JOIN followers ON notif.id_followers = followers.id AND notif.jenis_notif = 'Followers' 
         LEFT JOIN pengguna pengguna_followers ON followers.id_followers = pengguna_followers.id_pengguna
         LEFT JOIN follow_request ON notif.id_followers = follow_request.id AND notif.jenis_notif = 'Followers' 
+        LEFT JOIN videos ON notif.id_video = videos.id AND notif.jenis_notif = 'Subscriber' AND notif.status = 'Belum Dibaca'
+        LEFT JOIN video_subscribes ON notif.id_video = videos.id
         LEFT JOIN pengguna pengguna_requester ON follow_request.id_requester = pengguna_requester.id_pengguna $all_kondisi ORDER BY notif.created_at DESC");
   }
 

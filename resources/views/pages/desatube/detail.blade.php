@@ -1,6 +1,11 @@
 @extends('layouts2.app')
 
 @push('addon-style')
+<link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
+<link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/color.css') }}">
+<link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/responsive.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
 <style>
 .video-title-scope{
   font-family: "Roboto","Arial",sans-serif;
@@ -83,7 +88,7 @@ a.disabled {
             @if ($videoSubscribe)
               <a href="{{ route('desatube.unsubscribe', $video->id) }}" class="btn btn-danger float-right">UNSUBSCRIBE</a>
             @else
-              <a href="{{ route('desatube.subscribe', $video->id) }}" class="btn btn-danger float-right">SUBSCRIBE</a>
+              <a href="{{ route('desatube.subscribe', ['id' => $video->id, 'channel' => $video->id_pengguna]) }}" class="btn btn-danger float-right">SUBSCRIBE</a>
             @endif
           </div>
           <p>
