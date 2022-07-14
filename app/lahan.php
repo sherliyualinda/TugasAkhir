@@ -19,6 +19,10 @@ class lahan extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
+    public function pengguna(){
+        return $this->belongsTo(Pengguna::class, 'id_user');
+    }
+
     public function category(){
         return $this->belongsTo(Category_Lahan::class, 'category_lahan_id');
     }

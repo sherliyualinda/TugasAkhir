@@ -16,7 +16,7 @@ class LahanController extends Controller
     
     public function show($id)
     {
-        $lahan = lahan::where('id', $id)->with('category','user')->first();
+        $lahan = lahan::where('id', $id)->with('category','user','pengguna')->first();
         return view('pages.adminstore.lahan.show', compact('lahan'));
     }
     

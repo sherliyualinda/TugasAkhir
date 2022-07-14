@@ -54,13 +54,13 @@ Peralatan Detail
                     <div class="form-group">
                       <label for="">Gambar</label>
                       <br>
-                      <img src="{{ url('gambar_peralatan') }}/{{ $peralatan->gambar }} "width="300">
+                      <img src="{{ url('gambar_peralatan') }}/{{ $peralatan->gambar }} "width="300"><br>
+                      <label for="">Foto KTP</label>
+                      <br>
+                      <img src="{{ url('foto_ktp') }}/{{ $peralatan->pengguna->foto_ktp }} "width="300" height="200">
                     </div>
                   </div>
-
-
-
-                </div>
+                 
                 @if ($peralatan->status == 'Waiting')                    
                 <div class="row">
                   <div class="col-6">
