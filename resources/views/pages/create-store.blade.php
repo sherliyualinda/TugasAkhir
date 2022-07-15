@@ -17,22 +17,30 @@ Detail Store
                     <div class="card-body py-0">
                       <div class="row align-items-center">
                         <img src="/images/icon-store.svg" alt="" class="mr-3" style="max-height: 65px;">
-                        <p class="text-bold mt-4" style="font-size: 20px;">{{ $user->store_name }}</p>
+                        <p class="text-bold mt-4" style="font-size: 20px;">{{ $pengguna->nama }}
+                        @if ($pengguna->status_pengajuan_store == 'PENDING')
+                          <span class="badge badge-warning">Menunggu Persetujuan</span>
+                        @elseif($pengguna->status_pengajuan_store == 'APPROVE')
+                          <span class="badge badge-success">Disetujui</span>
+                        @elseif($pengguna->status_pengajuan_store == 'REJECT')
+                          <span class="badge badge-danger">Reject</span>
+                        @endif
+                        </p>
                       </div>
                     </div>
                   </a>
                   <div class="row">
                     <div class="col-6 col-md-6">
-                      Jumlah Produk : <span> {{ $products_count }} </span>
+                      Jumlah Produk : <span> {{ $product_count }} </span>
                     </div>
-                    <div class="col-6 col-md-6">
+                    {{-- <div class="col-6 col-md-6">
                       Status Toko :  
                       @if ($user->store_status == 1)
                       <span class="text-success">Buka</span>
                       @else
                       <span class="text-danger">Tutup</span>
                       @endif 
-                    </div>
+                    </div> --}}
                   </div>
                 </div>
               </div>
@@ -50,7 +58,7 @@ Detail Store
             </div>
           </div>
           <div class="row">
-            @foreach ($products_data as $product)
+            @foreach ($products as $product)
             <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
               <a href="{{ route('detail',$product->slug) }}" class="component-products d-block">
                 <div class="products-thumbnail">

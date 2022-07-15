@@ -8,8 +8,11 @@ use App\Category;
 use App\Pengguna;
 use App\Models\Regency;
 use App\Models\Village;
+use App\Traits\NavbarTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use Image;
 
 class StoreController extends Controller
 {
@@ -114,6 +117,110 @@ class StoreController extends Controller
     public function create()
     {
         return view('pages.create-store');
+    }
+
+    public function mystore()
+    {
+        $total_notif = NavbarTrait::total_notif();
+        $list_notif_display = NavbarTrait::list_notif_display();
+        $notif_pesan = NavbarTrait::notif_pesan();
+        $notif_group = NavbarTrait::notif_group();
+        $pengguna = Pengguna::where('id_pengguna', Auth::user()->pengguna->id_pengguna)->first();
+        $products = Product::where('users_id', Auth::user()->id)->get();
+        $product_count = count($products);
+        if($pengguna->status_pengajuan_store){
+            return view('pages.create-store', compact('pengguna', 'products', 'product_count', 'total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
+        }else {
+            return view('pages.submission-store', compact('pengguna', 'total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
+        }
+    }
+
+    public function sendSubmissionStore(Request $request, $id)
+    {
+        $this->validate($request, [
+            'foto_ktp'  => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nama'  => 'required',
+            'email'  => 'required',
+            'nik'  => 'required',
+            'nomor_hp'  => 'required',
+            'pekerjaan'  => 'required',
+            'alamat'  => 'required',
+            ]);
+
+            try {
+                $pengguna = Pengguna::where('id_pengguna', $id)->first();
+                $pengguna->nama  = $request->post('nama');
+                $pengguna->email  = $request->post('email');
+                $pengguna->nik  = $request->post('nik');
+                $pengguna->nomor_hp  = $request->post('nomor_hp');
+                $pengguna->pekerjaan  = $request->post('pekerjaan');
+                $pengguna->alamat  = $request->post('alamat');
+                $pengguna->bio  = $request->post('bio');
+                $pengguna->website  = $request->post('website');
+                $pengguna->youtube  = $request->post('youtube');
+                $pengguna->marketplace  = $request->post('marketplace');
+                $pengguna->berita  = $request->post('berita');
+                $pengguna->musrembang  = $request->post('musrembang');
+                $pengguna->status_pengajuan_store  = 'PENDING';
+
+                $uniqueName = time()."-".date('dmY'); // For unique naming
+
+                if($request->file('foto_ktp')){
+                    $foto_ktp = $request->file('foto_ktp');
+                    // Upload foto_ktp
+                    $destinationPath = 'foto_ktp';
+                    if (!file_exists($destinationPath)) {
+                        mkdir($destinationPath, 666, true);
+                    }
+                    $fileNameKTP = $uniqueName."-foto_ktp".'.'.$foto_ktp->getClientOriginalExtension();
+                    $resize_image_ktp = Image::make($foto_ktp->getRealPath());
+
+                    $resize_image_ktp->resize(700, null, function($constraint){
+                        $constraint->aspectRatio();
+                    })->save($destinationPath . '/' . $fileNameKTP);
+                    $pengguna->foto_ktp = '/'.$destinationPath.'/'.$fileNameKTP;
+                }
+                
+                if($request->file('foto_profil')){
+                    $foto_profil = $request->file('foto_profil');
+                    // Upload foto_profil
+                    $destinationPathProfile = 'data_file/'.$pengguna->username.'/foto_profil';;
+                    if (!file_exists($destinationPathProfile)) {
+                        mkdir($destinationPathProfile, 666, true);
+                    }
+                    $fileNameSampul = $uniqueName."-foto_profil".'.'.$foto_profil->getClientOriginalExtension();
+                    $resize_image_ktp = Image::make($foto_profil->getRealPath());
+
+                    $resize_image_ktp->resize(700, null, function($constraint){
+                        $constraint->aspectRatio();
+                    })->save($destinationPathProfile . '/' . $fileNameSampul);
+                    $pengguna->foto_profil = $fileNameSampul;
+                }
+                
+                if($request->file('foto_sampul')){
+                    $foto_sampul = $request->file('foto_sampul');
+                    // Upload foto_sampul
+                    $destinationPathSampul = 'data_file/'.$pengguna->username.'/foto_sampul';;
+                    if (!file_exists($destinationPathSampul)) {
+                        mkdir($destinationPathSampul, 666, true);
+                    }
+                    $fileNameSampul = $uniqueName."-foto_sampul".'.'.$foto_sampul->getClientOriginalExtension();
+                    $resize_image_ktp = Image::make($foto_sampul->getRealPath());
+
+                    $resize_image_ktp->resize(700, null, function($constraint){
+                        $constraint->aspectRatio();
+                    })->save($destinationPathSampul . '/' . $fileNameSampul);
+                    $pengguna->foto_sampul = $fileNameSampul;
+                }
+
+                $pengguna->save();                
+
+                return redirect()->route('my-store');
+            } catch (\Throwable $th) {
+                //throw $th;
+                // dd($th->getMessage());
+                return redirect()->route('my-store');
+            }
     }
 }
 

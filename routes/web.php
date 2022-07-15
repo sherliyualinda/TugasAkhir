@@ -127,6 +127,8 @@ Route::post('/sosial-media/post_komen_dari_profil', 'Sosmed_Con@post_komen_dari_
 Route::post('/sosial-media/ubah_foto_sampul', 'Sosmed_Con@ubah_foto_sampul');
 Route::post('/sosial-media/ubah_foto_profil', 'Sosmed_Con@ubah_foto_profil');
 Route::get('/', 'StoreController@create')->name('create-store-user');
+Route::get('/sosial-media/store', 'StoreController@mystore')->name('my-store');
+Route::put('/sosial-media/send-submission-store/{id}', 'StoreController@sendSubmissionStore')->name('send-submission-store');
 
 
 //FOLLOW REQUEST

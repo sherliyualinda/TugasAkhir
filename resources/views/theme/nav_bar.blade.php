@@ -276,7 +276,7 @@
 					
 						<a class="dropdown-item" href="#" title="">{{ auth()->user()->name }}</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="/dashboard/products"><i class="ti-power-off" style="padding-right: 1rem;"></i> Toko Saya </a>
+						<a class="dropdown-item" href="{{route('my-store')}}"><i class="ti-power-off" style="padding-right: 1rem;"></i> Toko Saya </a>
 						<a class="dropdown-item" href="/sosial-media/profil/{{auth()->user()->pengguna->username}}" title=""><i class="ti-user" style="padding-right: 1rem;"></i>Profil</a>
 						<!-- <a class="dropdown-item" href="" title=""><i class="fa fa-bar-chart-o" style="padding-right: 1rem;"></i>Insight</a> -->
 						<a class="dropdown-item" href="/sosial-media/pengaturan" title=""><i class="ti-settings" style="padding-right: 1rem;"></i>Pengaturan</a>
