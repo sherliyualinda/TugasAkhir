@@ -59,15 +59,21 @@ class VideoController extends Controller
 
             $file = $request->file('video');     
             // Upload video
-            $destinationPath = 'uploads/videos';
+            $destinationPathVideo = 'uploads/videos';
+            if (!file_exists($destinationPathVideo)) {
+                mkdir($destinationPathVideo, 666, true);
+            }
             $fileName = $uniqueName.'.'.$file->getClientOriginalExtension();
-            $uploadSuccess = $file->move($destinationPath, $fileName);
-            $videoSrc = '/'.$destinationPath.'/'.$fileName;
+            $uploadSuccess = $file->move($destinationPathVideo, $fileName);
+            $videoSrc = '/'.$destinationPathVideo.'/'.$fileName;
             $data['url'] = $videoSrc;
 
             $thumbnail = $request->file('thumbnail');
             // Upload thumbnail
             $destinationPath = 'uploads/thumbnails';
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 666, true);
+            }
             $fileName = $uniqueName."-thumbnail".'.'.$thumbnail->getClientOriginalExtension();
             $resize_image = Image::make($thumbnail->getRealPath());
 
