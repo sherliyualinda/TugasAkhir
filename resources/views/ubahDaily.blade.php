@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <label>Keterangan</label>
-                            <input type="input" name="keterangan" value="{{old('keterangan',$daily->keterangan)}}" class="form-control form-control-user" placeholder="Keterangan">
+                            <textarea name="keterangan" cols="30" rows="10">{{$daily->keterangan}}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Tanggal</label>

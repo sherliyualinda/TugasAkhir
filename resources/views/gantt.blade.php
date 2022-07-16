@@ -4,10 +4,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.esm.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.js"></script>
-
 <link rel="icon" href="/logo-home.png" type="image/png" sizes="16x16"> 	    
 <link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
 
@@ -49,7 +45,9 @@
             <li>
                 <?php if($sewa->id_pemilik == Auth::user()->pengguna->id_pengguna){?>
                     <a href="/wbs/{{$_SESSION['id_sewa']}}" class="btn btn-sm btn-info">WBS</a>
-                <?php }else{ ?>
+                    <a href="{{route('boq-wbs', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">BOQ</a>
+                    <a href="{{route('scurve', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">S-Curve</a>
+                    <?php }else{ ?>
 
                 <?php } ?>
             </li>

@@ -29,11 +29,12 @@
                                 <th scope="col">Deskripsi</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col">Gambar</th>
+                                <th scope="col">Status</th>
                                 <th colspan="2" >Kelola</th>
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($peralatan as $index=>$peralatan)
+                            @foreach($peralatans as $index=>$peralatan)
                                 <tr>
                                     <td>{{ $index+1}}</td>
                                     <td>{{ $peralatan->nama_alat}}</td>
@@ -44,11 +45,14 @@
                                         <img src="{{ url('gambar_peralatan') }}/{{ $peralatan->gambar }} "width="50" height="50">
                                         </center>
                                     </td>
+                                    <td>{{ $peralatan->status }}</td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
                                             <a href="/peralatan/ubah/{{$peralatan->id_peralatan}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
                                             <a href="/peralatan/hapus_peralatan/{{$peralatan->id_peralatan}}" class="btn btn-sm btn-danger">Delete</a>
+                                            @if ($peralatan->status === 'Ready')
                                             <a href="/peralatan/request/{{$peralatan->id_peralatan}}" class="btn btn-sm btn-info">Request</a>
+                                            @endif
                                         </form>
                                     </td>
                                 </tr>

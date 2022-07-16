@@ -24,6 +24,7 @@ use App\Probabilitas;
 use App\Wbs;
 use App\Jadwal;
 use App\Lahan_resources;
+use App\Manual_book;
 use App\Risk;
 use App\Traits\NavbarTrait;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use mysqli;
+use Carbon\Carbon;
 
 class LahanController extends Controller
 {
@@ -89,14 +91,15 @@ class LahanController extends Controller
             'deskripsi'         => $request->deskripsi,
             'gambar'            => $file->getClientOriginalName(),
             'id_user'           => Auth::user()->pengguna->id_pengguna,
-            'statusLahan'       => "Ready",
+            'statusLahan'       => "Waiting",
+            'created_at'        => date("Y-m-d H:i:s"),
             'updated_at'        => date("Y-m-d H:i:s")
         ]);
-        $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, l.statusLahan, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
         return view('kelola_lahan', compact('lahan'));
     }
     public function kelola_lahan(){
-        $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, l.statusLahan, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
         return view('kelola_lahan', compact('lahan'));
     }    
     public function ubahlahan($id){
@@ -130,11 +133,13 @@ class LahanController extends Controller
         $lahan = DB::select("SELECT p.nama as pemilik,l.statusLahan,l.id_user, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE l.id = $id");
         $orang = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 1 AND lr.id_lahan = $id");
         $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 2 AND lr.id_lahan = $id");
+        $sewa = DB::select("SELECT COUNT(id_lahan) as totSewa FROM sewa_lahans WHERE id_lahan = $id AND progres='Done'");
         $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 3 AND lr.id_lahan = $id");
-        return view('detail_lahan',compact('lahan','orang','material','alat'));  
+        $lahan4 = DB::select("SELECT l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE l.id = $id limit 1");
+        return view('detail_lahan',compact('lahan','orang','material','alat','lahan4','sewa'));  
     }
     public function projek_user(){
-        $projek = DB::select("SELECT sl.id_sewa, l.gambar, sl.id_lahan,l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc' And id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+        $projek = DB::select("SELECT p.username,sl.id_sewa, l.gambar, sl.id_lahan,l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status FROM lahans l JOIN pengguna p on l.id_user = p.id_pengguna JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan WHERE sl.status='Acc' And id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
         
         return view('projek', compact('projek'));
     }
@@ -150,13 +155,77 @@ class LahanController extends Controller
 
         $risk=DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan, r.id_risk FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa where r.id_sewa = $id ");
        
-        $orang = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 1 AND sl.status ='Acc' AND lr.id_lahan ='".$_SESSION['id_lahan']."'");
-        $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 2 AND sl.status ='Acc' AND lr.id_lahan ='".$_SESSION['id_lahan']."'");
-        $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 3 AND sl.status ='Acc' AND lr.id_lahan ='".$_SESSION['id_lahan']."'");
+        $orang = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 1 AND sl.status ='Acc'");
+        $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 2 AND sl.status ='Acc'");
+        $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 3 AND sl.status ='Acc'");
 
         $jadwal = Jadwal::select('*')->where('id_sewa', $id)->get();
+        $boq_aktual = Task::where('id_sewa', $id)->with('children')->get();
+        $boq_history = Task_histori::where('id_sewa', $id)->with('children')->get();
 
-        return view('projek_user',compact('sewa','orang','material','alat','risk','daily','struk','jadwal'));  
+        // Scurve
+        $aktual = Task::where('id_sewa', $id)->with('children')->get();
+        $tanggalAll = [];
+        $tanggal = [];
+        $data_kegiatan = [];
+        $total_aktual = [];
+        foreach ($aktual as $key => $parent) {
+           if ($parent->parent == 0) {
+            $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
+            $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+            $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+            foreach ($parent->children as $child) {
+                if($child->totalHarga > 0){
+                    if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
+                        $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
+                    }else{
+                        $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
+                        $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
+                    }
+                    $data_kegiatan[Carbon::parse($child->start_date)->format('d-m-Y')][] = $child->text;
+                }
+            }
+           }
+        }
+        
+        $total_history = [];
+        $history = Task_histori::where('id_sewa', $id)->with('children')->get();
+        foreach ($history as $key => $parent) {
+            if ($parent->parent == 0) {
+             $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+             $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+             if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+             }
+             foreach ($parent->children as $child) {
+                 if($child->totalHarga > 0){
+                     if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
+                         $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
+                     }else{
+                        if (!in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggalAll)) {
+                            $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
+                         }
+                         $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
+                     }
+                 }
+             }
+            }
+         }
+
+        usort($tanggalAll, function ($a, $b) {
+            return strtotime($a) - strtotime($b);
+        });
+
+        $dataScurve = [
+            'data_tanggal' => $tanggalAll,
+            'total_aktual' => $total_aktual,
+            'total_history' => $total_history,
+            'data_kegiatan' => $data_kegiatan
+        ];
+        // scurve
+
+        return view('projek_user',compact('sewa','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history','dataScurve'));  
 
     }
    
@@ -196,7 +265,7 @@ class LahanController extends Controller
     public function request($id){
         session_start();
         $_SESSION['id_lahan'] = $id;
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa,s.id_lahan, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
+        $sewa = DB::select("SELECT username,nama,alamat,s.id_sewa,s.id_lahan, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
         return view('request', compact('sewa'));
     }
 
@@ -222,7 +291,7 @@ class LahanController extends Controller
         ]);
         //return redirect('lahan/kelola_lahan');
        
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp,s.id_lahan, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
+        $sewa = DB::select("SELECT username,nama,alamat,s.id_sewa, nik, foto_ktp,s.id_lahan, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
         //return view('request', compact('sewa'));
         return redirect()->route('request',$_SESSION['id_lahan']);
     }
@@ -239,7 +308,7 @@ class LahanController extends Controller
         ]);
         //return redirect('lahan/kelola_lahan');
         
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp,s.id_lahan, id_penyewa,s.id_sewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id ");
+        $sewa = DB::select("SELECT username,nama,alamat,s.id_sewa, nik, foto_ktp,s.id_lahan, id_penyewa,s.id_sewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id ");
         //return view('request', compact('sewa'));
         return redirect()->route('request',$_SESSION['id_lahan']);
     }
@@ -256,12 +325,12 @@ class LahanController extends Controller
         ]);
         //return redirect('lahan/kelola_lahan');
        
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
+        $sewa = DB::select("SELECT uasername,nama,alamat,s.id_sewa, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
         //return view('request', compact('sewa'));
         return redirect()->route('request',$_SESSION['id_lahan']);
     }
     public function wbs(Request $request,$id){
-        
+        session_start();
         //$wbs = DB::select("SELECT w.harga, w.qty, w.satuan, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
 
         $wbs = DB::select("SELECT a.id_sewa, a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa = $id AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc;");
@@ -326,9 +395,11 @@ class LahanController extends Controller
         
         $wbs = DB::select("SELECT a.id_sewa, a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa =  '".$_SESSION['id_sewa']."' AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc;");
 
+        $wbs2 = Task::select('*')->where('id_sewa', $request->id_sewa)->limit(1)->get();
+
 
         
-       return view('create_wbs', compact('wbs'));
+       return view('create_wbs', compact('wbs','wbs2'));
        
     }
 
@@ -339,6 +410,76 @@ class LahanController extends Controller
         
 
     }
+
+    public function scurve(Request $request,$id){
+        $aktual = Task::where('id_sewa', $id)->with('children')->get();
+        $tanggalAll = [];
+        $tanggal = [];
+        $data_kegiatan = [];
+        $total_aktual = [];
+        foreach ($aktual as $key => $parent) {
+           if ($parent->parent == 0) {
+            $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
+            $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+            $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+            foreach ($parent->children as $child) {
+                if($child->totalHarga > 0){
+                    if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
+                        $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
+                    }else{
+                        $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
+                        $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
+                    }
+                    $data_kegiatan[Carbon::parse($child->start_date)->format('d-m-Y')][] = $child->text;
+                }
+            }
+           }
+        }
+        
+        $total_history = [];
+        $history = Task_histori::where('id_sewa', $id)->with('children')->get();
+        foreach ($history as $key => $parent) {
+            if ($parent->parent == 0) {
+             $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+             $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+             if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+             }
+             foreach ($parent->children as $child) {
+                 if($child->totalHarga > 0){
+                     if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
+                         $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
+                     }else{
+                        if (!in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggalAll)) {
+                            $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
+                         }
+                         $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
+                     }
+                 }
+             }
+            }
+         }
+
+        usort($tanggalAll, function ($a, $b) {
+            return strtotime($a) - strtotime($b);
+        });
+
+        $data = [
+            'data_tanggal' => $tanggalAll,
+            'total_aktual' => $total_aktual,
+            'total_history' => $total_history,
+            'data_kegiatan' => $data_kegiatan
+        ];
+        return view('scurve_wbs', compact('data'));
+    }
+
+    public function boq_wbs($id)
+    {
+        $history = Task_histori::where('id_sewa', $id)->with('children')->get();
+        return view('boq_wbs', compact('history'));
+    }
+
     // public function formWbs($id){
     //     $wbs = Boq::select('*')->where('id_task', $id)->limit(1)->get();
         
@@ -359,8 +500,6 @@ class LahanController extends Controller
         
     // }
     public function createRisk($id){
-
-        //$risk = DB::select("SELECT r.id_risk, r.id_sewa, r.penyebab, r.dampak, r.strategi, r.biaya, r.id_probabilitas, r.id_impact, r.levelRisk, r.updated_at,p.title, p.value, i.title, i.value FROM risks r JOIN probabilitas p on r.id_probabilitas = p.id_probabilitas JOIN impacts i on r.id_impact = i.id_impact WHERE r.id_sewa == $id");
 
         $risk = Sewa_lahan::select('*')->where('id_sewa', $id)->get();
         return view('create_risk',compact('risk'));
@@ -612,6 +751,8 @@ class LahanController extends Controller
                             //return view('kelola_risk', compact('risk'));
                         }
                     public function kelolaStruk($id){
+                        session_start();
+                        $_SESSION['id_sewa']=$id;
                             $struk = Struk::select('*')->where('id_sewa', $id)->get();
                             $struk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
                             return view('Kelola_struk', compact('struk','struk2'));
@@ -672,6 +813,7 @@ class LahanController extends Controller
                             $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = '".$_SESSION['id_lahan']."' Order by r.keterangan");
                             return view('kelola_resource', compact('resource'));
                         }
+
     public function kelola_jadwal($id){
         $jadwal = Jadwal::select('*')->where('id_sewa', $id)->get();
         $jadwal2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
@@ -723,4 +865,72 @@ class LahanController extends Controller
         
         return view('kelola_jadwal',compact('jadwal','jadwal2','jadwal3'));
         }
+
+
+        public function createManual(){
+            return view('create_manual');
+        }
+    
+        public function simpan_manual(Request $request){
+            $file = $request->file('gambar');
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'gambar_manual';
+            $file->move($tujuan_upload,$file->getClientOriginalName());
+            // menyimpan data file yang diupload ke variabel $file
+          
+            DB::table('manual_books')->insert([
+                'id_categoryLahan'     => $request->id_categoryLahan,
+                'gambar'               => $file->getClientOriginalName(),
+                'jenis_lahan'        => $request->jenis_lahan,
+                'deskripsi'      => $request->deskripsi,
+                'sumber'         => $request->sumber,
+                'updated_at'    => date("Y-m-d H:i:s")
+            ]);
+                
+                $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+                return view('kelola_manual', compact('manual'));
+            }
+    
+            public function manualBook(){
+            
+                $manual = DB::select("SELECT c.nama, m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+            return view('kelola_manual', compact('manual'));
+            }
+            public function ubahManual($id){
+                //$risk = Risk::select('*')->where('id_risk',$id)->get();
+                $manual = DB::select("SELECT c.nama, m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id WHERE m.id_manual = $id");
+                $category = Category_lahan::all();
+                return view('ubahManual', compact('manual','category'));  
+            }
+        
+            public function updateManual(Request $request){
+                $file = $request->file('gambar');
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload = 'gambar_manual';
+                $file->move($tujuan_upload,$file->getClientOriginalName());
+             
+                $manual = Manual_book::where('id_manual',$request->id_manual)->update([
+                    'id_categoryLahan'      => $request->id_categoryLahan,
+                    'gambar'                =>$file->getClientOriginalName(),
+                    'jenis_lahan'           => $request->jenis_lahan,
+                    'deskripsi'             => $request->deskripsi,
+                    'sumber'                => $request->sumber,
+                    'updated_at'            => date("Y-m-d H:i:s")
+                    
+                ]);
+                $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+                return view('kelola_manual', compact('manual'));
+            }
+            public function hapusManual($id){
+                DB::table('manual_books')->where('id_manual',$id)->delete();
+                $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+                return view('kelola_manual', compact('manual'));
+            }
+
+            public function detailManual($id){
+                //DB::table('manual_books')->where('id_manual',$id)->delete();
+                $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id where id_categoryLahan = $id");
+                return view('halManual', compact('manual'));
+            }
+    
 }

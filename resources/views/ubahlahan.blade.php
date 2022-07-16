@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <label>Deskripsi</label>
-                            <input type="input" name="deskripsi" value="{{old('deskripsi',$lahan2->deskripsi)}}" class="form-control form-control-user" rows="4" placeholder="Masukkan Deskripsi">
+                            <textarea name="deskripsi" cols="30" rows="10">{{$lahan2->deskripsi}}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Gambar</label><br>

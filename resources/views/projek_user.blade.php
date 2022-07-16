@@ -57,6 +57,10 @@
                                     aria-selected="false">Boq</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" id="scurve-tab" data-toggle="tab" href="#scurve" role="tab" aria-controls="scurve"
+                                    aria-selected="false">S-Curve</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" id="Daily-tab" data-toggle="tab" href="#Daily" role="tab" aria-controls="Daily"
                                     aria-selected="false">Laporan Harian</a>
                                 </li>
@@ -176,8 +180,117 @@
                                       
                                     </div>
                                     <div class="tab-pane fade" id="boq" role="tabpanel" aria-labelledby="boq-tab">
-                                        <h3>BOQ</h3>
-                                      
+                                        <div class="row">
+                                            <div class="col-3 pt-3">
+                                              <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                <a class="nav-link active" id="v-pills-aktual-tab" data-toggle="pill" href="#v-pills-aktual" role="tab" aria-controls="v-pills-aktual" aria-selected="true">Aktual</a>
+                                                <a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">Histori</a>
+                                               </div>
+                                            </div>
+                                            <div class="col-9">
+                                              <div class="tab-content" id="v-pills-tabContent">
+                                                <div class="tab-pane fade show active" id="v-pills-aktual" role="tabpanel" aria-labelledby="v-pills-aktual-tab">
+                                                    <table class="table">
+                                                        <thead>
+                                                          <tr>
+                                                            <th scope="col">No.</th>
+                                                            <th scope="col">Uraian Pekerjaan</th>
+                                                            <th scope="col">Jumlah Harga</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @php
+                                                                $i = 1;
+                                                                $total = 0;
+                                                            @endphp
+                                                            @foreach ($boq_aktual as $parent)
+                                                            @if ($parent->parent == 0)
+                                                                <tr>
+                                                                    <th scope="row">{{$i++}}</th>
+                                                                    <td>{{$parent->text}}</td>
+                                                                    <td>{{$parent->totalHarga}}
+                                                                        @php
+                                                                            $total += $parent->totalHarga
+                                                                        @endphp
+                                                                    </td>
+                                                                </tr>
+                                                                @foreach ($parent->children as $child)
+                                                                    @if($child->totalHarga > 0)
+                                                                    <tr>
+                                                                        <th scope="row">{{$i++}}</th>
+                                                                        <td>{{$child->text}}</td>
+                                                                        <td>{{$child->totalHarga}}
+                                                                            @php
+                                                                            $total += $child->totalHarga
+                                                                        @endphp
+                                                                        </td>
+                                                                    </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                            @endforeach
+                                                            <tr>
+                                                                <td colspan="2" class="text-right h5">Total</td>
+                                                                <td class="h5">{{number_format($total)}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                      </table>
+                                                </div>
+                                                <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
+                                                    <table class="table">
+                                                        <thead>
+                                                          <tr>
+                                                            <th scope="col">No.</th>
+                                                            <th scope="col">Uraian Pekerjaan</th>
+                                                            <th scope="col">Jumlah Harga</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @php
+                                                                $i = 1;
+                                                                $totalHistory = 0;
+                                                            @endphp
+                                                            @foreach ($boq_history as $parent)
+                                                            @if ($parent->parent == 0)
+                                                                <tr>
+                                                                    <th scope="row">{{$i++}}</th>
+                                                                    <td>{{$parent->text}}</td>
+                                                                    <td>{{number_format($parent->totalHarga)}}
+                                                                        @php
+                                                                            $totalHistory += $parent->totalHarga
+                                                                        @endphp
+                                                                    </td>
+                                                                </tr>
+                                                                @foreach ($parent->children as $child)
+                                                                    @if($child->totalHarga > 0)
+                                                                    <tr>
+                                                                        <th scope="row">{{$i++}}</th>
+                                                                        <td>{{$child->text}}</td>
+                                                                        <td>{{number_format($child->totalHarga)}}
+                                                                            @php
+                                                                                $totalHistory += $child->totalHarga
+                                                                            @endphp
+                                                                        </td>
+                                                                    </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                            @endforeach
+                                                            <tr>
+                                                                <td colspan="2" class="text-right h5">Total</td>
+                                                                <td class="h5">{{number_format($totalHistory)}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                      </table>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="scurve" role="tabpanel" aria-labelledby="scurve-tab">
+                                        <div class="col-md-9">
+                                            <canvas id="Aktual" width="700" height="400"></canvas>
+                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="Daily" role="tabpanel" aria-labelledby="Daily-tab">
                                         <h3>Laporan Harian</h3>
@@ -279,7 +392,108 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{ asset('js/chart.js/Chart.min.js') }}"></script>
+    <script>
+        var speedCanvas = document.getElementById("Aktual");
 
+            Chart.defaults.global.defaultFontFamily = "Roboto";
+            Chart.defaults.global.defaultFontSize = 18;
+        var data_tanggal = @json($dataScurve['data_tanggal']);
+        var total_aktual = @json($dataScurve['total_aktual']);
+        var total_history = @json($dataScurve['total_history']);
+        //line one
+        var arrFirst = [];
+        var tempArrFirst = 0;
+            for (const key in total_aktual) {
+                if (Object.hasOwnProperty.call(total_aktual, key)) {
+                    const data = total_aktual[key];
+                    const chart_data = data + tempArrFirst;
+                    tempArrFirst = chart_data;
+                    arrFirst.push(chart_data)
+                }
+            }
+            
+        var dataFirst = {
+            label: "Aktual",
+            data: arrFirst,
+            lineTension: 0,
+            fill: false,
+            borderColor: 'green'
+        };
+        // line two
+        var arrSecond = [];
+        var tempArrSecond = 0;
+            for (const key in total_history) {
+                if (Object.hasOwnProperty.call(total_history, key)) {
+                    const data = total_history[key];
+                    const chart_data = data + tempArrSecond;
+                    tempArrSecond = chart_data;
+                    arrSecond.push(chart_data)
+                }
+            }
+            console.log(arrFirst);
+            console.log(arrSecond);
+        var dataSecond = {
+            label: "Histori",
+            data: arrSecond,
+            lineTension: 0,
+            fill: false,
+            borderColor: 'blue'
+        };
+
+        // line three
+        var arrDifference = [];
+        var tempArrDifference = 0;
+            for (let index = 0; index < arrFirst.length; index++) {
+                const difference = arrFirst[index] - arrSecond[index];
+                const chart_data = difference + tempArrDifference;
+                tempArrDifference = chart_data;
+                arrDifference.push(chart_data);
+            }
+
+        var dataDifference = {
+            label: "Selisih",
+            data: arrDifference,
+            lineTension: 0,
+            fill: false,
+            borderColor: 'red'
+        };
+            
+
+        var speedData = {
+            labels: data_tanggal,
+            datasets: [dataFirst, dataSecond,dataDifference]
+        };
+
+        var chartOptions = {
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                boxWidth: 80,
+                fontColor: 'black'
+                }
+            }
+        };
+
+        var lineChart = new Chart(speedCanvas, {
+            type: 'line',
+            data: speedData,
+            options: chartOptions
+        });
+
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+    </script>
 </body>
 </html>
 

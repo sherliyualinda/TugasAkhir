@@ -16,18 +16,13 @@ Store Dashboard Store
             <div class="dashboard-content">
               <div class="row">
                 <div class="col-12">
-                {{-- @if (Auth::user()->store_name) --}}
-                  {{-- <a href="{{ route('dashboard-product-create') }}" class="btn btn-success">Tambah Produk</a> --}}
-                {{-- @else
                   <a href="{{ route('dashboard-settings-store') }}" class="btn btn-warning text-white">Buat Toko</a>
-                @endif      --}}
                 </div>
               </div>
               <div class="row mt-4">
               @foreach ($pengguna as $item)
                  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                   <div class="card card-dashboard-product d-block">
-                  {{-- <a href="{{ route('dashboard-product-details', $item->id) }}" class="card card-dashboard-product d-block"> --}}
                     <div class="card-body">
                       <div class="product-title">
                         {{ $item->nama }}
@@ -67,7 +62,6 @@ Store Dashboard Store
                       
                     </div>
                   </div>
-                  {{-- </a> --}}
                 </div>
               @endforeach
               </div>

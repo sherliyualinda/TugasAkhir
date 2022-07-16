@@ -23,7 +23,7 @@ Store Dashboard Products Pages
                 $product = App\Product::with('user')->where('users_id',Auth::user()->id)->count()     
                 @endphp
                 {{-- @if (Auth::user()->store_name) --}}
-                  {{-- <a href="{{ route('dashboard-product-create') }}" class="btn btn-success">Tambah Produk</a> --}}
+                  <a href="{{ route('dashboard-product-create') }}" class="btn btn-success">Tambah Produk</a>
                 {{-- @else
                   <a href="{{ route('dashboard-settings-store') }}" class="btn btn-warning text-white">Buat Toko</a>
                 @endif      --}}

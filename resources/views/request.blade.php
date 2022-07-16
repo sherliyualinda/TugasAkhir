@@ -40,7 +40,9 @@
                                 <th scope="col" >Jadwal Ketemu</th>
                                 <th scope="col">Laporan Harian</th>
                                 <th scope="col">Struk Pembayaran</th>
-                                <th colspan="2" >Progres</th>
+                                <th colspan="2">Progres</th>
+                                <th scope="col" >Pesan</th>
+                                
                                
 
                               </tr>
@@ -132,6 +134,10 @@
                                         <?php }else{ ?>
                                             <a href="#" class="btn btn-sm btn-secondary">Done</a>
                                         <?php } ?>
+                                    </td>
+
+                                    <td>
+                                    <a href="/sosial-media/chat_lahan/{{$sewa->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
                                     </td>
                                     
                                 </tr>

@@ -126,6 +126,10 @@ Route::get('/sosial-media/hapus_followers/{username}', 'Sosmed_Con@hapus_followe
 Route::post('/sosial-media/post_komen_dari_profil', 'Sosmed_Con@post_komen_dari_profil');
 Route::post('/sosial-media/ubah_foto_sampul', 'Sosmed_Con@ubah_foto_sampul');
 Route::post('/sosial-media/ubah_foto_profil', 'Sosmed_Con@ubah_foto_profil');
+Route::get('/', 'StoreController@create')->name('create-store-user');
+Route::get('/sosial-media/store', 'StoreController@mystore')->name('my-store');
+Route::put('/sosial-media/send-submission-store/{id}', 'StoreController@sendSubmissionStore')->name('send-submission-store');
+
 
 //FOLLOW REQUEST
 Route::get('/sosial-media/terima_request/{id}', 'Sosmed_Con@terima_request');
@@ -277,15 +281,17 @@ Route::get('/dashboard/stores-pending', 'StoreController@storePending')->name('d
 Route::get('/dashboard/stores-pending-detail/{id}', 'StoreController@storeDetail')->name('dashboard.store-pending-show');
 Route::post('/dashboard/stores/approve/{id}', 'StoreController@storeApprove')->name('dashboard.store-approve');
 
-
 Route::get('/konfirmasistatuscustomer/{id}', 'DashboardTransactionController@konfirmasistatuscustomer')->name('konfirmasistatuscustomer');
 Route::get('/konfirmasistatuspenjual/{id}', 'DashboardTransactionController@konfirmasistatuspenjual')->name('konfirmasistatuspenjual');
-
-
 
 Route::get('/dashboard/settings', 'DashboardSettingController@store')->name('dashboard-settings-store');
 Route::get('/dashboard/account', 'DashboardSettingController@account')->name('dashboard-settings-account');
 Route::post('/dashboard/account/{redirect}', 'DashboardSettingController@update')->name('dashboard-settings-redirect');
+
+// lahan
+Route::get('/dashboard/lahan-pending', 'Admin\LahanController@index')->name('dashboard.lahan-pending');
+Route::get('/dashboard/lahan-pending-detail/{id}', 'Admin\LahanController@show')->name('dashboard.lahan-pending-show');
+Route::post('/dashboard/lahan/approval/{id}', 'Admin\LahanController@approval')->name('dashboard.lahan.approval');
 
 Route::resource('/dashboard/video', 'AdminStore\VideoController');
 
@@ -381,6 +387,8 @@ Route::post('/lahan/update_risk', 'LahanController@updateRisk')->name('updateRis
 
 Route::get('/wbs/{id}', 'LahanController@wbs')->name('wbs')->middleware('auth');
 Route::get('/wbs_user/{id}', 'LahanController@wbs_user')->name('wbs')->middleware('auth');
+Route::get('/s-curve/wbs/{id}', 'LahanController@scurve')->name('scurve')->middleware('auth');
+Route::get('/wbs/boq/{id}', 'LahanController@boq_wbs')->name('boq-wbs')->middleware('auth');
 
 Route::get('/lahan/createRisk/{id}', 'LahanController@createRisk')->name('create_risk')->middleware('auth');
 Route::post('/lahan/simpan_risk/{id}', 'LahanController@simpan_risk')->name('simpan_risk')->middleware('auth');
@@ -393,6 +401,8 @@ Route::post('/lahan/simpan_daily/{id}', 'LahanController@simpan_daily')->name('s
 Route::get('/lahan/kelola_daily/{id}', 'LahanController@daily')->name('kelola_daily')->middleware('auth');
 
 Route::get('/lahan/kelola_resource/{id}', 'LahanController@kelola_resource')->middleware('auth');
+
+Route::get('/lahan/halmanual/{id}', 'LahanController@detailManual')->middleware('auth');
 
 Route::get('/lahan/create_formWbs/{id}', 'LahanController@formWbs')->name('formWbs')->middleware('auth');
 // Route::post('/lahan/tambahKebutuhanWbs/', 'LahanController@kebutuhanWbs')->name('tambahKebutuhanWbs')->middleware('auth');
@@ -407,6 +417,14 @@ Route::post('/lahan/simpan_alat/{id}', 'LahanController@simpan_alat')->name('sim
 Route::get('/lahan/ubah_sdm/{id}',  'LahanController@ubahSDM')->middleware('auth');
 Route::post('/lahan/update_sdm', 'LahanController@updateSDM')->name('updateSDM')->middleware('auth');
 Route::get('/lahan/hapus_sdm/{id}', 'LahanController@hapusSDM')->middleware('auth');
+
+
+Route::get('/lahan/createManual', 'LahanController@createManual')->name('create_manual')->middleware('auth');
+Route::post('/lahan/simpan_manual', 'LahanController@simpan_manual')->name('simpan_manual')->middleware('auth');
+Route::get('/lahan/manualBook', 'LahanController@manualBook')->name('manualBook')->middleware('auth');
+Route::get('/lahan/ubah_manual/{id}',  'LahanController@ubahManual')->middleware('auth');
+Route::post('/lahan/update_manual', 'LahanController@updateManual')->name('updateManual')->middleware('auth');
+Route::get('/lahan/hapus_manual/{id}', 'LahanController@hapusManual')->middleware('auth');
 
 //Route::get('/lahan/boq/{id}', 'LahanController@showBoq')->name('create_boq')->middleware('auth');
 Route::get('/lahan/boq/{id}', 'LahanController@createBoq')->name('create_boq')->middleware('auth');
@@ -430,6 +448,10 @@ Route::get('/peralatan/request/{id}', 'peralatanController@request')->middleware
 Route::get('/peralatan/acc/{id}', 'peralatanController@accRequest')->middleware('auth');
 Route::get('/peralatan/tolak/{id}', 'peralatanController@tolakRequest')->middleware('auth');
 Route::get('/peralatanan/doneRequest/{id}', 'peralatanController@doneRequest')->middleware('auth');
+// admin peralatan
+Route::get('/dashboard/peralatan/pending', 'Admin\PeralatanController@index')->name('dashboard.peralatan-pending')->middleware('auth');
+Route::get('/dashboard/peralatan/pending/show/{id}', 'Admin\PeralatanController@show')->name('dashboard.peralatan-pending-show')->middleware('auth');
+Route::post('/dashboard/peralatan/approval/{id}', 'Admin\PeralatanController@approval')->name('dashboard.peralatan-pending.approval')->middleware('auth');
 
 Route::get('/lahan/createJadwal/{id}', 'LahanController@createJadwal')->name('create_jadwal')->middleware('auth');
 Route::get('/jadwal/kelola/{id}', 'LahanController@kelola_jadwal')->name('kelola_jadwal')->middleware('auth');

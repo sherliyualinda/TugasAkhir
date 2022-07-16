@@ -37,7 +37,8 @@
                 
                         <div class="form-group">
                             <label>Keterangan</label>
-                            <input type="input" name="keterangan" value="{{old('keterangan',$struk->keterangan)}}" class="form-control form-control-user" placeholder="Keterangan">
+                            <textarea name="keterangan" cols="30" rows="10">{{$struk->keterangan}}</textarea>
+                            
                         </div>
                         <div class="form-group">
                             <label>Tanggal</label>

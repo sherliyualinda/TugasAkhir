@@ -18,7 +18,6 @@ class DashboardProductController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-
     {
         $products = Product::latest()->where('status', 'PENDING')->with('user','galleries','category')->where('users_id', Auth::user()->id)->get();
         return view('pages.dashboard-products',[

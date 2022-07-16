@@ -155,6 +155,12 @@ rect.highcharts-background{
               <span>Marketplace</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('manualBook') }}">
+              <i class="fa-solid fa-gauge"></i>
+              <span>Lahan</span>
+            </a>
+          </li>
 
           <!-- Divider -->
           <hr class="sidebar-divider d-none d-md-block">

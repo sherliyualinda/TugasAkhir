@@ -19,7 +19,7 @@ Store Dashboard Setiing
               <div class="row">
                 <div class="col-12">
                   <form action="{{ route('dashboard-settings-redirect','dashboard-settings-store' ) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                    {{ csrf_field() }}
                     <div class="card">
                       <div class="card-body">
                         <div class="row">

@@ -284,13 +284,16 @@
 						<img src="{{ auth()->user()->pengguna->foto_profil != null ? url('/data_file/'.auth()->user()->pengguna->username.'/foto_profil/'.auth()->user()->pengguna->foto_profil) : asset('user.jpg') }}" alt="" style="height: 20px;width:20px;border-radius:50%;vertical-align:sub;">
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+					
 						<a class="dropdown-item" href="#" title="">{{ auth()->user()->name }}</a>
 						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{{route('my-store')}}"><i class="ti-power-off" style="padding-right: 1rem;"></i> Toko Saya </a>
 						<a class="dropdown-item" href="/sosial-media/profil/{{auth()->user()->pengguna->username}}" title=""><i class="ti-user" style="padding-right: 1rem;"></i>Profil</a>
 						<!-- <a class="dropdown-item" href="" title=""><i class="fa fa-bar-chart-o" style="padding-right: 1rem;"></i>Insight</a> -->
 						<a class="dropdown-item" href="/sosial-media/pengaturan" title=""><i class="ti-settings" style="padding-right: 1rem;"></i>Pengaturan</a>
 						{{-- <a class="dropdown-item" href="/sosial-media/logout_proses" title=""><i class="ti-power-off" style="padding-right: 1rem;"></i>Logout</a> --}}
 						<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="ti-power-off" style="padding-right: 1rem;"></i> Logout </a>
+						
 						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 							{{ csrf_field() }}
 						</form>

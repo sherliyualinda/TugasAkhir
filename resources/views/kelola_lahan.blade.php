@@ -38,6 +38,7 @@
                                 <th scope="col">Ukuran</th>
                                 <th scope="col">Deskripsi</th>
                                 <th scope="col">Gambar</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Kelola</th>
                                 <th scope="col">Tambah Sumber Daya</th>
                               </tr>
@@ -51,12 +52,15 @@
                                     <td>
                                         <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }} "width="50" height="50">
                                     </td>
+                                    <td>{{ $lahan->statusLahan }}</td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
                                             <a href="/lahan/ubah/{{$lahan->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
                                             <a href="/lahan/hapus/{{$lahan->id}}" class="btn btn-sm btn-danger">Delete</a>
                                             <!-- <a href="/wbs/{{$lahan->id}}" class="btn btn-sm btn-info">BOQ</a> -->
+                                            @if ($lahan->statusLahan === 'Ready')
                                             <a href="/lahan/request/{{$lahan->id}}" class="btn btn-sm btn-info">Request</a>
+                                            @endif
                 
                                         </form>
                                     </td>
