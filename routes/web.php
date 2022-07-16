@@ -287,7 +287,7 @@ Route::get('/dashboard/settings', 'DashboardSettingController@store')->name('das
 Route::get('/dashboard/account', 'DashboardSettingController@account')->name('dashboard-settings-account');
 Route::post('/dashboard/account/{redirect}', 'DashboardSettingController@update')->name('dashboard-settings-redirect');
 
-
+Route::resource('/dashboard/video', 'AdminStore\VideoController');
 
 
 

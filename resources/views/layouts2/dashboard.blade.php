@@ -13,6 +13,7 @@
   <link href="/style/main.css" rel="stylesheet" />
   <link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
   @stack('addon-style')
+  @yield('css')
 </head>
 
 <body>
@@ -38,6 +39,10 @@
              class="list-group-item list-group-item-action {{ Request::is('dashboard/transactions') ? 'active' : '' }}">Transaksi</a> --}}
           <a href="{{ route('dashboard.store-pending') }}" 
              class="list-group-item list-group-item-action {{ Request::is('dashboard/stores-pending') ? 'active' : '' }}">Store Pending</a>
+          @if (auth()->user()->pengguna->jenis_akun == 'desa')
+          <a href="{{ route('video.index') }}" 
+          class="list-group-item list-group-item-action {{ Request::is('dashboard/video') ? 'active' : '' }}">Video</a>
+          @endif
           {{-- <a href="{{ route('dashboard-settings-account') }}" 
              class="list-group-item list-group-item-action {{ Request::is('dashboard/account') ? 'active' : '' }}">Akun</a> --}}
           <a href="{{ route('logout') }}" onclick="event.preventDefault();
