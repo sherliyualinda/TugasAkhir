@@ -13,6 +13,7 @@
   <link href="/style/main.css" rel="stylesheet" />
   <link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
   @stack('addon-style')
+  @yield('css')
 </head>
 
 <body>
@@ -40,6 +41,10 @@
                 class="list-group-item list-group-item-action {{ Request::is('dashboard/lahan-pending') ? 'active' : '' }}">Lahan Pending</a>
              <a href="{{ route('dashboard.peralatan-pending') }}" 
                 class="list-group-item list-group-item-action {{ Request::is('dashboard/peralatan/pending') ? 'active' : '' }}">Peralatan Pending</a>
+          @if (auth()->user()->pengguna->jenis_akun == 'desa')
+          <a href="{{ route('video.index') }}" 
+          class="list-group-item list-group-item-action {{ Request::is('dashboard/video') ? 'active' : '' }}">Video</a>
+          @endif
           {{-- <a href="{{ route('dashboard-settings-account') }}" 
              class="list-group-item list-group-item-action {{ Request::is('dashboard/account') ? 'active' : '' }}">Akun</a> --}}
           <a href="{{ route('logout') }}" onclick="event.preventDefault();

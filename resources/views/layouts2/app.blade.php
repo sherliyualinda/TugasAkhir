@@ -16,8 +16,11 @@
 </head>
 
 <body>
+  <div class="theme-layout">
   {{-- Navbar --}}
-  @include('theme.nav_bar')
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+		@include('theme.nav_bar')
+	</nav>
 
 
   {{-- Page Content --}}
@@ -26,7 +29,7 @@
   {{-- Footer --}}
   @include('includes.footer')
 
-
+</div>
 
   {{-- Script --}}
   @stack('prepend-script')

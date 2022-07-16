@@ -7834,15 +7834,18 @@ CREATE TABLE `notif` (
   `id_undangan` int(11) DEFAULT NULL,
   `id_followers` int(11) DEFAULT NULL,
   `id_anggota` int(11) DEFAULT NULL,
+  `id_video` int DEFAULT NULL,
+  `id_user` int DEFAULT NULL,
   `status` varchar(30) NOT NULL,
-  `is_active` smallint(6) NOT NULL DEFAULT 1
+  `is_active` smallint NOT NULL DEFAULT '1',
+  `updated_at` datetime DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `notif`
 --
 
-INSERT INTO `notif` (`id_notif`, `jenis_notif`, `isi_notif`, `created_at`, `id_likes`, `id_comment`, `id_konten`, `id_undangan`, `id_followers`, `id_anggota`, `status`, `is_active`) VALUES
+INSERT INTO `notif` (`id_notif`, `jenis_notif`, `isi_notif`, `created_at`, `id_likes`, `id_comment`, `id_konten`, `id_undangan`, `id_followers`, `id_anggota`, `status`, `is_active`, `id_video`, `id_user`) VALUES
 (1, 'Followers', 'desa_wangunjaya mulai mengikuti Anda', '2021-08-11 13:46:30', NULL, NULL, NULL, NULL, 1, NULL, 'Belum Dibaca', 1),
 (2, 'Menyukai', 'afraaknim_ menyukai postingan anda', '2021-08-13 17:55:01', 1, NULL, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1),
 (3, 'Komentar', 'afraaknim_ mengomentari postingan Anda', '2021-08-13 17:56:33', NULL, 1, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1),
@@ -8803,7 +8806,8 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`id`, `nama`) VALUES
 (1, 'Super Admin'),
-(2, 'Pengguna');
+(2, 'Pengguna'),
+(3, 'Admin Store');
 
 -- --------------------------------------------------------
 
@@ -89797,6 +89801,7 @@ CREATE TABLE IF NOT EXISTS `video_subscribes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_video` int NOT NULL DEFAULT '0',
   `id_user` int NOT NULL DEFAULT '0',
+  `id_channel` int NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)

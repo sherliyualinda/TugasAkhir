@@ -92,7 +92,7 @@
 					<!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
 				</li>
 				<li class="nav-item">
-					<a class="nav-link notif" title="Notification" id="notif" data-ripple="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link notif" title="Notification" style="display: block;" id="notif" data-ripple="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="ti-bell" style="color:white;"></i>
 						@if($total_notif != 0)
 							<span class="badge badge-danger" id="jml_notif">{{ $total_notif }}</span>
@@ -193,6 +193,17 @@
 											<div class="media-body align-self-center" style="white-space: initial; width:200px;">
 												<small style="color: white"><b>{{ $list->username_admin_penambah }}</b> 
 												menjadikan Anda sebagai admin grup <b>{{$list->nama_group_adm}}</b>
+												</small>
+												<small style="color: #989e99">-{{ date_format(date_create($list->tanggal_admin), "d M Y H:i A") }}</small>
+											</div>
+										</div>
+									</button>
+								@elseif($list->jenis_notif == 'Subscriber')
+									<button class="dropdown-item" type="button" onclick="location.href='/desatube/{{$list->id_video}}?notification={{$list->id_notification}}';">
+										<div class="media">
+											<img src="{{ asset($list->video_thumbnail) }}" class="align-self-center mr-3" alt="..." style="width: 30px; height: 30px; border-radius: 50%;">
+											<div class="media-body align-self-center" style="white-space: initial; width:200px;">
+												<small style="color: #989e99"><b>{{ $list->isi_notif }}</b> 
 												</small>
 												<small style="color: #989e99">-{{ date_format(date_create($list->tanggal_admin), "d M Y H:i A") }}</small>
 											</div>

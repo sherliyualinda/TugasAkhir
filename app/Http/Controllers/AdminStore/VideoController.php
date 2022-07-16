@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\superadmin;
+namespace App\Http\Controllers\AdminStore;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -21,8 +21,8 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = Video::with('detail')->paginate(10);
-        return view('super-admin.videos.index', compact('videos'));
+        $videos = Video::with('detail')->orderBy('created_at', 'desc')->paginate(10);
+        return view('pages.adminstore.videos.index', compact('videos'));
     }
 
     /**
@@ -32,7 +32,7 @@ class VideoController extends Controller
      */
     public function create()
     {
-        return view('super-admin.videos.create');
+        return view('pages.adminstore.videos.create');
     }
 
     /**
@@ -107,7 +107,7 @@ class VideoController extends Controller
             }
             Notification::insert($notif);
             DB::commit();
-            return redirect()->route('superadmin.sosial-media.video.index')
+            return redirect()->route('video.index')
                 ->with('success', 'Sukses simpan data');
         } catch (\Throwable $th) {
             dd($th->getMessage());
@@ -126,7 +126,7 @@ class VideoController extends Controller
     public function show($id)
     {
         $video = Video::with('detail')->where('id', $id)->first();
-        return view('super-admin.videos.show', compact('video'));
+        return view('pages.adminstore.videos.show', compact('video'));
     }
 
     /**
@@ -138,7 +138,7 @@ class VideoController extends Controller
     public function edit($id)
     {
         $video = Video::find($id);
-        return view('super-admin.videos.edit', compact('video'));
+        return view('pages.adminstore.videos.edit', compact('video'));
     }
 
     /**
@@ -196,7 +196,7 @@ class VideoController extends Controller
             $video->description = $request->description;
             $video->id_pengguna = (Auth::user()->id == 1 ) ? 4 : Auth::user()->id;
             $video->save();
-            return redirect()->route('superadmin.sosial-media.video.index')
+            return redirect()->route('video.index')
                     ->with('success', 'Sukses simpan data');
         } catch (\Throwable $th) {
             // dd($th->getMessage());
@@ -223,7 +223,7 @@ class VideoController extends Controller
             unlink($video);
         }
         Video::where('id', $id)->delete();
-        return redirect()->route('superadmin.sosial-media.video.index')
+        return redirect()->route('video.index')
                 ->with('success', 'Sukses hapus data');
     }
 }

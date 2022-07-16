@@ -213,7 +213,7 @@ Route::prefix('superadmin')
 Route::resource('/desatube', 'DesaTube\VideoController')->only(['show','index']);
 Route::get('/desatube/like/{id}/{type}', 'DesaTube\VideoController@like')->name('desatube.like');
 Route::post('/desatube/comment', 'DesaTube\VideoController@comment')->name('desatube.comment');
-Route::get('/desatube/subscribe/{id}', 'DesaTube\VideoController@subscribe')->name('desatube.subscribe');
+Route::get('/desatube/subscribe/{id}/{channel}', 'DesaTube\VideoController@subscribe')->name('desatube.subscribe');
 Route::get('/desatube/unsubscribe/{id}', 'DesaTube\VideoController@unsubscribe')->name('desatube.unsubscribe');
 // DesaTube
 
@@ -292,6 +292,8 @@ Route::post('/dashboard/account/{redirect}', 'DashboardSettingController@update'
 Route::get('/dashboard/lahan-pending', 'Admin\LahanController@index')->name('dashboard.lahan-pending');
 Route::get('/dashboard/lahan-pending-detail/{id}', 'Admin\LahanController@show')->name('dashboard.lahan-pending-show');
 Route::post('/dashboard/lahan/approval/{id}', 'Admin\LahanController@approval')->name('dashboard.lahan.approval');
+
+Route::resource('/dashboard/video', 'AdminStore\VideoController');
 
 
 
