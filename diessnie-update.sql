@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `boqs` (
   PRIMARY KEY (`id_boq`),
   KEY `boq_ibfk_1` (`id_task`),
   CONSTRAINT `boqs_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.boqs: ~0 rows (approximately)
 DELETE FROM `boqs`;
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `category_lahans` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nama` varchar(191) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.category_lahans: ~4 rows (approximately)
 DELETE FROM `category_lahans`;
@@ -209,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `dailies` (
   PRIMARY KEY (`id_daily`),
   KEY `id_sewa` (`id_sewa`),
   CONSTRAINT `dailies_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.dailies: ~0 rows (approximately)
 DELETE FROM `dailies`;
@@ -7548,7 +7548,7 @@ CREATE TABLE IF NOT EXISTS `impacts` (
   `id_impact` int NOT NULL AUTO_INCREMENT,
   `ket_impact` varchar(50) NOT NULL,
   PRIMARY KEY (`id_impact`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.impacts: ~3 rows (approximately)
 DELETE FROM `impacts`;
@@ -7571,7 +7571,7 @@ CREATE TABLE IF NOT EXISTS `jadwals` (
   PRIMARY KEY (`id_jadwal`),
   KEY `id_sewa` (`id_sewa`),
   CONSTRAINT `jadwals_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.jadwals: ~0 rows (approximately)
 DELETE FROM `jadwals`;
@@ -7624,7 +7624,7 @@ CREATE TABLE IF NOT EXISTS `lahans` (
   KEY `category_lahan_id` (`category_lahan_id`),
   KEY `id_user` (`id_user`),
   CONSTRAINT `lahans_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `pengguna` (`id_pengguna`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.lahans: ~4 rows (approximately)
 DELETE FROM `lahans`;
@@ -7649,7 +7649,7 @@ CREATE TABLE IF NOT EXISTS `lahan_resources` (
   KEY `resorces` (`id_resources`),
   CONSTRAINT `lahan_resources_ibfk_1` FOREIGN KEY (`id_lahan`) REFERENCES `lahans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `resorces` FOREIGN KEY (`id_resources`) REFERENCES `resources` (`id_resources`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.lahan_resources: ~3 rows (approximately)
 DELETE FROM `lahan_resources`;
@@ -7705,7 +7705,7 @@ CREATE TABLE IF NOT EXISTS `manual_books` (
   PRIMARY KEY (`id_manual`),
   KEY `id_categoryLahan` (`id_categoryLahan`),
   CONSTRAINT `manual_books_ibfk_1` FOREIGN KEY (`id_categoryLahan`) REFERENCES `category_lahans` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.manual_books: ~3 rows (approximately)
 DELETE FROM `manual_books`;
@@ -7927,7 +7927,7 @@ CREATE TABLE IF NOT EXISTS `peralatans` (
   PRIMARY KEY (`id_peralatan`),
   KEY `id_pemilik` (`id_pemilik`),
   CONSTRAINT `peralatans_ibfk_1` FOREIGN KEY (`id_pemilik`) REFERENCES `pengguna` (`id_pengguna`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.peralatans: ~4 rows (approximately)
 DELETE FROM `peralatans`;
@@ -7944,7 +7944,7 @@ CREATE TABLE IF NOT EXISTS `probabilitas` (
   `id_probabilitas` int NOT NULL AUTO_INCREMENT,
   `ket` varchar(30) NOT NULL,
   PRIMARY KEY (`id_probabilitas`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.probabilitas: ~3 rows (approximately)
 DELETE FROM `probabilitas`;
@@ -8645,7 +8645,7 @@ CREATE TABLE IF NOT EXISTS `resources` (
   `id_resources` int NOT NULL AUTO_INCREMENT,
   `keterangan` varchar(250) NOT NULL,
   PRIMARY KEY (`id_resources`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.resources: ~3 rows (approximately)
 DELETE FROM `resources`;
@@ -8675,7 +8675,7 @@ CREATE TABLE IF NOT EXISTS `risks` (
   CONSTRAINT `a` FOREIGN KEY (`probabilitas`) REFERENCES `probabilitas` (`id_probabilitas`),
   CONSTRAINT `b` FOREIGN KEY (`impact`) REFERENCES `impacts` (`id_impact`),
   CONSTRAINT `risks_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.risks: ~2 rows (approximately)
 DELETE FROM `risks`;
@@ -8725,7 +8725,7 @@ CREATE TABLE IF NOT EXISTS `sewa_lahans` (
   KEY `id_lahan` (`id_lahan`),
   CONSTRAINT `sewa_lahans_ibfk_1` FOREIGN KEY (`id_pemilik`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `sewa_lahans_ibfk_2` FOREIGN KEY (`id_lahan`) REFERENCES `lahans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.sewa_lahans: ~4 rows (approximately)
 DELETE FROM `sewa_lahans`;
@@ -8751,7 +8751,7 @@ CREATE TABLE IF NOT EXISTS `sewa_peralatans` (
   `qty` int NOT NULL,
   `updated_at` date NOT NULL,
   PRIMARY KEY (`id_sewa`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.sewa_peralatans: ~0 rows (approximately)
 DELETE FROM `sewa_peralatans`;
@@ -8771,7 +8771,7 @@ CREATE TABLE IF NOT EXISTS `struks` (
   PRIMARY KEY (`id_struk`),
   KEY `id_sewa` (`id_sewa`),
   CONSTRAINT `struks_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.struks: ~2 rows (approximately)
 DELETE FROM `struks`;
@@ -8833,7 +8833,7 @@ CREATE TABLE IF NOT EXISTS `task_historis` (
   PRIMARY KEY (`id_history`),
   KEY `id_task` (`id_task`),
   CONSTRAINT `task_historis_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `tasks` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.task_historis: ~0 rows (approximately)
 DELETE FROM `task_historis`;
@@ -89648,7 +89648,7 @@ CREATE TABLE IF NOT EXISTS `wbs` (
   PRIMARY KEY (`id_wbs`),
   KEY `id_kegiatan` (`id_kegiatan`),
   CONSTRAINT `wbs_ibfk_1` FOREIGN KEY (`id_kegiatan`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table diessnie_2.wbs: ~0 rows (approximately)
 DELETE FROM `wbs`;
