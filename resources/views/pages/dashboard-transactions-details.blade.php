@@ -169,7 +169,7 @@ Store Dashboard Transactions Details Pages
                 </div>
               </div>
               <form action="{{ route('dashboard-transaction-update', $transaction->id) }}" method="POST" enctype="multipart/form-data">
-              @csrf
+              {{ csrf_field() }}
                 <div class="row">
                   <div class="col-12 mt-4">
                     <h5>Informasi COD</h5>

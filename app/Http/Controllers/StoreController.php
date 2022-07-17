@@ -54,23 +54,28 @@ class StoreController extends Controller
 
 
         // $store = User::where('villages_id',$request->villages_id)->get();
-       
-
-        return view('pages.search-store',compact('store'));
+        $total_notif = NavbarTrait::total_notif();
+        $list_notif_display = NavbarTrait::list_notif_display();
+        $notif_pesan = NavbarTrait::notif_pesan();
+        $notif_group = NavbarTrait::notif_group();
+        return view('pages.search-store',compact('store','total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
     }
 
      public function area(Request $request, $id)
     {   
        $villages = Village::find($id);
        $categories = Category::take(6)->get();
-
+       $total_notif = NavbarTrait::total_notif();
+       $list_notif_display = NavbarTrait::list_notif_display();
+       $notif_pesan = NavbarTrait::notif_pesan();
+       $notif_group = NavbarTrait::notif_group();
        $products = Product::with(['user'])
         ->whereHas('user', function($q) use($id) {
                     $q->where('villages_id', '=', $id); 
                     })->get();
 
         if ($products) {
-             return view('pages.home-store-area',compact('products','villages','categories'));
+             return view('pages.home-store-area',compact('products','villages','categories','total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
         }else{
             return 'belum ada produk';
         }
@@ -79,7 +84,10 @@ class StoreController extends Controller
     }
 
     public function detail(Request $request, $id){
-
+        $total_notif = NavbarTrait::total_notif();
+       $list_notif_display = NavbarTrait::list_notif_display();
+       $notif_pesan = NavbarTrait::notif_pesan();
+       $notif_group = NavbarTrait::notif_group();
        $user = User::find($id);
 
       $products = Product::with(['galleries'])->where('users_id',$id);
@@ -90,6 +98,10 @@ class StoreController extends Controller
             'user' => $user,
             'products_data' => $products->get(),
             'products_count' => $products->count(),
+            'total_notif' => $total_notif,
+            'notif_pesan' => $notif_pesan,
+            'list_notif_display' => $list_notif_display,
+            'notif_grup' => $notif_group
         ]);
     }
 
