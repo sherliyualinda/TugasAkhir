@@ -39,10 +39,6 @@ Desaku Category Page
           Data Tidak Di Temukan
         </div>
         @endforelse
-
-
-
-
       </div>
     </div>
   </section>
