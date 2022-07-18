@@ -368,6 +368,7 @@ Route::get('/lahan/Dprojek_user/{id}', 'LahanController@Dprojek_user')->middlewa
 Route::get('/lahan/projek_user', 'LahanController@projek_user')->middleware('auth');
 
 Route::get('/lahan/ubahSewa/{id}', 'LahanController@ubahSewa')->middleware('auth');
+Route::get('/lahan/pembayaran-sewa', 'LahanController@pembayaranSewa')->middleware('auth');
 Route::post('/lahan/updateSewa/', 'LahanController@updateSewa')->name('updateSewa')->middleware('auth');
 
 Route::get('/lahan/request/{id}', 'LahanController@request')->name('request')->middleware('auth');

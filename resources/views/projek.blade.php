@@ -12,20 +12,14 @@
         @include('nav_barMar')
 
 </div>
-<body style="background: lightgray">
+<body>
 
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
+                <a href="{{ route('lahan') }}" class="btn btn-secondary mb-3">< Kembali</a>
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                    <div class="col-md-12 mt-2">
-                        <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('lahan') }}">Back</a></li>
-                        </ol>
-                        </nav>
-                    </div>
                         <table class="table table-bordered">
                             <thead>
                               <tr>

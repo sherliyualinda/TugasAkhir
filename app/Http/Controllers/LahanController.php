@@ -260,7 +260,12 @@ class LahanController extends Controller
             'updated_at'     => date("Y-m-d H:i:s")
         ]);
 
-        return redirect('lahan');
+        return redirect('lahan/pembayaran-sewa');
+    }
+
+    public function pembayaranSewa()
+    {
+        return view('pembayaran-sewa');
     }
     public function request($id){
         session_start();

@@ -1,39 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detail Lahan</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-</head>
-	
-        @include('nav_barMar')
+@extends('layouts2.main')
 
-</div>
-<body style="background: lightgray">
-    <div class="container">
+@section('title', 'Detail Lahan')
+
+@section('content') 
     <div class="row">
-    @foreach ($lahan4 as $data4)
-    <li class="breadcrumb-item"><a href="/lahan/halmanual/{{$data4->category_lahan_id}}">Manual Book</a></li>
-    @endforeach
         @foreach ($lahan as $data)
-        
-        <div class="col-md-12 mt-2">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('lahan') }}">Home</a></li>
-                <?php if($data->id_user != Auth::user()->pengguna->id_pengguna){?>
-                    <!-- <li class="breadcrumb-item"><a href="/gantt/{{$data->id}}">Gantt Chart Lahan</a></li>
-                    <li class="breadcrumb-item"><a href="/wbs_user/{{$data->id}}">Work Breakdown Structure</a></li> -->
-                    <?php }else{ ?>
-                <?php } ?>
-            </ol>
-            </nav>
-        </div>
         <div class="col-md-12 mt-1">
-            <div class="card">
+            <a href="{{ url('lahan/kelola_lahan') }}" class="btn btn-secondary mb-3">< Kembali</a>
+            @foreach ($lahan4 as $data4)
+                <a href="/lahan/halmanual/{{$data4->category_lahan_id}}" class="btn btn-success mb-3">Manual Book</a>
+            @endforeach
+            <div class="card mb-5">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -116,11 +93,4 @@
        
     </div>
 </div>
-
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-</body>
-</html>
+@endsection
