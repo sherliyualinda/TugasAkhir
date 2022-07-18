@@ -1,33 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+@extends('layouts2.main')
 
-    
+@section('title', 'Projek Saya')
 
-    <title>Projek Saya</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-</head>
-	
-        @include('nav_barMar')
-
-</div>
-<body>
-
-<div class="container">
+@section('content')   
     <div class="row">
         @foreach ($sewa as $data)
-        <div class="col-md-12 mt-2">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/lahan/projek_user">Back</a></li>
-                </ol>
-            </nav>
+        <div class="col-md-12">
+            <a href="{{ url('lahan/projek_user') }}" class="btn btn-secondary">< Kembali</a>
         </div>
-        <div class="col-md-50 mt-1">
+        <div class="col-md-12 mt-1">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -144,7 +125,7 @@
                                     </div>
                                     <div class="tab-pane fade" id="gantt" role="tabpanel" aria-labelledby="gantt-tab">
                                     
-                                        <a href="/gantt/{{$_SESSION['id_sewa']}}">gantt</a>
+                                        <a href="/gantt/{{$_SESSION['id_sewa']}}" class="btn btn-info mt-3">Gantt Chart</a>
                                    
                                     </div>
                                     <div class="tab-pane fade" id="risiko" role="tabpanel" aria-labelledby="risiko-tab">
@@ -370,11 +351,10 @@
         </div>
        
     </div>
-</div>
+@endsection
 
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+@section('js')
+    
         <script>
             $(function(){
                 var url = document.location.toString();
@@ -388,10 +368,6 @@
                 });
             });
         </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{ asset('js/chart.js/Chart.min.js') }}"></script>
     <script>
         var speedCanvas = document.getElementById("Aktual");
@@ -494,8 +470,7 @@
             return [year, month, day].join('-');
         }
     </script>
-</body>
-</html>
+@endsection
 
 
 

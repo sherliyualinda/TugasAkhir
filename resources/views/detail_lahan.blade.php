@@ -6,7 +6,7 @@
     <div class="row">
         @foreach ($lahan as $data)
         <div class="col-md-12 mt-1">
-            <a href="{{ url('lahan/kelola_lahan') }}" class="btn btn-secondary mb-3">< Kembali</a>
+            <a href="{{ url('lahan') }}" class="btn btn-secondary mb-3">< Kembali</a>
             @foreach ($lahan4 as $data4)
                 <a href="/lahan/halmanual/{{$data4->category_lahan_id}}" class="btn btn-success mb-3">Manual Book</a>
             @endforeach

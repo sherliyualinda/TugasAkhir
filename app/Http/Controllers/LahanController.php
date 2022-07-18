@@ -899,8 +899,13 @@ class LahanController extends Controller
             public function manualBook(){
             
                 $manual = DB::select("SELECT c.nama, m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
-            return view('kelola_manual', compact('manual'));
+                return view('kelola_manual', compact('manual'));
             }
+            public function lihatManual($id){
+                $manual = Manual_book::where('id_manual', $id)->with('category')->first();
+                return view('lihatManual', compact('manual'));  
+            }
+            
             public function ubahManual($id){
                 //$risk = Risk::select('*')->where('id_risk',$id)->get();
                 $manual = DB::select("SELECT c.nama, m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id WHERE m.id_manual = $id");

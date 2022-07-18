@@ -50,11 +50,16 @@
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <div class="btn-group" role="group">
-                                        <a href="/lahan/kelola_resource/{{$lahan->id}}" class="btn btn-sm btn-primary"><b>Kelola</b></a>
-                                        <a href="/lahan/orang/{{$lahan->id}}" class="btn btn-sm btn-info">Orang</a>
-                                        <a href="/lahan/material/{{$lahan->id}}" class="btn btn-sm btn-success">Material</a>
-                                        <a href="/lahan/alat/{{$lahan->id}}" class="btn btn-sm btn-warning">Alat</a>
+                                    <!-- Example single danger button -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Sumber Daya
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a href="/lahan/kelola_resource/{{$lahan->id}}" class="dropdown-item"><b>Kelola</b></a>
+                                            <a href="/lahan/orang/{{$lahan->id}}" class="dropdown-item">Orang</a>
+                                            <a href="/lahan/material/{{$lahan->id}}" class="dropdown-item">Material</a>
+                                            <a href="/lahan/alat/{{$lahan->id}}" class="dropdown-item">Alat</a>
                                     </div>
                                 </td>
                             </tr>
@@ -67,4 +72,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('jstop')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 @endsection

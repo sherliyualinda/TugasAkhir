@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
 
 <div class="container">
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mt-5 mb-5">
         <div class="col-md-12 mt-5">
             <a href="{{ route('lahan.create') }}" class="btn btn-primary">+ Buat Lahan</a>
             <a href="{{ route('lahan.kelola_lahan') }}" class="btn btn-primary">Kelola Lahan</a>
