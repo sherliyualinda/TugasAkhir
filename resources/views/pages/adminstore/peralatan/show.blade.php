@@ -9,7 +9,7 @@ Peralatan Detail
   <div class="container-fluid">
     <div class="dashboard-heading">
       <h2 class="dashboard-title">
-       {{ $peralatan->pengguna->nama }}
+       {{ $peralatan->nama_alat }}
       </h2>
       <p class="dashboard-subtitle">
         Detail Peralatan {{ $peralatan->nama_alat }}

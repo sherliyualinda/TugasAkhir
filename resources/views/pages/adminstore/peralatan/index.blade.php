@@ -20,7 +20,7 @@ Dashboard Peralatan
                   <div class="card card-dashboard-product d-block">
                     <div class="card-body">
                       <div class="product-title">
-                        {{ $item->pengguna->nama }}
+                        {{ $item->nama_alat }}
                       </div>
 
                       <div class="row">
