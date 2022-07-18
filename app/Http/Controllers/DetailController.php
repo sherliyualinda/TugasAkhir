@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\NavbarTrait;
 
 
 class DetailController extends Controller
@@ -17,9 +18,17 @@ class DetailController extends Controller
      */
     public function index(Request $request , $id)
     {
+        $total_notif = NavbarTrait::total_notif();
+        $list_notif_display = NavbarTrait::list_notif_display();
+        $notif_pesan = NavbarTrait::notif_pesan();
+        $notif_group = NavbarTrait::notif_group();
         $product = Product::with(['galleries','user'])->where('slug',$id)->firstOrFail();
         return view('pages.detail',[
             'product' => $product,
+            'total_notif' => $total_notif,
+            'notif_pesan' => $notif_pesan,
+            'list_notif_display' => $list_notif_display,
+            'notif_grup' => $notif_group
         ]);
     }
 

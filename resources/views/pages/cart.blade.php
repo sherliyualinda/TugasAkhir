@@ -84,7 +84,7 @@ Desaku Cart Page
                                 <td style="width: 25%;">
                                     <form action="{{ route('cart-delete',$cart->id) }}" method="POST">
                                         @method('DELETE')
-                                        @csrf
+                                        {{ csrf_field() }}
                                         <button type="submit" class="btn btn-remove-cart btn-sm">X</button>
                                     </form>
                                 </td>
@@ -117,7 +117,7 @@ Desaku Cart Page
 
 
             <form action="{{ route('checkout') }}" id="locations" enctype="multipart/form-data" method="POST">
-            @csrf
+            {{ csrf_field() }}
             <input type="hidden"  name="total_price" value={{ $totalPrice }}>
             <input type="hidden"  name="total_qty" value={{ $totalqty }}>
             

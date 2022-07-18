@@ -134,7 +134,7 @@ Desaku Detail Page
           <div class="col-lg-2" data-aos="zoom-in">
             @auth
             <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
-              @csrf
+            {{ csrf_field() }}
               @auth
                 @if($product->users_id == Auth::user()->id)
                    <button type="submit" disabled class="btn btn-warning px-4 text-white btn-block mb-3">Your Product</button>

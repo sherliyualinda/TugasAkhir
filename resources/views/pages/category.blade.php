@@ -26,8 +26,8 @@ Desaku Category Page
         @forelse ($categories as $category)
         <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="{{ $incrementCategory+= 100 }}">
           <a href="{{ route('categories-detail', $category->slug) }}" class="component-categories d-block text-center ">
-            <div class="categories-image  ">
-              <img src="{{ Storage::url($category->photo) }}" alt="" class="img-fluid">
+            <div class="categories-image">
+              <img src="{{ url('storage') }}/{{ $category->photo }}" alt="" class="img-fluid">
             </div>
           </a>
           <p class="fw-bold text-center">
