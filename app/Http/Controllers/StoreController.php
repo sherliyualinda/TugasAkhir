@@ -128,7 +128,18 @@ class StoreController extends Controller
 
     public function create()
     {
-        return view('pages.create-store');
+        $total_notif = NavbarTrait::total_notif();
+        $list_notif_display = NavbarTrait::list_notif_display();
+        $notif_pesan = NavbarTrait::notif_pesan();
+        $notif_group = NavbarTrait::notif_group();
+        $pengguna = Pengguna::where('id_pengguna', Auth::user()->pengguna->id_pengguna)->first();
+        $products = Product::where('users_id', Auth::user()->id)->get();
+        $product_count = count($products);
+        if($pengguna->status_pengajuan_store){
+            return view('pages.create-store', compact('pengguna', 'products', 'product_count', 'total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
+        }else {
+            return view('pages.submission-store', compact('pengguna', 'total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));
+        }
     }
 
     public function mystore()

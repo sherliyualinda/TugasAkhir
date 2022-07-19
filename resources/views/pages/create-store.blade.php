@@ -13,7 +13,8 @@ Detail Store
             <div class="col-lg-6 mt-3">
               <div class="owner card">
                 <div class="card-body">
-                  <a href="store.html" class="card-list d-block mb-0">
+                  <a href="{{ route('admin-store-dashboardd') }}" class="card-list d-block mb-0">
+                  <a href="{{ route('dashboard-product-createUser') }}" class="btn btn-success">Tambah Produk</a>
                     <div class="card-body py-0">
                       <div class="row align-items-center">
                         <img src="/images/icon-store.svg" alt="" class="mr-3" style="max-height: 65px;">

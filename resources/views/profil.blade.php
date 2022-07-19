@@ -153,7 +153,7 @@
 				@foreach ($profil as $d)
 					<h3>{{ $d->nama }} <small class="text-muted" style="font-size: 14px;">{{ '@'.$d->username }}</small></h3>
 					<p style="color: black;">{{ $d->bio }}</p>
-					<a href="{{route('create-store-user')}}">Buat Toko</a>
+					<a href="{{ route('createUser') }}">Buat Toko</a>
 					<div>
 						@if($d->marketplace)
 							<a href="{{ $d->marketplace }}" target="_blank" style="color:blue;" data-toggle="tooltip" title="{{$d->jenis_akun == 'desa' ? 'Desastore' : 'Marketplace'}}"><i class="ti-shopping-cart" style="padding: 5px; border: 1px solid; border-radius: 3px;"></i></a>

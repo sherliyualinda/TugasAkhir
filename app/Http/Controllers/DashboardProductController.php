@@ -19,7 +19,7 @@ class DashboardProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->where('status', 'PENDING')->with('user','galleries','category')->where('users_id', Auth::user()->id)->get();
+        $products = Product::latest()->where('status', 'PENDING')->with('pengguna','user','galleries','category')->where('village_id', Auth::user()->pengguna->village_id)->get();
         return view('pages.dashboard-products',[
             'products' => $products,
         ]);
@@ -27,7 +27,7 @@ class DashboardProductController extends Controller
 
      public function details(Request $request, $id)
     {
-        $product = Product::with(['galleries','user','category'])->findOrFail($id);
+        $product = Product::with(['galleries','user','category','pengguna'])->findOrFail($id);
         $categories = Category::all();
 
         return view('pages.dashboard-products-details',[
@@ -38,7 +38,7 @@ class DashboardProductController extends Controller
 
     public function show(Request $request, $id)
     {
-        $product = Product::with(['galleries','user','category'])->findOrFail($id);
+        $product = Product::with(['galleries','user','category','pengguna'])->findOrFail($id);
         return view('pages.dashboard-products-show',[
             'product' => $product,
         ]);
@@ -80,6 +80,14 @@ class DashboardProductController extends Controller
         ]);
     }
 
+    public function createUser(Request $request)
+    {
+        $categories = Category::all();
+        return view('pages.dashboard-products-createUser',[
+            'categories' => $categories,
+        ]);
+    }
+
 
     public function store(Request $request)
     {
@@ -96,6 +104,24 @@ class DashboardProductController extends Controller
 
        
         return redirect()->route('dashboard-product');
+    }
+
+    public function storeUser(Request $request)
+    {
+        $data = $request->all(); 
+        $data['slug'] = Str::slug($request->name);
+        $product = Product::create($data);
+
+       $gallery = [
+           'products_id' =>$product->id,
+           'photos' => $request->file('photo')->store('assets/product','public'),
+       ];
+
+        ProductGallery::create($gallery);
+
+       $cek = 'Berhasil Disimpan';
+        return $cek;
+        //return redirect()->route('dashboard-product');
     }
 
      public function update(ProductRequest $request, $id)
