@@ -28,7 +28,7 @@ Store Dashboard Products Details Pages
                     </div>
                     @endif
                   <form action="{{ route('dashboard-product-store') }}" method="POST" enctype="multipart/form-data">
-                  @csrf
+                  {{ csrf_field() }}
                   <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
                     <div class="card">
                       <div class="card-body">

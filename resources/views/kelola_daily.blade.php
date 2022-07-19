@@ -48,7 +48,7 @@
                     <table>
                         <tr>
                              <td>
-                                 <a href="/lahan/createDaily/{{$daily3->id_sewa}}" class="btn btn-sm btn-info">Tambah Resiko</a>
+                                 <a href="/lahan/createDaily/{{$daily3->id_sewa}}" class="btn btn-sm btn-info">Tambah Laporan Harian</a>
                             </td>
                         </tr>
                     
