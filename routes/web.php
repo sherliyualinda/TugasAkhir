@@ -126,7 +126,7 @@ Route::get('/sosial-media/hapus_followers/{username}', 'Sosmed_Con@hapus_followe
 Route::post('/sosial-media/post_komen_dari_profil', 'Sosmed_Con@post_komen_dari_profil');
 Route::post('/sosial-media/ubah_foto_sampul', 'Sosmed_Con@ubah_foto_sampul');
 Route::post('/sosial-media/ubah_foto_profil', 'Sosmed_Con@ubah_foto_profil');
-Route::get('/', 'StoreController@create')->name('create-store-user');
+Route::get('/createUser', 'StoreController@create')->name('createUser');
 Route::get('/sosial-media/store', 'StoreController@mystore')->name('my-store');
 Route::put('/sosial-media/send-submission-store/{id}', 'StoreController@sendSubmissionStore')->name('send-submission-store');
 
@@ -263,6 +263,8 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::get('/dashboard/products', 'DashboardProductController@index')->name('dashboard-product');
 Route::get('/dashboard/products/create', 'DashboardProductController@create')->name('dashboard-product-create');
+Route::get('/dashboard/products/createUser', 'DashboardProductController@createUser')->name('dashboard-product-createUser');
+Route::post('/dashboard/productsUser', 'DashboardProductController@storeUser')->name('dashboard-product-storeUser');
 Route::post('/dashboard/products', 'DashboardProductController@store')->name('dashboard-product-store');
 Route::get('/dashboard/products/{id}', 'DashboardProductController@details')->name('dashboard-product-details');
 Route::get('/dashboard/products/show/{id}', 'DashboardProductController@show')->name('dashboard-product-show');
@@ -315,7 +317,7 @@ Route::prefix('admin')
 });
 
 
-
+Route::get('/', 'DashboardController@index')->name('admin-store-dashboardd');
 Route::prefix('adminstore')
 ->namespace('AdminStore')
 ->middleware(['auth','adminstore'])

@@ -8,6 +8,9 @@ class Pengguna extends Model
 {
     protected $table = 'pengguna';
     protected $primaryKey = 'id_pengguna';
+    protected $fillable = [
+        'id', 'name', 'email', 'password', 'village_id'
+    ];
 
     public function user(){
     	// return $this->belongsTo('App\Kategori', 'id_kategori');
