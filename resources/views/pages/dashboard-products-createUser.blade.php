@@ -1,4 +1,4 @@
-@extends('layouts2.dashboard')
+@extends('layouts2.dashboardUser')
 
 @section('title')
 Store Dashboard Products Details Pages
@@ -27,7 +27,7 @@ Store Dashboard Products Details Pages
                         </ul>
                     </div>
                     @endif
-                  <form action="{{ route('dashboard-product-store') }}" method="POST" enctype="multipart/form-data">
+                  <form action="{{ route('dashboard-product-storeUser') }}" method="POST" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
                     <div class="card">
@@ -43,6 +43,7 @@ Store Dashboard Products Details Pages
                             <div class="form-group">
                               <label for="">Price</label>
                               <input type="number" class="form-control" name="price">
+                              <input type="hidden" class="form-control" name="village_id" value="{{ Auth::user()->pengguna->village_id }}">
                             </div>
                           </div>
                           <div class="col-md-6">

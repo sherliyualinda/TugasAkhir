@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Jul 2022 pada 10.54
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 7.4.28
+-- Generation Time: Jul 19, 2022 at 08:15 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin_grup`
+-- Table structure for table `admin_grup`
 --
 
 CREATE TABLE `admin_grup` (
@@ -35,7 +35,7 @@ CREATE TABLE `admin_grup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin_grup`
+-- Dumping data for table `admin_grup`
 --
 
 INSERT INTO `admin_grup` (`id`, `id_admin_penambah`, `id_admin`, `id_group`) VALUES
@@ -44,7 +44,7 @@ INSERT INTO `admin_grup` (`id`, `id_admin_penambah`, `id_admin`, `id_group`) VAL
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `aktifitas_login`
+-- Table structure for table `aktifitas_login`
 --
 
 CREATE TABLE `aktifitas_login` (
@@ -61,7 +61,7 @@ CREATE TABLE `aktifitas_login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `aktifitas_login`
+-- Dumping data for table `aktifitas_login`
 --
 
 INSERT INTO `aktifitas_login` (`id`, `tanggal`, `ip_address`, `longitude`, `latitude`, `kota`, `device`, `remember_token`, `true_false`, `id_pengguna`) VALUES
@@ -83,7 +83,7 @@ INSERT INTO `aktifitas_login` (`id`, `tanggal`, `ip_address`, `longitude`, `lati
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `anggota_grup`
+-- Table structure for table `anggota_grup`
 --
 
 CREATE TABLE `anggota_grup` (
@@ -93,7 +93,7 @@ CREATE TABLE `anggota_grup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `anggota_grup`
+-- Dumping data for table `anggota_grup`
 --
 
 INSERT INTO `anggota_grup` (`id_anggota`, `id_pengguna`, `id_group`) VALUES
@@ -102,25 +102,25 @@ INSERT INTO `anggota_grup` (`id_anggota`, `id_pengguna`, `id_group`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `boqs`
+-- Table structure for table `boqs`
 --
 
 CREATE TABLE `boqs` (
-  `id_boq` int(30) NOT NULL,
-  `id_task` int(30) NOT NULL,
-  `parent` int(30) NOT NULL,
+  `id_boq` int(11) NOT NULL,
+  `id_task` int(11) NOT NULL,
+  `parent` int(11) NOT NULL,
   `kegiatan` varchar(255) NOT NULL,
-  `qty` int(30) NOT NULL,
+  `qty` int(11) NOT NULL,
   `satuan` varchar(255) NOT NULL,
-  `harga` int(30) NOT NULL,
-  `totalHarga` int(30) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `totalHarga` int(11) NOT NULL,
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `carts`
+-- Table structure for table `carts`
 --
 
 CREATE TABLE `carts` (
@@ -134,16 +134,16 @@ CREATE TABLE `carts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `carts`
+-- Dumping data for table `carts`
 --
 
 INSERT INTO `carts` (`id`, `products_id`, `users_id`, `deleted_at`, `created_at`, `updated_at`, `qty`) VALUES
-(1, 4, 4, NULL, '2021-07-24 06:04:12', '2021-07-24 06:04:12', 1);
+(5, 5, 42, NULL, '2022-07-17 18:00:27', '2022-07-17 18:00:36', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -157,20 +157,20 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`, `photo`, `slug`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Makanan', 'assets/category/xz064sHA7UO7upBQcEfleJDJsz84GuyShkVuzWs9.jpg', 'makanan', NULL, '2021-06-24 22:49:43', '2021-06-24 23:28:53'),
-(2, 'Elektronik', 'assets/category/eLhBlggSVq8VnxT37hotw7m6eieRSimZtD5X3yQd.jpg', 'elektronik', NULL, '2021-06-24 22:50:04', '2021-06-24 23:29:17'),
-(3, 'Pakaian', 'assets/category/BzpkUN1A3LJdVx50u6hzuOsaZpih7WaG27t6ZzVv.jpg', 'pakaian', NULL, '2021-06-24 22:50:27', '2021-06-24 23:29:36'),
-(4, 'Tanaman', 'assets/category/BY0zcxkpEFJKSbQrj5aMCmzDNRcHQ0VErZvvOkuj.jpg', 'tanaman', NULL, '2021-06-24 22:51:01', '2021-06-24 23:30:14'),
-(5, 'Bumbu', 'assets/category/fnKTxxutbMc61R6eLAsOee4uGGpCuZ9dKkKAPXQn.jpg', 'bumbu', NULL, '2021-06-24 22:51:29', '2021-06-24 23:30:45');
+(1, 'Makanan', 'assets/category/xz064sHA7UO7upBQcEfleJDJsz84GuyShkVuzWs9.jpg', 'makanan', NULL, '2021-06-24 15:49:43', '2021-06-24 16:28:53'),
+(2, 'Elektronik', 'assets/category/eLhBlggSVq8VnxT37hotw7m6eieRSimZtD5X3yQd.jpg', 'elektronik', NULL, '2021-06-24 15:50:04', '2021-06-24 16:29:17'),
+(3, 'Pakaian', 'assets/category/BzpkUN1A3LJdVx50u6hzuOsaZpih7WaG27t6ZzVv.jpg', 'pakaian', NULL, '2021-06-24 15:50:27', '2021-06-24 16:29:36'),
+(4, 'Tanaman', 'assets/category/BY0zcxkpEFJKSbQrj5aMCmzDNRcHQ0VErZvvOkuj.jpg', 'tanaman', NULL, '2021-06-24 15:51:01', '2021-06-24 16:30:14'),
+(5, 'Bumbu', 'assets/category/fnKTxxutbMc61R6eLAsOee4uGGpCuZ9dKkKAPXQn.jpg', 'bumbu', NULL, '2021-06-24 15:51:29', '2021-06-24 16:30:45');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `category_lahans`
+-- Table structure for table `category_lahans`
 --
 
 CREATE TABLE `category_lahans` (
@@ -179,7 +179,7 @@ CREATE TABLE `category_lahans` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `category_lahans`
+-- Dumping data for table `category_lahans`
 --
 
 INSERT INTO `category_lahans` (`id`, `nama`) VALUES
@@ -191,7 +191,7 @@ INSERT INTO `category_lahans` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `chat`
+-- Table structure for table `chat`
 --
 
 CREATE TABLE `chat` (
@@ -206,7 +206,7 @@ CREATE TABLE `chat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `chat`
+-- Dumping data for table `chat`
 --
 
 INSERT INTO `chat` (`id_chat`, `id_room_chat`, `tanggal_chat`, `id_pengirim`, `id_penerima`, `isi_chat`, `media`, `status`) VALUES
@@ -215,7 +215,7 @@ INSERT INTO `chat` (`id_chat`, `id_room_chat`, `tanggal_chat`, `id_pengirim`, `i
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
@@ -230,7 +230,7 @@ CREATE TABLE `comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `comment`
+-- Dumping data for table `comment`
 --
 
 INSERT INTO `comment` (`id`, `id_pengguna`, `id_balas_komen`, `isi_komentar`, `tanggal_komen`, `status`, `id_konten`, `is_active`) VALUES
@@ -240,12 +240,12 @@ INSERT INTO `comment` (`id`, `id_pengguna`, `id_balas_komen`, `isi_komentar`, `t
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dailies`
+-- Table structure for table `dailies`
 --
 
 CREATE TABLE `dailies` (
-  `id_daily` int(30) NOT NULL,
-  `id_sewa` int(30) NOT NULL,
+  `id_daily` int(11) NOT NULL,
+  `id_sewa` int(11) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   `date` date NOT NULL,
@@ -253,7 +253,7 @@ CREATE TABLE `dailies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `dailies`
+-- Dumping data for table `dailies`
 --
 
 INSERT INTO `dailies` (`id_daily`, `id_sewa`, `gambar`, `keterangan`, `date`, `updated_at`) VALUES
@@ -262,7 +262,7 @@ INSERT INTO `dailies` (`id_daily`, `id_sewa`, `gambar`, `keterangan`, `date`, `u
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `districts`
+-- Table structure for table `districts`
 --
 
 CREATE TABLE `districts` (
@@ -272,7 +272,7 @@ CREATE TABLE `districts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `districts`
+-- Dumping data for table `districts`
 --
 
 INSERT INTO `districts` (`id`, `regency_id`, `name`) VALUES
@@ -7499,7 +7499,7 @@ INSERT INTO `districts` (`id`, `regency_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -7514,7 +7514,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `followers`
+-- Table structure for table `followers`
 --
 
 CREATE TABLE `followers` (
@@ -7524,7 +7524,7 @@ CREATE TABLE `followers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `followers`
+-- Dumping data for table `followers`
 --
 
 INSERT INTO `followers` (`id`, `id_followers`, `id_pengguna`) VALUES
@@ -7533,7 +7533,7 @@ INSERT INTO `followers` (`id`, `id_followers`, `id_pengguna`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `following`
+-- Table structure for table `following`
 --
 
 CREATE TABLE `following` (
@@ -7543,7 +7543,7 @@ CREATE TABLE `following` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `following`
+-- Dumping data for table `following`
 --
 
 INSERT INTO `following` (`id`, `id_following`, `id_pengguna`) VALUES
@@ -7552,7 +7552,7 @@ INSERT INTO `following` (`id`, `id_following`, `id_pengguna`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `follow_request`
+-- Table structure for table `follow_request`
 --
 
 CREATE TABLE `follow_request` (
@@ -7565,7 +7565,7 @@ CREATE TABLE `follow_request` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `grup`
+-- Table structure for table `grup`
 --
 
 CREATE TABLE `grup` (
@@ -7579,7 +7579,7 @@ CREATE TABLE `grup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `grup`
+-- Dumping data for table `grup`
 --
 
 INSERT INTO `grup` (`id_group`, `foto_profil_group`, `foto_sampul_group`, `nama_group`, `deskripsi_group`, `id_lokasi`, `admin`) VALUES
@@ -7588,7 +7588,7 @@ INSERT INTO `grup` (`id_group`, `foto_profil_group`, `foto_sampul_group`, `nama_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hapus_akun`
+-- Table structure for table `hapus_akun`
 --
 
 CREATE TABLE `hapus_akun` (
@@ -7603,7 +7603,7 @@ CREATE TABLE `hapus_akun` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `impacts`
+-- Table structure for table `impacts`
 --
 
 CREATE TABLE `impacts` (
@@ -7612,7 +7612,7 @@ CREATE TABLE `impacts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `impacts`
+-- Dumping data for table `impacts`
 --
 
 INSERT INTO `impacts` (`id_impact`, `ket_impact`) VALUES
@@ -7623,21 +7623,21 @@ INSERT INTO `impacts` (`id_impact`, `ket_impact`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jadwals`
+-- Table structure for table `jadwals`
 --
 
 CREATE TABLE `jadwals` (
-  `id_jadwal` int(30) NOT NULL,
+  `id_jadwal` int(11) NOT NULL,
   `date` date NOT NULL,
   `agenda` varchar(255) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
-  `id_sewa` int(30) NOT NULL,
+  `id_sewa` int(11) NOT NULL,
   `linkMeet` varchar(255) NOT NULL,
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jadwals`
+-- Dumping data for table `jadwals`
 --
 
 INSERT INTO `jadwals` (`id_jadwal`, `date`, `agenda`, `keterangan`, `id_sewa`, `linkMeet`, `updated_at`) VALUES
@@ -7646,11 +7646,11 @@ INSERT INTO `jadwals` (`id_jadwal`, `date`, `agenda`, `keterangan`, `id_sewa`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `konten`
+-- Table structure for table `konten`
 --
 
 CREATE TABLE `konten` (
-  `id_konten` int(15) NOT NULL,
+  `id_konten` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `foto_video_konten` varchar(255) NOT NULL,
   `caption` text NOT NULL,
@@ -7665,7 +7665,7 @@ CREATE TABLE `konten` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `konten`
+-- Dumping data for table `konten`
 --
 
 INSERT INTO `konten` (`id_konten`, `created_at`, `foto_video_konten`, `caption`, `slug`, `tempat`, `longitude_tempat`, `latitude_tempat`, `updated_at`, `id_pengguna`, `id_group`, `is_active`) VALUES
@@ -7679,7 +7679,7 @@ INSERT INTO `konten` (`id_konten`, `created_at`, `foto_video_konten`, `caption`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `lahans`
+-- Table structure for table `lahans`
 --
 
 CREATE TABLE `lahans` (
@@ -7688,25 +7688,26 @@ CREATE TABLE `lahans` (
   `ukuran` varchar(191) NOT NULL,
   `deskripsi` varchar(191) NOT NULL,
   `gambar` varchar(191) NOT NULL,
-  `id_user` int(10) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `statusLahan` varchar(30) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `lahans`
+-- Dumping data for table `lahans`
 --
 
-INSERT INTO `lahans` (`id`, `category_lahan_id`, `ukuran`, `deskripsi`, `gambar`, `id_user`, `statusLahan`, `updated_at`) VALUES
-(4, 1, '70 x 30', 'Ayam2an', '1.PNG', 42, 'Ready', '2022-06-30'),
-(5, 2, '30X40', 'Lebar banget', 'Untitled Diagram.drawio (2).png', 42, 'Not Ready', '2022-06-30'),
-(6, 1, '100x20', 'masuk 10 besar dunia', '5.jpeg', 46, 'Ready', '2022-06-28');
+INSERT INTO `lahans` (`id`, `category_lahan_id`, `ukuran`, `deskripsi`, `gambar`, `id_user`, `statusLahan`, `created_at`, `updated_at`) VALUES
+(4, 1, '70 x 30', 'Ayam2an', '1.PNG', 42, 'Ready', '0000-00-00 00:00:00', '2022-06-30 00:00:00'),
+(5, 2, '30X40', 'Lebar banget', 'Untitled Diagram.drawio (2).png', 42, 'Not Ready', '0000-00-00 00:00:00', '2022-06-30 00:00:00'),
+(6, 1, '100x20', 'masuk 10 besar dunia', '5.jpeg', 46, 'Ready', '0000-00-00 00:00:00', '2022-06-28 00:00:00'),
+(11, 4, '100 x 1000', 'testijng', 'matthew-fassnacht-eBbRSsV4JqU-unsplash.jpg', 42, 'Waiting', '2022-07-13 12:23:11', '2022-07-13 12:24:59');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `lahan_resources`
+-- Table structure for table `lahan_resources`
 --
 
 CREATE TABLE `lahan_resources` (
@@ -7719,7 +7720,7 @@ CREATE TABLE `lahan_resources` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `lahan_resources`
+-- Dumping data for table `lahan_resources`
 --
 
 INSERT INTO `lahan_resources` (`id_lahan_resources`, `resource`, `keterangan`, `id_resources`, `id_lahan`, `updated_at`) VALUES
@@ -7730,7 +7731,7 @@ INSERT INTO `lahan_resources` (`id_lahan_resources`, `resource`, `keterangan`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `likes`
+-- Table structure for table `likes`
 --
 
 CREATE TABLE `likes` (
@@ -7742,7 +7743,7 @@ CREATE TABLE `likes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `likes`
+-- Dumping data for table `likes`
 --
 
 INSERT INTO `likes` (`id`, `id_pengguna`, `tanggal_like`, `id_konten`, `is_active`) VALUES
@@ -7751,7 +7752,7 @@ INSERT INTO `likes` (`id`, `id_pengguna`, `tanggal_like`, `id_konten`, `is_activ
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `links`
+-- Table structure for table `links`
 --
 
 CREATE TABLE `links` (
@@ -7766,12 +7767,12 @@ CREATE TABLE `links` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `manual_books`
+-- Table structure for table `manual_books`
 --
 
 CREATE TABLE `manual_books` (
-  `id_manual` int(30) NOT NULL,
-  `id_categoryLahan` int(30) NOT NULL,
+  `id_manual` int(11) NOT NULL,
+  `id_categoryLahan` int(11) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `jenis_lahan` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
@@ -7780,18 +7781,18 @@ CREATE TABLE `manual_books` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `manual_books`
+-- Dumping data for table `manual_books`
 --
 
 INSERT INTO `manual_books` (`id_manual`, `id_categoryLahan`, `gambar`, `jenis_lahan`, `deskripsi`, `updated_at`, `sumber`) VALUES
-(8, 1, 'padi.PNG', 'Pertanian Padi', '1. Persiapan media tanam\r\n\r\nMedia tanam untuk menanam padi haruslah disiapkan minimal dua minggu sebelum penanaman. Persiapan dilakukan dengan mengolah tanah sebagai media tanam. Tanah harus dipastikan bebas dari gulma dan rumput liar. Jangan sampai pertumbuhan tanaman padi terganggu karena harus berbagi nutrisi dan air dengan rumput-rumput liar. Jika sudah bebas dari tanaman liar, basahi tanah dengan air lalu lakukan pembajakan. Pembajakan dilakukan untuk mempersiapkan tanah dalam keadaan lunak dan gembur serta cocok untuk penanaman. Di zaman modern ini pembajakan tidak lagi dilakukan dengan mencangkul tetapi dengan menggunakan sapi ataupun traktor. Setelah melalui pembajakan, kembali genangi media tanam dengan air. Air diberikan dalam jumlah banyak untuk menutupi seluruh lahan dengan ketinggian hingga 10 cm. Biarkan air pada media tanam terus menggenang. Air yang menggenang selama dua minggu akan menyebabkan media tanam menjadi berlumbur dan racun pun dapat hilang karena ternetralisir.\r\n\r\n2. Pemilihan bibit\r\n\r\nBibit pada tanaman padi harus melalui pengujian terlebih dahulu untuk menentukan kualitasnya. Pengujian dilakukan dengan merendam sekitar 100 butir benih padi dalam air. Setelah dua jam periksalah benih tersebut. Cara menanam benih padi yaitu dengan Pemeriksaan benih dilakukan dengan mengidentifikasi perubahan pada benih. Jika terdapat lebih dari 90 butir benih atau lebih dari 90% benih mengeluarkan kecambah, maka artinya benih tersebut berkualitas unggul dan bermutu tinggi. Tentu benih yang berkualitas unggul dan bermutu tinggi inilah yang layak untuk dibudidayakan. Sedangkan jika benih tidak menunjukkan tanda seperti yang disebutkan diatas, artinya benih tersebut tidak disarankan untuk dibudidayakan. Setelah menentukan benih yang akan dijadikan bibit, maka dapat dilakukan persemaian segera.\r\n\r\n3. Persemaian\r\n\r\nPersemaian dilakukan setelah menentukan bibit yang unggul. Bibit unggul tersebut kemudian akan disemai di wadah persemaian. Wadah persemaian terlebih dahulu harus disiapkan. Kebutuhan wadah semai diberikan dalam perbandingan sebesar 1 : 20. Misalkan akan menggunakan lahan sawah sebesar 1 hektar maka wadah persemaiannya sekitar 500 m2. Lahan pada wadah persemaian haruslah juga berair dan berlumpur. Berikan pupuk urea dan pupuk TSP pada lahan persemaian dengan dosis masing-masing 10 gr per 1 m2. Jika lahan persemaian sudah siap, sebarkan benih yang telah berkecambah dengan merata.\r\n\r\n4. Penanaman\r\n\r\nProses penanaman dilakukan setelah benih pada proses persemaian telah tumbuh daun sempurna sebanyak tiga hingga empat helai. Jangka waktu dari persemaian ke bibit siap tanam umumnya sekitar 12 hingga 14 hari saja. Jika sudah siap tanam, pindahkan bibit dari lahan semai ke lahan tanam. Pemidahan dilakukan dengan hati-hati dan tidak merusak tanaman. Penanaman dilakukan pada lubang-lubang tanam yang telah disiapkan. Khusus untuk tanaman padi dalam satu lubang dapat ditanam dua bibit sekaligus. Penanaman dilakukan dengan memasukkan bagian akar membentuk huruf L agar akar dapat tumbuh dengan sempurna. Kedalaman bibit ditanam pun ditentukan berkisar pada rentang 1 cm hingga 15 cm. Masa penanaman padi lebih baik dilakukan dua kali dalam setahun berdasarkan masa penanamannya yang ideal.\r\n\r\n5. Perawatan lahan\r\n\r\nPerawatan dilakukan dengan tiga hal yaitu penyiangan, pengairan, dan pemupukan. Penyiangan dilakukan dengan menjaga kebersihan lahan dari tanaman pengganggu. Penyiangan harus dilakukan rutin setiap periode waktu tertentu. Bisa dilakukan dua minggu sekali atau tiga minggu sekali. Pengairan diberikan sesuai kebutuhan. Seperti pada tanaman lainnya, pastikan tidak ada kekurangan atau kelebihan air. Selanjutnya untuk pemupukan, dilakukan pertama kali setelah tanaman padi berusia satu minggu. Jenis pupuk yang diberikan adalah pupuk urea dengan dosis 100 kg per hektar dan pupuk TPS dengan dosis 50 kg per hektar. Pemupukan selanjutnya dilakukan setelah 25 hari hingga 30 hari setelah penanaman. Diberikan kembali pupuk urea dengan dosis 50 kg per hektar dan pupuk Phonska dengan dosis 100 kg per hektar.\r\n\r\n6. Pencegahan hama dan penyakit\r\n\r\nHama dan penyakit dapat dicegah dengan memberikan pestisida.\r\n\r\n7. Pemanenan\r\n\r\nPanen dilakukan dengan tanda-tanda padi yang sudah menguning dan merunduk. Gunakan sabit gerigi untuk memanen dan letakkan hasil panen pada tikar dengan merontokkan beras dari dalam bulir-bulir padi yang ada.', '2022-07-12 08:11:12', 'http://carakumenanam.com/padi/'),
-(9, 3, 'ikan.jpg', 'Perikanan ikan nila', '1. Persiapan media tanam\r\n\r\nMedia tanam untuk menanam padi haruslah disiapkan minimal dua minggu sebelum penanaman. Persiapan dilakukan dengan mengolah tanah sebagai media tanam. Tanah harus dipastikan bebas dari gulma dan rumput liar. Jangan sampai pertumbuhan tanaman padi terganggu karena harus berbagi nutrisi dan air dengan rumput-rumput liar. Jika sudah bebas dari tanaman liar, basahi tanah dengan air lalu lakukan pembajakan. Pembajakan dilakukan untuk mempersiapkan tanah dalam keadaan lunak dan gembur serta cocok untuk penanaman. Di zaman modern ini pembajakan tidak lagi dilakukan dengan mencangkul tetapi dengan menggunakan sapi ataupun traktor. Setelah melalui pembajakan, kembali genangi media tanam dengan air. Air diberikan dalam jumlah banyak untuk menutupi seluruh lahan dengan ketinggian hingga 10 cm. Biarkan air pada media tanam terus menggenang. Air yang menggenang selama dua minggu akan menyebabkan media tanam menjadi berlumbur dan racun pun dapat hilang karena ternetralisir.\r\n\r\n2. Pemilihan bibit\r\n\r\nBibit pada tanaman padi harus melalui pengujian terlebih dahulu untuk menentukan kualitasnya. Pengujian dilakukan dengan merendam sekitar 100 butir benih padi dalam air. Setelah dua jam periksalah benih tersebut. Cara menanam benih padi yaitu dengan Pemeriksaan benih dilakukan dengan mengidentifikasi perubahan pada benih. Jika terdapat lebih dari 90 butir benih atau lebih dari 90% benih mengeluarkan kecambah, maka artinya benih tersebut berkualitas unggul dan bermutu tinggi. Tentu benih yang berkualitas unggul dan bermutu tinggi inilah yang layak untuk dibudidayakan. Sedangkan jika benih tidak menunjukkan tanda seperti yang disebutkan diatas, artinya benih tersebut tidak disarankan untuk dibudidayakan. Setelah menentukan benih yang akan dijadikan bibit, maka dapat dilakukan persemaian segera.\r\n\r\n3. Persemaian\r\n\r\nPersemaian dilakukan setelah menentukan bibit yang unggul. Bibit unggul tersebut kemudian akan disemai di wadah persemaian. Wadah persemaian terlebih dahulu harus disiapkan. Kebutuhan wadah semai diberikan dalam perbandingan sebesar 1 : 20. Misalkan akan menggunakan lahan sawah sebesar 1 hektar maka wadah persemaiannya sekitar 500 m2. Lahan pada wadah persemaian haruslah juga berair dan berlumpur. Berikan pupuk urea dan pupuk TSP pada lahan persemaian dengan dosis masing-masing 10 gr per 1 m2. Jika lahan persemaian sudah siap, sebarkan benih yang telah berkecambah dengan merata.\r\n\r\n4. Penanaman\r\n\r\nProses penanaman dilakukan setelah benih pada proses persemaian telah tumbuh daun sempurna sebanyak tiga hingga empat helai. Jangka waktu dari persemaian ke bibit siap tanam umumnya sekitar 12 hingga 14 hari saja. Jika sudah siap tanam, pindahkan bibit dari lahan semai ke lahan tanam. Pemidahan dilakukan dengan hati-hati dan tidak merusak tanaman. Penanaman dilakukan pada lubang-lubang tanam yang telah disiapkan. Khusus untuk tanaman padi dalam satu lubang dapat ditanam dua bibit sekaligus. Penanaman dilakukan dengan memasukkan bagian akar membentuk huruf L agar akar dapat tumbuh dengan sempurna. Kedalaman bibit ditanam pun ditentukan berkisar pada rentang 1 cm hingga 15 cm. Masa penanaman padi lebih baik dilakukan dua kali dalam setahun berdasarkan masa penanamannya yang ideal.\r\n\r\n5. Perawatan lahan\r\n\r\nPerawatan dilakukan dengan tiga hal yaitu penyiangan, pengairan, dan pemupukan. Penyiangan dilakukan dengan menjaga kebersihan lahan dari tanaman pengganggu. Penyiangan harus dilakukan rutin setiap periode waktu tertentu. Bisa dilakukan dua minggu sekali atau tiga minggu sekali. Pengairan diberikan sesuai kebutuhan. Seperti pada tanaman lainnya, pastikan tidak ada kekurangan atau kelebihan air. Selanjutnya untuk pemupukan, dilakukan pertama kali setelah tanaman padi berusia satu minggu. Jenis pupuk yang diberikan adalah pupuk urea dengan dosis 100 kg per hektar dan pupuk TPS dengan dosis 50 kg per hektar. Pemupukan selanjutnya dilakukan setelah 25 hari hingga 30 hari setelah penanaman. Diberikan kembali pupuk urea dengan dosis 50 kg per hektar dan pupuk Phonska dengan dosis 100 kg per hektar.\r\n\r\n6. Pencegahan hama dan penyakit\r\n\r\nHama dan penyakit dapat dicegah dengan memberikan pestisida.\r\n\r\n7. Pemanenan\r\n\r\nPanen dilakukan dengan tanda-tanda padi yang sudah menguning dan merunduk. Gunakan sabit gerigi untuk memanen dan letakkan hasil panen pada tikar dengan merontokkan beras dari dalam bulir-bulir padi yang ada.', '2022-07-12 08:07:25', 'http://carakumenanam.com/ikan/'),
-(10, 1, 'jagung.jpg', 'jagung', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2022-07-12 08:22:48', 'www');
+(8, 1, 'padi.PNG', 'Pertanian Padi', '1. Persiapan media tanam\r\n\r\nMedia tanam untuk menanam padi haruslah disiapkan minimal dua minggu sebelum penanaman. Persiapan dilakukan dengan mengolah tanah sebagai media tanam. Tanah harus dipastikan bebas dari gulma dan rumput liar. Jangan sampai pertumbuhan tanaman padi terganggu karena harus berbagi nutrisi dan air dengan rumput-rumput liar. Jika sudah bebas dari tanaman liar, basahi tanah dengan air lalu lakukan pembajakan. Pembajakan dilakukan untuk mempersiapkan tanah dalam keadaan lunak dan gembur serta cocok untuk penanaman. Di zaman modern ini pembajakan tidak lagi dilakukan dengan mencangkul tetapi dengan menggunakan sapi ataupun traktor. Setelah melalui pembajakan, kembali genangi media tanam dengan air. Air diberikan dalam jumlah banyak untuk menutupi seluruh lahan dengan ketinggian hingga 10 cm. Biarkan air pada media tanam terus menggenang. Air yang menggenang selama dua minggu akan menyebabkan media tanam menjadi berlumbur dan racun pun dapat hilang karena ternetralisir.\r\n\r\n2. Pemilihan bibit\r\n\r\nBibit pada tanaman padi harus melalui pengujian terlebih dahulu untuk menentukan kualitasnya. Pengujian dilakukan dengan merendam sekitar 100 butir benih padi dalam air. Setelah dua jam periksalah benih tersebut. Cara menanam benih padi yaitu dengan Pemeriksaan benih dilakukan dengan mengidentifikasi perubahan pada benih. Jika terdapat lebih dari 90 butir benih atau lebih dari 90% benih mengeluarkan kecambah, maka artinya benih tersebut berkualitas unggul dan bermutu tinggi. Tentu benih yang berkualitas unggul dan bermutu tinggi inilah yang layak untuk dibudidayakan. Sedangkan jika benih tidak menunjukkan tanda seperti yang disebutkan diatas, artinya benih tersebut tidak disarankan untuk dibudidayakan. Setelah menentukan benih yang akan dijadikan bibit, maka dapat dilakukan persemaian segera.\r\n\r\n3. Persemaian\r\n\r\nPersemaian dilakukan setelah menentukan bibit yang unggul. Bibit unggul tersebut kemudian akan disemai di wadah persemaian. Wadah persemaian terlebih dahulu harus disiapkan. Kebutuhan wadah semai diberikan dalam perbandingan sebesar 1 : 20. Misalkan akan menggunakan lahan sawah sebesar 1 hektar maka wadah persemaiannya sekitar 500 m2. Lahan pada wadah persemaian haruslah juga berair dan berlumpur. Berikan pupuk urea dan pupuk TSP pada lahan persemaian dengan dosis masing-masing 10 gr per 1 m2. Jika lahan persemaian sudah siap, sebarkan benih yang telah berkecambah dengan merata.\r\n\r\n4. Penanaman\r\n\r\nProses penanaman dilakukan setelah benih pada proses persemaian telah tumbuh daun sempurna sebanyak tiga hingga empat helai. Jangka waktu dari persemaian ke bibit siap tanam umumnya sekitar 12 hingga 14 hari saja. Jika sudah siap tanam, pindahkan bibit dari lahan semai ke lahan tanam. Pemidahan dilakukan dengan hati-hati dan tidak merusak tanaman. Penanaman dilakukan pada lubang-lubang tanam yang telah disiapkan. Khusus untuk tanaman padi dalam satu lubang dapat ditanam dua bibit sekaligus. Penanaman dilakukan dengan memasukkan bagian akar membentuk huruf L agar akar dapat tumbuh dengan sempurna. Kedalaman bibit ditanam pun ditentukan berkisar pada rentang 1 cm hingga 15 cm. Masa penanaman padi lebih baik dilakukan dua kali dalam setahun berdasarkan masa penanamannya yang ideal.\r\n\r\n5. Perawatan lahan\r\n\r\nPerawatan dilakukan dengan tiga hal yaitu penyiangan, pengairan, dan pemupukan. Penyiangan dilakukan dengan menjaga kebersihan lahan dari tanaman pengganggu. Penyiangan harus dilakukan rutin setiap periode waktu tertentu. Bisa dilakukan dua minggu sekali atau tiga minggu sekali. Pengairan diberikan sesuai kebutuhan. Seperti pada tanaman lainnya, pastikan tidak ada kekurangan atau kelebihan air. Selanjutnya untuk pemupukan, dilakukan pertama kali setelah tanaman padi berusia satu minggu. Jenis pupuk yang diberikan adalah pupuk urea dengan dosis 100 kg per hektar dan pupuk TPS dengan dosis 50 kg per hektar. Pemupukan selanjutnya dilakukan setelah 25 hari hingga 30 hari setelah penanaman. Diberikan kembali pupuk urea dengan dosis 50 kg per hektar dan pupuk Phonska dengan dosis 100 kg per hektar.\r\n\r\n6. Pencegahan hama dan penyakit\r\n\r\nHama dan penyakit dapat dicegah dengan memberikan pestisida.\r\n\r\n7. Pemanenan\r\n\r\nPanen dilakukan dengan tanda-tanda padi yang sudah menguning dan merunduk. Gunakan sabit gerigi untuk memanen dan letakkan hasil panen pada tikar dengan merontokkan beras dari dalam bulir-bulir padi yang ada.', '2022-07-12 01:11:12', 'http://carakumenanam.com/padi/'),
+(9, 3, 'ikan.jpg', 'Perikanan ikan nila', '1. Persiapan media tanam\r\n\r\nMedia tanam untuk menanam padi haruslah disiapkan minimal dua minggu sebelum penanaman. Persiapan dilakukan dengan mengolah tanah sebagai media tanam. Tanah harus dipastikan bebas dari gulma dan rumput liar. Jangan sampai pertumbuhan tanaman padi terganggu karena harus berbagi nutrisi dan air dengan rumput-rumput liar. Jika sudah bebas dari tanaman liar, basahi tanah dengan air lalu lakukan pembajakan. Pembajakan dilakukan untuk mempersiapkan tanah dalam keadaan lunak dan gembur serta cocok untuk penanaman. Di zaman modern ini pembajakan tidak lagi dilakukan dengan mencangkul tetapi dengan menggunakan sapi ataupun traktor. Setelah melalui pembajakan, kembali genangi media tanam dengan air. Air diberikan dalam jumlah banyak untuk menutupi seluruh lahan dengan ketinggian hingga 10 cm. Biarkan air pada media tanam terus menggenang. Air yang menggenang selama dua minggu akan menyebabkan media tanam menjadi berlumbur dan racun pun dapat hilang karena ternetralisir.\r\n\r\n2. Pemilihan bibit\r\n\r\nBibit pada tanaman padi harus melalui pengujian terlebih dahulu untuk menentukan kualitasnya. Pengujian dilakukan dengan merendam sekitar 100 butir benih padi dalam air. Setelah dua jam periksalah benih tersebut. Cara menanam benih padi yaitu dengan Pemeriksaan benih dilakukan dengan mengidentifikasi perubahan pada benih. Jika terdapat lebih dari 90 butir benih atau lebih dari 90% benih mengeluarkan kecambah, maka artinya benih tersebut berkualitas unggul dan bermutu tinggi. Tentu benih yang berkualitas unggul dan bermutu tinggi inilah yang layak untuk dibudidayakan. Sedangkan jika benih tidak menunjukkan tanda seperti yang disebutkan diatas, artinya benih tersebut tidak disarankan untuk dibudidayakan. Setelah menentukan benih yang akan dijadikan bibit, maka dapat dilakukan persemaian segera.\r\n\r\n3. Persemaian\r\n\r\nPersemaian dilakukan setelah menentukan bibit yang unggul. Bibit unggul tersebut kemudian akan disemai di wadah persemaian. Wadah persemaian terlebih dahulu harus disiapkan. Kebutuhan wadah semai diberikan dalam perbandingan sebesar 1 : 20. Misalkan akan menggunakan lahan sawah sebesar 1 hektar maka wadah persemaiannya sekitar 500 m2. Lahan pada wadah persemaian haruslah juga berair dan berlumpur. Berikan pupuk urea dan pupuk TSP pada lahan persemaian dengan dosis masing-masing 10 gr per 1 m2. Jika lahan persemaian sudah siap, sebarkan benih yang telah berkecambah dengan merata.\r\n\r\n4. Penanaman\r\n\r\nProses penanaman dilakukan setelah benih pada proses persemaian telah tumbuh daun sempurna sebanyak tiga hingga empat helai. Jangka waktu dari persemaian ke bibit siap tanam umumnya sekitar 12 hingga 14 hari saja. Jika sudah siap tanam, pindahkan bibit dari lahan semai ke lahan tanam. Pemidahan dilakukan dengan hati-hati dan tidak merusak tanaman. Penanaman dilakukan pada lubang-lubang tanam yang telah disiapkan. Khusus untuk tanaman padi dalam satu lubang dapat ditanam dua bibit sekaligus. Penanaman dilakukan dengan memasukkan bagian akar membentuk huruf L agar akar dapat tumbuh dengan sempurna. Kedalaman bibit ditanam pun ditentukan berkisar pada rentang 1 cm hingga 15 cm. Masa penanaman padi lebih baik dilakukan dua kali dalam setahun berdasarkan masa penanamannya yang ideal.\r\n\r\n5. Perawatan lahan\r\n\r\nPerawatan dilakukan dengan tiga hal yaitu penyiangan, pengairan, dan pemupukan. Penyiangan dilakukan dengan menjaga kebersihan lahan dari tanaman pengganggu. Penyiangan harus dilakukan rutin setiap periode waktu tertentu. Bisa dilakukan dua minggu sekali atau tiga minggu sekali. Pengairan diberikan sesuai kebutuhan. Seperti pada tanaman lainnya, pastikan tidak ada kekurangan atau kelebihan air. Selanjutnya untuk pemupukan, dilakukan pertama kali setelah tanaman padi berusia satu minggu. Jenis pupuk yang diberikan adalah pupuk urea dengan dosis 100 kg per hektar dan pupuk TPS dengan dosis 50 kg per hektar. Pemupukan selanjutnya dilakukan setelah 25 hari hingga 30 hari setelah penanaman. Diberikan kembali pupuk urea dengan dosis 50 kg per hektar dan pupuk Phonska dengan dosis 100 kg per hektar.\r\n\r\n6. Pencegahan hama dan penyakit\r\n\r\nHama dan penyakit dapat dicegah dengan memberikan pestisida.\r\n\r\n7. Pemanenan\r\n\r\nPanen dilakukan dengan tanda-tanda padi yang sudah menguning dan merunduk. Gunakan sabit gerigi untuk memanen dan letakkan hasil panen pada tikar dengan merontokkan beras dari dalam bulir-bulir padi yang ada.', '2022-07-12 01:07:25', 'http://carakumenanam.com/ikan/'),
+(10, 1, 'jagung.jpg', 'jagung', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2022-07-12 01:22:48', 'www');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -7801,7 +7802,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -7820,7 +7821,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `notif`
+-- Table structure for table `notif`
 --
 
 CREATE TABLE `notif` (
@@ -7834,27 +7835,27 @@ CREATE TABLE `notif` (
   `id_undangan` int(11) DEFAULT NULL,
   `id_followers` int(11) DEFAULT NULL,
   `id_anggota` int(11) DEFAULT NULL,
-  `id_video` int DEFAULT NULL,
-  `id_user` int DEFAULT NULL,
+  `id_video` int(11) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
-  `is_active` smallint NOT NULL DEFAULT '1',
-  `updated_at` datetime DEFAULT NULL,
+  `is_active` smallint(6) NOT NULL DEFAULT 1,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `notif`
+-- Dumping data for table `notif`
 --
 
-INSERT INTO `notif` (`id_notif`, `jenis_notif`, `isi_notif`, `created_at`, `id_likes`, `id_comment`, `id_konten`, `id_undangan`, `id_followers`, `id_anggota`, `status`, `is_active`, `id_video`, `id_user`) VALUES
-(1, 'Followers', 'desa_wangunjaya mulai mengikuti Anda', '2021-08-11 13:46:30', NULL, NULL, NULL, NULL, 1, NULL, 'Belum Dibaca', 1),
-(2, 'Menyukai', 'afraaknim_ menyukai postingan anda', '2021-08-13 17:55:01', 1, NULL, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1),
-(3, 'Komentar', 'afraaknim_ mengomentari postingan Anda', '2021-08-13 17:56:33', NULL, 1, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1),
-(4, 'Komentar', 'ade mengomentari postingan Anda', '2022-07-12 15:49:02', NULL, 2, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1);
+INSERT INTO `notif` (`id_notif`, `jenis_notif`, `isi_notif`, `created_at`, `id_likes`, `id_comment`, `id_konten`, `id_undangan`, `id_followers`, `id_anggota`, `id_video`, `id_user`, `status`, `is_active`, `updated_at`) VALUES
+(1, 'Followers', 'desa_wangunjaya mulai mengikuti Anda', '2021-08-11 13:46:30', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 'Belum Dibaca', 1, NULL),
+(2, 'Menyukai', 'afraaknim_ menyukai postingan anda', '2021-08-13 17:55:01', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1, NULL),
+(3, 'Komentar', 'afraaknim_ mengomentari postingan Anda', '2021-08-13 17:56:33', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1, NULL),
+(4, 'Komentar', 'ade mengomentari postingan Anda', '2022-07-12 15:49:02', NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -7866,7 +7867,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengaturan`
+-- Table structure for table `pengaturan`
 --
 
 CREATE TABLE `pengaturan` (
@@ -7879,7 +7880,7 @@ CREATE TABLE `pengaturan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pengaturan`
+-- Dumping data for table `pengaturan`
 --
 
 INSERT INTO `pengaturan` (`id`, `notifikasi_menyukai`, `notifikasi_komentar`, `notifikasi_pesan`, `akun_privat`, `id_pengguna`) VALUES
@@ -7919,12 +7920,13 @@ INSERT INTO `pengaturan` (`id`, `notifikasi_menyukai`, `notifikasi_komentar`, `n
 (34, 'dari semua orang', 'dari semua orang', 'dari semua orang', 'tidak', 42),
 (35, 'dari semua orang', 'dari semua orang', 'dari semua orang', 'tidak', 43),
 (36, 'dari semua orang', 'dari semua orang', 'dari semua orang', 'tidak', 45),
-(37, 'dari semua orang', 'dari semua orang', 'dari semua orang', 'tidak', 46);
+(37, 'dari semua orang', 'dari semua orang', 'dari semua orang', 'tidak', 46),
+(38, 'dari semua orang', 'dari semua orang', 'dari semua orang', 'tidak', 47);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengguna`
+-- Table structure for table `pengguna`
 --
 
 CREATE TABLE `pengguna` (
@@ -7955,78 +7957,81 @@ CREATE TABLE `pengguna` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pengguna`
+-- Dumping data for table `pengguna`
 --
 
-INSERT INTO `pengguna` (`id_pengguna`, `id`, `jenis_akun`, `username`, `password`, `nama`, `village_id`, `email`, `nomor_hp`, `alamat`, `nik`, `pekerjaan`, `foto_ktp`, `bio`, `website`, `youtube`, `marketplace`, `berita`, `musrembang`, `foto_profil`, `foto_sampul`, `tgl_join`, `updated_at`) VALUES
-(2, 2, 'pribadi', 'afraaknim_', '$2y$10$Dx.EQZZaoygHpYECle4IWOqompfFFWH2NhdgPapFgAuhAKMjgAfSu', 'Fakhrunnisa Nur Afra', 3273090003, 'afrakiww@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'IMG_20160323_181535.jpeg', 'erin_1.JPG', '2021-08-11 13:02:32', NULL),
-(3, 3, 'pribadi', 'mderry', '$2y$10$mkbUVmcyKfSBaRGEvv0Xw.5CkgKZQ131yaWT2925fobkuDYWDXnHS', 'Muhammad Derry Salman S', 3273090003, 'mderry3@gmail.com', '082258980578', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'user.jpg', 'sampul.jpg', '2021-08-11 13:10:30', NULL),
-(4, 4, 'desa', 'desa_malasari', 'malasari', 'Desa Malasari', 3201010001, 'desa.malasari@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201010&desa[]=3201010001&keyword=', 'https://desatube.masuk.web.id/search?query=MALASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3201010001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', '2021-08-11 13:26:56', NULL),
-(5, 5, 'desa', 'desa_purasari', 'purasari', 'Desa Purasari', 3201020001, 'desa.purasari@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201020&desa[]=3201020001&keyword=', 'https://desatube.masuk.web.id/search?query=PURASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3201020001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', '2021-08-11 13:28:35', NULL),
-(6, 6, 'desa', 'desa_wangunjaya', 'wangunjaya', 'Desa Wangun Jaya', 3201021001, 'desa.wangunjaya@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201021&desa[]=3201021001&keyword=', 'https://desatube.masuk.web.id/search?query=WANGUN JAYA', 'http://marketpalcedesaku.masuk.web.id/stores/3201021001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', '2021-08-11 13:30:07', NULL),
-(7, 7, 'pribadi', 'hermansyah', '$2y$10$Mb0uetUSi2YaVAAgfGcAfeqXWtbMzLCMbbmV3RUOzR2Ehk3uQRq4a', 'Hermansyah', 3201010001, 'herman@gmail.com', '081221504743', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-11 21:22:15', NULL),
-(8, 8, 'pribadi', 'mughny', '123456', 'Mughny', 3204270004, 'mughny2@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 17:02:15', NULL),
-(9, 9, 'pribadi', 'farhan', '$2y$10$Ov/ArF0qtK4koFlpFEqMi.PHsXHSDKFGYd/EAB/lAJW5EToY307/i', 'Farhan', 3276010003, 'farhan1@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 17:26:49', NULL),
-(11, 11, 'pribadi', 'fadhil', '123456', 'Fadhil', 3204270004, 'fadhil@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:29:19', NULL),
-(12, 12, 'pribadi', 'fadhil-cahya-kesuma', '$2y$10$Eb3XWppXHfReCSBPNW83N.awhqqyZAzG3BHP4pI8F7vFEoeKFS92u', 'Fadhil Cahya Kesuma', 3276010003, 'fadhilkesuma65@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:35:59', NULL),
-(13, 13, 'pribadi', 'ujang', '123456', 'Ujang', 3204270004, 'ujang@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:57:36', NULL),
-(14, 14, 'pribadi', 'mughny-mubarak', '$2y$10$wcui338WylB5xm8i34LcEOPVyHiQVAQiYRu5qMVQituG1aaxmoed6', 'Mughny Mubarak', 3204280005, 'mmughnymubarak@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 23:26:12', NULL),
-(15, 15, 'pribadi', 'fakhri-naufal', '$2y$10$IxnldiOmvbSSoX85Rp/ZE.Cp9tLk75/scynSvoGV5l5cKgU.5D9M.', 'Fakhri Naufal', 3273090004, 'fakhrinfla47@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 00:08:54', NULL),
-(16, 16, 'pribadi', 'fakhrunisa-nur-afra', '$2y$10$Hq1tUmTA3YGojaXa8DPOquq.BuZAAeN3aKMZQTE1qF16mBVV2A/42', 'Fakhrunisa Nur Afra', 3273160005, 'afrakiw@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 00:45:10', NULL),
-(17, 17, 'pribadi', 'riswan-ardinata', '$2y$10$H6yoKRNLV0IjhLUZjZQoDuIJuhGY3fL.nzXgarpYoJZHz7k805l4G', 'Riswan Ardinata', 3204270006, 'riswan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 01:12:40', NULL),
-(18, 18, 'desa', 'desa_cibenda', 'desacibenda', 'Desa Cibenda', 3202010001, 'desa.cibenda@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3202&kecamatan[]=3202010&desa[]=3202010001', 'https://desatube.masuk.web.id/search?query=CIBENDA', 'http://marketpalcedesaku.masuk.web.id/stores/3202010001', 'https://desaku-desanews.masuk.id/3202010001', NULL, 'user.jpg', 'sampul.jpg', '2021-08-13 18:21:56', NULL),
-(19, 19, 'pribadi', 'afra', '$2y$10$5neuMnM6SNddcBp/denOReNNw1UFCPhKZkwDaRgoFhzZcoEolLRbu', 'Afra', 3204010001, 'afra@gmail.com', '081221504744', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:12:40', NULL),
-(20, 20, 'pribadi', 'mugny', '$2y$10$i1LVqYIlm/8DpM77XTRQKOf7csevIYizfDGf60myz7xLnDl8wIJye', 'Mugny', 3204011001, 'muqny@gmail.com', '0812215047444', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:27:10', NULL),
-(21, 21, 'pribadi', 'arvin', '$2y$10$28540PAS1N2zOx.KrYUhQuNqZ1.jY4dxCswzniedSVzTrihg.I0HG', 'Arvin', 3204020001, 'arvin@gmail.com', '081221504733', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:36:36', NULL),
-(22, 22, 'pribadi', 'fadil', '$2y$10$nMRoe3PE6U5CVHZ4RwEYk.uwyxeWfQHcNhG9SHNJbIupiP/ATafQK', 'Fadil', 3204030001, 'fadil@gmail.com', '08112215949', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:45:27', NULL),
-(23, 23, 'pribadi', 'fakhri', '$2y$10$aayYIG.qbENe2pHGFm.2tuD3SXfD6s9Shxk91cpkigx/OEtv/npES', 'Fakhri', 3204040001, 'fakhri@gmail.com', '081221504744', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:54:29', NULL),
-(24, 24, 'pribadi', 'deby', '$2y$10$AmM6tkfIMcwNR/p4JFJ/9uCbhRiLFAOb1ulzjfw9s53ozDI3bVUo2', 'Deby', 3204050001, 'deby@gmail.com', '081221504749', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:03:48', NULL),
-(25, 25, 'pribadi', 'niki', '$2y$10$inwUxJ6QUV0GSm3aRD8nkep/.WYaaK0STSPmlhoDXZuthtrT9g8Bi', 'Niki', 3204010001, 'niki@gmail.com', '08122150743', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:22:23', NULL),
-(26, 26, 'pribadi', 'dian', '$2y$10$nmF7lCR20VTeMxchiD5IcObs6owUew5/1sgIJ34mhr7THAtYP.tH6', 'Dian', 3204011001, 'dian@gmail.com', '0812218822', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:25:35', NULL),
-(27, 27, 'pribadi', 'agus', '$2y$10$tn.DoSQk0eZ2F.SYbXxQjeEmVO2aX8LemmYZptnQSFB8mclq8zl1.', 'Agus', 3204020001, 'agus@gmail.com', '0812214034732', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:29:50', NULL),
-(28, 28, 'pribadi', 'bimo', '$2y$10$ix849OrQA.kCvEF02UeiHO2zdY5lBjfH3s7t1WL0rnr1MQ/9aSTiG', 'Bimo', 3204030001, 'bimo@gmail.com', '0812218783', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:32:40', NULL),
-(29, 29, 'pribadi', 'riyadi', '$2y$10$dBcOv4pyuG4OynJ2rPXtx.MCFZcODlYnOraEvFFtnG07eoftm87dO', 'Riyadi', 3204040001, 'riyadi@gmail.com', '081221304837', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:34:27', NULL),
-(30, 30, 'pribadi', 'asep', '$2y$10$SWqP69BA5xwib84FbeihvumhP4KWbvZBMOZPkriUXSnQYpkPdU6cW', 'Asep', 3204050001, 'asep@gmail.com', '08122187373', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:36:28', NULL),
-(31, 31, 'desa', 'fadhilkesuma', '12345678', 'Desa Margasari', 3273090002, 'fadhilkesuma13@gmail.com', '081223958715', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3273&kecamatan[]=3273090&desa[]=3273090002', 'https://desatube.masuk.web.id/search?query=MARGASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3273090002', 'https://desaku-desanews.masuk.id/3273090002', NULL, 'download (2).jpg', 'download.png', '2021-08-14 11:31:13', NULL),
-(32, 32, 'pribadi', 'kesumafadhil', '$2y$10$cObaAdCWIYHmnImHVyCnneti6/6gQXUepuYw8IT5C5pVUk/xDE.uO', 'Fadhil Cahya Kesuma', 3276010003, 'fadhilkesuma13@gmail.com', '081223958715', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download (2).jpg', 'download.png', '2021-08-14 11:35:35', NULL),
-(34, 34, 'pribadi', 'pajong', '$2y$10$3Iw.EjtoqXDzRDr0LwIPWOVsEr7UNlD6Lv.Vk/lL0KriHhwzUOlZq', 'Fadhil Cahya Kesuma', 3276010003, 'fadhilcahyakesuma@gmail.com', '081223958715', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download (2).jpg', 'download.png', '2021-08-14 11:37:05', NULL),
-(35, 35, 'pribadi', 'user70239bf39', '123456', 'User70239bf39', 3204270004, 'mughnymubarak14@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-15 00:19:42', NULL),
-(36, 36, 'pribadi', 'ridwan', '123456', 'Ridwan', 3204270004, 'ridwan@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 10:53:26', NULL),
-(41, 41, 'pribadi', 'ridwan-amir', '123456', 'Ridwan Amir', 3204270004, 'ridwanamir@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 11:07:23', NULL),
-(42, 42, 'pribadi', 'sherla', '$2y$10$BpkqUNwXv5iAARXc5YbeMem6x/cwPTLWOdw7BtmOCv70OISldwhdi', 'Sherla', 3201010001, 'sherla@gmail.com', '087765567789', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, 'WIN_20201124_00_09_32_Pro.jpg', 'WIN_20201124_00_09_32_Pro.jpg', '2022-04-03 03:54:28', '2022-06-06 10:06:55'),
-(43, 43, 'pribadi', 'jessika', '$2y$10$Vb100zSKHos6PMeNNHZ1v.RgnoxblFk2hG7EcCPLhSzg9GKAx0.sS', 'Jessika', 1504040014, 'jessika@gmail.com', '098765432123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', '2022-04-18 14:37:26', NULL),
-(45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', '1.PNG', NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', '2022-06-05 13:42:37', '2022-06-21 13:28:59'),
-(46, 46, 'pribadi', 'ade', '$2y$10$aWYkPtEBOVO8mU0AfjmJPeZCwkByU7id909343kK.PoTUhuqM7ByW', 'Ade', 1201060015, 'ade@gmail.com', '08234571635', 'Brebes', '1923640281619', 'Mahasiswa', '1.PNG', NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', '2022-06-05 19:02:18', '2022-06-21 13:27:32');
+INSERT INTO `pengguna` (`id_pengguna`, `id`, `jenis_akun`, `username`, `password`, `nama`, `village_id`, `email`, `nomor_hp`, `alamat`, `nik`, `pekerjaan`, `foto_ktp`, `bio`, `website`, `youtube`, `marketplace`, `berita`, `musrembang`, `foto_profil`, `foto_sampul`, `status_pengajuan_store`, `tgl_join`, `updated_at`) VALUES
+(2, 2, 'pribadi', 'afraaknim_', '$2y$10$Dx.EQZZaoygHpYECle4IWOqompfFFWH2NhdgPapFgAuhAKMjgAfSu', 'Fakhrunnisa Nur Afra', 3273090003, 'afrakiww@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'IMG_20160323_181535.jpeg', 'erin_1.JPG', NULL, '2021-08-11 13:02:32', NULL),
+(3, 3, 'pribadi', 'mderry', '$2y$10$mkbUVmcyKfSBaRGEvv0Xw.5CkgKZQ131yaWT2925fobkuDYWDXnHS', 'Muhammad Derry Salman S', 3273090003, 'mderry3@gmail.com', '082258980578', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'user.jpg', 'sampul.jpg', NULL, '2021-08-11 13:10:30', NULL),
+(4, 4, 'desa', 'desa_malasari', 'malasari', 'Desa Malasari', 3201010001, 'desa.malasari@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201010&desa[]=3201010001&keyword=', 'https://desatube.masuk.web.id/search?query=MALASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3201010001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', NULL, '2021-08-11 13:26:56', NULL),
+(5, 5, 'desa', 'desa_purasari', 'purasari', 'Desa Purasari', 3201020001, 'desa.purasari@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201020&desa[]=3201020001&keyword=', 'https://desatube.masuk.web.id/search?query=PURASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3201020001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', NULL, '2021-08-11 13:28:35', NULL),
+(6, 6, 'desa', 'desa_wangunjaya', 'wangunjaya', 'Desa Wangun Jaya', 3201021001, 'desa.wangunjaya@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201021&desa[]=3201021001&keyword=', 'https://desatube.masuk.web.id/search?query=WANGUN JAYA', 'http://marketpalcedesaku.masuk.web.id/stores/3201021001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', 'PENDING', '2021-08-11 13:30:07', NULL),
+(7, 7, 'pribadi', 'hermansyah', '$2y$10$Mb0uetUSi2YaVAAgfGcAfeqXWtbMzLCMbbmV3RUOzR2Ehk3uQRq4a', 'Hermansyah', 3201010001, 'herman@gmail.com', '081221504743', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-11 21:22:15', NULL),
+(8, 8, 'pribadi', 'mughny', '123456', 'Mughny', 3204270004, 'mughny2@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PENDING', '2021-08-12 17:02:15', NULL),
+(9, 9, 'pribadi', 'farhan', '$2y$10$Ov/ArF0qtK4koFlpFEqMi.PHsXHSDKFGYd/EAB/lAJW5EToY307/i', 'Farhan', 3276010003, 'farhan1@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 17:26:49', NULL),
+(11, 11, 'pribadi', 'fadhil', '123456', 'Fadhil', 3204270004, 'fadhil@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:29:19', NULL),
+(12, 12, 'pribadi', 'fadhil-cahya-kesuma', '$2y$10$Eb3XWppXHfReCSBPNW83N.awhqqyZAzG3BHP4pI8F7vFEoeKFS92u', 'Fadhil Cahya Kesuma', 3276010003, 'fadhilkesuma65@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:35:59', NULL),
+(13, 13, 'pribadi', 'ujang', '123456', 'Ujang', 3204270004, 'ujang@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:57:36', NULL),
+(14, 14, 'pribadi', 'mughny-mubarak', '$2y$10$wcui338WylB5xm8i34LcEOPVyHiQVAQiYRu5qMVQituG1aaxmoed6', 'Mughny Mubarak', 3204280005, 'mmughnymubarak@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 23:26:12', NULL),
+(15, 15, 'pribadi', 'fakhri-naufal', '$2y$10$IxnldiOmvbSSoX85Rp/ZE.Cp9tLk75/scynSvoGV5l5cKgU.5D9M.', 'Fakhri Naufal', 3273090004, 'fakhrinfla47@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 00:08:54', NULL),
+(16, 16, 'pribadi', 'fakhrunisa-nur-afra', '$2y$10$Hq1tUmTA3YGojaXa8DPOquq.BuZAAeN3aKMZQTE1qF16mBVV2A/42', 'Fakhrunisa Nur Afra', 3273160005, 'afrakiw@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 00:45:10', NULL),
+(17, 17, 'pribadi', 'riswan-ardinata', '$2y$10$H6yoKRNLV0IjhLUZjZQoDuIJuhGY3fL.nzXgarpYoJZHz7k805l4G', 'Riswan Ardinata', 3204270006, 'riswan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 01:12:40', NULL),
+(18, 18, 'desa', 'desa_cibenda', 'desacibenda', 'Desa Cibenda', 3202010001, 'desa.cibenda@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3202&kecamatan[]=3202010&desa[]=3202010001', 'https://desatube.masuk.web.id/search?query=CIBENDA', 'http://marketpalcedesaku.masuk.web.id/stores/3202010001', 'https://desaku-desanews.masuk.id/3202010001', NULL, 'user.jpg', 'sampul.jpg', NULL, '2021-08-13 18:21:56', NULL),
+(19, 19, 'pribadi', 'afra', '$2y$10$5neuMnM6SNddcBp/denOReNNw1UFCPhKZkwDaRgoFhzZcoEolLRbu', 'Afra', 3204010001, 'afra@gmail.com', '081221504744', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:12:40', NULL),
+(20, 20, 'pribadi', 'mugny', '$2y$10$i1LVqYIlm/8DpM77XTRQKOf7csevIYizfDGf60myz7xLnDl8wIJye', 'Mugny', 3204011001, 'muqny@gmail.com', '0812215047444', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:27:10', NULL),
+(21, 21, 'pribadi', 'arvin', '$2y$10$28540PAS1N2zOx.KrYUhQuNqZ1.jY4dxCswzniedSVzTrihg.I0HG', 'Arvin', 3204020001, 'arvin@gmail.com', '081221504733', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:36:36', NULL),
+(22, 22, 'pribadi', 'fadil', '$2y$10$nMRoe3PE6U5CVHZ4RwEYk.uwyxeWfQHcNhG9SHNJbIupiP/ATafQK', 'Fadil', 3204030001, 'fadil@gmail.com', '08112215949', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:45:27', NULL),
+(23, 23, 'pribadi', 'fakhri', '$2y$10$aayYIG.qbENe2pHGFm.2tuD3SXfD6s9Shxk91cpkigx/OEtv/npES', 'Fakhri', 3204040001, 'fakhri@gmail.com', '081221504744', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:54:29', NULL),
+(24, 24, 'pribadi', 'deby', '$2y$10$AmM6tkfIMcwNR/p4JFJ/9uCbhRiLFAOb1ulzjfw9s53ozDI3bVUo2', 'Deby', 3204050001, 'deby@gmail.com', '081221504749', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:03:48', NULL),
+(25, 25, 'pribadi', 'niki', '$2y$10$inwUxJ6QUV0GSm3aRD8nkep/.WYaaK0STSPmlhoDXZuthtrT9g8Bi', 'Niki', 3204010001, 'niki@gmail.com', '08122150743', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:22:23', NULL),
+(26, 26, 'pribadi', 'dian', '$2y$10$nmF7lCR20VTeMxchiD5IcObs6owUew5/1sgIJ34mhr7THAtYP.tH6', 'Dian', 3204011001, 'dian@gmail.com', '0812218822', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:25:35', NULL),
+(27, 27, 'pribadi', 'agus', '$2y$10$tn.DoSQk0eZ2F.SYbXxQjeEmVO2aX8LemmYZptnQSFB8mclq8zl1.', 'Agus', 3204020001, 'agus@gmail.com', '0812214034732', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:29:50', NULL),
+(28, 28, 'pribadi', 'bimo', '$2y$10$ix849OrQA.kCvEF02UeiHO2zdY5lBjfH3s7t1WL0rnr1MQ/9aSTiG', 'Bimo', 3204030001, 'bimo@gmail.com', '0812218783', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:32:40', NULL),
+(29, 29, 'pribadi', 'riyadi', '$2y$10$dBcOv4pyuG4OynJ2rPXtx.MCFZcODlYnOraEvFFtnG07eoftm87dO', 'Riyadi', 3204040001, 'riyadi@gmail.com', '081221304837', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:34:27', NULL),
+(30, 30, 'pribadi', 'asep', '$2y$10$SWqP69BA5xwib84FbeihvumhP4KWbvZBMOZPkriUXSnQYpkPdU6cW', 'Asep', 3204050001, 'asep@gmail.com', '08122187373', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 10:36:28', NULL),
+(31, 31, 'desa', 'fadhilkesuma', '12345678', 'Desa Margasari', 3273090002, 'fadhilkesuma13@gmail.com', '081223958715', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3273&kecamatan[]=3273090&desa[]=3273090002', 'https://desatube.masuk.web.id/search?query=MARGASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3273090002', 'https://desaku-desanews.masuk.id/3273090002', NULL, 'download (2).jpg', 'download.png', NULL, '2021-08-14 11:31:13', NULL),
+(32, 32, 'pribadi', 'kesumafadhil', '$2y$10$cObaAdCWIYHmnImHVyCnneti6/6gQXUepuYw8IT5C5pVUk/xDE.uO', 'Fadhil Cahya Kesuma', 3276010003, 'fadhilkesuma13@gmail.com', '081223958715', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download (2).jpg', 'download.png', NULL, '2021-08-14 11:35:35', NULL),
+(34, 34, 'pribadi', 'pajong', '$2y$10$3Iw.EjtoqXDzRDr0LwIPWOVsEr7UNlD6Lv.Vk/lL0KriHhwzUOlZq', 'Fadhil Cahya Kesuma', 3276010003, 'fadhilcahyakesuma@gmail.com', '081223958715', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download (2).jpg', 'download.png', NULL, '2021-08-14 11:37:05', NULL),
+(35, 35, 'pribadi', 'user70239bf39', '123456', 'User70239bf39', 3204270004, 'mughnymubarak14@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-15 00:19:42', NULL),
+(36, 36, 'pribadi', 'ridwan', '123456', 'Ridwan', 3204270004, 'ridwan@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 10:53:26', NULL),
+(41, 41, 'pribadi', 'ridwan-amir', '123456', 'Ridwan Amir', 3204270004, 'ridwanamir@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-17 11:07:23', NULL),
+(42, 42, 'pribadi', 'sherla', '$2y$10$BpkqUNwXv5iAARXc5YbeMem6x/cwPTLWOdw7BtmOCv70OISldwhdi', 'Sherla', 3201010001, 'sherla@gmail.com', '087765567789', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'WhatsApp Image 2022-06-30 at 16.00.29.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, 'WIN_20201124_00_09_32_Pro.jpg', 'WIN_20201124_00_09_32_Pro.jpg', 'APPROVE', '2022-04-03 03:54:28', '2022-07-19 23:13:12'),
+(43, 43, 'pribadi', 'jessika', '$2y$10$Vb100zSKHos6PMeNNHZ1v.RgnoxblFk2hG7EcCPLhSzg9GKAx0.sS', 'Jessika', 1504040014, 'jessika@gmail.com', '098765432123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', NULL, '2022-04-18 14:37:26', NULL),
+(45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'WhatsApp Image 2022-06-30 at 16.00.29.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', NULL, '2022-06-05 13:42:37', '2022-07-18 23:27:48'),
+(46, 46, 'pribadi', 'ade', '$2y$10$aWYkPtEBOVO8mU0AfjmJPeZCwkByU7id909343kK.PoTUhuqM7ByW', 'Ade', 1201060015, 'ade@gmail.com', '08234571635', 'Brebes', '1923640281619', 'Mahasiswa', '1.PNG', NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', NULL, '2022-06-05 19:02:18', '2022-06-21 13:27:32'),
+(47, 47, 'pribadi', 'imamn', '$2y$10$uBW.adx4Rfh4Eh3fWcEc7OlsBRNAax/NDaTxdv73jBN5x5474p.KW', 'Imam', 3201010001, 'imam@gmail.com', '0394896384', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'matthew-fassnacht-eBbRSsV4JqU-unsplash.jpg', 'Pemilu run.jpg', 'PENDING', '2022-07-13 12:35:27', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `peralatans`
+-- Table structure for table `peralatans`
 --
 
 CREATE TABLE `peralatans` (
   `id_peralatan` int(11) NOT NULL,
   `nama_alat` varchar(255) NOT NULL,
-  `harga` int(255) NOT NULL,
+  `harga` int(11) NOT NULL,
   `deskripsi` varchar(255) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `id_pemilik` int(11) NOT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'Waiting',
-  `updated_at` datetime NOT NULL
+  `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `peralatans`
+-- Dumping data for table `peralatans`
 --
 
--- INSERT INTO `peralatans` (`id_peralatan`, `nama_alat`, `harga`, `deskripsi`, `gambar`, `id_pemilik`, 'Waiting', `updated_at`) VALUES
--- (1, 'cangkul', 1000, 'cangkul', 'IMG_20220209_143004.jpg', 42, 'Waiting', '2022-06-07'),
--- (2, 'ember', 20000, 'yusril nggk kuat buat memiliki', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 45, 'Waiting', '2022-06-09');
+INSERT INTO `peralatans` (`id_peralatan`, `nama_alat`, `harga`, `deskripsi`, `gambar`, `id_pemilik`, `status`, `updated_at`) VALUES
+(1, 'cangkul', 1000, 'cangkul', 'IMG_20220209_143004.jpg', 42, 'Ready', '2022-07-13'),
+(2, 'ember', 20000, 'yusril nggk kuat buat memiliki', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 45, 'Waiting', '2022-07-13'),
+(3, 'Cetok', 2000, 'Cetok Besar', 'ss1.png', 42, 'Ready', '2022-07-13'),
+(5, 'Arit', 3000, 'Arit ges', 'tbl komentar.png', 42, 'Reject', '2022-07-13');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `probabilitas`
+-- Table structure for table `probabilitas`
 --
 
 CREATE TABLE `probabilitas` (
@@ -8035,7 +8040,7 @@ CREATE TABLE `probabilitas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `probabilitas`
+-- Dumping data for table `probabilitas`
 --
 
 INSERT INTO `probabilitas` (`id_probabilitas`, `ket`) VALUES
@@ -8046,7 +8051,7 @@ INSERT INTO `probabilitas` (`id_probabilitas`, `ket`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -8061,39 +8066,47 @@ CREATE TABLE `products` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `stock` int(11) NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'PENDING'
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'PENDING',
+  `village_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `products`
+-- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `users_id`, `categories_id`, `price`, `description`, `deleted_at`, `created_at`, `updated_at`, `slug`, `stock`, `status`) VALUES
-(1, 'Ayam Potong', 4, 1, 45000, '<p>Ayam potong yang sangat baik dengan melakukan perawatan yang sudah terjamin</p>', NULL, '2021-06-24 23:17:39', '2021-07-13 18:53:39', 'ayam-potong', 0, 'PENDING'),
-(2, 'Baju Polos', 4, 3, 30000, '<p>Baju polos dengan bahan yang adem untuk di pakai</p>', NULL, '2021-06-24 23:18:56', '2021-06-24 23:18:56', 'baju-polos', 0, 'PENDING'),
-(3, 'Ikan Segar', 4, 1, 95000, '<p>Ikan segar langsung di ambil dari laut</p>', NULL, '2021-06-24 23:27:03', '2022-06-30 06:04:54', 'ikan-segar', 0, 'APPROVE'),
-(4, 'Nasi Samin', 5, 1, 70000, '<p>Nasi samin adalah makanan yang sangat enak seklai boleh di coba dan di rasakan sendiri</p>', NULL, '2021-06-24 23:35:08', '2021-06-24 23:35:08', 'nasi-samin', 0, 'PENDING'),
-(5, 'Barbel', 5, 2, 56000, '<p>Barbel dengan kekuatan yang sangat kuat</p>', NULL, '2021-06-24 23:37:31', '2021-06-24 23:37:31', 'barbel', 0, 'PENDING'),
-(6, 'Sayur Segar', 5, 1, 40000, '<p>Sayur yang sangat segar sekali&nbsp;</p>', NULL, '2021-06-24 23:38:23', '2021-06-24 23:38:23', 'sayur-segar', 0, 'PENDING'),
-(7, 'Nasi Arab', 5, 1, 600000, '<p>Makanan ini di masak dengan penuh kasih sayang</p>', NULL, '2021-06-24 23:39:16', '2021-06-24 23:39:16', 'nasi-arab', 0, 'PENDING'),
-(8, 'Durian Montong', 5, 1, 860000, '<p>Durian asli yang sangat masnis sekali</p>', NULL, '2021-06-24 23:42:35', '2021-06-24 23:42:35', 'durian-montong', 0, 'PENDING'),
-(9, 'Boneka Lucu', 5, 3, 50000, '<p>Boneka lucu banget hasil buatan rumah</p>', NULL, '2021-06-24 23:47:54', '2021-06-24 23:47:54', 'boneka-lucu', 0, 'PENDING'),
-(10, 'Kaktus', 8, 4, 560000, '<p>Kaktus asli dari arab saudi</p>', NULL, '2021-06-25 04:57:12', '2021-06-25 04:57:12', 'kaktus', 0, 'PENDING'),
-(11, 'Gelas K3', 8, 1, 45000, '<p>Gelas yang di buat dengan tangan sendiri</p>', NULL, '2021-06-25 04:58:00', '2021-06-25 04:58:00', 'gelas-k3', 0, 'PENDING'),
-(12, 'Durian', 8, 1, 560000, '<p>Durian yang gak suka durian ini adalah durian varian terbaru</p>', NULL, '2021-06-25 04:58:50', '2021-06-25 04:58:50', 'durian', 0, 'PENDING'),
-(13, 'Sayur Segar', 8, 1, 70000, '<p>Sayuran yang sangat enak sekali</p>', NULL, '2021-06-25 04:59:43', '2021-06-25 04:59:43', 'sayur-segar', 0, 'PENDING'),
-(14, 'Ikan', 10, 1, 79999, '<p>Keren</p>', NULL, '2021-06-25 05:08:19', '2021-06-25 05:08:19', 'ikan', 0, 'PENDING'),
-(15, 'Durian Manis', 10, 2, 80000, '<p>Durian Manis</p>', NULL, '2021-06-25 05:09:07', '2021-06-25 05:09:07', 'durian-manis', 0, 'PENDING'),
-(16, 'Durian Montong', 9, 1, 67000, '<p>Durian yang sangat mateng</p>', NULL, '2021-06-25 05:10:05', '2021-06-25 05:10:05', 'durian-montong', 0, 'PENDING'),
-(17, 'Ikan Sungai', 9, 1, 56000, '<p>Ikan sungai</p>', NULL, '2021-06-25 05:10:41', '2021-06-25 05:10:41', 'ikan-sungai', 0, 'PENDING'),
-(18, 'Nasi Samin', 7, 1, 80000, '<p>Nasi Samin Di Jamin enak</p>', NULL, '2021-07-12 18:52:29', '2021-07-12 18:52:29', 'nasi-samin', 0, 'PENDING'),
-(19, 'Nasi Samin', 4, 1, 67000, '<p>Keren Banget</p>', NULL, '2021-07-12 18:57:15', '2021-07-12 18:57:15', 'nasi-samin', 0, 'PENDING'),
-(20, 'Nasi Sam', 4, 1, 65000, '<p>Keren</p>', NULL, '2021-07-12 18:58:03', '2022-07-06 08:48:18', 'nasi-sam', 0, 'APPROVE');
+INSERT INTO `products` (`id`, `name`, `users_id`, `categories_id`, `price`, `description`, `deleted_at`, `created_at`, `updated_at`, `slug`, `stock`, `status`, `village_id`) VALUES
+(1, 'Ayam Potong', 4, 1, 45000, '<p>Ayam potong yang sangat baik dengan melakukan perawatan yang sudah terjamin</p>', NULL, '2021-06-24 16:17:39', '2021-07-13 11:53:39', 'ayam-potong', 0, 'PENDING', '0'),
+(2, 'Baju Polos', 4, 3, 30000, '<p>Baju polos dengan bahan yang adem untuk di pakai</p>', NULL, '2021-06-24 16:18:56', '2021-06-24 16:18:56', 'baju-polos', 0, 'PENDING', '0'),
+(3, 'Ikan Segar', 4, 1, 95000, '<p>Ikan segar langsung di ambil dari laut</p>', NULL, '2021-06-24 16:27:03', '2022-06-29 23:04:54', 'ikan-segar', 0, 'APPROVE', '0'),
+(4, 'Nasi Samin', 5, 1, 70000, '<p>Nasi samin adalah makanan yang sangat enak seklai boleh di coba dan di rasakan sendiri</p>', NULL, '2021-06-24 16:35:08', '2021-06-24 16:35:08', 'nasi-samin', 0, 'PENDING', '0'),
+(5, 'Barbel', 5, 2, 56000, '<p>Barbel dengan kekuatan yang sangat kuat</p>', NULL, '2021-06-24 16:37:31', '2022-07-17 18:00:36', 'barbel', -4, 'PENDING', '0'),
+(6, 'Sayur Segar', 5, 1, 40000, '<p>Sayur yang sangat segar sekali&nbsp;</p>', NULL, '2021-06-24 16:38:23', '2021-06-24 16:38:23', 'sayur-segar', 0, 'PENDING', '0'),
+(7, 'Nasi Arab', 5, 1, 600000, '<p>Makanan ini di masak dengan penuh kasih sayang</p>', NULL, '2021-06-24 16:39:16', '2021-06-24 16:39:16', 'nasi-arab', 0, 'PENDING', '0'),
+(8, 'Durian Montong', 5, 1, 860000, '<p>Durian asli yang sangat masnis sekali</p>', NULL, '2021-06-24 16:42:35', '2021-06-24 16:42:35', 'durian-montong', 0, 'PENDING', '0'),
+(9, 'Boneka Lucu', 5, 3, 50000, '<p>Boneka lucu banget hasil buatan rumah</p>', NULL, '2021-06-24 16:47:54', '2021-06-24 16:47:54', 'boneka-lucu', 0, 'PENDING', '0'),
+(10, 'Kaktus', 8, 4, 560000, '<p>Kaktus asli dari arab saudi</p>', NULL, '2021-06-24 21:57:12', '2021-06-24 21:57:12', 'kaktus', 0, 'PENDING', '0'),
+(11, 'Gelas K3', 8, 1, 45000, '<p>Gelas yang di buat dengan tangan sendiri</p>', NULL, '2021-06-24 21:58:00', '2021-06-24 21:58:00', 'gelas-k3', 0, 'PENDING', '0'),
+(12, 'Durian', 8, 1, 560000, '<p>Durian yang gak suka durian ini adalah durian varian terbaru</p>', NULL, '2021-06-24 21:58:50', '2021-06-24 21:58:50', 'durian', 0, 'PENDING', '0'),
+(13, 'Sayur Segar', 8, 1, 70000, '<p>Sayuran yang sangat enak sekali</p>', NULL, '2021-06-24 21:59:43', '2021-06-24 21:59:43', 'sayur-segar', 0, 'PENDING', '0'),
+(14, 'Ikan', 10, 1, 79999, '<p>Keren</p>', NULL, '2021-06-24 22:08:19', '2021-06-24 22:08:19', 'ikan', 0, 'PENDING', '0'),
+(15, 'Durian Manis', 10, 2, 80000, '<p>Durian Manis</p>', NULL, '2021-06-24 22:09:07', '2021-06-24 22:09:07', 'durian-manis', 0, 'PENDING', '0'),
+(16, 'Durian Montong', 9, 1, 67000, '<p>Durian yang sangat mateng</p>', NULL, '2021-06-24 22:10:05', '2021-06-24 22:10:05', 'durian-montong', 0, 'PENDING', '0'),
+(17, 'Ikan Sungai', 9, 1, 56000, '<p>Ikan sungai</p>', NULL, '2021-06-24 22:10:41', '2021-06-24 22:10:41', 'ikan-sungai', 0, 'PENDING', '0'),
+(18, 'Nasi Samin', 7, 1, 80000, '<p>Nasi Samin Di Jamin enak</p>', NULL, '2021-07-12 11:52:29', '2021-07-12 11:52:29', 'nasi-samin', 0, 'PENDING', '0'),
+(19, 'Nasi Samin', 4, 1, 67000, '<p>Keren Banget</p>', NULL, '2021-07-12 11:57:15', '2021-07-12 11:57:15', 'nasi-samin', 0, 'PENDING', '0'),
+(20, 'Nasi Sam', 4, 1, 65000, '<p>Keren</p>', NULL, '2021-07-12 11:58:03', '2022-07-06 01:48:18', 'nasi-sam', 0, 'APPROVE', '0'),
+(21, 'apel enak', 42, 1, 2000, '<p>apel enak</p>', NULL, '2022-07-19 16:47:38', '2022-07-19 16:47:38', 'apel-enak', 3, 'PENDING', '0'),
+(22, 'batagor', 42, 1, 5000, '<p>batagor sapi</p>', NULL, '2022-07-19 16:53:54', '2022-07-19 16:53:54', 'batagor', 10, 'PENDING', '0'),
+(23, 'batagor', 42, 1, 5000, '<p>batagor sapi</p>', NULL, '2022-07-19 16:58:17', '2022-07-19 16:58:17', 'batagor', 10, 'PENDING', '0'),
+(24, 'batagor lagi', 42, 1, 2000, '<p>enak nanana</p>', NULL, '2022-07-19 16:59:12', '2022-07-19 16:59:12', 'batagor-lagi', 2, 'PENDING', '0'),
+(25, 'kain batik', 42, 3, 150000, '<p>batik asli desa malasari</p>', NULL, '2022-07-19 17:00:57', '2022-07-19 17:18:27', 'kain-batik', 2, 'APPROVE', '0'),
+(26, 'dsd', 42, 1, 1, '<p>e</p>', NULL, '2022-07-19 17:17:39', '2022-07-19 17:17:39', 'dsd', 1, 'PENDING', '0'),
+(27, 'batagor', 42, 1, 1, '<p>22</p>', NULL, '2022-07-19 18:12:36', '2022-07-19 18:12:36', 'batagor', 2, 'PENDING', '3201010001');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `product_gallaries`
+-- Table structure for table `product_gallaries`
 --
 
 CREATE TABLE `product_gallaries` (
@@ -8106,45 +8119,52 @@ CREATE TABLE `product_gallaries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `product_gallaries`
+-- Dumping data for table `product_gallaries`
 --
 
 INSERT INTO `product_gallaries` (`id`, `photos`, `products_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'assets/product/6zq0XxrCKWYF4BlIXxnNPLwY8V5ueCOHu5l7M0K2.jpg', 1, NULL, '2021-06-24 23:17:39', '2021-06-24 23:17:39'),
-(2, 'assets/product/JwKdStQaR2qOewARrpxrm2xX6BA9iAhFBiBpW8GN.jpg', 2, NULL, '2021-06-24 23:18:56', '2021-06-24 23:18:56'),
-(3, 'assets/product/xa8oLFMORdXXLMGDdmPi5NXHxdgD0TPNO8EL3lsf.jpg', 3, NULL, '2021-06-24 23:27:03', '2021-06-24 23:27:03'),
-(4, 'assets/product/Pf0Xo914G960FiVeBpulP8nwhoTfAZY3E8ZDbnbd.jpg', 4, NULL, '2021-06-24 23:35:08', '2021-06-24 23:35:08'),
-(7, 'assets/product/PMjpea3kGTLUilHxu9JkQRtwV6vKL5Mm2gMlERhB.jpg', 7, NULL, '2021-06-24 23:39:16', '2021-06-24 23:39:16'),
-(8, 'assets/product/kp8RfAeoZmtelEkJB8MsiukS5o0RCvqsXtdCVdz2.jpg', 8, NULL, '2021-06-24 23:42:35', '2021-06-24 23:42:35'),
-(9, 'assets/product/T8TI2FcEG8MVNcwPwsv3caOjuevH9XN4BwcsSk7O.jpg', 4, NULL, '2021-06-24 23:42:54', '2021-06-24 23:42:54'),
-(10, 'assets/product/oFaA4HDn1kplUmoKpawkychNMeBJXbI6BnrqiLdS.jpg', 4, NULL, '2021-06-24 23:43:09', '2021-06-24 23:43:09'),
-(11, 'assets/product/bHlRMEiFGzmXTe7gHk4SNIiJoiEfQDsGHKrNRkpf.jpg', 4, NULL, '2021-06-24 23:43:41', '2021-06-24 23:43:41'),
-(12, 'assets/product/ztRlYjbMHDary2TIAREv4i4lMpA8fvjmBSJJt1VM.jpg', 5, NULL, '2021-06-24 23:44:11', '2021-06-24 23:44:11'),
-(13, 'assets/product/YCXNZAasUkpY6ckTKOa8K48qO6JdV3KySDait6qV.jpg', 5, NULL, '2021-06-24 23:44:29', '2021-06-24 23:44:29'),
-(14, 'assets/product/fmFBmNakq9g6mN1C2E7ZYj8bTZ5xBN1XMP1X9fFS.jpg', 5, NULL, '2021-06-24 23:45:10', '2021-06-24 23:45:10'),
-(15, 'assets/product/OfOnqAanqqWfWN1psGkiXcpGtlmIjyssUSVoaFA4.jpg', 5, NULL, '2021-06-24 23:45:27', '2021-06-24 23:45:27'),
-(16, 'assets/product/JGc5OQkG9zX7aMGH5k4vy5pkXRY6tYldOkePIzrb.jpg', 6, NULL, '2021-06-24 23:45:53', '2021-06-24 23:45:53'),
-(17, 'assets/product/VUWilZwS5W1cOp1LyZ6iXxkxnIhxYFfpEqJ5vO9P.jpg', 6, NULL, '2021-06-24 23:46:10', '2021-06-24 23:46:10'),
-(18, 'assets/product/e3Tu74M6VataiT8DaWEOlcLlfFUpgJq4fxDGmzRH.jpg', 6, NULL, '2021-06-24 23:46:31', '2021-06-24 23:46:31'),
-(19, 'assets/product/663XVDyT8NN9zKlI7g7ALbZc3SWKjoc6GjJiXYWr.jpg', 6, NULL, '2021-06-24 23:46:45', '2021-06-24 23:46:45'),
-(20, 'assets/product/GH8m6eIqppeDuhdaS6JEusw7IuerDIopT0r1QwRX.jpg', 9, NULL, '2021-06-24 23:47:54', '2021-06-24 23:47:54'),
-(21, 'assets/product/u7wWkdcoPAaz0UX4pB4fhEAsu4VrQZoSFTIEUKNW.jpg', 10, NULL, '2021-06-25 04:57:12', '2021-06-25 04:57:12'),
-(22, 'assets/product/GUvQcOnssOQ7WDuWWB6F5LQe9ecyGfAJL5mToLy2.png', 11, NULL, '2021-06-25 04:58:00', '2021-06-25 04:58:00'),
-(23, 'assets/product/H5IgY604AEBPd6pGii1h6GrXvbzSQLEnBIIYRu6w.jpg', 12, NULL, '2021-06-25 04:58:50', '2021-06-25 04:58:50'),
-(24, 'assets/product/88fCNKIaWWeZ2FAYtqqG3jaYfOojYoYXzpj10EBQ.jpg', 13, NULL, '2021-06-25 04:59:43', '2021-06-25 04:59:43'),
-(25, 'assets/product/UAuRupsrQRA1uvBnmfJJNCXJPj01OlG23lgZPlaS.jpg', 14, NULL, '2021-06-25 05:08:19', '2021-06-25 05:08:19'),
-(26, 'assets/product/kRRPiuKSYwXCeRISFMilBGsu6ATTcugzMq74sQiK.jpg', 15, NULL, '2021-06-25 05:09:07', '2021-06-25 05:09:07'),
-(27, 'assets/product/VudvbbuUxEkJT2wLokA9xCAXGDXzFP6GFcqdJ7we.jpg', 16, NULL, '2021-06-25 05:10:05', '2021-06-25 05:10:05'),
-(28, 'assets/product/40TZHKAodORz11s3YXx0UYb9VSFvx5mu0DwmCk6K.jpg', 17, NULL, '2021-06-25 05:10:41', '2021-06-25 05:10:41'),
-(29, 'assets/product/hiwOt00LJc0sHmztT0KsFr2YsepD8N5MjtPJPUlf.jpg', 18, NULL, '2021-07-12 18:52:29', '2021-07-12 18:52:29'),
-(30, 'assets/product/RUwOtrUKben2Zz5GU6tRhedYsaWyXUZ91hrQcJpb.jpg', 19, NULL, '2021-07-12 19:01:53', '2021-07-12 19:01:53'),
-(31, 'assets/product/4ESV1wP102taKsefpIiZWgFC05RbFkVdWiJWKgPS.jpg', 20, NULL, '2021-07-13 23:01:20', '2021-07-13 23:01:20'),
-(32, 'assets/product/b136uCXXtLVZeGDzT3ALToGty52cipnTJC8xuLtF.jpg', 1, NULL, '2021-07-24 17:19:53', '2021-07-24 17:19:53');
+(1, 'assets/product/6zq0XxrCKWYF4BlIXxnNPLwY8V5ueCOHu5l7M0K2.jpg', 1, NULL, '2021-06-24 16:17:39', '2021-06-24 16:17:39'),
+(2, 'assets/product/JwKdStQaR2qOewARrpxrm2xX6BA9iAhFBiBpW8GN.jpg', 2, NULL, '2021-06-24 16:18:56', '2021-06-24 16:18:56'),
+(3, 'assets/product/xa8oLFMORdXXLMGDdmPi5NXHxdgD0TPNO8EL3lsf.jpg', 3, NULL, '2021-06-24 16:27:03', '2021-06-24 16:27:03'),
+(4, 'assets/product/Pf0Xo914G960FiVeBpulP8nwhoTfAZY3E8ZDbnbd.jpg', 4, NULL, '2021-06-24 16:35:08', '2021-06-24 16:35:08'),
+(7, 'assets/product/PMjpea3kGTLUilHxu9JkQRtwV6vKL5Mm2gMlERhB.jpg', 7, NULL, '2021-06-24 16:39:16', '2021-06-24 16:39:16'),
+(8, 'assets/product/kp8RfAeoZmtelEkJB8MsiukS5o0RCvqsXtdCVdz2.jpg', 8, NULL, '2021-06-24 16:42:35', '2021-06-24 16:42:35'),
+(9, 'assets/product/T8TI2FcEG8MVNcwPwsv3caOjuevH9XN4BwcsSk7O.jpg', 4, NULL, '2021-06-24 16:42:54', '2021-06-24 16:42:54'),
+(10, 'assets/product/oFaA4HDn1kplUmoKpawkychNMeBJXbI6BnrqiLdS.jpg', 4, NULL, '2021-06-24 16:43:09', '2021-06-24 16:43:09'),
+(11, 'assets/product/bHlRMEiFGzmXTe7gHk4SNIiJoiEfQDsGHKrNRkpf.jpg', 4, NULL, '2021-06-24 16:43:41', '2021-06-24 16:43:41'),
+(12, 'assets/product/ztRlYjbMHDary2TIAREv4i4lMpA8fvjmBSJJt1VM.jpg', 5, NULL, '2021-06-24 16:44:11', '2021-06-24 16:44:11'),
+(13, 'assets/product/YCXNZAasUkpY6ckTKOa8K48qO6JdV3KySDait6qV.jpg', 5, NULL, '2021-06-24 16:44:29', '2021-06-24 16:44:29'),
+(14, 'assets/product/fmFBmNakq9g6mN1C2E7ZYj8bTZ5xBN1XMP1X9fFS.jpg', 5, NULL, '2021-06-24 16:45:10', '2021-06-24 16:45:10'),
+(15, 'assets/product/OfOnqAanqqWfWN1psGkiXcpGtlmIjyssUSVoaFA4.jpg', 5, NULL, '2021-06-24 16:45:27', '2021-06-24 16:45:27'),
+(16, 'assets/product/JGc5OQkG9zX7aMGH5k4vy5pkXRY6tYldOkePIzrb.jpg', 6, NULL, '2021-06-24 16:45:53', '2021-06-24 16:45:53'),
+(17, 'assets/product/VUWilZwS5W1cOp1LyZ6iXxkxnIhxYFfpEqJ5vO9P.jpg', 6, NULL, '2021-06-24 16:46:10', '2021-06-24 16:46:10'),
+(18, 'assets/product/e3Tu74M6VataiT8DaWEOlcLlfFUpgJq4fxDGmzRH.jpg', 6, NULL, '2021-06-24 16:46:31', '2021-06-24 16:46:31'),
+(19, 'assets/product/663XVDyT8NN9zKlI7g7ALbZc3SWKjoc6GjJiXYWr.jpg', 6, NULL, '2021-06-24 16:46:45', '2021-06-24 16:46:45'),
+(20, 'assets/product/GH8m6eIqppeDuhdaS6JEusw7IuerDIopT0r1QwRX.jpg', 9, NULL, '2021-06-24 16:47:54', '2021-06-24 16:47:54'),
+(21, 'assets/product/u7wWkdcoPAaz0UX4pB4fhEAsu4VrQZoSFTIEUKNW.jpg', 10, NULL, '2021-06-24 21:57:12', '2021-06-24 21:57:12'),
+(22, 'assets/product/GUvQcOnssOQ7WDuWWB6F5LQe9ecyGfAJL5mToLy2.png', 11, NULL, '2021-06-24 21:58:00', '2021-06-24 21:58:00'),
+(23, 'assets/product/H5IgY604AEBPd6pGii1h6GrXvbzSQLEnBIIYRu6w.jpg', 12, NULL, '2021-06-24 21:58:50', '2021-06-24 21:58:50'),
+(24, 'assets/product/88fCNKIaWWeZ2FAYtqqG3jaYfOojYoYXzpj10EBQ.jpg', 13, NULL, '2021-06-24 21:59:43', '2021-06-24 21:59:43'),
+(25, 'assets/product/UAuRupsrQRA1uvBnmfJJNCXJPj01OlG23lgZPlaS.jpg', 14, NULL, '2021-06-24 22:08:19', '2021-06-24 22:08:19'),
+(26, 'assets/product/kRRPiuKSYwXCeRISFMilBGsu6ATTcugzMq74sQiK.jpg', 15, NULL, '2021-06-24 22:09:07', '2021-06-24 22:09:07'),
+(27, 'assets/product/VudvbbuUxEkJT2wLokA9xCAXGDXzFP6GFcqdJ7we.jpg', 16, NULL, '2021-06-24 22:10:05', '2021-06-24 22:10:05'),
+(28, 'assets/product/40TZHKAodORz11s3YXx0UYb9VSFvx5mu0DwmCk6K.jpg', 17, NULL, '2021-06-24 22:10:41', '2021-06-24 22:10:41'),
+(29, 'assets/product/hiwOt00LJc0sHmztT0KsFr2YsepD8N5MjtPJPUlf.jpg', 18, NULL, '2021-07-12 11:52:29', '2021-07-12 11:52:29'),
+(30, 'assets/product/RUwOtrUKben2Zz5GU6tRhedYsaWyXUZ91hrQcJpb.jpg', 19, NULL, '2021-07-12 12:01:53', '2021-07-12 12:01:53'),
+(31, 'assets/product/4ESV1wP102taKsefpIiZWgFC05RbFkVdWiJWKgPS.jpg', 20, NULL, '2021-07-13 16:01:20', '2021-07-13 16:01:20'),
+(32, 'assets/product/b136uCXXtLVZeGDzT3ALToGty52cipnTJC8xuLtF.jpg', 1, NULL, '2021-07-24 10:19:53', '2021-07-24 10:19:53'),
+(33, 'assets/product/jbr3Q14jdnXiXhXxCDGHWjBvSU9natZJBg1Fzqbk.jpeg', 21, NULL, '2022-07-19 16:47:38', '2022-07-19 16:47:38'),
+(34, 'assets/product/qjeOfPGPD5kHfsTpCEL47ERK8Hm6I84DJpMh7Wv4.jpeg', 22, NULL, '2022-07-19 16:53:54', '2022-07-19 16:53:54'),
+(35, 'assets/product/Qw4TXQ5f6yUveIyKZucGqdfX85GV7Se5nXD0KT46.jpeg', 23, NULL, '2022-07-19 16:58:17', '2022-07-19 16:58:17'),
+(36, 'assets/product/DkHOQ8ct3nzaCpWwNHYrYdDnpKplANDApePqwE3I.jpeg', 24, NULL, '2022-07-19 16:59:12', '2022-07-19 16:59:12'),
+(37, 'assets/product/VWfKIgK0NgdUBA03tF2QNYvunIo1QttC9D9xahyr.jpeg', 25, NULL, '2022-07-19 17:00:57', '2022-07-19 17:00:57'),
+(38, 'assets/product/lDdBFV0oA43KC9xPnIocabyEnMKPAKRQIi6INq45.jpeg', 26, NULL, '2022-07-19 17:17:39', '2022-07-19 17:17:39'),
+(39, 'assets/product/qUmMVApe0Q6UQdFVdzHsbVRj471FkJv6a8ICHwwF.jpeg', 27, NULL, '2022-07-19 18:12:36', '2022-07-19 18:12:36');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `provinces`
+-- Table structure for table `provinces`
 --
 
 CREATE TABLE `provinces` (
@@ -8153,7 +8173,7 @@ CREATE TABLE `provinces` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `provinces`
+-- Dumping data for table `provinces`
 --
 
 INSERT INTO `provinces` (`id`, `name`) VALUES
@@ -8195,7 +8215,7 @@ INSERT INTO `provinces` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `regencies`
+-- Table structure for table `regencies`
 --
 
 CREATE TABLE `regencies` (
@@ -8205,7 +8225,7 @@ CREATE TABLE `regencies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `regencies`
+-- Dumping data for table `regencies`
 --
 
 INSERT INTO `regencies` (`id`, `province_id`, `name`) VALUES
@@ -8727,7 +8747,7 @@ INSERT INTO `regencies` (`id`, `province_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `reports`
+-- Table structure for table `reports`
 --
 
 CREATE TABLE `reports` (
@@ -8745,7 +8765,7 @@ CREATE TABLE `reports` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `resources`
+-- Table structure for table `resources`
 --
 
 CREATE TABLE `resources` (
@@ -8754,7 +8774,7 @@ CREATE TABLE `resources` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `resources`
+-- Dumping data for table `resources`
 --
 
 INSERT INTO `resources` (`id_resources`, `keterangan`) VALUES
@@ -8765,24 +8785,24 @@ INSERT INTO `resources` (`id_resources`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `risks`
+-- Table structure for table `risks`
 --
 
 CREATE TABLE `risks` (
-  `id_risk` int(30) NOT NULL,
-  `id_sewa` int(30) NOT NULL,
+  `id_risk` int(11) NOT NULL,
+  `id_sewa` int(11) NOT NULL,
   `penyebab` varchar(255) NOT NULL,
   `dampak` varchar(255) NOT NULL,
   `strategi` varchar(255) NOT NULL,
-  `biaya` int(30) NOT NULL,
-  `probabilitas` int(30) NOT NULL,
-  `impact` int(30) NOT NULL,
+  `biaya` int(11) NOT NULL,
+  `probabilitas` int(11) NOT NULL,
+  `impact` int(11) NOT NULL,
   `levelRisk` varchar(30) NOT NULL,
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `risks`
+-- Dumping data for table `risks`
 --
 
 INSERT INTO `risks` (`id_risk`, `id_sewa`, `penyebab`, `dampak`, `strategi`, `biaya`, `probabilitas`, `impact`, `levelRisk`, `updated_at`) VALUES
@@ -8792,7 +8812,7 @@ INSERT INTO `risks` (`id_risk`, `id_sewa`, `penyebab`, `dampak`, `strategi`, `bi
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -8801,18 +8821,17 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `nama`) VALUES
 (1, 'Super Admin'),
-(2, 'Pengguna'),
-(3, 'Admin Store');
+(2, 'Pengguna');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `room_chat`
+-- Table structure for table `room_chat`
 --
 
 CREATE TABLE `room_chat` (
@@ -8822,60 +8841,62 @@ CREATE TABLE `room_chat` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sewa_lahans`
+-- Table structure for table `sewa_lahans`
 --
 
 CREATE TABLE `sewa_lahans` (
-  `id_sewa` int(30) NOT NULL,
-  `id_penyewa` int(25) NOT NULL,
-  `id_pemilik` int(25) NOT NULL,
-  `id_lahan` int(25) NOT NULL,
+  `id_sewa` int(11) NOT NULL,
+  `id_penyewa` int(11) NOT NULL,
+  `id_pemilik` int(11) NOT NULL,
+  `id_lahan` int(11) NOT NULL,
   `status` varchar(30) NOT NULL,
   `progres` varchar(30) NOT NULL,
   `updated_at` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `sewa_lahans`
+-- Dumping data for table `sewa_lahans`
 --
 
 INSERT INTO `sewa_lahans` (`id_sewa`, `id_penyewa`, `id_pemilik`, `id_lahan`, `status`, `progres`, `updated_at`) VALUES
 (3, 45, 42, 5, 'Acc', 'Done', '2022-06-21 13:03:46'),
 (6, 46, 42, 5, 'Acc', 'Proses', '2022-06-30 12:11:31'),
 (7, 46, 42, 4, 'Acc', 'Proses', '2022-06-30 12:13:09'),
-(8, 45, 42, 4, 'Tolak', '-', '2022-06-21 13:34:15');
+(8, 45, 42, 4, 'Tolak', '-', '2022-06-21 13:34:15'),
+(9, 45, 46, 6, 'Belum Acc', '-', '2022-07-18 23:27:49');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sewa_peralatans`
+-- Table structure for table `sewa_peralatans`
 --
 
 CREATE TABLE `sewa_peralatans` (
-  `id_sewa` int(30) NOT NULL,
-  `id_pemilik` int(30) NOT NULL,
-  `id_peralatan` int(30) NOT NULL,
-  `id_penyewa` int(30) NOT NULL,
+  `id_sewa` int(11) NOT NULL,
+  `id_pemilik` int(11) NOT NULL,
+  `id_peralatan` int(11) NOT NULL,
+  `id_penyewa` int(11) NOT NULL,
   `status` varchar(255) NOT NULL,
-  `harga` int(30) NOT NULL,
-  `totalHari` int(30) NOT NULL,
-  `totalHarga` int(30) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `totalHari` int(11) NOT NULL,
+  `totalHarga` int(11) NOT NULL,
   `statusPinjam` varchar(225) NOT NULL,
-  `qty` int(30) NOT NULL,
+  `qty` int(11) NOT NULL,
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `sewa_peralatans`
+-- Dumping data for table `sewa_peralatans`
 --
 
 INSERT INTO `sewa_peralatans` (`id_sewa`, `id_pemilik`, `id_peralatan`, `id_penyewa`, `status`, `harga`, `totalHari`, `totalHarga`, `statusPinjam`, `qty`, `updated_at`) VALUES
-(1, 42, 1, 45, 'Acc', 1000, 5, 10000, '-', 2, '2022-06-16');
+(1, 42, 1, 45, 'Acc', 1000, 5, 10000, '-', 2, '2022-06-16'),
+(2, 42, 3, 42, 'Belum Acc', 2000, 1, 4000, '-', 2, '2022-07-18');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `struks`
+-- Table structure for table `struks`
 --
 
 CREATE TABLE `struks` (
@@ -8888,7 +8909,7 @@ CREATE TABLE `struks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `struks`
+-- Dumping data for table `struks`
 --
 
 INSERT INTO `struks` (`id_struk`, `keterangan`, `gambar`, `tanggal`, `updated_at`, `id_sewa`) VALUES
@@ -8898,11 +8919,11 @@ INSERT INTO `struks` (`id_struk`, `keterangan`, `gambar`, `tanggal`, `updated_at
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tasks`
+-- Table structure for table `tasks`
 --
 
 CREATE TABLE `tasks` (
-  `id` int(10) NOT NULL,
+  `id` int(11) NOT NULL,
   `text` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `duration` int(11) NOT NULL,
   `progress` double(8,2) NOT NULL,
@@ -8912,27 +8933,27 @@ CREATE TABLE `tasks` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `id_sewa` int(11) NOT NULL,
-  `qty` int(30) NOT NULL,
+  `qty` int(11) NOT NULL,
   `satuan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `harga` int(30) NOT NULL,
-  `totalHarga` int(30) NOT NULL
+  `harga` int(11) NOT NULL,
+  `totalHarga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `tasks`
+-- Dumping data for table `tasks`
 --
 
 INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent`, `sortorder`, `created_at`, `updated_at`, `id_sewa`, `qty`, `satuan`, `harga`, `totalHarga`) VALUES
-(120, 'persiapan lahan', 17, 0.00, '2022-06-23 00:00:00', 0, 1, '2022-06-24 07:10:57', '2022-07-11 08:32:45', 7, 0, '', 0, 23500),
-(121, 'pembersihan lahan', 1, 0.00, '2022-07-23 00:00:00', 120, 2, '2022-06-24 07:19:17', '2022-07-11 08:32:45', 7, 0, '', 0, 22000),
-(122, 'arit', 1, 0.00, '2022-06-23 00:00:00', 121, 3, '2022-06-24 07:19:25', '2022-07-11 08:32:45', 7, 20, 'buah', 1000, 20000),
-(123, 'cangkul', 1, 0.00, '2022-06-23 00:00:00', 121, 4, '2022-06-24 07:19:35', '2022-07-11 08:27:48', 7, 1, 'buah', 2000, 2000),
-(124, 'pembajakan', 1, 0.00, '2022-06-23 00:00:00', 120, 5, '2022-06-24 07:19:45', '2022-06-24 07:22:51', 7, 3, 'buah', 500, 1500);
+(120, 'persiapan lahan', 17, 0.00, '2022-06-23 00:00:00', 0, 1, '2022-06-24 00:10:57', '2022-07-11 01:32:45', 7, 0, '', 0, 23500),
+(121, 'pembersihan lahan', 1, 0.00, '2022-07-23 00:00:00', 120, 2, '2022-06-24 00:19:17', '2022-07-11 01:32:45', 7, 0, '', 0, 22000),
+(122, 'arit', 1, 0.00, '2022-06-23 00:00:00', 121, 3, '2022-06-24 00:19:25', '2022-07-11 01:32:45', 7, 20, 'buah', 1000, 20000),
+(123, 'cangkul', 1, 0.00, '2022-06-23 00:00:00', 121, 4, '2022-06-24 00:19:35', '2022-07-11 01:27:48', 7, 1, 'buah', 2000, 2000),
+(124, 'pembajakan', 1, 0.00, '2022-06-23 00:00:00', 120, 5, '2022-06-24 00:19:45', '2022-06-24 00:22:51', 7, 3, 'buah', 500, 1500);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `task_historis`
+-- Table structure for table `task_historis`
 --
 
 CREATE TABLE `task_historis` (
@@ -8956,7 +8977,7 @@ CREATE TABLE `task_historis` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transactions`
+-- Table structure for table `transactions`
 --
 
 CREATE TABLE `transactions` (
@@ -8974,28 +8995,30 @@ CREATE TABLE `transactions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `transactions`
+-- Dumping data for table `transactions`
 --
 
 INSERT INTO `transactions` (`id`, `users_id`, `inscurance_price`, `shipping_price`, `total_price`, `transaction_status`, `deleted_at`, `created_at`, `updated_at`, `code`, `status_transaction_customer`) VALUES
-(1, 5, 0, 0, 95000, 'SUCCESS', NULL, '2021-06-24 23:50:04', '2021-06-25 00:12:39', 'STORE-134033', 'SUCCESS'),
-(2, 5, 0, 0, 30000, 'SUCCESS', NULL, '2021-06-24 23:54:19', '2021-06-25 00:08:59', 'STORE-184461', 'SUCCESS'),
-(3, 4, 0, 0, 70000, 'PENDING', NULL, '2021-06-24 23:55:47', '2021-06-24 23:55:47', 'STORE-275021', 'PENDING'),
-(4, 6, 0, 0, 50000, 'PENDING', NULL, '2021-06-25 04:50:19', '2021-06-25 04:50:19', 'STORE-369567', 'PENDING'),
-(5, 6, 0, 0, 50000, 'PENDING', NULL, '2021-06-25 04:51:01', '2021-06-25 04:51:01', 'STORE-359532', 'PENDING'),
-(6, 6, 0, 0, 50000, 'PENDING', NULL, '2021-06-25 04:51:25', '2021-06-25 04:51:25', 'STORE-256887', 'PENDING'),
-(7, 6, 0, 0, 95000, 'PENDING', NULL, '2021-06-25 04:51:57', '2021-06-25 04:51:57', 'STORE-204097', 'PENDING'),
-(8, 7, 0, 0, 30000, 'PENDING', NULL, '2021-06-25 04:53:41', '2021-06-25 04:53:41', 'STORE-688355', 'PENDING'),
-(9, 7, 0, 0, 145000, 'PENDING', NULL, '2021-06-25 04:54:28', '2021-06-25 04:54:28', 'STORE-184067', 'PENDING'),
-(10, 8, 0, 0, 80000, 'PENDING', NULL, '2021-06-25 04:56:05', '2021-06-25 04:56:05', 'STORE-279300', 'PENDING'),
-(11, 8, 0, 0, 30000, 'PENDING', NULL, '2021-06-25 05:03:46', '2021-06-25 05:03:46', 'STORE-562471', 'PENDING'),
-(12, 9, 0, 0, 600000, 'PENDING', NULL, '2021-06-25 05:04:40', '2021-06-25 05:04:40', 'STORE-967196', 'PENDING'),
-(13, 4, 0, 0, 56000, 'PENDING', NULL, '2021-07-13 00:18:18', '2021-07-13 00:18:18', 'STORE-932285', 'PENDING');
+(1, 5, 0, 0, 95000, 'SUCCESS', NULL, '2021-06-24 16:50:04', '2021-06-24 17:12:39', 'STORE-134033', 'SUCCESS'),
+(2, 5, 0, 0, 30000, 'SUCCESS', NULL, '2021-06-24 16:54:19', '2021-06-24 17:08:59', 'STORE-184461', 'SUCCESS'),
+(3, 4, 0, 0, 70000, 'PENDING', NULL, '2021-06-24 16:55:47', '2021-06-24 16:55:47', 'STORE-275021', 'PENDING'),
+(4, 6, 0, 0, 50000, 'PENDING', NULL, '2021-06-24 21:50:19', '2021-06-24 21:50:19', 'STORE-369567', 'PENDING'),
+(5, 6, 0, 0, 50000, 'PENDING', NULL, '2021-06-24 21:51:01', '2021-06-24 21:51:01', 'STORE-359532', 'PENDING'),
+(6, 6, 0, 0, 50000, 'PENDING', NULL, '2021-06-24 21:51:25', '2021-06-24 21:51:25', 'STORE-256887', 'PENDING'),
+(7, 6, 0, 0, 95000, 'PENDING', NULL, '2021-06-24 21:51:57', '2021-06-24 21:51:57', 'STORE-204097', 'PENDING'),
+(8, 7, 0, 0, 30000, 'PENDING', NULL, '2021-06-24 21:53:41', '2021-06-24 21:53:41', 'STORE-688355', 'PENDING'),
+(9, 7, 0, 0, 145000, 'PENDING', NULL, '2021-06-24 21:54:28', '2021-06-24 21:54:28', 'STORE-184067', 'PENDING'),
+(10, 8, 0, 0, 80000, 'PENDING', NULL, '2021-06-24 21:56:05', '2021-06-24 21:56:05', 'STORE-279300', 'PENDING'),
+(11, 8, 0, 0, 30000, 'PENDING', NULL, '2021-06-24 22:03:46', '2021-06-24 22:03:46', 'STORE-562471', 'PENDING'),
+(12, 9, 0, 0, 600000, 'PENDING', NULL, '2021-06-24 22:04:40', '2021-06-24 22:04:40', 'STORE-967196', 'PENDING'),
+(13, 4, 0, 0, 56000, 'PENDING', NULL, '2021-07-12 17:18:18', '2021-07-12 17:18:18', 'STORE-932285', 'PENDING'),
+(14, 42, 0, 0, 168000, 'PENDING', NULL, '2022-07-17 17:51:17', '2022-07-17 17:54:54', 'STORE-992507', 'SUCCESS'),
+(15, 4, 0, 0, 70000, 'PENDING', NULL, '2022-07-18 16:46:18', '2022-07-18 16:46:18', 'STORE-477033', 'PENDING');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaction_details`
+-- Table structure for table `transaction_details`
 --
 
 CREATE TABLE `transaction_details` (
@@ -9013,32 +9036,36 @@ CREATE TABLE `transaction_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `transaction_details`
+-- Dumping data for table `transaction_details`
 --
 
 INSERT INTO `transaction_details` (`id`, `transactions_id`, `products_id`, `price`, `deleted_at`, `created_at`, `updated_at`, `shipping_status`, `resi`, `code`, `total_qty`) VALUES
-(1, 1, 3, 95000, NULL, '2021-06-24 23:50:04', '2021-06-24 23:50:04', 'SUCCESS', 'PENDING', 'TRX-58958', 0),
-(2, 2, 2, 30000, NULL, '2021-06-24 23:54:19', '2021-06-24 23:54:19', 'SUCCESS', 'PENDING', 'TRX-802358', 0),
-(3, 3, 4, 70000, NULL, '2021-06-24 23:55:47', '2021-06-24 23:55:47', 'SUCCESS', 'PENDING', 'TRX-38816', 0),
-(4, 4, 9, 50000, NULL, '2021-06-25 04:50:19', '2021-06-25 04:50:19', 'SUCCESS', 'PENDING', 'TRX-77980', 0),
-(5, 5, 9, 50000, NULL, '2021-06-25 04:51:01', '2021-06-25 04:51:01', 'SUCCESS', 'PENDING', 'TRX-875338', 0),
-(6, 6, 9, 50000, NULL, '2021-06-25 04:51:25', '2021-06-25 04:51:25', 'SUCCESS', 'PENDING', 'TRX-101508', 0),
-(7, 7, 3, 95000, NULL, '2021-06-25 04:51:57', '2021-06-25 04:51:57', 'SUCCESS', 'PENDING', 'TRX-634044', 0),
-(8, 8, 2, 30000, NULL, '2021-06-25 04:53:41', '2021-06-25 04:53:41', 'SUCCESS', 'PENDING', 'TRX-175974', 0),
-(9, 9, 1, 45000, NULL, '2021-06-25 04:54:28', '2021-06-25 04:54:28', 'SUCCESS', 'PENDING', 'TRX-394826', 0),
-(10, 9, 4, 70000, NULL, '2021-06-25 04:54:28', '2021-06-25 04:54:28', 'SUCCESS', 'PENDING', 'TRX-51421', 0),
-(11, 10, 2, 30000, NULL, '2021-06-25 04:54:28', '2021-06-25 04:54:28', 'SUCCESS', 'PENDING', 'TRX-448629', 0),
-(12, 10, 9, 50000, NULL, '2021-06-25 04:56:05', '2021-06-25 04:56:05', 'SUCCESS', 'PENDING', 'TRX-1454', 0),
-(13, 12, 2, 30000, NULL, '2021-06-25 04:56:05', '2021-06-25 04:56:05', 'SUCCESS', 'PENDING', 'TRX-270642', 0),
-(14, 11, 2, 30000, NULL, '2021-06-25 05:03:46', '2021-06-25 05:03:46', 'SUCCESS', 'PENDING', 'TRX-261790', 0),
-(15, 12, 12, 560000, NULL, '2021-06-25 05:04:40', '2021-06-25 05:04:40', 'SUCCESS', 'PENDING', 'TRX-100516', 0),
-(16, 15, 6, 40000, NULL, '2021-06-25 05:04:40', '2021-06-25 05:04:40', 'SUCCESS', 'PENDING', 'TRX-480236', 0),
-(17, 13, 17, 56000, NULL, '2021-07-13 00:18:18', '2021-07-13 00:18:18', 'SUCCESS', 'PENDING', 'TRX-496834', 0);
+(1, 1, 3, 95000, NULL, '2021-06-24 16:50:04', '2021-06-24 16:50:04', 'SUCCESS', 'PENDING', 'TRX-58958', 0),
+(2, 2, 2, 30000, NULL, '2021-06-24 16:54:19', '2021-06-24 16:54:19', 'SUCCESS', 'PENDING', 'TRX-802358', 0),
+(3, 3, 4, 70000, NULL, '2021-06-24 16:55:47', '2021-06-24 16:55:47', 'SUCCESS', 'PENDING', 'TRX-38816', 0),
+(4, 4, 9, 50000, NULL, '2021-06-24 21:50:19', '2021-06-24 21:50:19', 'SUCCESS', 'PENDING', 'TRX-77980', 0),
+(5, 5, 9, 50000, NULL, '2021-06-24 21:51:01', '2021-06-24 21:51:01', 'SUCCESS', 'PENDING', 'TRX-875338', 0),
+(6, 6, 9, 50000, NULL, '2021-06-24 21:51:25', '2021-06-24 21:51:25', 'SUCCESS', 'PENDING', 'TRX-101508', 0),
+(7, 7, 3, 95000, NULL, '2021-06-24 21:51:57', '2021-06-24 21:51:57', 'SUCCESS', 'PENDING', 'TRX-634044', 0),
+(8, 8, 2, 30000, NULL, '2021-06-24 21:53:41', '2021-06-24 21:53:41', 'SUCCESS', 'PENDING', 'TRX-175974', 0),
+(9, 9, 1, 45000, NULL, '2021-06-24 21:54:28', '2021-06-24 21:54:28', 'SUCCESS', 'PENDING', 'TRX-394826', 0),
+(10, 9, 4, 70000, NULL, '2021-06-24 21:54:28', '2021-06-24 21:54:28', 'SUCCESS', 'PENDING', 'TRX-51421', 0),
+(11, 10, 2, 30000, NULL, '2021-06-24 21:54:28', '2021-06-24 21:54:28', 'SUCCESS', 'PENDING', 'TRX-448629', 0),
+(12, 10, 9, 50000, NULL, '2021-06-24 21:56:05', '2021-06-24 21:56:05', 'SUCCESS', 'PENDING', 'TRX-1454', 0),
+(13, 12, 2, 30000, NULL, '2021-06-24 21:56:05', '2021-06-24 21:56:05', 'SUCCESS', 'PENDING', 'TRX-270642', 0),
+(14, 11, 2, 30000, NULL, '2021-06-24 22:03:46', '2021-06-24 22:03:46', 'SUCCESS', 'PENDING', 'TRX-261790', 0),
+(15, 12, 12, 560000, NULL, '2021-06-24 22:04:40', '2021-06-24 22:04:40', 'SUCCESS', 'PENDING', 'TRX-100516', 0),
+(16, 15, 6, 40000, NULL, '2021-06-24 22:04:40', '2021-06-24 22:04:40', 'SUCCESS', 'PENDING', 'TRX-480236', 0),
+(17, 13, 17, 56000, NULL, '2021-07-12 17:18:18', '2021-07-12 17:18:18', 'SUCCESS', 'PENDING', 'TRX-496834', 0),
+(18, 14, 5, 168000, NULL, '2022-07-17 17:51:17', '2022-07-17 17:51:17', 'PENDING', 'PENDING', 'TRX-683726', 1),
+(19, 18, 5, 168000, NULL, '2022-07-17 17:51:17', '2022-07-17 17:51:17', 'PENDING', 'PENDING', 'TRX-455051', 1),
+(20, 19, 5, 168000, NULL, '2022-07-17 17:51:17', '2022-07-17 17:51:17', 'PENDING', 'PENDING', 'TRX-239379', 1),
+(21, 15, 4, 70000, NULL, '2022-07-18 16:46:18', '2022-07-18 16:46:18', 'PENDING', 'PENDING', 'TRX-501719', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `undangan_grup`
+-- Table structure for table `undangan_grup`
 --
 
 CREATE TABLE `undangan_grup` (
@@ -9054,7 +9081,7 @@ CREATE TABLE `undangan_grup` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -9069,53 +9096,199 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `id_role`) VALUES
-(1, 'Super Admin', 'superadmin@gmail.com', '$2a$04$cXLImFpNCHnKqiAstB..TOFtNAzQhqjnpSbmJs7XPRMKg9dQA3qM.', 'A8vOImbEtThybUiIKcPF02L9qhFI7fgnp4rcqh10pIZrG1DADbbJOEe7GQzE', '2021-08-11 06:02:32', '2021-08-11 06:02:32', 1),
-(2, 'Fakhrunnisa Nur Afra', 'afrakiww@gmail.com', '$2y$10$/OY.jgvJsGhqnx8P2UcGw.LfpYBEtjwbd0Gy18Xp3axQ2MDJ3RtZW', 'FM9RPPTPRCxSW0FvjV1RDdOTKnAsNrRCx5fU36RNP0nddiWVEiRCvWaA2YBz', '2021-08-11 06:02:32', '2021-08-11 06:02:32', 2),
-(3, 'Muhammad Derry Salman S', 'mderry3@gmail.com', '$2y$10$2uo5Gfj7w0.PmdnSXyrjKe9FPtsHyqFaAyhYGofaYiptgY3t.x1.K', NULL, '2021-08-11 06:10:30', '2021-08-11 06:10:30', 2),
-(4, 'Desa Malasari', 'desa.malasari@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'LYXNnwZE5wKw0XW6m7XdzjeshwgMsLizy6nRFrSg4NscMvqLLweHbgv9A3l8', '2021-08-11 06:26:56', '2021-08-11 06:26:56', 2),
-(5, 'Desa Purasari', 'desa.purasari@gmail.com', '$2y$10$ABtmoTzCVtIzwSvJFHxtWebtFZzgSRduavNmzGpCHL.j4WXRSGDsG', NULL, '2021-08-11 06:28:35', '2021-08-11 06:28:35', 2),
-(6, 'Desa Wangun Jaya', 'desa.wangunjaya@gmail.com', '$2y$10$aHe.gLO4VkYss66EdMKSXul66hDbe72Rr37bY.VF4iYICx7JA0FHW', 'ZJyv56mRO0y25wsaGNfS6uEVsHhLwmth9tMRNUpc8ur8RpfarETk6gA8xcNP', '2021-08-11 06:30:07', '2021-08-11 06:30:07', 2),
-(7, 'Hermansyah', 'herman@gmail.com', '$2y$10$Mb0uetUSi2YaVAAgfGcAfeqXWtbMzLCMbbmV3RUOzR2Ehk3uQRq4a', 'ikjqjHfrwXREGxJu0MaReZy3jriS0axzLw8iDxuNNG9B6vZkAyCnvFMXzlcE', '2021-08-11 14:22:15', '2021-08-11 14:22:15', 2),
-(8, 'Mughny', 'mughny2@email.com', '123456', NULL, '2021-08-12 10:02:15', '2021-08-12 10:02:15', 2),
-(9, 'Farhan', 'farhan1@gmail.com', '$2y$10$Ov/ArF0qtK4koFlpFEqMi.PHsXHSDKFGYd/EAB/lAJW5EToY307/i', NULL, '2021-08-12 10:26:49', '2021-08-12 10:26:49', 2),
-(11, 'Fadhil', 'fadhil@email.com', '123456', NULL, '2021-08-12 14:29:19', '2021-08-12 14:29:19', 2),
-(12, 'Fadhil Cahya Kesuma', 'fadhilkesuma65@gmail.com', '$2y$10$Eb3XWppXHfReCSBPNW83N.awhqqyZAzG3BHP4pI8F7vFEoeKFS92u', NULL, '2021-08-12 14:35:59', '2021-08-12 14:35:59', 2),
-(13, 'Ujang', 'ujang@email.com', '123456', NULL, '2021-08-12 14:57:36', '2021-08-12 14:57:36', 2),
-(14, 'Mughny Mubarak', 'mmughnymubarak@gmail.com', '$2y$10$wcui338WylB5xm8i34LcEOPVyHiQVAQiYRu5qMVQituG1aaxmoed6', NULL, '2021-08-12 16:26:12', '2021-08-12 16:26:12', 2),
-(15, 'Fakhri Naufal', 'fakhrinfla47@gmail.com', '$2y$10$IxnldiOmvbSSoX85Rp/ZE.Cp9tLk75/scynSvoGV5l5cKgU.5D9M.', NULL, '2021-08-12 17:08:54', '2021-08-12 17:08:54', 2),
-(16, 'Fakhrunisa Nur Afra', 'afrakiw@gmail.com', '$2y$10$Hq1tUmTA3YGojaXa8DPOquq.BuZAAeN3aKMZQTE1qF16mBVV2A/42', NULL, '2021-08-12 17:45:10', '2021-08-12 17:45:10', 2),
-(17, 'Riswan Ardinata', 'riswan@gmail.com', '$2y$10$H6yoKRNLV0IjhLUZjZQoDuIJuhGY3fL.nzXgarpYoJZHz7k805l4G', NULL, '2021-08-12 18:12:40', '2021-08-12 18:12:40', 2),
-(18, 'Desa Cibenda', 'desa.cibenda@gmail.com', '$2y$10$PYVpT48uWcOyOgXi5Wckee4hsRcmXMSUJIsxWqS6AgasbiGUswcb6', NULL, '2021-08-13 11:21:56', '2021-08-13 11:21:56', 2),
-(19, 'Afra', 'afra@gmail.com', '$2y$10$5neuMnM6SNddcBp/denOReNNw1UFCPhKZkwDaRgoFhzZcoEolLRbu', NULL, '2021-08-14 02:12:40', '2021-08-14 02:12:40', 2),
-(20, 'Mugny', 'muqny@gmail.com', '$2y$10$i1LVqYIlm/8DpM77XTRQKOf7csevIYizfDGf60myz7xLnDl8wIJye', NULL, '2021-08-14 02:27:10', '2021-08-14 02:27:10', 2),
-(21, 'Arvin', 'arvin@gmail.com', '$2y$10$28540PAS1N2zOx.KrYUhQuNqZ1.jY4dxCswzniedSVzTrihg.I0HG', NULL, '2021-08-14 02:36:36', '2021-08-14 02:36:36', 2),
-(22, 'Fadil', 'fadil@gmail.com', '$2y$10$nMRoe3PE6U5CVHZ4RwEYk.uwyxeWfQHcNhG9SHNJbIupiP/ATafQK', NULL, '2021-08-14 02:45:27', '2021-08-14 02:45:27', 2),
-(23, 'Fakhri', 'fakhri@gmail.com', '$2y$10$aayYIG.qbENe2pHGFm.2tuD3SXfD6s9Shxk91cpkigx/OEtv/npES', NULL, '2021-08-14 02:54:29', '2021-08-14 02:54:29', 2),
-(24, 'Deby', 'deby@gmail.com', '$2y$10$AmM6tkfIMcwNR/p4JFJ/9uCbhRiLFAOb1ulzjfw9s53ozDI3bVUo2', NULL, '2021-08-14 03:03:48', '2021-08-14 03:03:48', 2),
-(25, 'Niki', 'niki@gmail.com', '$2y$10$inwUxJ6QUV0GSm3aRD8nkep/.WYaaK0STSPmlhoDXZuthtrT9g8Bi', NULL, '2021-08-14 03:22:23', '2021-08-14 03:22:23', 2),
-(26, 'Dian', 'dian@gmail.com', '$2y$10$nmF7lCR20VTeMxchiD5IcObs6owUew5/1sgIJ34mhr7THAtYP.tH6', NULL, '2021-08-14 03:25:35', '2021-08-14 03:25:35', 2),
-(27, 'Agus', 'agus@gmail.com', '$2y$10$tn.DoSQk0eZ2F.SYbXxQjeEmVO2aX8LemmYZptnQSFB8mclq8zl1.', NULL, '2021-08-14 03:29:50', '2021-08-14 03:29:50', 2),
-(28, 'Bimo', 'bimo@gmail.com', '$2y$10$ix849OrQA.kCvEF02UeiHO2zdY5lBjfH3s7t1WL0rnr1MQ/9aSTiG', NULL, '2021-08-14 03:32:40', '2021-08-14 03:32:40', 2),
-(29, 'Riyadi', 'riyadi@gmail.com', '$2y$10$dBcOv4pyuG4OynJ2rPXtx.MCFZcODlYnOraEvFFtnG07eoftm87dO', NULL, '2021-08-14 03:34:27', '2021-08-14 03:34:27', 2),
-(30, 'Asep', 'asep@gmail.com', '$2y$10$SWqP69BA5xwib84FbeihvumhP4KWbvZBMOZPkriUXSnQYpkPdU6cW', NULL, '2021-08-14 03:36:28', '2021-08-14 03:36:28', 2),
-(31, 'Desa Margasari', 'fadhilkesuma13@gmail.com', '$2y$10$kFRliQ9X86dwxpcfGZVU/um1bBsHo6tOMmEYBltTwh2y/d50ODHf.', NULL, '2021-08-14 04:31:13', '2021-08-14 04:31:13', 2),
-(34, 'Fadhil Cahya Kesuma', 'fadhilcahyakesuma@gmail.com', '$2y$10$atDH/TLBk73UdNzY0gWNeeqo/U2C.vys2RABbevcu5jjPigwaBiCS', NULL, '2021-08-14 04:37:05', '2021-08-14 04:37:05', 2),
-(35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 17:19:42', '2021-08-14 17:19:42', 2),
-(36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-17 03:53:26', '2021-08-17 03:53:26', 2),
-(41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-17 04:07:23', '2021-08-17 04:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '8JP8MhdksDt3DDyeIjBGlvHxFR1v7UcSQUN2KXeC1kRjJeCVrkINxoGKh1zp', '2022-04-03 10:54:28', '2022-04-03 10:54:28', 2),
-(43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 07:37:26', '2022-04-18 07:37:26', 2),
-(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'H2vUjlkGF3onyepRlBNql5W73dmPGciBWBz4qEgbV5CiPXx6h2G76I5NDfLP', '2022-06-05 06:42:37', '2022-06-05 06:42:37', 2),
-(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'ssEF6bXjm4s16mdh0ZL6PBR5gUQGZvOMIgZW1Tu0kbX0HOqiVpilXA8RVQT7', '2022-06-05 12:02:18', '2022-06-05 12:02:18', 2);
+(1, 'Super Admin', 'superadmin@gmail.com', '$2a$04$cXLImFpNCHnKqiAstB..TOFtNAzQhqjnpSbmJs7XPRMKg9dQA3qM.', 'ssh4hHBhV77Hvn8BGz94zyqnkvfNbRYVakJZ84zAXwozkNNnbqrRMxv0NSkp', '2021-08-10 23:02:32', '2021-08-10 23:02:32', 1),
+(2, 'Fakhrunnisa Nur Afra', 'afrakiww@gmail.com', '$2y$10$/OY.jgvJsGhqnx8P2UcGw.LfpYBEtjwbd0Gy18Xp3axQ2MDJ3RtZW', 'FM9RPPTPRCxSW0FvjV1RDdOTKnAsNrRCx5fU36RNP0nddiWVEiRCvWaA2YBz', '2021-08-10 23:02:32', '2021-08-10 23:02:32', 2),
+(3, 'Muhammad Derry Salman S', 'mderry3@gmail.com', '$2y$10$2uo5Gfj7w0.PmdnSXyrjKe9FPtsHyqFaAyhYGofaYiptgY3t.x1.K', NULL, '2021-08-10 23:10:30', '2021-08-10 23:10:30', 2),
+(4, 'Desa Malasari', 'desa.malasari@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '3dQMZLPKr3GR78dT9M28fOMt6i7vW6DJGsatFZN7QEbyhpi1rf0Tx1QAW91v', '2021-08-10 23:26:56', '2021-08-10 23:26:56', 2),
+(5, 'Desa Purasari', 'desa.purasari@gmail.com', '$2y$10$ABtmoTzCVtIzwSvJFHxtWebtFZzgSRduavNmzGpCHL.j4WXRSGDsG', NULL, '2021-08-10 23:28:35', '2021-08-10 23:28:35', 2),
+(6, 'Desa Wangun Jaya', 'desa.wangunjaya@gmail.com', '$2y$10$aHe.gLO4VkYss66EdMKSXul66hDbe72Rr37bY.VF4iYICx7JA0FHW', 'ZJyv56mRO0y25wsaGNfS6uEVsHhLwmth9tMRNUpc8ur8RpfarETk6gA8xcNP', '2021-08-10 23:30:07', '2021-08-10 23:30:07', 2),
+(7, 'Hermansyah', 'herman@gmail.com', '$2y$10$Mb0uetUSi2YaVAAgfGcAfeqXWtbMzLCMbbmV3RUOzR2Ehk3uQRq4a', 'ikjqjHfrwXREGxJu0MaReZy3jriS0axzLw8iDxuNNG9B6vZkAyCnvFMXzlcE', '2021-08-11 07:22:15', '2021-08-11 07:22:15', 2),
+(8, 'Mughny', 'mughny2@email.com', '123456', NULL, '2021-08-12 03:02:15', '2021-08-12 03:02:15', 2),
+(9, 'Farhan', 'farhan1@gmail.com', '$2y$10$Ov/ArF0qtK4koFlpFEqMi.PHsXHSDKFGYd/EAB/lAJW5EToY307/i', NULL, '2021-08-12 03:26:49', '2021-08-12 03:26:49', 2),
+(11, 'Fadhil', 'fadhil@email.com', '123456', NULL, '2021-08-12 07:29:19', '2021-08-12 07:29:19', 2),
+(12, 'Fadhil Cahya Kesuma', 'fadhilkesuma65@gmail.com', '$2y$10$Eb3XWppXHfReCSBPNW83N.awhqqyZAzG3BHP4pI8F7vFEoeKFS92u', NULL, '2021-08-12 07:35:59', '2021-08-12 07:35:59', 2),
+(13, 'Ujang', 'ujang@email.com', '123456', NULL, '2021-08-12 07:57:36', '2021-08-12 07:57:36', 2),
+(14, 'Mughny Mubarak', 'mmughnymubarak@gmail.com', '$2y$10$wcui338WylB5xm8i34LcEOPVyHiQVAQiYRu5qMVQituG1aaxmoed6', NULL, '2021-08-12 09:26:12', '2021-08-12 09:26:12', 2),
+(15, 'Fakhri Naufal', 'fakhrinfla47@gmail.com', '$2y$10$IxnldiOmvbSSoX85Rp/ZE.Cp9tLk75/scynSvoGV5l5cKgU.5D9M.', NULL, '2021-08-12 10:08:54', '2021-08-12 10:08:54', 2),
+(16, 'Fakhrunisa Nur Afra', 'afrakiw@gmail.com', '$2y$10$Hq1tUmTA3YGojaXa8DPOquq.BuZAAeN3aKMZQTE1qF16mBVV2A/42', NULL, '2021-08-12 10:45:10', '2021-08-12 10:45:10', 2),
+(17, 'Riswan Ardinata', 'riswan@gmail.com', '$2y$10$H6yoKRNLV0IjhLUZjZQoDuIJuhGY3fL.nzXgarpYoJZHz7k805l4G', NULL, '2021-08-12 11:12:40', '2021-08-12 11:12:40', 2),
+(18, 'Desa Cibenda', 'desa.cibenda@gmail.com', '$2y$10$PYVpT48uWcOyOgXi5Wckee4hsRcmXMSUJIsxWqS6AgasbiGUswcb6', NULL, '2021-08-13 04:21:56', '2021-08-13 04:21:56', 2),
+(19, 'Afra', 'afra@gmail.com', '$2y$10$5neuMnM6SNddcBp/denOReNNw1UFCPhKZkwDaRgoFhzZcoEolLRbu', NULL, '2021-08-13 19:12:40', '2021-08-13 19:12:40', 2),
+(20, 'Mugny', 'muqny@gmail.com', '$2y$10$i1LVqYIlm/8DpM77XTRQKOf7csevIYizfDGf60myz7xLnDl8wIJye', NULL, '2021-08-13 19:27:10', '2021-08-13 19:27:10', 2),
+(21, 'Arvin', 'arvin@gmail.com', '$2y$10$28540PAS1N2zOx.KrYUhQuNqZ1.jY4dxCswzniedSVzTrihg.I0HG', NULL, '2021-08-13 19:36:36', '2021-08-13 19:36:36', 2),
+(22, 'Fadil', 'fadil@gmail.com', '$2y$10$nMRoe3PE6U5CVHZ4RwEYk.uwyxeWfQHcNhG9SHNJbIupiP/ATafQK', NULL, '2021-08-13 19:45:27', '2021-08-13 19:45:27', 2),
+(23, 'Fakhri', 'fakhri@gmail.com', '$2y$10$aayYIG.qbENe2pHGFm.2tuD3SXfD6s9Shxk91cpkigx/OEtv/npES', NULL, '2021-08-13 19:54:29', '2021-08-13 19:54:29', 2),
+(24, 'Deby', 'deby@gmail.com', '$2y$10$AmM6tkfIMcwNR/p4JFJ/9uCbhRiLFAOb1ulzjfw9s53ozDI3bVUo2', NULL, '2021-08-13 20:03:48', '2021-08-13 20:03:48', 2),
+(25, 'Niki', 'niki@gmail.com', '$2y$10$inwUxJ6QUV0GSm3aRD8nkep/.WYaaK0STSPmlhoDXZuthtrT9g8Bi', NULL, '2021-08-13 20:22:23', '2021-08-13 20:22:23', 2),
+(26, 'Dian', 'dian@gmail.com', '$2y$10$nmF7lCR20VTeMxchiD5IcObs6owUew5/1sgIJ34mhr7THAtYP.tH6', NULL, '2021-08-13 20:25:35', '2021-08-13 20:25:35', 2),
+(27, 'Agus', 'agus@gmail.com', '$2y$10$tn.DoSQk0eZ2F.SYbXxQjeEmVO2aX8LemmYZptnQSFB8mclq8zl1.', NULL, '2021-08-13 20:29:50', '2021-08-13 20:29:50', 2),
+(28, 'Bimo', 'bimo@gmail.com', '$2y$10$ix849OrQA.kCvEF02UeiHO2zdY5lBjfH3s7t1WL0rnr1MQ/9aSTiG', NULL, '2021-08-13 20:32:40', '2021-08-13 20:32:40', 2),
+(29, 'Riyadi', 'riyadi@gmail.com', '$2y$10$dBcOv4pyuG4OynJ2rPXtx.MCFZcODlYnOraEvFFtnG07eoftm87dO', NULL, '2021-08-13 20:34:27', '2021-08-13 20:34:27', 2),
+(30, 'Asep', 'asep@gmail.com', '$2y$10$SWqP69BA5xwib84FbeihvumhP4KWbvZBMOZPkriUXSnQYpkPdU6cW', NULL, '2021-08-13 20:36:28', '2021-08-13 20:36:28', 2),
+(31, 'Desa Margasari', 'fadhilkesuma13@gmail.com', '$2y$10$kFRliQ9X86dwxpcfGZVU/um1bBsHo6tOMmEYBltTwh2y/d50ODHf.', NULL, '2021-08-13 21:31:13', '2021-08-13 21:31:13', 2),
+(34, 'Fadhil Cahya Kesuma', 'fadhilcahyakesuma@gmail.com', '$2y$10$atDH/TLBk73UdNzY0gWNeeqo/U2C.vys2RABbevcu5jjPigwaBiCS', NULL, '2021-08-13 21:37:05', '2021-08-13 21:37:05', 2),
+(35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 10:19:42', '2021-08-14 10:19:42', 2),
+(36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-16 20:53:26', '2021-08-16 20:53:26', 2),
+(41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-16 21:07:23', '2021-08-16 21:07:23', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'RP6DawZOI7msQNmXtGX3DEds4U5Ba8KoEK4rejeroD5z9gACsHPSOXTLNoPT', '2022-04-03 03:54:28', '2022-04-03 03:54:28', 2),
+(43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 00:37:26', '2022-04-18 00:37:26', 2),
+(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'Wy9CsSrUHAhERSjcPRjkfSq1ptSAREvfoD7OwZlwpbfewVfxXPi5lkSkdWwQ', '2022-06-04 23:42:37', '2022-06-04 23:42:37', 2),
+(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'ssEF6bXjm4s16mdh0ZL6PBR5gUQGZvOMIgZW1Tu0kbX0HOqiVpilXA8RVQT7', '2022-06-05 05:02:18', '2022-06-05 05:02:18', 2),
+(47, 'Imam', 'imam@gmail.com', '$2y$10$v1yK4ZkSKKsMA/NFDfEigeF8UGFxHbijSQyjPD0PR4vAY58B6SIba', '5CfIfNsqn98Cs86n6s1RQQupOmt1YfWeGyanxSAko8RmoZs20TZ77SmljZM3', '2022-07-12 22:35:27', '2022-07-12 22:35:27', 2);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `villages`
+-- Table structure for table `videos`
+--
+
+CREATE TABLE `videos` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(200) NOT NULL DEFAULT '',
+  `description` text DEFAULT NULL,
+  `url` varchar(255) DEFAULT '',
+  `thumbnail` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `id_pengguna` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `videos`
+--
+
+INSERT INTO `videos` (`id`, `title`, `description`, `url`, `thumbnail`, `created_at`, `updated_at`, `id_pengguna`) VALUES
+(22, 'tes', 'tes aja', '/uploads/videos/1658162172-18072022.mp4', '/uploads/thumbnails/1658162172-18072022-thumbnail.png', '2022-07-18 23:36:13', '2022-07-18 23:36:13', 4),
+(23, 'desa ieu', 'banyak pemandangan', '/uploads/videos/1658162231-18072022.mp4', '/uploads/thumbnails/1658162231-18072022-thumbnail.jpg', '2022-07-18 23:37:11', '2022-07-18 23:37:11', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video_comments`
+--
+
+CREATE TABLE `video_comments` (
+  `id` int(11) NOT NULL,
+  `content` text DEFAULT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_video` int(11) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `video_comments`
+--
+
+INSERT INTO `video_comments` (`id`, `content`, `id_user`, `id_video`, `created_at`, `updated_at`) VALUES
+(7, 'sudah cukup bagus', 45, 23, '2022-07-18 23:43:26', '2022-07-18 23:43:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video_details`
+--
+
+CREATE TABLE `video_details` (
+  `id` int(11) NOT NULL,
+  `id_video` int(11) NOT NULL DEFAULT 0,
+  `views` int(11) NOT NULL DEFAULT 0,
+  `subscribes` int(11) NOT NULL DEFAULT 0,
+  `like` int(11) NOT NULL DEFAULT 0,
+  `dont_like` int(11) NOT NULL DEFAULT 0,
+  `comment` int(11) NOT NULL DEFAULT 0,
+  `id_user` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `video_details`
+--
+
+INSERT INTO `video_details` (`id`, `id_video`, `views`, `subscribes`, `like`, `dont_like`, `comment`, `id_user`, `created_at`, `updated_at`) VALUES
+(10, 23, 1, 0, 1, 0, 1, 45, '2022-07-18 23:38:27', '2022-07-18 23:43:26'),
+(11, 22, 1, 0, 0, 1, 0, 45, '2022-07-18 23:41:23', '2022-07-18 23:44:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video_likes`
+--
+
+CREATE TABLE `video_likes` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL DEFAULT 0,
+  `id_video` int(11) NOT NULL DEFAULT 0,
+  `type` char(50) DEFAULT NULL,
+  `ip_address` varchar(50) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `video_likes`
+--
+
+INSERT INTO `video_likes` (`id`, `id_user`, `id_video`, `type`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES
+(14, 45, 23, 'like', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', '2022-07-18 23:42:42', NULL),
+(15, 45, 22, 'dont_like', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', '2022-07-18 23:44:09', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video_subscribes`
+--
+
+CREATE TABLE `video_subscribes` (
+  `id` int(11) NOT NULL,
+  `id_video` int(11) NOT NULL DEFAULT 0,
+  `id_user` int(11) NOT NULL DEFAULT 0,
+  `id_channel` int(11) NOT NULL DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `video_subscribes`
+--
+
+INSERT INTO `video_subscribes` (`id`, `id_video`, `id_user`, `id_channel`, `created_at`, `updated_at`) VALUES
+(9, 23, 45, 4, '2022-07-18 23:43:38', '2022-07-18 23:43:38');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video_views`
+--
+
+CREATE TABLE `video_views` (
+  `id` int(11) NOT NULL,
+  `id_video` int(11) NOT NULL DEFAULT 0,
+  `ip_address` varchar(50) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `video_views`
+--
+
+INSERT INTO `video_views` (`id`, `id_video`, `ip_address`, `user_agent`, `id_user`, `created_at`, `updated_at`) VALUES
+(24, 23, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 45, '2022-07-18 23:38:27', '2022-07-18 23:38:27'),
+(25, 22, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 45, '2022-07-18 23:41:24', '2022-07-18 23:41:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `villages`
 --
 
 CREATE TABLE `villages` (
@@ -9125,7 +9298,7 @@ CREATE TABLE `villages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `villages`
+-- Dumping data for table `villages`
 --
 
 INSERT INTO `villages` (`id`, `district_id`, `name`) VALUES
@@ -89729,226 +89902,149 @@ INSERT INTO `villages` (`id`, `district_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `wbs`
+-- Table structure for table `wbs`
 --
 
 CREATE TABLE `wbs` (
-  `id_wbs` int(15) NOT NULL,
-  `id_kegiatan` int(15) NOT NULL,
-  `qty` int(30) NOT NULL,
+  `id_wbs` int(11) NOT NULL,
+  `id_kegiatan` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
   `satuan` varchar(30) NOT NULL,
-  `harga` int(30) NOT NULL,
-  `totalHarga` int(30) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `totalHarga` int(11) NOT NULL,
   `updated_at` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
--- Dumping structure for table diessnie.videos
-CREATE TABLE IF NOT EXISTS `videos` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) NOT NULL DEFAULT '',
-  `description` text,
-  `url` varchar(255) DEFAULT '',
-  `thumbnail` varchar(255) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `id_pengguna` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_pengguna` (`id_pengguna`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
-
--- Dumping structure for table diessnie.video_comments
-CREATE TABLE IF NOT EXISTS `video_comments` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `content` text,
-  `id_user` int NOT NULL,
-  `id_video` int NOT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
-
--- Dumping structure for table diessnie.video_details
-CREATE TABLE IF NOT EXISTS `video_details` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `id_video` int NOT NULL DEFAULT '0',
-  `views` int NOT NULL DEFAULT '0',
-  `subscribes` int NOT NULL DEFAULT '0',
-  `like` int NOT NULL DEFAULT '0',
-  `dont_like` int NOT NULL DEFAULT '0',
-  `comment` int NOT NULL DEFAULT '0',
-  `id_user` int DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
-
--- Dumping structure for table diessnie.video_likes
-CREATE TABLE IF NOT EXISTS `video_likes` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `id_user` int NOT NULL DEFAULT '0',
-  `id_video` int NOT NULL DEFAULT '0',
-  `type` char(50) DEFAULT NULL,
-  `ip_address` varchar(50) DEFAULT NULL,
-  `user_agent` text,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
-
--- Dumping structure for table diessnie.video_subscribes
-CREATE TABLE IF NOT EXISTS `video_subscribes` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `id_video` int NOT NULL DEFAULT '0',
-  `id_user` int NOT NULL DEFAULT '0',
-  `id_channel` int NOT NULL DEFAULT '0',
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
--- Dumping structure for table diessnie.video_views
-CREATE TABLE IF NOT EXISTS `video_views` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `id_video` int NOT NULL DEFAULT '0',
-  `ip_address` varchar(50) DEFAULT NULL,
-  `user_agent` text,
-  `id_user` int DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `admin_grup`
+-- Indexes for table `admin_grup`
 --
 ALTER TABLE `admin_grup`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `aktifitas_login`
+-- Indexes for table `aktifitas_login`
 --
 ALTER TABLE `aktifitas_login`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `anggota_grup`
+-- Indexes for table `anggota_grup`
 --
 ALTER TABLE `anggota_grup`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
--- Indeks untuk tabel `boqs`
+-- Indexes for table `boqs`
 --
 ALTER TABLE `boqs`
   ADD PRIMARY KEY (`id_boq`),
   ADD KEY `boq_ibfk_1` (`id_task`);
 
 --
--- Indeks untuk tabel `carts`
+-- Indexes for table `carts`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `category_lahans`
+-- Indexes for table `category_lahans`
 --
 ALTER TABLE `category_lahans`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `chat`
+-- Indexes for table `chat`
 --
 ALTER TABLE `chat`
   ADD PRIMARY KEY (`id_chat`);
 
 --
--- Indeks untuk tabel `comment`
+-- Indexes for table `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `dailies`
+-- Indexes for table `dailies`
 --
 ALTER TABLE `dailies`
   ADD PRIMARY KEY (`id_daily`),
   ADD KEY `id_sewa` (`id_sewa`);
 
 --
--- Indeks untuk tabel `districts`
+-- Indexes for table `districts`
 --
 ALTER TABLE `districts`
   ADD KEY `districts_regency_id_foreign` (`regency_id`),
   ADD KEY `districts_id_index` (`id`);
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `followers`
+-- Indexes for table `followers`
 --
 ALTER TABLE `followers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `following`
+-- Indexes for table `following`
 --
 ALTER TABLE `following`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `follow_request`
+-- Indexes for table `follow_request`
 --
 ALTER TABLE `follow_request`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `grup`
+-- Indexes for table `grup`
 --
 ALTER TABLE `grup`
   ADD PRIMARY KEY (`id_group`);
 
 --
--- Indeks untuk tabel `hapus_akun`
+-- Indexes for table `hapus_akun`
 --
 ALTER TABLE `hapus_akun`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `impacts`
+-- Indexes for table `impacts`
 --
 ALTER TABLE `impacts`
   ADD PRIMARY KEY (`id_impact`);
 
 --
--- Indeks untuk tabel `jadwals`
+-- Indexes for table `jadwals`
 --
 ALTER TABLE `jadwals`
   ADD PRIMARY KEY (`id_jadwal`),
   ADD KEY `id_sewa` (`id_sewa`);
 
 --
--- Indeks untuk tabel `konten`
+-- Indexes for table `konten`
 --
 ALTER TABLE `konten`
   ADD PRIMARY KEY (`id_konten`);
 
 --
--- Indeks untuk tabel `lahans`
+-- Indexes for table `lahans`
 --
 ALTER TABLE `lahans`
   ADD PRIMARY KEY (`id`),
@@ -89956,7 +90052,7 @@ ALTER TABLE `lahans`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indeks untuk tabel `lahan_resources`
+-- Indexes for table `lahan_resources`
 --
 ALTER TABLE `lahan_resources`
   ADD PRIMARY KEY (`id_lahan_resources`),
@@ -89964,107 +90060,107 @@ ALTER TABLE `lahan_resources`
   ADD KEY `resorces` (`id_resources`);
 
 --
--- Indeks untuk tabel `likes`
+-- Indexes for table `likes`
 --
 ALTER TABLE `likes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `links`
+-- Indexes for table `links`
 --
 ALTER TABLE `links`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `manual_books`
+-- Indexes for table `manual_books`
 --
 ALTER TABLE `manual_books`
   ADD PRIMARY KEY (`id_manual`),
   ADD KEY `id_categoryLahan` (`id_categoryLahan`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `notif`
+-- Indexes for table `notif`
 --
 ALTER TABLE `notif`
   ADD PRIMARY KEY (`id_notif`);
 
 --
--- Indeks untuk tabel `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indeks untuk tabel `pengaturan`
+-- Indexes for table `pengaturan`
 --
 ALTER TABLE `pengaturan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `pengguna`
+-- Indexes for table `pengguna`
 --
 ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id_pengguna`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indeks untuk tabel `peralatans`
+-- Indexes for table `peralatans`
 --
 ALTER TABLE `peralatans`
   ADD PRIMARY KEY (`id_peralatan`),
   ADD KEY `id_pemilik` (`id_pemilik`);
 
 --
--- Indeks untuk tabel `probabilitas`
+-- Indexes for table `probabilitas`
 --
 ALTER TABLE `probabilitas`
   ADD PRIMARY KEY (`id_probabilitas`);
 
 --
--- Indeks untuk tabel `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `product_gallaries`
+-- Indexes for table `product_gallaries`
 --
 ALTER TABLE `product_gallaries`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `provinces`
+-- Indexes for table `provinces`
 --
 ALTER TABLE `provinces`
   ADD KEY `provinces_id_index` (`id`);
 
 --
--- Indeks untuk tabel `regencies`
+-- Indexes for table `regencies`
 --
 ALTER TABLE `regencies`
   ADD KEY `regencies_province_id_foreign` (`province_id`),
   ADD KEY `regencies_id_index` (`id`);
 
 --
--- Indeks untuk tabel `reports`
+-- Indexes for table `reports`
 --
 ALTER TABLE `reports`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `resources`
+-- Indexes for table `resources`
 --
 ALTER TABLE `resources`
   ADD PRIMARY KEY (`id_resources`);
 
 --
--- Indeks untuk tabel `risks`
+-- Indexes for table `risks`
 --
 ALTER TABLE `risks`
   ADD PRIMARY KEY (`id_risk`),
@@ -90073,19 +90169,19 @@ ALTER TABLE `risks`
   ADD KEY `b` (`impact`);
 
 --
--- Indeks untuk tabel `role`
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `room_chat`
+-- Indexes for table `room_chat`
 --
 ALTER TABLE `room_chat`
   ADD PRIMARY KEY (`id_room_chat`);
 
 --
--- Indeks untuk tabel `sewa_lahans`
+-- Indexes for table `sewa_lahans`
 --
 ALTER TABLE `sewa_lahans`
   ADD PRIMARY KEY (`id_sewa`),
@@ -90093,352 +90189,425 @@ ALTER TABLE `sewa_lahans`
   ADD KEY `id_lahan` (`id_lahan`);
 
 --
--- Indeks untuk tabel `sewa_peralatans`
+-- Indexes for table `sewa_peralatans`
 --
 ALTER TABLE `sewa_peralatans`
   ADD PRIMARY KEY (`id_sewa`);
 
 --
--- Indeks untuk tabel `struks`
+-- Indexes for table `struks`
 --
 ALTER TABLE `struks`
   ADD PRIMARY KEY (`id_struk`),
   ADD KEY `id_sewa` (`id_sewa`);
 
 --
--- Indeks untuk tabel `tasks`
+-- Indexes for table `tasks`
 --
 ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_sewa` (`id_sewa`);
 
 --
--- Indeks untuk tabel `task_historis`
+-- Indexes for table `task_historis`
 --
 ALTER TABLE `task_historis`
   ADD PRIMARY KEY (`id_history`),
   ADD KEY `id_task` (`id_task`);
 
 --
--- Indeks untuk tabel `transactions`
+-- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `transaction_details`
+-- Indexes for table `transaction_details`
 --
 ALTER TABLE `transaction_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `undangan_grup`
+-- Indexes for table `undangan_grup`
 --
 ALTER TABLE `undangan_grup`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indeks untuk tabel `villages`
+-- Indexes for table `videos`
+--
+ALTER TABLE `videos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pengguna` (`id_pengguna`);
+
+--
+-- Indexes for table `video_comments`
+--
+ALTER TABLE `video_comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `video_details`
+--
+ALTER TABLE `video_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `video_likes`
+--
+ALTER TABLE `video_likes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `video_subscribes`
+--
+ALTER TABLE `video_subscribes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `video_views`
+--
+ALTER TABLE `video_views`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `villages`
 --
 ALTER TABLE `villages`
   ADD KEY `villages_district_id_foreign` (`district_id`),
   ADD KEY `villages_id_index` (`id`);
 
 --
--- Indeks untuk tabel `wbs`
+-- Indexes for table `wbs`
 --
 ALTER TABLE `wbs`
   ADD PRIMARY KEY (`id_wbs`),
   ADD KEY `id_kegiatan` (`id_kegiatan`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `admin_grup`
+-- AUTO_INCREMENT for table `admin_grup`
 --
 ALTER TABLE `admin_grup`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `aktifitas_login`
+-- AUTO_INCREMENT for table `aktifitas_login`
 --
 ALTER TABLE `aktifitas_login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `anggota_grup`
+-- AUTO_INCREMENT for table `anggota_grup`
 --
 ALTER TABLE `anggota_grup`
   MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `boqs`
+-- AUTO_INCREMENT for table `boqs`
 --
 ALTER TABLE `boqs`
-  MODIFY `id_boq` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_boq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT untuk tabel `carts`
+-- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `category_lahans`
+-- AUTO_INCREMENT for table `category_lahans`
 --
 ALTER TABLE `category_lahans`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `chat`
+-- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
   MODIFY `id_chat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `comment`
+-- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `dailies`
+-- AUTO_INCREMENT for table `dailies`
 --
 ALTER TABLE `dailies`
-  MODIFY `id_daily` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_daily` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `followers`
+-- AUTO_INCREMENT for table `followers`
 --
 ALTER TABLE `followers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `following`
+-- AUTO_INCREMENT for table `following`
 --
 ALTER TABLE `following`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `follow_request`
+-- AUTO_INCREMENT for table `follow_request`
 --
 ALTER TABLE `follow_request`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `impacts`
+-- AUTO_INCREMENT for table `impacts`
 --
 ALTER TABLE `impacts`
   MODIFY `id_impact` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `jadwals`
+-- AUTO_INCREMENT for table `jadwals`
 --
 ALTER TABLE `jadwals`
-  MODIFY `id_jadwal` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `lahans`
+-- AUTO_INCREMENT for table `lahans`
 --
 ALTER TABLE `lahans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `lahan_resources`
+-- AUTO_INCREMENT for table `lahan_resources`
 --
 ALTER TABLE `lahan_resources`
   MODIFY `id_lahan_resources` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `links`
+-- AUTO_INCREMENT for table `links`
 --
 ALTER TABLE `links`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `manual_books`
+-- AUTO_INCREMENT for table `manual_books`
 --
 ALTER TABLE `manual_books`
-  MODIFY `id_manual` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_manual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `notif`
+-- AUTO_INCREMENT for table `notif`
 --
 ALTER TABLE `notif`
   MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `pengaturan`
+-- AUTO_INCREMENT for table `pengaturan`
 --
 ALTER TABLE `pengaturan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
--- AUTO_INCREMENT untuk tabel `pengguna`
+-- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- AUTO_INCREMENT untuk tabel `peralatans`
+-- AUTO_INCREMENT for table `peralatans`
 --
 ALTER TABLE `peralatans`
-  MODIFY `id_peralatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_peralatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `probabilitas`
+-- AUTO_INCREMENT for table `probabilitas`
 --
 ALTER TABLE `probabilitas`
   MODIFY `id_probabilitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT untuk tabel `product_gallaries`
+-- AUTO_INCREMENT for table `product_gallaries`
 --
 ALTER TABLE `product_gallaries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT untuk tabel `reports`
+-- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `resources`
+-- AUTO_INCREMENT for table `resources`
 --
 ALTER TABLE `resources`
   MODIFY `id_resources` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `risks`
+-- AUTO_INCREMENT for table `risks`
 --
 ALTER TABLE `risks`
-  MODIFY `id_risk` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_risk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `sewa_lahans`
+-- AUTO_INCREMENT for table `sewa_lahans`
 --
 ALTER TABLE `sewa_lahans`
-  MODIFY `id_sewa` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `sewa_peralatans`
+-- AUTO_INCREMENT for table `sewa_peralatans`
 --
 ALTER TABLE `sewa_peralatans`
-  MODIFY `id_sewa` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `struks`
+-- AUTO_INCREMENT for table `struks`
 --
 ALTER TABLE `struks`
   MODIFY `id_struk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `tasks`
+-- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
--- AUTO_INCREMENT untuk tabel `task_historis`
+-- AUTO_INCREMENT for table `task_historis`
 --
 ALTER TABLE `task_historis`
   MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
--- AUTO_INCREMENT untuk tabel `transactions`
+-- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `transaction_details`
+-- AUTO_INCREMENT for table `transaction_details`
 --
 ALTER TABLE `transaction_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT untuk tabel `wbs`
+-- AUTO_INCREMENT for table `videos`
+--
+ALTER TABLE `videos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `video_comments`
+--
+ALTER TABLE `video_comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `video_details`
+--
+ALTER TABLE `video_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `video_likes`
+--
+ALTER TABLE `video_likes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `video_subscribes`
+--
+ALTER TABLE `video_subscribes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `video_views`
+--
+ALTER TABLE `video_views`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `wbs`
 --
 ALTER TABLE `wbs`
-  MODIFY `id_wbs` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_wbs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `boqs`
+-- Constraints for table `boqs`
 --
 ALTER TABLE `boqs`
   ADD CONSTRAINT `boqs_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `dailies`
+-- Constraints for table `dailies`
 --
 ALTER TABLE `dailies`
   ADD CONSTRAINT `dailies_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `jadwals`
+-- Constraints for table `jadwals`
 --
 ALTER TABLE `jadwals`
   ADD CONSTRAINT `jadwals_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `lahans`
+-- Constraints for table `lahans`
 --
 ALTER TABLE `lahans`
   ADD CONSTRAINT `lahans_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `pengguna` (`id_pengguna`);
 
 --
--- Ketidakleluasaan untuk tabel `lahan_resources`
+-- Constraints for table `lahan_resources`
 --
 ALTER TABLE `lahan_resources`
   ADD CONSTRAINT `lahan_resources_ibfk_1` FOREIGN KEY (`id_lahan`) REFERENCES `lahans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `resorces` FOREIGN KEY (`id_resources`) REFERENCES `resources` (`id_resources`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `manual_books`
+-- Constraints for table `manual_books`
 --
 ALTER TABLE `manual_books`
   ADD CONSTRAINT `manual_books_ibfk_1` FOREIGN KEY (`id_categoryLahan`) REFERENCES `category_lahans` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `peralatans`
+-- Constraints for table `peralatans`
 --
 ALTER TABLE `peralatans`
   ADD CONSTRAINT `peralatans_ibfk_1` FOREIGN KEY (`id_pemilik`) REFERENCES `pengguna` (`id_pengguna`);
 
 --
--- Ketidakleluasaan untuk tabel `risks`
+-- Constraints for table `risks`
 --
 ALTER TABLE `risks`
   ADD CONSTRAINT `a` FOREIGN KEY (`probabilitas`) REFERENCES `probabilitas` (`id_probabilitas`),
@@ -90446,32 +90615,32 @@ ALTER TABLE `risks`
   ADD CONSTRAINT `risks_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `sewa_lahans`
+-- Constraints for table `sewa_lahans`
 --
 ALTER TABLE `sewa_lahans`
   ADD CONSTRAINT `sewa_lahans_ibfk_1` FOREIGN KEY (`id_pemilik`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sewa_lahans_ibfk_2` FOREIGN KEY (`id_lahan`) REFERENCES `lahans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `struks`
+-- Constraints for table `struks`
 --
 ALTER TABLE `struks`
   ADD CONSTRAINT `struks_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `tasks`
+-- Constraints for table `tasks`
 --
 ALTER TABLE `tasks`
   ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`);
 
 --
--- Ketidakleluasaan untuk tabel `task_historis`
+-- Constraints for table `task_historis`
 --
 ALTER TABLE `task_historis`
   ADD CONSTRAINT `task_historis_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `tasks` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `wbs`
+-- Constraints for table `wbs`
 --
 ALTER TABLE `wbs`
   ADD CONSTRAINT `wbs_ibfk_1` FOREIGN KEY (`id_kegiatan`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
