@@ -195,19 +195,6 @@
                                                                         @endphp
                                                                     </td>
                                                                 </tr>
-                                                                @foreach ($parent->children as $child)
-                                                                    @if($child->totalHarga > 0)
-                                                                    <tr>
-                                                                        <th scope="row">{{$i++}}</th>
-                                                                        <td>{{$child->text}}</td>
-                                                                        <td>{{$child->totalHarga}}
-                                                                            @php
-                                                                            $total += $child->totalHarga
-                                                                        @endphp
-                                                                        </td>
-                                                                    </tr>
-                                                                    @endif
-                                                                @endforeach
                                                             @endif
                                                             @endforeach
                                                             <tr>
@@ -242,19 +229,6 @@
                                                                         @endphp
                                                                     </td>
                                                                 </tr>
-                                                                @foreach ($parent->children as $child)
-                                                                    @if($child->totalHarga > 0)
-                                                                    <tr>
-                                                                        <th scope="row">{{$i++}}</th>
-                                                                        <td>{{$child->text}}</td>
-                                                                        <td>{{number_format($child->totalHarga)}}
-                                                                            @php
-                                                                                $totalHistory += $child->totalHarga
-                                                                            @endphp
-                                                                        </td>
-                                                                    </tr>
-                                                                    @endif
-                                                                @endforeach
                                                             @endif
                                                             @endforeach
                                                             <tr>

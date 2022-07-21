@@ -175,17 +175,17 @@ class LahanController extends Controller
             $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
             $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
             $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
-            foreach ($parent->children as $child) {
-                if($child->totalHarga > 0){
-                    if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
-                        $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
-                    }else{
-                        $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
-                        $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
-                    }
-                    $data_kegiatan[Carbon::parse($child->start_date)->format('d-m-Y')][] = $child->text;
-                }
-            }
+            // foreach ($parent->children as $child) {
+            //     if($child->totalHarga > 0){
+            //         if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
+            //             $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
+            //         }else{
+            //             $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
+            //             $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
+            //         }
+            //         $data_kegiatan[Carbon::parse($child->start_date)->format('d-m-Y')][] = $child->text;
+            //     }
+            // }
            }
         }
         
@@ -198,18 +198,18 @@ class LahanController extends Controller
              if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
              }
-             foreach ($parent->children as $child) {
-                 if($child->totalHarga > 0){
-                     if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
-                         $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
-                     }else{
-                        if (!in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggalAll)) {
-                            $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
-                         }
-                         $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
-                     }
-                 }
-             }
+            //  foreach ($parent->children as $child) {
+            //      if($child->totalHarga > 0){
+            //          if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
+            //              $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
+            //          }else{
+            //             if (!in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggalAll)) {
+            //                 $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
+            //              }
+            //              $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
+            //          }
+            //      }
+            //  }
             }
          }
 
