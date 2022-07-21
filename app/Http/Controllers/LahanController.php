@@ -342,13 +342,9 @@ class LahanController extends Controller
 
         $wbs2 = Task::select('*')->where('id_sewa', $id)->limit(1)->get();
 
-
-       // $wbs1 = DB::select("SELECT a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN lahans l on a.id_lahan =l.id WHERE a.id_lahan = $request->id AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc");
-
-
-
+       $history = Task_histori::where('id_sewa', $id)->first();
         
-        return view('create_wbs', compact('wbs','wbs2'));
+        return view('create_wbs', compact('wbs','wbs2', 'history'));
     }
     public function wbs_user($id){
         
@@ -402,8 +398,6 @@ class LahanController extends Controller
 
         $wbs2 = Task::select('*')->where('id_sewa', $request->id_sewa)->limit(1)->get();
 
-
-        
        return view('create_wbs', compact('wbs','wbs2'));
        
     }
@@ -428,17 +422,17 @@ class LahanController extends Controller
             $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
             $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
             $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
-            foreach ($parent->children as $child) {
-                if($child->totalHarga > 0){
-                    if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
-                        $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
-                    }else{
-                        $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
-                        $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
-                    }
-                    $data_kegiatan[Carbon::parse($child->start_date)->format('d-m-Y')][] = $child->text;
-                }
-            }
+            // foreach ($parent->children as $child) {
+            //     if($child->totalHarga > 0){
+            //         if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
+            //             $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
+            //         }else{
+            //             $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
+            //             $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
+            //         }
+            //         $data_kegiatan[Carbon::parse($child->start_date)->format('d-m-Y')][] = $child->text;
+            //     }
+            // }
            }
         }
         
@@ -451,18 +445,18 @@ class LahanController extends Controller
              if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
              }
-             foreach ($parent->children as $child) {
-                 if($child->totalHarga > 0){
-                     if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
-                         $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
-                     }else{
-                        if (!in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggalAll)) {
-                            $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
-                         }
-                         $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
-                     }
-                 }
-             }
+            //  foreach ($parent->children as $child) {
+            //      if($child->totalHarga > 0){
+            //          if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
+            //              $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
+            //          }else{
+            //             if (!in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggalAll)) {
+            //                 $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
+            //              }
+            //              $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
+            //          }
+            //      }
+            //  }
             }
          }
 
@@ -789,11 +783,9 @@ class LahanController extends Controller
                         }
 
                         public function simpan_history($id){   
-    
-                           
 
                             DB::insert("Insert Into task_historis(id_task, text, duration, progress, start_date, parent, sortorder, created_at, updated_at, id_sewa, qty, satuan, harga, totalHarga) SELECT id, text, duration, progress, start_date, parent, sortorder, created_at, updated_at, id_sewa, qty, satuan, harga, totalHarga From tasks WHERE id_sewa = $id");
-
+                            return redirect()->back();
                         }
 
                         public function ubahSDM($id){

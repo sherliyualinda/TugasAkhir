@@ -47,6 +47,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <a href="{{ url()->previous() }}" class="btn btn-warning">Kembali</a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
