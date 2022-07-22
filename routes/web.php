@@ -462,5 +462,9 @@ Route::get('/jadwal/kelola/{id}', 'LahanController@kelola_jadwal')->name('kelola
 Route::post('/jadwal/simpan_jadwal/{id}', 'LahanController@simpan_jadwal')->name('simpan_jadwal')->middleware('auth');
 Route::get('/lahan/ubah_jadwal/{id}',  'LahanController@ubahJadwal')->middleware('auth');
 Route::post('/lahan/update_jadwal', 'LahanController@updateJadwal')->name('updateJadwal')->middleware('auth');
+
+Route::get('/peralatan/transaksi', 'PeralatanController@transaksi')->name('transaksi.peralatan')->middleware('auth');
+Route::get('/peralatan/bukti_bayar/{id}', 'PeralatanController@bukti_bayar')->middleware('auth');
+Route::post('/peralatan/simpan_bukti', 'PeralatanController@simpan_bukti')->name('uploadBukti')->middleware('auth');
 // Auth::routes();
 // Auth::routes();
