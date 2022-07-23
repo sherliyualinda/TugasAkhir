@@ -21,6 +21,10 @@
                             <input type="input" name="harga" class="form-control form-control-user" placeholder="0">
                         </div>
                         <div class="form-group">
+                            <label> Stok</label>
+                            <input type="input" name="stok" class="form-control form-control-user" placeholder="0">
+                        </div>
+                        <div class="form-group">
                             <label>Deskripsi</label>
                             <!-- <textarea class="form-control" name="content" placeholder="Masukkan Content" rows="4"></textarea> -->
                             <textarea name="deskripsi" id="deskripsi" class="form-control form-control-user" rows="4" placeholder="Masukkan Deskripsi"></textarea>

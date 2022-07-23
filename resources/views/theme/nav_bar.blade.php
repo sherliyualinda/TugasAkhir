@@ -1,4 +1,9 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-info text-white">
+<style type="text/css">
+.navbar {
+  background-color: #4682B4;
+}
+</style>
+<nav class="navbar fixed-top navbar-expand-lg navbar-light text-white">
 	<div class="logo col-lg-2">
 		<a title="" href="{{ asset('/sosial-media/beranda') }}">
 			<img src="/Diessnie-logo.png" alt="" style="max-height: 50px;">

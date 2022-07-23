@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">< Kembali</a>                       
+                    <li class="breadcrumb-item"><a href="/gantt/{{$_SESSION['id_sewa']}} " class="btn btn-secondary mb-3">< Kembali</a></li>                       
                         <table class="table table-bordered">
                             <thead>
                             <tr>

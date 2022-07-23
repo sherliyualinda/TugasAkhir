@@ -24,6 +24,16 @@
 <div class="container" style="margin-top: 50px">
     <div class="row">
         <div class="col-md-8 offset-md-2">
+        <div class="col-md-8 offset-md-2">
+                    <div class="col-md-12 mt-2">
+                        <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                        <?php session_start(); ?>
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">< Kembali</a>  
+                        </ol>
+                        </nav>
+                    </div>
+            <div class="card">
             <div class="card">
                 <div class="card-header">
                     Isi Kebutuhan dari {{ $wbs->text }}

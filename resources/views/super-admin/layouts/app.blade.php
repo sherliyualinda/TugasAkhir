@@ -73,6 +73,11 @@ rect.highcharts-background{
 .card-header{
   background: white;
 }
+.navbar-nav{
+  background-color: #4682B4;
+  color: white;
+}
+
 </style>
 
 <body id="page-top">
@@ -88,9 +93,9 @@ rect.highcharts-background{
                 {{-- <div class="sidebar-brand-icon rotate-n-15"> --}}
                   <div class="sidebar-brand-icon">
                     {{-- <i class="fas fa-laugh-wink"></i> --}}
-                    <img src="/logo-home-1.png" style="max-height: 50px;">
+                    <img src="/Diessnie-logo.png" style="max-height: 50px;">
                 </div>
-                <div class="sidebar-brand-text mx-3">DESAFEED</div>
+                <div class="sidebar-brand-text mx-3">DIESSNIE</div>
             </a>
 
           <!-- Divider -->

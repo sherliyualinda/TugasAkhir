@@ -5,6 +5,14 @@
 @section('content')   
     <div class="row">
         <div class="col-md-8 offset-md-2">
+                    <div class="col-md-12 mt-2">
+                        <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                        <?php session_start(); ?>
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">< Kembali</a>  
+                        </ol>
+                        </nav>
+                    </div>
             <div class="card mb-5">
                 <div class="card-header">
                     Ubah Lahan

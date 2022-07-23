@@ -19,6 +19,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
 </head>
+<style>
+.navbar-nav{
+  background-color: #4682B4;
+  color: white;
+}
+</style>
 
 <body id="page-top">
 
@@ -28,48 +34,71 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="margin-top: 0;">
 
-        <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/sosial-media/dashboard-admin">
-            {{-- <div class="sidebar-brand-icon rotate-n-15"> --}}
-            <div class="sidebar-brand-icon">
-                {{-- <i class="fas fa-laugh-wink"></i> --}}
-                <img src="/logo-home-1.png" style="max-height: 50px;">
-            </div>
-            <div class="sidebar-brand-text mx-3">DESAFEED</div>
-        </a>
+          <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/sosial-media/dashboard-admin">
+                {{-- <div class="sidebar-brand-icon rotate-n-15"> --}}
+                  <div class="sidebar-brand-icon">
+                    {{-- <i class="fas fa-laugh-wink"></i> --}}
+                    <img src="/Diessnie-logo.png" style="max-height: 50px;">
+                </div>
+                <div class="sidebar-brand-text mx-3">DIESSNIE</div>
+            </a>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+          <!-- Divider -->
+          <hr class="sidebar-divider my-0">
 
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
+          <!-- Nav Item - Dashboard -->
+          <li class="nav-item active">
             <a class="nav-link" href="/sosial-media/dashboard-admin">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span>
+              <i class="fas fa-fw fa-tachometer-alt"></i>
+              <span>Dashboard</span>
             </a>
-        </li>
+          </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+          <!-- Divider -->
+          <hr class="sidebar-divider">
 
-        <!-- Nav Item - Charts -->
-        <li class="nav-item active">
+          <!-- Nav Item - Charts -->
+          <li class="nav-item">
             <a class="nav-link" href="/sosial-media/list-pengguna">
-                <i class="fa fa-users"></i>
-                <span>List Pengguna</span>
+              <i class="fa fa-users"></i>
+              <span>List Pengguna</span>
             </a>
-        </li>
+          </li>
 
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
+          <!-- Nav Item - Tables -->
+          <li class="nav-item">
             <a class="nav-link" href="/sosial-media/list-report">
-                <i class="fa fa-warning"></i>
-                <span>List Content Report</span>
-                @if(COUNT($get) != 0)
-                    <span class="badge badge-danger" style="font-size: 10px;"> {{ COUNT($get) }} </span>
-                @endif
+              <i class="fa fa-warning"></i>
+              <span>List Content Report</span>
+              @if(COUNT($get) != 0)
+                  <span class="badge badge-danger" style="font-size: 10px;"> {{ COUNT($get) }} </span>
+              @endif
             </a>
-        </li>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('superadmin.sosial-media.video.index')}}">
+              <i class="fa fa-play"></i>
+              <span>Video</span>
+            </a>
+          </li>
+
+          <!-- Nav Item - Dashboard -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('dashboard') }}">
+              <i class="fa-solid fa-gauge"></i>
+              <span>Marketplace</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('manualBook') }}">
+              <i class="fa-solid fa-gauge"></i>
+              <span>Lahan</span>
+            </a>
+          </li>
+
+      
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 

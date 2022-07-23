@@ -16,15 +16,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <title>Tambah Post</title>
+    <title>Ubah Risiko</title>
 </head>
 
 <body>
 
 <div class="container" style="margin-top: 50px">
     <div class="row">
+                    
         <div class="col-md-8 offset-md-2">
+                    <div class="col-md-12 mt-2">
+                        <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                        <?php session_start(); ?>
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">< Kembali</a>  
+                        </ol>
+                        </nav>
+                    </div>
             <div class="card">
+                    
                 <div class="card-header">
                     Ubah Resiko 
                 </div>

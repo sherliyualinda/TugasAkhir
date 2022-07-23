@@ -10,7 +10,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                        <th scope="col">No</th>
+                        <dth scope="col">No</dth>
                         <th scope="col">Kegiatan</th>
                         <th scope="col">Durasi</th>
                         <th scope="col">Tanggal Mulai</th>
