@@ -26,7 +26,7 @@
                             <tr>
                                 <td>{{ $index+1}}</td>
                                 <td>{{ $lahan->ukuran}}</td>
-                                <td>{{ $lahan->deskripsi}}</td>
+                                <td>{!! $lahan->deskripsi!!}</td>
                                 <td>
                                     <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }} "width="50" height="50">
                                 </td>
@@ -42,7 +42,7 @@
                                 <td class="text-center">
                                     <div class="btn-group" role="group">
                                         <a href="/lahan/ubah/{{$lahan->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
-                                        <a href="/lahan/hapus/{{$lahan->id}}" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="/lahan/hapus/{{$lahan->id}}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda Yakin Untuk Menghapus ?')">Delete</a>
                                         <!-- <a href="/wbs/{{$lahan->id}}" class="btn btn-sm btn-info">BOQ</a> -->
                                         @if ($lahan->statusLahan === 'Ready')
                                         <a href="/lahan/request/{{$lahan->id}}" class="btn btn-sm btn-info">Request</a>

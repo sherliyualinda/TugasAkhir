@@ -5,6 +5,18 @@
 @endsection
 
 @section('content')
+<style>
+#myDIV {
+  height:300px;
+  background-color:#FFFFFF;
+}
+.ex1 {
+  
+  width: 200px;
+  height: 300px;
+  overflow-y: scroll;
+}
+</style>
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
@@ -27,7 +39,8 @@
                                 <th scope="col">No</th>                                
                                 <th scope="col">Kategori Lahan</th>
                                 <th scope="col">Gambar</th>                                
-                                <th scope="col">Jenis Lahan</th>                            
+                                <th scope="col">Jenis Lahan</th>
+                                <th scope="col">Langkah-Langkah</th>                            
                                 <th scope="col">Sumber</th>                               
                                 <th scope="col">Kelola</th>                               
                                 
@@ -40,11 +53,19 @@
                                     <td>{{ $manual->nama}}</td>
                                     <td><img src="{{ url('gambar_manual') }}/{{ $manual->gambar }} "width="50" height="50"></td>
                                     <td>{{ $manual->jenis_lahan}}</td>
-                                    <td>{{ $manual->sumber}}</td>
                                     <td>
-                                        <a href="/lahan/lihat_manual/{{$manual->id_manual}}" class="btn btn-sm btn-info">Lihat</a>
-                                        <a href="/lahan/ubah_manual/{{$manual->id_manual}}" class="btn btn-sm btn-warning">Edit</a>
-                                        <a href="/lahan/hapus_manual/{{$manual->id_manual}}" class="btn btn-sm btn-danger">Hapus</a>
+                                      <div id="myDIV">
+                                        <div class="ex1">
+                                            {!! $manual->deskripsi!!}
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td class="td">{{ $manual->sumber}}</td>
+                                    <td>
+                                        <a href="/lahan/lihat_manual/{{$manual->id_manual}}" class="btn btn-sm btn-info">Lihat</a><br>
+                                        <a href="/lahan/ubah_manual/{{$manual->id_manual}}" class="btn btn-sm btn-warning">Edit</a><br>
+                                        <a href="/lahan/hapus_manual/{{$manual->id_manual}}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda Yakin Untuk Menghapus ?')">Hapus</a>
+                                        
                                     </td>
 
                                 </tr>
@@ -58,4 +79,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection
