@@ -15,6 +15,20 @@
   @stack('addon-style')
   @yield('css')
 </head>
+<style>
+.border-right{
+  background-color: #4682B4;
+  color: white;
+}
+.navbar-nav{
+  background-color: #4682B4;
+  color: white;
+}
+.list-group-item{
+  background-color: #4682B4;
+}
+
+</style>
 
 <body>
 
@@ -23,7 +37,7 @@
       <!-- Sidebar -->
       <div class="border-right" id="sidebar-wrapper">
         <div class="sidebar-heading text-center">
-          <img src="/images/dashboard-store-logo.svg" alt="" class="my-4">
+          <img src="/Diessnie-logo.png" width="70" height="70">
         </div>
         <div class="list-group list-group-flush">
           <a href="{{ route('dashboard') }}" 

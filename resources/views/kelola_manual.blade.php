@@ -62,10 +62,10 @@
                                     </td>
                                     <td class="td">{{ $manual->sumber}}</td>
                                     <td>
-                                        <a href="/lahan/lihat_manual/{{$manual->id_manual}}" class="btn btn-sm btn-info">Lihat</a><br>
-                                        <a href="/lahan/ubah_manual/{{$manual->id_manual}}" class="btn btn-sm btn-warning">Edit</a><br>
+                                        <a href="/lahan/lihat_manual/{{$manual->id_manual}}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
+                                        <a href="/lahan/ubah_manual/{{$manual->id_manual}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
                                         <a href="/lahan/hapus_manual/{{$manual->id_manual}}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda Yakin Untuk Menghapus ?')">Hapus</a>
-                                        
+                                        <a href="/lahan/hapus_manual/{{$manual->id_manual}}" class="btn btn-danger delete btn-sm" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></a>
                                     </td>
 
                                 </tr>
@@ -80,5 +80,37 @@
         </div>
     </div>
 
+<div class="modal modal-danger fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form action="/lahan/hapus_manual/{{$manual->id_manual}}" method="post">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="delete" />
+                <h5 class="text-center">Apakah Anda Yakin Akan Menggapus {{$manual->jenis_lahan}} ini?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Tidak</button>
+                <button type="submit" class="btn btn-sm btn-danger">Ya, Hapus Data</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+        <!-- End Delete Modal --> 
+@endsection
 
+@section('js')
+<script>
+     $(document).on('click','.delete',function(){
+         let url = $(this).attr('data-url');
+         $('#deleteModal form').attr('action',url);
+    });
+</script>
 @endsection
