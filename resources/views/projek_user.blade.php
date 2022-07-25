@@ -7,6 +7,7 @@
         @foreach ($sewa as $data)
         <div class="col-md-12">
             <a href="{{ url('lahan/projek_user') }}" class="btn btn-secondary">< Kembali</a>
+            <a href="/lahan/dokumentasi/{{$data->id_sewa}}" target="_blank" class="btn btn-secondary"><i class="fa fa-eye"></i>Dokumentasi</a>
         </div>
         <div class="col-md-12 mt-1">
             <div class="card">
@@ -18,7 +19,7 @@
                         <div class="col-md-6">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail"
+                                    <a class="nav-link active" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail"
                                     aria-selected="false">Detail</a>
                                 </li>
                                 <li class="nav-item">
@@ -58,7 +59,7 @@
 
                             <div class="tab-content" id="myTabContent">
                                 
-                                    <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+                                    <div class="tab-pane fade in active show" id="detail" role="tabpanel" aria-labelledby="detail-tab">
                                         <h3>{{ $data->nama }}</h3>
                                         <table class="table">
                                             <tbody>

@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 
 
-class PeralatanController extends Controller
+class PeralatanController extends BaseController
 {
     /**
      * Create a new controller instance.

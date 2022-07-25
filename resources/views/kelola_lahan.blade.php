@@ -43,7 +43,10 @@
                                     <div class="btn-group" role="group">
                                         <a href="/lahan/ubah/{{$lahan->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
                                         <a href="/lahan/hapus/{{$lahan->id}}" class="btn btn-sm btn-danger">Delete</a>
-                                        <!-- <a href="/wbs/{{$lahan->id}}" class="btn btn-sm btn-info">BOQ</a> -->
+                                    </div>
+                                    <br>
+                                    <div class="btn-group mt-2" role="group">
+                                        <a href="/lahan/dokumentasi/{{$lahan->id}}" target="_blank" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i>Dokumentasi</a>
                                         @if ($lahan->statusLahan === 'Ready')
                                         <a href="/lahan/request/{{$lahan->id}}" class="btn btn-sm btn-info">Request</a>
                                         @endif

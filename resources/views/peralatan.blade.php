@@ -10,11 +10,15 @@
         <a href="{{ route('peralatan.kelola_peralatan') }}" class="btn btn-primary">  Kelola </a>
         <hr>
     </div>
-
+@php
+    dd($notif_group);
+@endphp
         @foreach($peralatans as $peralatan)
         <div class="col-md-4">
             <div class="card" >
-              <img src="{{ url('gambar_peralatan') }}/{{ $peralatan->gambar }}" class="card-img-top" alt="..."  >
+                <div style="width:100%; height:300px;">
+                    <img src="{{ url('gambar_peralatan') }}/{{ $peralatan->gambar }}" class="card-img-top" alt="peralatan"  style="width:100%; height:100%; object-fit:cover;">
+                </div>
               <div class="card-body">
                 <h5 class="card-title">{{ $peralatan->nama_alat }}</h5>
                 <p class="card-text">

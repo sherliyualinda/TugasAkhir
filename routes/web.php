@@ -203,50 +203,50 @@ Route::get('/sosial-media/list-pengguna', 'superadmin\menu_pengguna_con@get_all_
 Route::prefix('superadmin')
 ->name('superadmin.sosial-media.')
 ->namespace('superadmin')
+->middleware('auth')
 ->group(function() {
     Route::resource('/sosial-media/video', 'VideoController');
 });
 
 //END SUPER ADMIN AREA
+Route::group(['middleware' => ['auth']], function(){
+    // DesaTube
+    Route::resource('/desatube', 'DesaTube\VideoController')->only(['show','index']);
+    Route::get('/desatube/like/{id}/{type}', 'DesaTube\VideoController@like')->name('desatube.like');
+    Route::post('/desatube/comment', 'DesaTube\VideoController@comment')->name('desatube.comment');
+    Route::get('/desatube/subscribe/{id}/{channel}', 'DesaTube\VideoController@subscribe')->name('desatube.subscribe');
+    Route::get('/desatube/unsubscribe/{id}', 'DesaTube\VideoController@unsubscribe')->name('desatube.unsubscribe');
+    // DesaTube
 
-// DesaTube
-Route::resource('/desatube', 'DesaTube\VideoController')->only(['show','index']);
-Route::get('/desatube/like/{id}/{type}', 'DesaTube\VideoController@like')->name('desatube.like');
-Route::post('/desatube/comment', 'DesaTube\VideoController@comment')->name('desatube.comment');
-Route::get('/desatube/subscribe/{id}/{channel}', 'DesaTube\VideoController@subscribe')->name('desatube.subscribe');
-Route::get('/desatube/unsubscribe/{id}', 'DesaTube\VideoController@unsubscribe')->name('desatube.unsubscribe');
-// DesaTube
+    //Marketplace
+    Route::get('/sosial-media/marketplace', 'HomeController@marketplace');
 
-//Marketplace
-Route::get('/sosial-media/marketplace', 'HomeController@marketplace');
+    Route::get('/kamu', 'HomeController@kamu');
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/rank', 'HomeController@rank')->name('rank');
 
-Route::get('/kamu', 'HomeController@kamu');
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/rank', 'HomeController@rank')->name('rank');
+    Route::get('/categories', 'CategoryController@index')->name('categories');
+    Route::get('/categories/{id}', 'CategoryController@detail')->name('categories-detail');
 
-Route::get('/categories', 'CategoryController@index')->name('categories');
-Route::get('/categories/{id}', 'CategoryController@detail')->name('categories-detail');
+    Route::get('/details/{id}', 'DetailController@index')->name('detail');
+    Route::post('/details/{id}', 'DetailController@add')->name('detail-add');
 
-Route::get('/details/{id}', 'DetailController@index')->name('detail');
-Route::post('/details/{id}', 'DetailController@add')->name('detail-add');
-
-Route::get('/tambahqty/{id}', 'DetailController@tambahqty')->name('tambahqty');
-Route::get('/kurangqty/{id}', 'DetailController@kurangqty')->name('kurangqty');
-
-
-
-
-Route::get('/stores', 'StoreController@index')->name('store-page-search');
-Route::get('/stores/{id}', 'StoreController@area')->name('store-page-area');
-Route::get('/store/detail/{id}', 'StoreController@detail')->name('store-page-detail');
+    Route::get('/tambahqty/{id}', 'DetailController@tambahqty')->name('tambahqty');
+    Route::get('/kurangqty/{id}', 'DetailController@kurangqty')->name('kurangqty');
 
 
 
-Route::get('/success', 'CartController@success')->name('success');
 
-Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
+    Route::get('/stores', 'StoreController@index')->name('store-page-search');
+    Route::get('/stores/{id}', 'StoreController@area')->name('store-page-area');
+    Route::get('/store/detail/{id}', 'StoreController@detail')->name('store-page-detail');
 
 
+    Route::get('/success', 'CartController@success')->name('success');
+
+    Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
+
+});
 
 
 Route::group(['middleware' => ['auth']], function(){
@@ -306,14 +306,14 @@ Route::prefix('admin')
 ->namespace('Admin')
 ->middleware(['auth','admin'])
 ->group(function() {
-    Route::get('/', 'DashboardController@index')->name('admin-dashboard');
-    Route::resource('category', 'CategoryController');
-    Route::resource('user', 'UserController');
-    Route::resource('admin-store-user', 'AdminStoreController');
-    Route::resource('product', 'ProductController');
-    Route::resource('transaction', 'TransactionController');
-    Route::resource('product-gallery', 'ProductGalleryController');
-    Route::get('delete/{id}','UserController@destroy')->name('delete-user');
+    Route::get('/', 'DashboardController@index')->name('admin-dashboard')->middleware('auth');
+    Route::resource('category', 'CategoryController')->middleware('auth');
+    Route::resource('user', 'UserController')->middleware('auth');
+    Route::resource('admin-store-user', 'AdminStoreController')->middleware('auth');
+    Route::resource('product', 'ProductController')->middleware('auth');
+    Route::resource('transaction', 'TransactionController')->middleware('auth');
+    Route::resource('product-gallery', 'ProductGalleryController')->middleware('auth');
+    Route::get('delete/{id}','UserController@destroy')->name('delete-user')->middleware('auth');
 });
 
 
@@ -322,26 +322,26 @@ Route::prefix('adminstore')
 ->namespace('AdminStore')
 ->middleware(['auth','adminstore'])
 ->group(function() {
-    Route::get('/', 'DashboardController@index')->name('admin-store-dashboard');
-    Route::resource('adminstore-category', 'CategoryController');
-    Route::resource('adminstore-user', 'UserController');
-    Route::get('/adminstore/user/tambahdata', 'UserController@create')->name('tambahdata');
-    Route::post('/adminstore/user/add', 'UserController@store')->name('adddata');
+    Route::get('/', 'DashboardController@index')->name('admin-store-dashboard')->middleware('auth');
+    Route::resource('adminstore-category', 'CategoryController')->middleware('auth');
+    Route::resource('adminstore-user', 'UserController')->middleware('auth');
+    Route::get('/adminstore/user/tambahdata', 'UserController@create')->name('tambahdata')->middleware('auth');
+    Route::post('/adminstore/user/add', 'UserController@store')->name('adddata')->middleware('auth');
 
     
-    Route::resource('adminstore-product', 'ProductController');
-    Route::get('/adminstore/pending', 'ProductController@pending')->name('adminstore-product-pending');
-    Route::get('/adminstore/terima/{id}', 'ProductController@terima')->name('adminstore-product-terima');
-    Route::get('/adminstore/tolak/{id}', 'ProductController@tolak')->name('adminstore-product-tolak');
+    Route::resource('adminstore-product', 'ProductController')->middleware('auth');
+    Route::get('/adminstore/pending', 'ProductController@pending')->name('adminstore-product-pending')->middleware('auth');
+    Route::get('/adminstore/terima/{id}', 'ProductController@terima')->name('adminstore-product-terima')->middleware('auth');
+    Route::get('/adminstore/tolak/{id}', 'ProductController@tolak')->name('adminstore-product-tolak')->middleware('auth');
 
 
-    Route::get('/adminstore/tambahproduk', 'ProductController@create')->name('tambahproduk');
-    Route::post('/adminstore/tambahproduk/add', 'ProductController@store')->name('addproduk');
-    Route::get('/adminstore/editproduk/{id}', 'ProductController@edit')->name('editproduk');
-    Route::post('/adminstore/updateproduk/{id}', 'ProductController@update')->name('updateproduk');
+    Route::get('/adminstore/tambahproduk', 'ProductController@create')->name('tambahproduk')->middleware('auth');
+    Route::post('/adminstore/tambahproduk/add', 'ProductController@store')->name('addproduk')->middleware('auth');
+    Route::get('/adminstore/editproduk/{id}', 'ProductController@edit')->name('editproduk')->middleware('auth');
+    Route::post('/adminstore/updateproduk/{id}', 'ProductController@update')->name('updateproduk')->middleware('auth');
 
-    Route::resource('adminstore-transaction', 'TransactionController');
-    Route::resource('adminstore-product-gallery', 'ProductGalleryController');
+    Route::resource('adminstore-transaction', 'TransactionController')->middleware('auth');
+    Route::resource('adminstore-product-gallery', 'ProductGalleryController')->middleware('auth');
 
   
     
@@ -367,6 +367,7 @@ Route::get('/lahan/simpan_history/{id}', 'LahanController@simpan_history')->midd
 Route::post('/tambahgantt/{id}', 'TaskController@store')->name('tambahgantt')->middleware('auth');
 Route::get('/lahan/detail_lahan/{id}', 'LahanController@detail_lahan')->middleware('auth');
 Route::get('/lahan/Dprojek_user/{id}', 'LahanController@Dprojek_user')->middleware('auth');
+Route::get('/lahan/dokumentasi/{id}', 'LahanController@dokumentasi')->middleware('auth');
 Route::get('/lahan/projek_user', 'LahanController@projek_user')->middleware('auth');
 
 Route::get('/lahan/ubahSewa/{id}', 'LahanController@ubahSewa')->middleware('auth');

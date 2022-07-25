@@ -16,10 +16,13 @@
             <a href="/lahan/projek_user" class="btn btn-primary">Projek Saya</a>
             <hr>
         </div>
+        
         @foreach($lahan as $lahan)
         <div class="col-md-4">
             <div class="card" >
-              <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }}" class="card-img-top" alt="..."  >
+                <div style="width:100%; height:300px;">
+                    <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }}" class="card-img-top" alt="lahan" style="width:100%; height:100%; object-fit:cover;">
+                </div>
               <div class="card-body">
                 <h5 class="card-title">{{ $lahan->nama }}</h5>
                 <p class="card-text">
