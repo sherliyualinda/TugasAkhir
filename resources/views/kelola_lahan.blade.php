@@ -50,16 +50,17 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group">
-                                        <a href="/lahan/ubah/{{$lahan->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
-                                        <a href="/lahan/hapus/{{$lahan->id}}" class="btn btn-sm btn-danger">Delete</a>
-                                    </div>
-                                    <br>
-                                    <div class="btn-group mt-2" role="group">
-                                        <a href="/lahan/dokumentasi/{{$lahan->id}}" target="_blank" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i>Dokumentasi</a>
+                                        <a href="/lahan/ubah/{{$lahan->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                                        <!-- <a href="/lahan/hapus/{{$lahan->id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a> -->
+
+                                        <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$lahan->id}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
+                                        </button>
+                                        <a href="/lahan/dokumentasi/{{$lahan->id}}" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-file-text"></i></a>
                                         @if ($lahan->statusLahan === 'Ready')
                                         <a href="/lahan/request/{{$lahan->id}}" class="btn btn-sm btn-info">Request</a>
                                         @endif
                                     </div>
+                                    
                                 </td>
                                 <td class="text-center">
                                     <!-- Example single danger button -->
@@ -90,3 +91,47 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 @endsection
 
+@section('js')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+     $(document).on('click','.delete',function(){
+         let url = $(this).attr('data-url');
+         $('#deleteModal form').attr('action',url);
+    });
+    // function deletes(obj){
+    $(".deleteProduct").click(function(){
+        var id = $(this).data("id");        
+        var token = $(this).data("token");
+    // obj.preventDefault();
+    // const url = $(this).attr('href');
+    swal({
+        title: 'Apakah Anda Yakin?',
+        text: 'Data Ini Akan Dihapus Secara Permanen!',
+        icon: 'warning',
+        buttons: ["Tidak", "Iya"],
+    }).then(function(value) {
+        if (value) {
+           
+        $.ajax(
+        {
+            url: "/lahan/hapus/"+id,
+            type: 'GET',
+            dataType: "JSON",
+            data: {
+                "id": id,
+                
+            },
+            success: function ()
+            {
+                console.log("it Work");
+            }
+        });
+
+        window.location = "/lahan/kelola_lahan";
+            
+        }
+
+    });
+    });
+</script>
+@endsection

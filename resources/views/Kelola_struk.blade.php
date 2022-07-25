@@ -83,7 +83,9 @@
                     
                                     <td>
                                         <a href="/lahan/ubah_struk/{{$struk->id_struk}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
-                                        <a href="/lahan/hapus_Struk/{{$struk->id_struk}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <!-- <a href="/lahan/hapus_Struk/{{$struk->id_struk}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a> -->
+                                        <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$struk->id_struk}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
+                                        </button>
                                     </td>
 
                                 </tr>
@@ -111,3 +113,50 @@
 
 </body>
 </html>
+
+
+@section('js')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+     $(document).on('click','.delete',function(){
+         let url = $(this).attr('data-url');
+         $('#deleteModal form').attr('action',url);
+    });
+    // function deletes(obj){
+    $(".deleteProduct").click(function(){
+        var id = $(this).data("id");        
+        var token = $(this).data("token");
+        
+    // obj.preventDefault();
+    // const url = $(this).attr('href');
+    swal({
+        title: 'Apakah Anda Yakin?',
+        text: 'Data Ini Akan Dihapus Secara Permanen!',
+        icon: 'warning',
+        buttons: ["Tidak", "Iya"],
+    }).then(function(value) {
+        if (value) {
+           
+        $.ajax(
+        {
+            url: "/lahan/hapus_Struk/"+id,
+            type: 'GET',
+            dataType: "JSON",
+            data: {
+                "id": id,
+                
+            },
+            success: function ()
+            {
+                console.log("it Work");
+            }
+        });
+
+        window.location = "/lahan/kelola_struk/";
+            
+        }
+
+    });
+    });
+</script>
+@endsection

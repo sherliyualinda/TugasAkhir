@@ -12,7 +12,7 @@
         <hr>
     </div>
 @php
-    dd($notif_group);
+   
 @endphp
         @foreach($peralatans as $peralatan)
         <div class="col-md-4">

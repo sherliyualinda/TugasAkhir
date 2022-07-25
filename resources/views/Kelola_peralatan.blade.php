@@ -3,6 +3,15 @@
 @section('title', 'Kelola Peralatan')
 
 @section('content') 
+
+
+<link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-style.css') }}">
+    @yield('css')
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
@@ -39,13 +48,15 @@
                                     </td>
                                     <td>{{ $peralatan->status }}</td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
-                                            <a href="/peralatan/ubah/{{$peralatan->id_peralatan}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
-                                            <a href="/peralatan/hapus_peralatan/{{$peralatan->id_peralatan}}" class="btn btn-sm btn-danger">Delete</a>
+                                        
+                                            <a href="/peralatan/ubah/{{$peralatan->id_peralatan}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                                            
+
+                                            <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$peralatan->id_peralatan}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i></button>
                                             @if ($peralatan->status === 'Ready')
                                             <a href="/peralatan/request/{{$peralatan->id_peralatan}}" class="btn btn-sm btn-info">Request</a>
                                             @endif
-                                        </form>
+                                        
                                     </td>
                                 </tr>
                               @endforeach   
@@ -58,3 +69,58 @@
         </div>
     </div>
 @endsection
+
+
+<script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> 
+    <script src="{{ asset('js/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    @yield('js')
+
+    @section('js')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+     $(document).on('click','.delete',function(){
+         let url = $(this).attr('data-url');
+         $('#deleteModal form').attr('action',url);
+    });
+    // function deletes(obj){
+    $(".deleteProduct").click(function(){
+        var id = $(this).data("id");        
+        var token = $(this).data("token");
+    // obj.preventDefault();
+    // const url = $(this).attr('href');
+    swal({
+        title: 'Apakah Anda Yakin?',
+        text: 'Data Ini Akan Dihapus Secara Permanen!',
+        icon: 'warning',
+        buttons: ["Tidak", "Iya"],
+    }).then(function(value) {
+        if (value) {
+           
+        $.ajax(
+        {
+            url: "/peralatan/hapus_peralatan/"+id,
+            type: 'GET',
+            dataType: "JSON",
+            data: {
+                "id": id,
+                
+            },
+            success: function ()
+            {
+                console.log("it Work");
+            }
+        });
+
+        window.location = "/peralatan/kelola_peralatan";
+            
+        }
+
+    });
+    });
+</script>
+@endsection
+
+

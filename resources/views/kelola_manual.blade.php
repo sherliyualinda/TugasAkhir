@@ -100,10 +100,10 @@
     // obj.preventDefault();
     // const url = $(this).attr('href');
     swal({
-        title: 'Are you sure?',
-        text: 'This record and it`s details will be permanantly deleted!',
+        title: 'Apakah Anda Yakin?',
+        text: 'Data Ini Akan Dihapus Secara Permanen!',
         icon: 'warning',
-        buttons: ["Cancel", "Yes!"],
+        buttons: ["Tidak", "Iya"],
     }).then(function(value) {
         if (value) {
            

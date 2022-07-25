@@ -765,7 +765,8 @@ class LahanController extends Controller
                         return view('struk', compact('sewa'));
                     }
 
-                    public function simpan_struk(Request $request){        
+                    public function simpan_struk(Request $request){      
+                        session_start();  
                         $file = $request->file('gambar');
                         $tujuan_upload = 'gambar_struk';
                         $file->move($tujuan_upload,$file->getClientOriginalName());
