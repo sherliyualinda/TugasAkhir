@@ -183,6 +183,7 @@ return [
         AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
         Stevebauman\Location\LocationServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
 
     ],
 
@@ -237,6 +238,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
          'Excel'=> Maatwebsite\Excel\Facades\Excel::class,
          'Image' => Intervention\Image\Facades\Image::class,
+         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
          
     ],
 

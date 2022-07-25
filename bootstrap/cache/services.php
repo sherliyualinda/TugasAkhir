@@ -41,6 +41,7 @@
     37 => 'AzisHapidin\\IndoRegion\\IndoRegionServiceProvider',
     38 => 'Jenssegers\\Agent\\AgentServiceProvider',
     39 => 'Stevebauman\\Location\\LocationServiceProvider',
+    40 => 'UxWeb\\SweetAlert\\SweetAlertServiceProvider',
   ),
   'eager' => 
   array (
@@ -69,6 +70,7 @@
     22 => 'App\\Providers\\RouteServiceProvider',
     23 => 'AzisHapidin\\IndoRegion\\IndoRegionServiceProvider',
     24 => 'Stevebauman\\Location\\LocationServiceProvider',
+    25 => 'UxWeb\\SweetAlert\\SweetAlertServiceProvider',
   ),
   'deferred' => 
   array (
