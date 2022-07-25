@@ -5,6 +5,18 @@
 @endsection
 
 @section('content')
+<style>
+#myDIV {
+  height:300px;
+  background-color:#FFFFFF;
+}
+.ex1 {
+  
+  width: 200px;
+  height: 300px;
+  overflow-y: scroll;
+}
+</style>
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
@@ -20,14 +32,17 @@
                         </tr>
                     
                     </table>
+                    <div class="table-responsive">
 
-                        <table class="table table-bordered">
+                    
+                        <table class="table table-bordered" >
                             <thead>
                               <tr>
                                 <th scope="col">No</th>                                
                                 <th scope="col">Kategori Lahan</th>
                                 <th scope="col">Gambar</th>                                
-                                <th scope="col">Jenis Lahan</th>                            
+                                <th scope="col">Jenis Lahan</th>
+                                <th scope="col">Langkah-Langkah</th>                            
                                 <th scope="col">Sumber</th>                               
                                 <th scope="col">Kelola</th>                               
                                 
@@ -40,11 +55,21 @@
                                     <td>{{ $manual->nama}}</td>
                                     <td><img src="{{ url('gambar_manual') }}/{{ $manual->gambar }} "width="50" height="50"></td>
                                     <td>{{ $manual->jenis_lahan}}</td>
-                                    <td>{{ $manual->sumber}}</td>
                                     <td>
-                                        <a href="/lahan/lihat_manual/{{$manual->id_manual}}" class="btn btn-sm btn-info">Lihat</a>
-                                        <a href="/lahan/ubah_manual/{{$manual->id_manual}}" class="btn btn-sm btn-warning">Edit</a>
-                                        <a href="/lahan/hapus_manual/{{$manual->id_manual}}" class="btn btn-sm btn-danger">Hapus</a>
+                                      <div id="myDIV">
+                                        <div class="ex1">
+                                            {!! $manual->deskripsi!!}
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td class="td">{{ $manual->sumber}}</td>
+                                    <td>
+                                        <a href="/lahan/lihat_manual/{{$manual->id_manual}}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
+                                        <a href="/lahan/ubah_manual/{{$manual->id_manual}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                                        <!-- <a href="/lahan/hapus_manual/{{$manual->id_manual}}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda Yakin Untuk Menghapus ?')">Hapus</a> -->
+                                        
+                                        <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$manual->id_manual}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
+                                        </button>
                                     </td>
 
                                 </tr>
@@ -52,10 +77,59 @@
                               @endforeach   
                             </tbody>
                           </table>  
-                       
+                          </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection
+
+@section('js')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+     $(document).on('click','.delete',function(){
+         let url = $(this).attr('data-url');
+         $('#deleteModal form').attr('action',url);
+    });
+    // function deletes(obj){
+    $(".deleteProduct").click(function(){
+        var id = $(this).data("id");        
+        var token = $(this).data("token");
+    // obj.preventDefault();
+    // const url = $(this).attr('href');
+    swal({
+        title: 'Are you sure?',
+        text: 'This record and it`s details will be permanantly deleted!',
+        icon: 'warning',
+        buttons: ["Cancel", "Yes!"],
+    }).then(function(value) {
+        if (value) {
+           
+        $.ajax(
+        {
+            url: "/lahan/hapus_manual/"+id,
+            type: 'GET',
+            dataType: "JSON",
+            data: {
+                "id": id,
+                
+            },
+            success: function ()
+            {
+                console.log("it Work");
+            }
+        });
+
+        window.location = "/lahan/manualBook";
+            
+        }
+
+    });
+    });
+</script>
+@endsection
+
+
+

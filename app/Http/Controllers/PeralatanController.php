@@ -69,6 +69,7 @@ class PeralatanController extends BaseController
             'nama_alat'         => $request->nama_alat,
             'harga'             => $request->harga,
             'deskripsi'         => $request->deskripsi,
+            'stok'              => $request->stok,
             'gambar'            => $file->getClientOriginalName(),
             'id_pemilik'        => Auth::user()->pengguna->id_pengguna,
             'updated_at'        => date("Y-m-d H:i:s")
@@ -140,7 +141,8 @@ class PeralatanController extends BaseController
             'totalHari'      => $request->totalHari,
             'totalHarga'     => $total,
             'statusPinjam'   => "-",
-            'qty'            => $request->qty,            
+            'qty'            => $request->qty,   
+            'bukti_bayar'    => "-",          
             'updated_at'     => date("Y-m-d H:i:s")
         ]);
 
@@ -149,20 +151,29 @@ class PeralatanController extends BaseController
 
     public function request($id){
         session_start();
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-        return view('request_peralatan', compact('sewa'));
+        $sewa = DB::select("SELECT nama,s.qty,alamat,s.bukti_bayar,s.id_sewa,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();
+        return view('request_peralatan', compact('sewa','peralatan'));
     }
     
-    public function accRequest($id){
+    public function accRequest(Request $request, $id){
         $sewa= Sewa_peralatan::where('id_sewa', $id)->update([
             'status' => "Acc" ,
             //'progres' => "Proses",
             'updated_at' => date("Y-m-d H:i:s")
 
         ]);
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-        return view('request_peralatan', compact('sewa'));
+        $stok = $request->stok - $request->qty;
+        $peralatan = Peralatan::where('id_peralatans', $request->id_peralatan)->update([
+            'stok'         => $stok,
+            'updated_at'   => date("Y-m-d H:i:s")
+        ]);
+
+        $sewa = DB::select("SELECT l.stok,nama,s.qty,alamat,s.id_sewa,s.bukti_bayar,l.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa JOIN peralatans l ON l.id_peralatan = s.id_peralatan WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();
+        return view('request_peralatan', compact('sewa','peralatan'));
     }
+
     public function tolakRequest($id){
         $sewa= Sewa_peralatan::where('id_sewa', $id)->update([
             'status' => "Tolak" ,
@@ -171,7 +182,35 @@ class PeralatanController extends BaseController
         ]);
         //return redirect('lahan/kelola_lahan');
         
-        $sewa = DB::select("SELECT nama,alamat,s.id_sewa,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-        return view('request_peralatan', compact('sewa'));
+        $sewa = DB::select("SELECT nama,alamat,s.qty,s.id_sewa,s.bukti_bayar,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();
+        return view('request_peralatan', compact('sewa','peralatan'));
+    }
+
+    public function transaksi(){
+        $transaksi = DB::select("SELECT p.username,l.nama_alat,sl.id_sewa, l.gambar, sl.id_peralatan,l.deskripsi,l.harga,sl.totalHari,sl.totalHarga,sl.bukti_bayar, sl.status FROM peralatans l JOIN pengguna p on l.id_pemilik = p.id_pengguna JOIN sewa_peralatans sl on l.id_peralatan = sl.id_peralatan Where id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+        
+        return view('transaksi_peralatan', compact('transaksi'));
+    }
+
+    public function bukti_bayar($id){
+        $sewa = Sewa_peralatan::select('*')->where('id_sewa', $id)->get();
+        return view('form_Buktibayar', compact('sewa'));  
+    }
+
+    public function simpan_bukti(Request $request){
+
+        $file = $request->file('bukti_bayar');
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'bukti_bayar';
+        $file->move($tujuan_upload,$file->getClientOriginalName());
+        
+        $pengguna = Sewa_peralatan::where('id_sewa', $request->id_sewa)->update([
+            'bukti_bayar' => $file->getClientOriginalName(),
+            'updated_at'     => date("Y-m-d H:i:s")
+        ]);
+        $transaksi = DB::select("SELECT p.username,l.nama_alat,sl.id_sewa, l.gambar, sl.id_peralatan,l.deskripsi,l.harga,sl.totalHari,sl.totalHarga,sl.bukti_bayar, sl.status FROM peralatans l JOIN pengguna p on l.id_pemilik = p.id_pengguna JOIN sewa_peralatans sl on l.id_peralatan = sl.id_peralatan Where id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+        
+        return view('transaksi_peralatan', compact('transaksi'));
     }
 }

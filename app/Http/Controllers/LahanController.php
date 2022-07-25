@@ -640,24 +640,6 @@ class LahanController extends Controller
 
 
         
-        public function simpan_Boq(Request $request){
-            // menyimpan data file yang diupload ke variabel $file            
-            DB::table('rab')->insert([
-                'id_sewa'       => $request->id_sewa,
-                'penyebab'      => $request->penyebab,
-                'dampak'        => $request->dampak,
-                'strategi'      => $request->strategi,
-                'biaya'         => $request->biaya,
-                'probabilitas'  => $request->probabilitas,
-                'impact'        => $request->impact,
-                'levelRisk'     => $level,
-                'status'        => '-',
-                'updated_at'    => date("Y-m-d H:i:s")
-
-            ]);
-            $boq = DB::select("SELECT r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa where id_sewa = $request->id_sewa");
-            return view('kelola_risk', compact('risk'));
-        }
 
         public function createDaily($id){
         $daily = Sewa_lahan::select('*')->where('id_sewa', $id)->get();

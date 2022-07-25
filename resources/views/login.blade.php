@@ -37,14 +37,14 @@
 }
 
 .radio input:checked~.check-box::before {
-    color: #358f66;
+    color: #4682B4;
 }
 
 .radio .check-box::after {
 	/*background-color: #088dcd;
     border-color: #088dcd;*/
-    background-color: #358f66;
-    border-color: #358f66;
+    background-color: #4682B4;
+    border-color: #4682B4;
 }
 
 select.form-control{
@@ -108,22 +108,36 @@ select.form-control:not([size]):not([multiple]) {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+.land-featureareaa{
+	background-color: #4682B4;
+	
+}
+.content{
+	background-color: #4682B4;
+	padding:20px;
+	margin-top: 80px;
+	margin-left: 140px;
+	width:400px;
+	color: white;
+	
+}
+
 </style>
 <body>
 <!--<div class="se-pre-con"></div>-->
 <div class="theme-layout">
 	<div class="container-fluid pdng0">
 		<div class="row merged">
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-				<div class="land-featurearea">
-					<div class="land-meta">
-						<h1 style="font-size: 80px;">DESAFEED</h1>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 land-featureareaa">
+				<div class="content">
+					
 						{{-- <div class="friend-logo">
-								<span><img src="{{ asset('/Winku-Social-Network-Corporate-Responsive-Template/images/wink.png') }}" alt=""></span>
+							<span><img src="{{ asset('/Winku-Social-Network-Corporate-Responsive-Template/images/wink.png') }}" alt=""></span>
 						</div> --}}
-						<img src="/logo-home-1.png" style="width: 40%; object-fit: cover;">
+						<center><img src="/Diessnie-logo.png" style="width: 100%; object-fit: cover;">
+						<h3 style="font-size: 30px;">Digital Business Millenial Village</h3></center>
 						{{-- <a href="#" title="" class="folow-me">Follow Us on</a> --}}
-					</div>	
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -163,8 +177,8 @@ select.form-control:not([size]):not([multiple]) {
 							</div>
 							<a href="/sosial-media/reset-password" title="" class="forgot-pwd">Lupa Password?</a>
 							<div class="submit-btns" style="margin-top: 0px;">
-								<button class="mtr-btn" type="submit" style="color: #358f66"><span>Login</span></button>
-								<button class="mtr-btn signup" type="button" style="color: #358f66"><span>Register</span></button>
+								<button class="mtr-btn" type="submit" style="color: #4682B4"><span>Login</span></button>
+								<button class="mtr-btn signup" type="button" style="color: #4682B4"><span>Register</span></button>
 							</div>
 						</form>
 					</div>
@@ -257,7 +271,7 @@ select.form-control:not([size]):not([multiple]) {
 							  	<label class="control-label" for="input">Konfirmasi Password</label><i class="mtrl-select"></i>
 							</div>
 							<div class="submit-btns" style="margin-top: 0px;">
-								<button type="submit" class="mtr-btn" id="btnSubmit" style="color: #358f66"><span>Register</span></button>
+								<button type="submit" class="mtr-btn" id="btnSubmit" style="color: #4682B4"><span>Register</span></button>
 								<a href="#" title="" class="already-have" style="float: right; margin-top: 10px;">Sudah Punya Akun</a>
 							</div>
 						</form>

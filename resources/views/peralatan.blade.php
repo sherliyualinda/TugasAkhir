@@ -8,6 +8,7 @@
             <a href="{{ url('lahan') }}" class="btn btn-secondary">< Kembali</a>
         <a href="{{ route('peralatan.create') }}" class="btn btn-primary">+ Upload</a>
         <a href="{{ route('peralatan.kelola_peralatan') }}" class="btn btn-primary">  Kelola </a>
+        <a href="{{ route('transaksi.peralatan') }}" class="btn btn-primary">  Transaksi </a>
         <hr>
     </div>
 @php

@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row justify-content-center mt-5 mb-5">
         <div class="col-md-12 mt-5">
-            <a href="{{ route('lahan.create') }}" class="btn btn-primary">+ Buat Lahan</a>
+            <a href="{{ route('lahan.create') }}" class="btn btn-info">+ Buat Lahan</a>
             <a href="{{ route('lahan.kelola_lahan') }}" class="btn btn-primary">Kelola Lahan</a>
             <a href="{{ route('peralatan') }}" class="btn btn-primary">Peralatan</a>
             <a href="/lahan/projek_user" class="btn btn-primary">Projek Saya</a>

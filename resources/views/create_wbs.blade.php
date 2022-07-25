@@ -3,13 +3,23 @@
 @section('title', 'WBS')
 
 @section('content') 
+
+<link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-style.css') }}">
+    @yield('css')
+
+
+
 <form action="#" method="POST">
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">< Kembali</a>                       
+                    <li class="breadcrumb-item"><a href="/gantt/{{$_SESSION['id_sewa']}} " class="btn btn-secondary mb-3">< Kembali</a></li>                       
                         <table class="table table-bordered">
                             <thead>
                             <tr>
@@ -54,7 +64,7 @@
                                         <td>
                                             <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
                                                 
-                                                <a href="/lahan/update_wbs/{{$wbs->Id_Nenek}}" class="btn btn-sm btn-success">Edit</a>
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Nenek}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                             <?php }else{?>
                                                 
                                                 <?php }?>
@@ -73,7 +83,7 @@
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
                                                 
-                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-success">Edit</a>
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                             <?php }else{?>
                                                 
                                                 <?php }?>
@@ -90,7 +100,7 @@
                                         <td>{{ $wbs->hargaCucu }}</td>
                                         <td>{{ $wbs->thCucu }}</td>
                                         <td>
-                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Edit</a>
+                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -106,7 +116,7 @@
                                         <td>{{ $wbs->hargaCucu }}</td>
                                         <td>{{ $wbs->thCucu }}</td>
                                         <td>
-                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Edit</a>
+                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                         </td>
                                     </tr>
                                 <?php } elseif($nenek == $wbs->Nenek && $ibu != $wbs->Ibu && !empty($wbs->Ibu)){ 
@@ -125,7 +135,7 @@
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
                                                 
-                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-success">Edit</a>
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                             <?php }else{?>
                                                 
                                                 <?php }?>
@@ -141,7 +151,7 @@
                                         <td>{{ $wbs->hargaCucu }}</td>
                                         <td>{{ $wbs->thCucu }}</td>
                                         <td>
-                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Edit</a>
+                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -163,7 +173,7 @@
                                         <td>
                                             <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
                                                 
-                                                <a href="/lahan/update_wbs/{{$wbs->Id_Nenek}}" class="btn btn-sm btn-success">Edit</a>
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Nenek}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                             <?php }else{?>
                                                 
                                                 <?php }?>
@@ -181,7 +191,7 @@
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
                                                 
-                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-success">Edit</a>
+                                                <a href="/lahan/update_wbs/{{$wbs->Id_Ibu}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                             <?php }else{?>
                                                 
                                                 <?php }?>
@@ -197,7 +207,7 @@
                                         <td>{{ $wbs->hargaCucu }}</td>
                                         <td>{{ $wbs->thCucu }}</td>
                                         <td>
-                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-success">Edit</a>
+                                             <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                         </td>
                                     </tr>
                                 <?php }} ?>
@@ -207,7 +217,7 @@
                             </table>
                             @if (!isset($history))
                                 @foreach($wbs2 as $index=>$wbs2)
-                                <a href="/lahan/simpan_history/{{$wbs2->id_sewa}}" class="btn btn-sm btn-success">Save</a>
+                                <a href="/lahan/simpan_history/{{$wbs2->id_sewa}}" class="btn btn-sm btn-warning">Save</a>
                                 @endforeach
                             @endif
                     </div>
@@ -216,3 +226,11 @@
         </div>
     </div>
 @endsection
+
+
+<script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> 
+    <script src="{{ asset('js/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    @yield('js')

@@ -17,6 +17,7 @@
                                 <th scope="col">Nama Alat</th>
                                 <th scope="col">Deskripsi</th>
                                 <th scope="col">Harga</th>
+                                <th scope="col">Stok</th>
                                 <th scope="col">Gambar</th>
                                 <th scope="col">Status</th>
                                 <th colspan="2" >Kelola</th>
@@ -29,9 +30,11 @@
                                     <td>{{ $peralatan->nama_alat}}</td>
                                     <td>{{ $peralatan->deskripsi}}</td>
                                     <td>{{ $peralatan->harga}}</td>
+                                    <td>{{ $peralatan->stok}}</td>
                                     <td>
                                         <center>
-                                        <img src="{{ url('gambar_peralatan') }}/{{ $peralatan->gambar }} "width="50" height="50">
+                                        <a href="{{ url('gambar_peralatan') }}/{{ $peralatan->gambar }}" target="_blank">
+                                        <img src="{{ url('gambar_peralatan') }}/{{ $peralatan->gambar }} "width="50" height="50"><a>
                                         </center>
                                     </td>
                                     <td>{{ $peralatan->status }}</td>
