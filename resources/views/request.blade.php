@@ -22,6 +22,7 @@
                                 <th scope="col" >Jadwal Ketemu</th>
                                 <th scope="col">Laporan Harian</th>
                                 <th scope="col">Struk Pembayaran</th>
+                                <th scope="col">Dokumentasi</th>
                                 <th colspan="2">Progres</th>
                                 <th scope="col" >Pesan</th>
                                 
@@ -95,6 +96,9 @@
                                         <?php }else{?>
                                             <a href="#" class="btn btn-sm btn-secondary">Kelola</a>
                                         <?php } ?>
+                                    </td>
+                                    <td>
+                                        <a href="/lahan/dokumentasi/{{$sewa->id_sewa}}/{{$sewa->id_penyewa}}" target="_blank" class="btn btn-info btn-sm">Lihat</a>
                                     </td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">

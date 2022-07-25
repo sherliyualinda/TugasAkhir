@@ -55,7 +55,6 @@
 
                                         <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$lahan->id}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
                                         </button>
-                                        <a href="/lahan/dokumentasi/{{$lahan->id}}" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-file-text"></i></a>
                                         @if ($lahan->statusLahan === 'Ready')
                                         <a href="/lahan/request/{{$lahan->id}}" class="btn btn-sm btn-info">Request</a>
                                         @endif

@@ -7,7 +7,7 @@
         @foreach ($sewa as $data)
         <div class="col-md-12">
             <a href="{{ url('lahan/projek_user') }}" class="btn btn-secondary">< Kembali</a>
-            <a href="/lahan/dokumentasi/{{$data->id_sewa}}" target="_blank" class="btn btn-secondary"><i class="fa fa-eye"></i>Dokumentasi</a>
+            <a href="/lahan/dokumentasi/{{$data->id_sewa}}/{{$data->id_penyewa}}" target="_blank" class="btn btn-secondary"><i class="fa fa-eye"></i>Dokumentasi</a>
         </div>
         <div class="col-md-12 mt-1">
             <div class="card">

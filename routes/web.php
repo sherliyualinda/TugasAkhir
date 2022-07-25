@@ -367,7 +367,7 @@ Route::get('/lahan/simpan_history/{id}', 'LahanController@simpan_history')->midd
 Route::post('/tambahgantt/{id}', 'TaskController@store')->name('tambahgantt')->middleware('auth');
 Route::get('/lahan/detail_lahan/{id}', 'LahanController@detail_lahan')->middleware('auth');
 Route::get('/lahan/Dprojek_user/{id}', 'LahanController@Dprojek_user')->middleware('auth');
-Route::get('/lahan/dokumentasi/{id}', 'LahanController@dokumentasi')->middleware('auth');
+Route::get('/lahan/dokumentasi/{id}/{penyewa}', 'LahanController@dokumentasi')->middleware('auth');
 Route::get('/lahan/projek_user', 'LahanController@projek_user')->middleware('auth');
 
 Route::get('/lahan/ubahSewa/{id}', 'LahanController@ubahSewa')->middleware('auth');
