@@ -104,18 +104,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> 
-    <script src="{{ asset('js/sb-admin-2.js') }}"></script>
-    <script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/datatables/dataTables.bootstrap4.min.js') }}"></script>
-    @yield('js')
+    
 
 </body>
 </html>
 
+   
 
-@section('js')
+    @section('js')
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
      $(document).on('click','.delete',function(){
@@ -126,7 +122,6 @@
     $(".deleteProduct").click(function(){
         var id = $(this).data("id");        
         var token = $(this).data("token");
-        
     // obj.preventDefault();
     // const url = $(this).attr('href');
     swal({
@@ -152,11 +147,21 @@
             }
         });
 
-        window.location = "/lahan/kelola_struk/";
-            
+        // window.location = "/lahan/kelola_resource/"+$_SESSION['id_lahan'];
+        location.reload();   
         }
 
     });
     });
 </script>
 @endsection
+
+<script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> 
+    <script src="{{ asset('js/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    @yield('js')
+   
+
+

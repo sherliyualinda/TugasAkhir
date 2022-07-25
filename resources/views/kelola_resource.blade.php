@@ -99,8 +99,8 @@
             }
         });
 
-        window.location = "/lahan/kelola_resource/"+$_SESSION['id_lahan'];
-            
+        // window.location = "/lahan/kelola_resource/"+$_SESSION['id_lahan'];
+        location.reload();   
         }
 
     });
