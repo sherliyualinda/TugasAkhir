@@ -43,7 +43,7 @@
                                         </center>
                                     </td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
+                                        <form action="/peralatan/acc/{{$sewa->id_sewa}}" method="POST">
                                         {{ csrf_field() }}
                                             <input type="hidden" name="status" class="form-control form-control-user" value="acc">
                                             <input type="hidden" name="id_penyewa" class="form-control form-control-user" value="{{$sewa->id_penyewa}}">
