@@ -450,7 +450,8 @@ Route::get('/peralatan/sewaPeralatan/{id}', 'PeralatanController@sewaPeralatan')
 Route::post('/peralatan/updateSewaPeralatan/', 'PeralatanController@updateSewaPeralatan')->name('updateSewaPeralatan')->middleware('auth');
 
 Route::get('/peralatan/request/{id}', 'peralatanController@request')->middleware('auth');
-Route::get('/peralatan/acc/{id}', 'peralatanController@accRequest')->middleware('auth');
+Route::get('/peralatan/acc/{id},{id2},{id3},{id4}', 'peralatanController@accRequest')->middleware('auth');
+Route::get('/peralatan/done/{id},{id2},{id3},{id4}', 'peralatanController@doneRequest')->middleware('auth');
 Route::get('/peralatan/tolak/{id}', 'peralatanController@tolakRequest')->middleware('auth');
 Route::get('/peralatanan/doneRequest/{id}', 'peralatanController@doneRequest')->middleware('auth');
 // admin peralatan
