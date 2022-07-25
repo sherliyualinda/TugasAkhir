@@ -28,7 +28,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="gantt-tab" data-toggle="tab" href="#gantt" role="tab" aria-controls="gantt"
-                                    aria-selected="false">Gantt Chart</a>
+                                    aria-selected="false">Jadwal Kegiatan</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="risiko-tab" data-toggle="tab" href="#risiko" role="tab" aria-controls="risiko"
@@ -36,11 +36,11 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="boq-tab" data-toggle="tab" href="#boq" role="tab" aria-controls="boq"
-                                    aria-selected="false">Boq</a>
+                                    aria-selected="false">Anggaran</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="scurve-tab" data-toggle="tab" href="#scurve" role="tab" aria-controls="scurve"
-                                    aria-selected="false">S-Curve</a>
+                                    aria-selected="false">Grafik</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="Daily-tab" data-toggle="tab" href="#Daily" role="tab" aria-controls="Daily"
@@ -52,7 +52,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="Jadwal-tab" data-toggle="tab" href="#Jadwal" role="tab" aria-controls="Jadwal"
-                                    aria-selected="false">Jadwal</a>
+                                    aria-selected="false">Jadwal Pertemuan</a>
                                 </li>
                             </ul>
                                 

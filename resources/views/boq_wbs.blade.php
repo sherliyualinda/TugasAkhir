@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
-                    <div class="card-header text-center"><h2>BOQ</h2></div>
+                    <div class="card-header text-center"><h2>Anggaran Awal</h2></div>
                     <div class="card-body">
                         <table class="table">
                             <thead>
@@ -42,7 +42,7 @@
                           </table>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ url()->previous() }}" class="btn btn-warning">Kembali</a>
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary"> < Kembali</a>
                     </div>
                 </div>
             </div>

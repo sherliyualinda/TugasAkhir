@@ -56,7 +56,7 @@ class LahanController extends Controller
      */
 
     public function lahan(){
-        $lahan = Lahan::paginate(9);
+        // $lahan = Lahan::paginate(9);
         $lahan = DB::select("SELECT p.nama as pemilik,l.statusLahan, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
         $lahans = DB::select("SELECT p.nama as pemilik,l.statusLahan, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
         $total_notif = $this->total_notif();
@@ -781,6 +781,7 @@ class LahanController extends Controller
                        
                         $struk = Struk::select('*')->where('id_sewa', $request->id_sewa )->get();
                         $struk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
+                        
                         return view('Kelola_struk', compact('struk','struk2'));
                            
                             //return view('kelola_risk', compact('risk'));

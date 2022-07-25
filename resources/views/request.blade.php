@@ -17,8 +17,8 @@
                                 <th scope="col">Alamat Penyewa</th>
                                 <th scope="col">KTP</th>
                                 <th scope="col" >Kelola</th>
-                                <th scope="col">Gantt Chart</th>
-                                <th scope="col" >Resiko</th>
+                                <th scope="col">Jadwal Kegiatan</th>
+                                <th scope="col" >Risiko</th>
                                 <th scope="col" >Jadwal Ketemu</th>
                                 <th scope="col">Laporan Harian</th>
                                 <th scope="col">Struk Pembayaran</th>

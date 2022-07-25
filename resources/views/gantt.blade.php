@@ -37,16 +37,15 @@
                           
             <li>
                 <?php if($sewa->id_pemilik == Auth::user()->pengguna->id_pengguna){?>
-                    <a href="/lahan/request/{{$sewa->id_lahan}}">Back</a>
+                    <a href="/lahan/request/{{$sewa->id_lahan}}" class="btn btn-sm btn-secondary">< Kembali</a>
                 <?php }else{ ?>
-                    <a href="/lahan/Dprojek_user/{{$_SESSION['id_sewa']}}">Back</a>
+                    <a href="/lahan/Dprojek_user/{{$_SESSION['id_sewa']}}" class="btn btn-sm btn-secondary">< Kembali</a>
                 <?php } ?>
-            </li>
-            <li>
+
                 <?php if($sewa->id_pemilik == Auth::user()->pengguna->id_pengguna){?>
-                    <a href="/wbs/{{$_SESSION['id_sewa']}}" class="btn btn-sm btn-info">WBS</a>
-                    <a href="{{route('boq-wbs', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">BOQ</a>
-                    <a href="{{route('scurve', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">S-Curve</a>
+                    <a href="/wbs/{{$_SESSION['id_sewa']}}" class="btn btn-sm btn-info">Anggaran Kegiatan</a>
+                    <a href="{{route('boq-wbs', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">Anggaran Awal</a>
+                    <a href="{{route('scurve', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">Grafik</a>
                     <?php }else{ ?>
 
                 <?php } ?>
