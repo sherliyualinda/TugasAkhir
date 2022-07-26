@@ -25,6 +25,7 @@
         <div class="sidebar-heading text-center">
           <img src="/images/dashboard-store-logo.png" alt="" class="my-4">
         </div>
+        
         <div class="list-group list-group-flush text-center">
          {{-- <button class="btn btn-success mx-4" >Desa : {{ Auth::user()->villages->name }}</button> --}}
           <a href="{{ route('admin-store-dashboard') }}" class="list-group-item list-group-item-action">Dashboard</a>
