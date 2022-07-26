@@ -160,6 +160,7 @@ class LahanController extends Controller
         $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 3 AND sl.status ='Acc'");
 
         $jadwal = Jadwal::select('*')->where('id_sewa', $id)->get();
+        $jadwal2 = Jadwal::select('*')->where('id_sewa', $id)->get();
         $boq_aktual = Task::where('id_sewa', $id)->with('children')->get();
         $boq_history = Task_histori::where('id_sewa', $id)->with('children')->get();
 
@@ -225,7 +226,7 @@ class LahanController extends Controller
         ];
         // scurve
 
-        return view('projek_user',compact('sewa','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history','dataScurve'));  
+        return view('projek_user',compact('sewa','jadwal2','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history','dataScurve'));  
     }
 
     public function dokumentasi($id, $penyewa_id)
@@ -855,6 +856,13 @@ class LahanController extends Controller
         
         return view('kelola_jadwal',compact('jadwal','jadwal2','jadwal3'));
     }
+
+    public function lihat_kalender($id){
+        $jadwal = Jadwal::select('*')->where('id_sewa', $id)->get();
+        
+        return view('lihat_kalender',compact('jadwal'));
+    }
+
     public function createJadwal($id){
         session_start();
         $_SESSION['id_sewa']=$id;

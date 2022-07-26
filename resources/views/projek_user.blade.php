@@ -9,14 +9,17 @@
             <a href="{{ url('lahan/projek_user') }}" class="btn btn-secondary">< Kembali</a>
             <a href="/lahan/dokumentasi/{{$data->id_sewa}}/{{$data->id_penyewa}}" target="_blank" class="btn btn-secondary"><i class="fa fa-eye"></i>Dokumentasi</a>
         </div>
-        <div class="col-md-12 mt-1">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div>
                             <img src="{{ url('gambar_lahan') }}/{{ $data->gambar }}" class="rounded mx-auto d-block" width="50%" alt=""> 
                         </div>
-                        <div class="col-md-6">
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <div>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail"
@@ -54,7 +57,12 @@
                                     <a class="nav-link" id="Jadwal-tab" data-toggle="tab" href="#Jadwal" role="tab" aria-controls="Jadwal"
                                     aria-selected="false">Jadwal Pertemuan</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="kalender-tab" data-toggle="tab" href="#Kalender" role="tab" aria-controls="Kalender"
+                                    aria-selected="false">Kalender</a>
+                                </li>
                             </ul>
+                            <br><br>
                                 
 
                             <div class="tab-content" id="myTabContent">
@@ -263,7 +271,9 @@
                             @foreach($daily as $index=>$daily)
                                 <tr>
                                     <td>{{ $index+1}}</td>
-                                    <td><img src="{{ url('gambar_daily') }}/{{ $daily->gambar }} "width="50" height="50"></td>
+                                    <td><a href="{{ url('gambar_daily') }}/{{ $daily->gambar }}" target="_blank">
+                                        <img src="{{ url('gambar_daily') }}/{{ $daily->gambar }} "width="50" height="50"><a>
+                                    </td>
                                     <td>{{ $daily->keterangan}}</td>
                                     <td>{{ $daily->date}}</td>
                                 </tr>
@@ -286,7 +296,8 @@
                             @foreach($struk as $index=>$struk)
                                 <tr>
                                     <td>{{ $index+1}}</td>
-                                    <td><img src="{{ url('gambar_struk') }}/{{ $struk->gambar }} "width="50" height="50"></td>
+                                    <td><a href="{{ url('gambar_struk') }}/{{ $struk->gambar }} " target="_blank">
+                                        <img src="{{ url('gambar_struk') }}/{{ $struk->gambar }} "width="50" height="50"><a>
                                     <td>{{ $struk->keterangan}}</td>
                                     <td>{{ $struk->tanggal}}</td>
                                 </tr>
@@ -317,7 +328,11 @@
                                 @endforeach   
                             </table>
                                     </div>
-                                
+                                    <div class="tab-pane fade" id="Kalender" role="tabpanel" aria-labelledby="Kalender-tab">
+                                        <h3>Kalender</h3>
+                                        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
+                                        <div id='calendar'></div>     
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -329,7 +344,6 @@
 @endsection
 
 @section('js')
-    
         <script>
             $(function(){
                 var url = document.location.toString();
@@ -445,6 +459,26 @@
             return [year, month, day].join('-');
         }
     </script>
+
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
+        <script>
+            $(document).ready(function() {
+                $('#calendar').fullCalendar({
+                    events : [
+                    @foreach($jadwal2 as $jadwal2)
+                    {
+                        title : '{{ $jadwal2->agenda }}',
+                        start : '{{ $jadwal2->date }}',
+                        link : '{{ $jadwal2->linkMeet }}',
+                    },
+                        @endforeach
+                    ]
+                    })
+                    });
+        </script>
+
 @endsection
 
 
