@@ -971,5 +971,8 @@ class LahanController extends Controller
                 $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id where id_categoryLahan = $id");
                 return view('halManual', compact('manual'));
             }
+            public function halamanAwal(){
+                return view('halamanAwal');
+            }
     
 }

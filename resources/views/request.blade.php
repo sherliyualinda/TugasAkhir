@@ -2,13 +2,33 @@
 
 @section('title', 'Request Lahan')
 
-@section('content')   
-        <div class="row">
-            <div class="col-md-20">
+@section('content')  
+ 
+
+<link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-style.css') }}">
+    @yield('css')
+
+
+<style>
+
+.card-body{
+    width: auto;
+    overflow: auto;
+ }
+ 
+</style>
+
+
+        <div class="row1" >
+            <div class="col-md-21">
                 <div class="card border-0 shadow rounded">
-                    <div class="card-body">
+                    <div class="card-body" >
                         <a href="{{ route('lahan.kelola_lahan') }}" class="btn btn-secondary mb-2">< Kembali</a>
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" >
                             <thead>
                               <tr>
                                 <th scope="col">No</th>
@@ -22,7 +42,7 @@
                                 <th scope="col" >Jadwal Ketemu</th>
                                 <th scope="col">Laporan Harian</th>
                                 <th scope="col">Struk Pembayaran</th>
-                                <th scope="col">Dokumentasi</th>
+                                <th scope="col">Report</th>
                                 <th colspan="2">Progres</th>
                                 <th scope="col" >Pesan</th>
                                 
@@ -30,15 +50,17 @@
 
                               </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                             @foreach($sewa as $index=>$sewa)
-                                <tr>
+                                <tr >
                                     <td>{{ $index+1}}</td>
                                     <td>{{ $sewa->nama}}</td>
                                     <td>{{ $sewa->nik}}</td>
                                     <td>{{ $sewa->alamat}}</td>
                                     <td>
-                                        <img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50">
+                                        <a href="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }}" target="_blank"><img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50"><a>
+<!-- 
+                                        <img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50"> -->
                                     </td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
@@ -56,7 +78,7 @@
                                         </form>
                                        
                                     </td>
-                                    <td>
+                                    <td >
 
                                     <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
                                         <a href="/gantt/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Kelola</a>
@@ -98,7 +120,7 @@
                                         <?php } ?>
                                     </td>
                                     <td>
-                                        <a href="/lahan/dokumentasi/{{$sewa->id_sewa}}/{{$sewa->id_penyewa}}" target="_blank" class="btn btn-info btn-sm">Lihat</a>
+                                        <a href="/lahan/dokumentasi/{{$sewa->id_sewa}}/{{$sewa->id_penyewa}}" target="_blank" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     </td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">

@@ -38,7 +38,10 @@
                                     <td>{{ $index+1}}</td>
                                     <td>{{$projek->nama}}</td>
                                     <td>
-                                        <img src="{{ url('gambar_lahan') }}/{{ $projek->gambar }} "width="50" height="50">
+                                        <a href="{{ url('gambar_lahan') }}/{{ $projek->gambar }}" target="_blank"><img src="{{ url('gambar_lahan') }}/{{ $projek->gambar }} "width="50" height="50"><a>
+
+
+                                        <!-- <img src="{{ url('gambar_lahan') }}/{{ $projek->gambar }} "width="50" height="50"> -->
                                     </td>
                                    <td>{{$projek->deskripsi}}</td>
                                    <td>

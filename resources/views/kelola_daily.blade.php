@@ -79,7 +79,11 @@
                             @foreach($daily as $index=>$daily)
                                 <tr>
                                     <td>{{ $index+1}}</td>
-                                    <td><img src="{{ url('gambar_daily') }}/{{ $daily->gambar }} "width="50" height="50"></td>
+                                    <td>
+                                        <a href="{{ url('gambar_daily') }}/{{ $daily->gambar }}" target="_blank"><img src="{{ url('gambar_daily') }}/{{ $daily->gambar }} "width="50" height="50"><a>
+                                        
+                                        <!-- <img src="{{ url('gambar_daily') }}/{{ $daily->gambar }} "width="50" height="50"> -->
+                                    </td>
                                     <td>{{ $daily->keterangan}}</td>
                                     <td>{{ $daily->date}}</td>
                                     <td>

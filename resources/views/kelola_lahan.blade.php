@@ -37,7 +37,9 @@
                                 <td>{{ $lahan->ukuran}}</td>
                                 <td>{!! $lahan->deskripsi!!}</td>
                                 <td>
-                                    <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }} "width="50" height="50">
+                                    <a href="{{ url('gambar_lahan') }}/{{ $lahan->gambar }}" target="_blank"><img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }} "width="50" height="50"><a>
+
+                                    <!-- <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }} "width="50" height="50"> -->
                                 </td>
                                 <td>
                                     @if ($lahan->statusLahan === 'Ready')

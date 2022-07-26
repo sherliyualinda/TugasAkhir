@@ -76,7 +76,9 @@
                                 <tr>
                                     <td>{{ $index+1}}</td>
                                     <td>
-                                        <img src="{{ url('gambar_struk') }}/{{ $struk->gambar }} "width="50" height="50">
+                                        <a href="{{ url('gambar_struk') }}/{{ $struk->gambar }}" target="_blank"><img src="{{ url('gambar_struk') }}/{{ $struk->gambar }} "width="50" height="50"><a>
+                                        
+                                        <!-- <img src="{{ url('gambar_struk') }}/{{ $struk->gambar }} "width="50" height="50"> -->
                                     </td>
                                     <td>{{ $struk->keterangan}}</td>
                                     <td>{{ $struk->tanggal}}</td>

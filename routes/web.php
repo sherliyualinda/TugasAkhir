@@ -137,6 +137,7 @@ Route::get('/sosial-media/tolak_request/{id}', 'Sosmed_Con@tolak_request');
 Route::get('/sosial-media/batal_request/{id}', 'Sosmed_Con@batal_request');
 
 //PENGATURAN
+Route::get('/halamanAwal', 'LahanController@halamanAwal');
 Route::get('/sosial-media/pengaturan', 'Sosmed_Con@pengaturan');
 Route::post('/sosial-media/ubah_profil_proses', 'Sosmed_Con@ubah_profil_proses');
 Route::get('/sosial-media/pengaturan_pass', 'Sosmed_Con@pengaturan_pass');
