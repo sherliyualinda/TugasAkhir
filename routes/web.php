@@ -343,8 +343,6 @@ Route::prefix('adminstore')
 
     Route::resource('adminstore-transaction', 'TransactionController')->middleware('auth');
     Route::resource('adminstore-product-gallery', 'ProductGalleryController')->middleware('auth');
-
-  
     
 
     

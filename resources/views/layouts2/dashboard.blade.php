@@ -66,13 +66,10 @@
           
           @if (auth()->user()->pengguna->jenis_akun == 'pribadi')
           <a href="{{ route('admin-store-dashboard') }}" class="list-group-item list-group-item-action">Dashboard</a>
-          <a href="{{ route('adminstore-product.index') }}" class="list-group-item list-group-item-action {{ (request()->is('adminstore/adminstore-product')) ? 'active' : ''}}  ">Produk</a>
+          <a href="{{ route('dashboard-product') }}" class="list-group-item list-group-item-action {{ (request()->is('adminstore/adminstore-product')) ? 'active' : ''}}  ">Produk</a>
           <a href="{{ route('adminstore-product-pending') }}" class="list-group-item list-group-item-action {{ (request()->is('adminstore/adminstore/pending*')) ? 'active' : ''}}  ">Produk Pending</a>
-          <a href="{{ route('adminstore-product-gallery.index') }}" class="list-group-item list-group-item-action {{ (request()->is('adminstore/adminstore-product-gallery*')) ? 'active' : ''}}">Gallery Produk</a>
           {{-- <a href="{{ route('adminstore-category.index') }}" class="list-group-item list-group-item-action {{ (request()->is('adminstore/adminstore-category*')) ? 'active' : ''}}">Categories</a> --}}
-          <a href="{{ route('adminstore-transaction.index') }}" class="list-group-item list-group-item-action {{ (request()->is('adminstore/adminstore-transaction*')) ? 'active' : ''}}">Transaksi</a>
-          <a href="{{ route('adminstore-user.index') }}" class="list-group-item list-group-item-action {{ (request()->is('adminstore/adminstore-user*')) ? 'active' : ''}} ">Users</a>
-          <a href="{{ route('dashboard') }}" class="list-group-item list-group-item-action  ">Jual Produk</a>
+          <a href="{{ route('dashboard-transaction') }}" class="list-group-item list-group-item-action {{ (request()->is('adminstore/adminstore-transaction*')) ? 'active' : ''}}">Transaksi</a>
           @endif
           {{-- <a href="{{ route('dashboard-settings-account') }}" 
              class="list-group-item list-group-item-action {{ Request::is('dashboard/account') ? 'active' : '' }}">Akun</a> --}}
