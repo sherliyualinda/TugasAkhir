@@ -31,34 +31,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($lahan as $index=>$lahan)
+                        @foreach($lahan as $index=>$lahans)
                             <tr>
                                 <td>{{ $index+1}}</td>
-                                <td>{{ $lahan->ukuran}}</td>
-                                <td>{!! $lahan->deskripsi!!}</td>
+                                <td>{{ $lahans->ukuran}}</td>
+                                <td>{!! $lahans->deskripsi!!}</td>
                                 <td>
-                                    <a href="{{ url('gambar_lahan') }}/{{ $lahan->gambar }}" target="_blank"><img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }} "width="50" height="50"><a>
+                                    <a href="{{ url('gambar_lahan') }}/{{ $lahans->gambar }}" target="_blank"><img src="{{ url('gambar_lahan') }}/{{ $lahans->gambar }} "width="50" height="50"><a>
 
-                                    <!-- <img src="{{ url('gambar_lahan') }}/{{ $lahan->gambar }} "width="50" height="50"> -->
+                                    <!-- <img src="{{ url('gambar_lahan') }}/{{ $lahans->gambar }} "width="50" height="50"> -->
                                 </td>
                                 <td>
-                                    @if ($lahan->statusLahan === 'Ready')
-                                        <span class="badge badge-success">{{ $lahan->statusLahan }}</span>
-                                    @elseif ($lahan->statusLahan === 'Waiting')
-                                        <span class="badge badge-warning">{{ $lahan->statusLahan }}</span>
-                                    @elseif ($lahan->statusLahan === 'Not Ready')
-                                        <span class="badge badge-danger">{{ $lahan->statusLahan }}</span>
+                                    @if ($lahans->statusLahan === 'Ready')
+                                        <span class="badge badge-success">{{ $lahans->statusLahan }}</span>
+                                    @elseif ($lahans->statusLahan === 'Waiting')
+                                        <span class="badge badge-warning">{{ $lahans->statusLahan }}</span>
+                                    @elseif ($lahans->statusLahan === 'Not Ready')
+                                        <span class="badge badge-danger">{{ $lahans->statusLahan }}</span>
                                     @endif
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group">
-                                        <a href="/lahan/ubah/{{$lahan->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-                                        <!-- <a href="/lahan/hapus/{{$lahan->id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a> -->
+                                        <a href="/lahan/ubah/{{$lahans->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                                        <!-- <a href="/lahan/hapus/{{$lahans->id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a> -->
 
-                                        <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$lahan->id}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
+                                        <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$lahans->id}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
                                         </button>
-                                        @if ($lahan->statusLahan === 'Ready')
-                                        <a href="/lahan/request/{{$lahan->id}}" class="btn btn-sm btn-info">Request</a>
+                                        @if ($lahans->statusLahan === 'Ready')
+                                        <a href="/lahan/request/{{$lahans->id}}" class="btn btn-sm btn-info">Request</a>
                                         @endif
                                     </div>
                                     
@@ -70,17 +70,25 @@
                                             Sumber Daya
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a href="/lahan/kelola_resource/{{$lahan->id}}" class="dropdown-item"><b>Kelola</b></a>
-                                            <a href="/lahan/orang/{{$lahan->id}}" class="dropdown-item">Orang</a>
-                                            <a href="/lahan/material/{{$lahan->id}}" class="dropdown-item">Material</a>
-                                            <a href="/lahan/alat/{{$lahan->id}}" class="dropdown-item">Alat</a>
+                                            <a href="/lahan/kelola_resource/{{$lahans->id}}" class="dropdown-item"><b>Kelola</b></a>
+                                            <a href="/lahan/orang/{{$lahans->id}}" class="dropdown-item">Orang</a>
+                                            <a href="/lahan/material/{{$lahans->id}}" class="dropdown-item">Material</a>
+                                            <a href="/lahan/alat/{{$lahans->id}}" class="dropdown-item">Alat</a>
                                     </div>
                                 </td>
                             </tr>
                             @endforeach   
                         </tbody>
                         </table>  
-                    
+                        <div>
+                            Showing {{ $lahan->firstItem() }}
+                            to {{ $lahan->lastItem() }}
+                            of {{ $lahan->total() }}
+                            entries
+                        </div>
+                        <div class="pull-right">
+                            {{ $lahan->links("pagination::bootstrap-4") }}
+                        </div>
                 </div>
             </div>
         </div>
