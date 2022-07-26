@@ -7,7 +7,7 @@
     <title>Kelola Jadwal Ketemu</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
+    
     <link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
@@ -61,6 +61,7 @@
                         <tr>
                              <td>
                                  <a href="/lahan/createJadwal/{{$jadwal3->id_sewa}}" class="btn btn-sm btn-info">Tambah Jadwal</a>
+                                 <a href="/lahan/lihat_jadwal/{{$jadwal3->id_sewa}}" class="btn btn-sm btn-info">Lihat Kalender</a>
                             </td>
                         </tr>
                     
