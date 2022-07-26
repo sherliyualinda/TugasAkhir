@@ -62,6 +62,8 @@
           <a href="{{ route('video.index') }}" 
           class="list-group-item list-group-item-action {{ Request::is('dashboard/video') ? 'active' : '' }}">Video</a>
           @endif
+
+          
           @if (auth()->user()->pengguna->jenis_akun == 'pribadi')
           <a href="{{ route('admin-store-dashboard') }}" class="list-group-item list-group-item-action">Dashboard</a>
           <a href="{{ route('adminstore-product.index') }}" class="list-group-item list-group-item-action {{ (request()->is('adminstore/adminstore-product')) ? 'active' : ''}}  ">Produk</a>
