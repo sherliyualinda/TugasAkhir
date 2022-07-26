@@ -59,6 +59,7 @@ header ul li a:hover {
 	
 }
 .active {
+    size: ;
 	background-color: white;
 	
 }
