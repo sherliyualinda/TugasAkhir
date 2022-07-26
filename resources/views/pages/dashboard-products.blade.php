@@ -30,6 +30,10 @@ Store Dashboard Products Pages
                 </div>
               </div>
               <div class="row mt-4">
+              @if (auth()->user()->pengguna->jenis_akun == 'pribadi')
+
+              @endif
+              @if (auth()->user()->pengguna->jenis_akun == 'desa')
               @foreach ($products as $product)
                  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                   <div class="card card-dashboard-product d-block">
@@ -80,6 +84,7 @@ Store Dashboard Products Pages
                   {{-- </a> --}}
                 </div>
               @endforeach
+              @endif
               </div>
             </div>
           </div>
