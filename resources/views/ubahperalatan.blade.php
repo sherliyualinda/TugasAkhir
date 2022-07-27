@@ -20,7 +20,8 @@
                         </div>
                         <div class="form-group">
                             <label>Deskripsi</label>
-                            <input type="input" name="deskripsi" id="deskripsi" value="{{old('deskripsi',$peralatan->deskripsi)}}" class="form-control form-control-user" rows="4" placeholder="Masukkan Deskripsi">
+                            <textarea name="deskripsi" id="deskripsi" cols="30" rows="10">{{$peralatan->deskripsi}}</textarea>
+                            <!-- <input type="input" name="deskripsi" id="deskripsi" value="{{old('deskripsi',$peralatan->deskripsi)}}" class="form-control form-control-user" rows="4" placeholder="Masukkan Deskripsi"> -->
                         </div>
                         <div class="form-group">
                             <label>Harga</label>

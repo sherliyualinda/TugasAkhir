@@ -79,22 +79,30 @@
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($jadwal as $index=>$jadwal)
+                            @foreach($jadwal as $index=>$jadwals)
                                 <tr>
                                     <td>{{ $index+1}}</td>
-                                    <td>{{$jadwal->date}}</td>
-                                    <td>{{$jadwal->agenda}}</td>
-                                    <td>{{$jadwal->keterangan}}</td>
-                                    <td>{{$jadwal->linkMeet}}</td>
+                                    <td>{{$jadwals->date}}</td>
+                                    <td>{{$jadwals->agenda}}</td>
+                                    <td>{{$jadwals->keterangan}}</td>
+                                    <td>{{$jadwals->linkMeet}}</td>
                                     <td>
-                                        <a href="/lahan/ubah_jadwal/{{$jadwal->id_jadwal}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                        <a href="/lahan/ubah_jadwal/{{$jadwals->id_jadwal}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                     </td>
                                 </tr>
                         
                               @endforeach   
                             </tbody>
                           </table>  
-                       
+                          <div>
+                            Showing {{ $jadwal->firstItem() }}
+                            to {{ $jadwal->lastItem() }}
+                            of {{ $jadwal->total() }}
+                            entries
+                        </div>
+                        <div class="pull-right">
+                            {{ $jadwal->links("pagination::bootstrap-4") }}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -529,14 +529,16 @@ nav .right a{
             <div class="col-sm-3 ">
                 <div class="thumbnail ">
                   <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
-                  <img class="card-img-top" src="/ssawah.jpg" alt="Card image cap">
+                  <center>
+                    <img class="card-img-top" src="/F1.png"  style="width:150px" alt="Card image cap">
+                  </center>
                   <div class="card-body">
                     <h5 class="card-title">Fakhrunnisa Nur Afra</h5>
                     <p class="card-text">Full Stack Developer</p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Email : </li>
-                    <li class="list-group-item">IG :</li>
+                    <li class="list-group-item">Email :  fakhrunnisanura@gmail.com</li>
+                    <li class="list-group-item">IG : @afraaknim</li>
                     
                   </ul>
                 </div>
@@ -549,14 +551,16 @@ nav .right a{
             <div class="col-sm-3">
                 <div class="thumbnail">
                   <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
-                  <img class="card-img-top" src="/ssawah.jpg" alt="Card image cap">
+                  <center>
+                    <img class="card-img-top" src="/F2.png"  style="width:150px" alt="Card image cap">
+                  </center>
                   <div class="card-body">
                     <h5 class="card-title">Riswan Ardinata</h5>
                     <p class="card-text">Full Stack Developer</p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Email : </li>
-                    <li class="list-group-item">IG :</li>
+                    <li class="list-group-item">Email : riswanardinata@gmail.com </li>
+                    <li class="list-group-item">IG : @riswan_ardinata</li>
                     
                   </ul>
                 </div>
@@ -569,14 +573,16 @@ nav .right a{
             <div class="col-sm-3 ">
                 <div class="thumbnail">
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
-                  <img class="card-img-top" src="/ssawah.jpg" alt="Card image cap">
+                <center>
+                    <img class="card-img-top" src="/F3.png"  style="width:150px" alt="Card image cap">
+                  </center>
                   <div class="card-body">
                     <h5 class="card-title">Yusril Wahyuda</h5>
                     <p class="card-text">Full Stack Developer</p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Email : </li>
-                    <li class="list-group-item">IG :</li>
+                    <li class="list-group-item">Email :  wahyudayusril29@gmail.com</li>
+                    <li class="list-group-item">IG : @yusril_w</li>
                     
                   </ul>
                 </div>
@@ -589,14 +595,16 @@ nav .right a{
             <div class="col-sm-3">
               <div class="thumbnail">
               <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
-                  <img class="card-img-top" src="/ssawah.jpg" alt="Card image cap">
+              <center>
+                    <img class="card-img-top" src="/F4.png"  style="width:150px" alt="Card image cap">
+                  </center>
                   <div class="card-body">
                     <h5 class="card-title">Sherla Yualinda</h5>
                     <p class="card-text">Full Stack Developer</p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Email : </li>
-                    <li class="list-group-item">IG :</li>
+                    <li class="list-group-item">Email : <br>syualinda@gmail.com</li>
+                    <li class="list-group-item">IG : @sherla_y</li>
                     
                   </ul>
                 </div>
@@ -609,14 +617,16 @@ nav .right a{
             <div class="col-sm-3">
               <div class="thumbnail">
               <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
-                  <img class="card-img-top" src="/ssawah.jpg" alt="Card image cap">
+              <center>
+                    <img class="card-img-top" src="/F5.png"  style="width:150px" alt="Card image cap">
+                  </center>
                   <div class="card-body">
                     <h5 class="card-title">Sherli Yualinda</h5>
                     <p class="card-text">Full Stack Developer</p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Email : </li>
-                    <li class="list-group-item">IG :</li>
+                    <li class="list-group-item">Email : yualindasherli@gmail.com</li>
+                    <li class="list-group-item">IG :@sherli_y</li>
                     
                   </ul>
                 </div>

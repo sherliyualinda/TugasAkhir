@@ -76,25 +76,32 @@
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($daily as $index=>$daily)
+                            @foreach($daily as $index=>$dailies)
                                 <tr>
                                     <td>{{ $index+1}}</td>
                                     <td>
-                                        <a href="{{ url('gambar_daily') }}/{{ $daily->gambar }}" target="_blank"><img src="{{ url('gambar_daily') }}/{{ $daily->gambar }} "width="50" height="50"><a>
-                                        
-                                        <!-- <img src="{{ url('gambar_daily') }}/{{ $daily->gambar }} "width="50" height="50"> -->
+                                        <a href="{{ url('gambar_daily') }}/{{ $dailies->gambar }}" target="_blank"><img src="{{ url('gambar_daily') }}/{{ $dailies->gambar }} "width="50" height="50"><a>
+                                       
                                     </td>
-                                    <td>{{ $daily->keterangan}}</td>
-                                    <td>{{ $daily->date}}</td>
+                                    <td>{{ $dailies->keterangan}}</td>
+                                    <td>{{ $dailies->date}}</td>
                                     <td>
-                                        <a href="/lahan/ubah_daily/{{$daily->id_daily}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                        <a href="/lahan/ubah_daily/{{$dailies->id_daily}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                     </td>
                                 </tr>
                         
                               @endforeach   
                             </tbody>
                           </table>  
-                       
+                          <div>
+                            Showing {{ $daily->firstItem() }}
+                            to {{ $daily->lastItem() }}
+                            of {{ $daily->total() }}
+                            entries
+                        </div>
+                        <div class="pull-right">
+                            {{ $daily->links("pagination::bootstrap-4") }}
+                        </div>
                     </div>
                 </div>
             </div>

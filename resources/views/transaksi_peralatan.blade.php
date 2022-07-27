@@ -71,7 +71,15 @@
                               @endforeach   
                             </tbody>
                           </table>  
-                       
+                          <div>
+                            Showing {{ $transaksi->firstItem() }}
+                            to {{ $transaksi->lastItem() }}
+                            of {{ $transaksi->total() }}
+                            entries
+                        </div>
+                        <div class="pull-right">
+                            {{ $transaksi->links("pagination::bootstrap-4") }}
+                        </div>
                     </div>
                 </div>
             </div>

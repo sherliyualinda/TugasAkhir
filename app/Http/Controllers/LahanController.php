@@ -679,9 +679,12 @@ class LahanController extends Controller
             'date'          => $request->date,
             'updated_at'     => date("Y-m-d H:i:s")
         ]);
-            $daily = DB::select("SELECT d.id_sewa,d.gambar,d.keterangan,d.date,d.updated_at,s.id_lahan, d.id_daily FROM dailies d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $request->id_sewa");
+            // $daily = DB::select("SELECT d.id_sewa,d.gambar,d.keterangan,d.date,d.updated_at,s.id_lahan, d.id_daily FROM dailies d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $request->id_sewa");
             $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
             $daily3 = DB::select("SELECT id_sewa FROM sewa_lahans where id_sewa = $request->id_sewa");
+
+            $daily= DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$request->id_sewa)->paginate(3);
+
            
             return view('kelola_daily', compact('daily','daily2','daily3'));
         }
@@ -689,9 +692,11 @@ class LahanController extends Controller
     
         public function daily($id){
            
-                $daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+                // $daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
                 $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
                 $daily3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id ");
+
+                $daily= DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$id)->paginate(3);
             return view('kelola_daily', compact('daily','daily2','daily3'));
         }
 
@@ -714,9 +719,11 @@ class LahanController extends Controller
                 'updated_at' => date("Y-m-d H:i:s")
                 
             ]);
-            $daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $request->id_sewa  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+            //$daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $request->id_sewa  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
             $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
             $daily3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $request->id_sewa ");
+
+            $daily= DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$request->id_sewa)->paginate(3);
             return view('kelola_daily',compact('daily','daily2','daily3'));
         }
 
@@ -738,6 +745,7 @@ class LahanController extends Controller
             session_start();
             $_SESSION['id_lahan'] = $id;
             $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $id ORDER BY r.keterangan;");
+            
             return view('kelola_resource', compact('resource'));
         }
 
@@ -798,8 +806,10 @@ class LahanController extends Controller
                             'updated_at'        => date("Y-m-d H:i:s")
                         ]);
                        
-                        $struk = Struk::select('*')->where('id_sewa', $request->id_sewa )->get();
+                        //$struk = Struk::select('*')->where('id_sewa', $request->id_sewa )->get();
                         $struk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
+
+                        $struk= DB::table('struks')->join('sewa_lahans','struks.id_sewa','=','sewa_lahans.id_sewa')->select('id_struk','keterangan','gambar','tanggal','struks.updated_at','struks.id_sewa')->where('struks.id_sewa',$request->id_sewa)->paginate(3);
                         
                         return view('Kelola_struk', compact('struk','struk2'));
                            
@@ -808,8 +818,10 @@ class LahanController extends Controller
                     public function kelolaStruk($id){
                         session_start();
                         $_SESSION['id_sewa']=$id;
-                            $struk = Struk::select('*')->where('id_sewa', $id)->get();
+                           // $struk = Struk::select('*')->where('id_sewa', $id)->get();
                             $struk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
+
+                            $struk= DB::table('struks')->join('sewa_lahans','struks.id_sewa','=','sewa_lahans.id_sewa')->select('id_struk','keterangan','gambar','tanggal','struks.updated_at','struks.id_sewa')->where('struks.id_sewa',$id)->paginate(3);
                             return view('Kelola_struk', compact('struk','struk2'));
                         }
                         public function ubahStruk($id){
@@ -830,6 +842,7 @@ class LahanController extends Controller
                                 'updated_at' => date("Y-m-d H:i:s"),
                                 'gambar' => $file->getClientOriginalName()
                             ]);
+                                                        
                             return redirect()->route('kelolaStruk',$request->id_sewa);
                         }
                         public function hapusStruk($id){
@@ -868,10 +881,12 @@ class LahanController extends Controller
                         }
 
     public function kelola_jadwal($id){
-        $jadwal = Jadwal::select('*')->where('id_sewa', $id)->get();
+        // $jadwal = Jadwal::select('*')->where('id_sewa', $id)->get();
         $jadwal2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
         $jadwal3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id ");
         
+        $jadwal= DB::table('jadwals')->select('id_jadwal','agenda','date','keterangan','id_sewa','linkMeet','updated_at')->where('id_sewa',$id)->paginate(3);
+
         return view('kelola_jadwal',compact('jadwal','jadwal2','jadwal3'));
     }
 
@@ -897,10 +912,10 @@ class LahanController extends Controller
             'linkMeet'      => $request->linkMeet,
             'updated_at'    => date("Y-m-d H:i:s")
         ]);
-        $jadwal = Jadwal::select('*')->where('id_sewa', $request->id_sewa)->get();
+        // $jadwal = Jadwal::select('*')->where('id_sewa', $request->id_sewa)->get();
         $jadwal2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
         $jadwal3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa =$request->id_sewa");
-        
+        $jadwal= DB::table('jadwals')->select('id_jadwal','agenda','date','keterangan','id_sewa','linkMeet','updated_at')->where('id_sewa',$request->id_sewa)->paginate(3);
         return view('kelola_jadwal',compact('jadwal','jadwal2','jadwal3'));
         }
         public function ubahJadwal($id){
@@ -919,9 +934,11 @@ class LahanController extends Controller
                 'updated_at' => date("Y-m-d H:i:s")
                 
             ]);
-            $jadwal = Jadwal::select('*')->where('id_sewa', $request->id_sewa)->get();
+            //$jadwal = Jadwal::select('*')->where('id_sewa', $request->id_sewa)->get();
             $jadwal2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
             $jadwal3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa =$request->id_sewa");
+
+            $jadwal= DB::table('jadwals')->select('id_jadwal','agenda','date','keterangan','id_sewa','linkMeet','updated_at')->where('id_sewa',$request->id_sewa)->paginate(3);
         
         return view('kelola_jadwal',compact('jadwal','jadwal2','jadwal3'));
         }

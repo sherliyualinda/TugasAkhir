@@ -72,21 +72,20 @@
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($struk as $index=>$struk)
+                            @foreach($struk as $index=>$struks)
                                 <tr>
                                     <td>{{ $index+1}}</td>
                                     <td>
-                                        <a href="{{ url('gambar_struk') }}/{{ $struk->gambar }}" target="_blank"><img src="{{ url('gambar_struk') }}/{{ $struk->gambar }} "width="50" height="50"><a>
+                                        <a href="{{ url('gambar_struk') }}/{{ $struks->gambar }}" target="_blank"><img src="{{ url('gambar_struk') }}/{{ $struks->gambar }} "width="50" height="50"><a>
                                         
-                                        <!-- <img src="{{ url('gambar_struk') }}/{{ $struk->gambar }} "width="50" height="50"> -->
                                     </td>
-                                    <td>{{ $struk->keterangan}}</td>
-                                    <td>{{ $struk->tanggal}}</td>
+                                    <td>{{ $struks->keterangan}}</td>
+                                    <td>{{ $struks->tanggal}}</td>
                     
                                     <td>
-                                        <a href="/lahan/ubah_struk/{{$struk->id_struk}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
-                                        <!-- <a href="/lahan/hapus_Struk/{{$struk->id_struk}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a> -->
-                                        <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$struk->id_struk}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
+                                        <a href="/lahan/ubah_struk/{{$struks->id_struk}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                        
+                                        <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$struks->id_struk}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
                                         </button>
                                     </td>
 
@@ -95,7 +94,15 @@
                               @endforeach   
                             </tbody>
                           </table>  
-                       
+                          <div>
+                            Showing {{ $struk->firstItem() }}
+                            to {{ $struk->lastItem() }}
+                            of {{ $struk->total() }}
+                            entries
+                        </div>
+                        <div class="pull-right">
+                            {{ $struk->links("pagination::bootstrap-4") }}
+                        </div>
                     </div>
                 </div>
             </div>

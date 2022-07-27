@@ -77,7 +77,8 @@ class PeralatanController extends BaseController
         return redirect()->route('peralatan.kelola_peralatan');
     }   
     public function kelola_peralatan(){
-        $peralatans = Peralatan::where('id_pemilik', Auth::user()->pengguna->id_pengguna)->paginate(10);
+       // $peralatans = Peralatan::where('id_pemilik', Auth::user()->pengguna->id_pengguna)->paginate(10);
+        $peralatans= DB::table('peralatans')->select('id_peralatan','nama_alat','stok','harga','deskripsi','gambar','id_pemilik','status','updated_at')->where('id_pemilik',Auth::user()->pengguna->id_pengguna)->paginate(3);
         return view('kelola_peralatan', compact('peralatans'));
     }    
     public function ubahperalatan($id){
@@ -206,8 +207,9 @@ class PeralatanController extends BaseController
     }
 
     public function transaksi(){
-        $transaksi = DB::select("SELECT sl.qty, p.username,l.nama_alat,sl.id_sewa, l.gambar, sl.id_peralatan,l.deskripsi,l.harga,sl.totalHari,sl.totalHarga,sl.bukti_bayar, sl.status FROM peralatans l JOIN pengguna p on l.id_pemilik = p.id_pengguna JOIN sewa_peralatans sl on l.id_peralatan = sl.id_peralatan Where id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+        //$transaksi = DB::select("SELECT sl.qty, p.username,l.nama_alat,sl.id_sewa, l.gambar, sl.id_peralatan,l.deskripsi,l.harga,sl.totalHari,sl.totalHarga,sl.bukti_bayar, sl.status FROM peralatans l JOIN pengguna p on l.id_pemilik = p.id_pengguna JOIN sewa_peralatans sl on l.id_peralatan = sl.id_peralatan Where id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
         
+        $transaksi= DB::table('peralatans')->join('pengguna','peralatans.id_pemilik','=','pengguna.id_pengguna')->join('sewa_peralatans','peralatans.id_peralatan','=','sewa_peralatans.id_peralatan')->select('sewa_peralatans.qty', 'pengguna.username','peralatans.nama_alat','sewa_peralatans.id_sewa', 'peralatans.gambar', 'sewa_peralatans.id_peralatan','peralatans.deskripsi','peralatans.harga','sewa_peralatans.totalHari','sewa_peralatans.totalHarga','sewa_peralatans.bukti_bayar', 'sewa_peralatans.status')->where('id_penyewa',Auth::user()->pengguna->id_pengguna)->paginate(3);
         return view('transaksi_peralatan', compact('transaksi'));
     }
 
@@ -227,7 +229,9 @@ class PeralatanController extends BaseController
             'bukti_bayar' => $file->getClientOriginalName(),
             'updated_at'     => date("Y-m-d H:i:s")
         ]);
-        $transaksi = DB::select("SELECT sl.qty, p.username,l.nama_alat,sl.id_sewa, l.gambar, sl.id_peralatan,l.deskripsi,l.harga,sl.totalHari,sl.totalHarga,sl.bukti_bayar, sl.status FROM peralatans l JOIN pengguna p on l.id_pemilik = p.id_pengguna JOIN sewa_peralatans sl on l.id_peralatan = sl.id_peralatan Where id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+       // $transaksi = DB::select("SELECT sl.qty, p.username,l.nama_alat,sl.id_sewa, l.gambar, sl.id_peralatan,l.deskripsi,l.harga,sl.totalHari,sl.totalHarga,sl.bukti_bayar, sl.status FROM peralatans l JOIN pengguna p on l.id_pemilik = p.id_pengguna JOIN sewa_peralatans sl on l.id_peralatan = sl.id_peralatan Where id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+
+        $transaksi= DB::table('peralatans')->join('pengguna','peralatans.id_pemilik','=','pengguna.id_pengguna')->join('sewa_peralatans','peralatans.id_peralatan','=','sewa_peralatans.id_peralatan')->select('sewa_peralatans.qty', 'pengguna.username','peralatans.nama_alat','sewa_peralatans.id_sewa', 'peralatans.gambar', 'sewa_peralatans.id_peralatan','peralatans.deskripsi','peralatans.harga','sewa_peralatans.totalHari','sewa_peralatans.totalHarga','sewa_peralatans.bukti_bayar', 'sewa_peralatans.status')->where('id_penyewa',Auth::user()->pengguna->id_pengguna)->paginate(3);
         
         return view('transaksi_peralatan', compact('transaksi'));
     }

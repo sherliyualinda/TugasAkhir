@@ -33,28 +33,28 @@
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($peralatans as $index=>$peralatan)
+                            @foreach($peralatans as $index=>$peralatanss)
                                 <tr>
                                     <td>{{ $index+1}}</td>
-                                    <td>{{ $peralatan->nama_alat}}</td>
-                                    <td>{{ $peralatan->deskripsi}}</td>
-                                    <td>{{ $peralatan->harga}}</td>
-                                    <td>{{ $peralatan->stok}}</td>
+                                    <td>{{ $peralatanss->nama_alat}}</td>
+                                    <td>{!! $peralatanss->deskripsi !!}</td>
+                                    <td>{{ $peralatanss->harga}}</td>
+                                    <td>{{ $peralatanss->stok}}</td>
                                     <td>
                                         <center>
-                                        <a href="{{ url('gambar_peralatan') }}/{{ $peralatan->gambar }}" target="_blank">
-                                        <img src="{{ url('gambar_peralatan') }}/{{ $peralatan->gambar }} "width="50" height="50"><a>
+                                        <a href="{{ url('gambar_peralatan') }}/{{ $peralatanss->gambar }}" target="_blank">
+                                        <img src="{{ url('gambar_peralatan') }}/{{ $peralatanss->gambar }} "width="50" height="50"><a>
                                         </center>
                                     </td>
-                                    <td>{{ $peralatan->status }}</td>
+                                    <td>{{ $peralatanss->status }}</td>
                                     <td class="text-center">
                                         
-                                            <a href="/peralatan/ubah/{{$peralatan->id_peralatan}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                                            <a href="/peralatan/ubah/{{$peralatanss->id_peralatan}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
                                             
 
-                                            <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$peralatan->id_peralatan}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i></button>
-                                            @if ($peralatan->status === 'Ready')
-                                            <a href="/peralatan/request/{{$peralatan->id_peralatan}}" class="btn btn-sm btn-info">Request</a>
+                                            <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$peralatanss->id_peralatan}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i></button>
+                                            @if ($peralatanss->status === 'Ready')
+                                            <a href="/peralatan/request/{{$peralatanss->id_peralatan}}" class="btn btn-sm btn-info">Request</a>
                                             @endif
                                         
                                     </td>
@@ -62,7 +62,15 @@
                               @endforeach   
                             </tbody>
                           </table>  
-                       
+                          <div>
+                            Showing {{ $peralatans->firstItem() }}
+                            to {{ $peralatans->lastItem() }}
+                            of {{ $peralatans->total() }}
+                            entries
+                        </div>
+                        <div class="pull-right">
+                            {{ $peralatans->links("pagination::bootstrap-4") }}
+                        </div>
                     </div>
                 </div>
             </div>
