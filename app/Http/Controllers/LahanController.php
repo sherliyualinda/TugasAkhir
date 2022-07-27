@@ -162,6 +162,8 @@ class LahanController extends Controller
         $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 2 AND sl.status ='Acc'");
         $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 3 AND sl.status ='Acc'");
 
+        $task = Task::select('*')->orderBy('sortorder')->where('id_sewa', $id)->get();
+
         $jadwal = Jadwal::select('*')->where('id_sewa', $id)->get();
         $jadwal2 = Jadwal::select('*')->where('id_sewa', $id)->get();
         $boq_aktual = Task::where('id_sewa', $id)->with('children')->get();
@@ -229,7 +231,7 @@ class LahanController extends Controller
         ];
         // scurve
 
-        return view('projek_user',compact('sewa','jadwal2','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history','dataScurve'));  
+        return view('projek_user',compact('task','sewa','jadwal2','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history','dataScurve'));  
     }
 
     public function dokumentasi($id, $penyewa_id)

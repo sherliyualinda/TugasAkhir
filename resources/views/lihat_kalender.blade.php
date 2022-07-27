@@ -35,7 +35,7 @@
                         <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                         <?php session_start(); ?>
-                        <li class="breadcrumb-item"><a href="/jadwal/kelola/{{$_SESSION['id_sewa']}}">Back</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url()->previous() }}">Back</a></li>
                         </ol>
                         </nav>
                     </div>
