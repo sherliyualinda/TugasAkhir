@@ -17,7 +17,7 @@ use App\Sewa_lahan;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/halamanAwal', 'LahanController@halamanAwal');
 Route::get('/masuk', function(){
 	return view('auth/login');
 });
@@ -137,7 +137,7 @@ Route::get('/sosial-media/tolak_request/{id}', 'Sosmed_Con@tolak_request');
 Route::get('/sosial-media/batal_request/{id}', 'Sosmed_Con@batal_request');
 
 //PENGATURAN
-Route::get('/halamanAwal', 'LahanController@halamanAwal');
+
 Route::get('/sosial-media/pengaturan', 'Sosmed_Con@pengaturan');
 Route::post('/sosial-media/ubah_profil_proses', 'Sosmed_Con@ubah_profil_proses');
 Route::get('/sosial-media/pengaturan_pass', 'Sosmed_Con@pengaturan_pass');
@@ -468,5 +468,7 @@ Route::get('/lahan/lihat_jadwal/{id}',  'LahanController@lihat_kalender')->middl
 Route::get('/peralatan/transaksi', 'PeralatanController@transaksi')->name('transaksi.peralatan')->middleware('auth');
 Route::get('/peralatan/bukti_bayar/{id}', 'PeralatanController@bukti_bayar')->middleware('auth');
 Route::post('/peralatan/simpan_bukti', 'PeralatanController@simpan_bukti')->name('uploadBukti')->middleware('auth');
+
 // Auth::routes();
 // Auth::routes();
+

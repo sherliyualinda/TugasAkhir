@@ -423,16 +423,13 @@ nav .right a{
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="#aplikasi"> About Application</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"> About Application</a>
+                <a class="nav-link" href="#team">About Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link" href="{{url('/login')}}" target="_blank">Login</a>
             </li>
         </ul>
     </div>
@@ -447,14 +444,14 @@ nav .right a{
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" height="550" src="/ssawah.jpg" alt="First slide">
+                    <img class="d-block w-100" height="500"  src="/ssawah.jpg" alt="First slide">
                      
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" height="550" src="/sawit.jpg" alt="Second slide">
+                    <img class="d-block w-100" height="500" src="/sawit.jpg" alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" height="550" src="/sapi.png" alt="Third slide">
+                    <img class="d-block w-100" height="500" src="/sapi.png" alt="Third slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -474,7 +471,7 @@ nav .right a{
 </div>
 
 <!-- tentang aplikasi -->
-<div class="container">
+<div class="container" id="aplikasi">
         <center>
           <h1>Aplikasi Diessnie</h1>
           <h4> Digital Bussiness Millenial Village</h4><br>
@@ -523,7 +520,7 @@ nav .right a{
     </div>
 </div>
 <!-- Team aplikasi -->
-<div class="jumbotron">
+<div class="jumbotron" id="team">
   <div class="text-center container" style="margin-bottom:0">
           <center>
             <h1>Application Team From Diessnie</h1><br>
