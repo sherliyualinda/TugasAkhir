@@ -287,6 +287,7 @@ nav .right a{
   height: 0%;
   animation-name: fade;
   animation-duration: 1.5s;
+ 
 }
 
 .slides .navigation{
@@ -348,9 +349,9 @@ nav .right a{
 
 
 
-.carousel-item img{
+/* .carousel-item img{
     opacity: 0.6;
-}
+} */
 .nav-icon{
     background: #1b1b1b;
     width: 3.8rem;
@@ -371,13 +372,28 @@ nav .right a{
     transition: all ease 0.3s;
     color: #fff;
 }
-.carousel-indicators li{
+/* .carousel-indicators li{
     border-radius: 50%;
     width: .8rem;
     height:  .8rem;
     background: transparent;
     border: solid 2px  #1b1b1b;
+} */
+.navbar{
+  background-color: #4682B4;
 }
+.jumbotron1{
+  background-color: #F2F3F4;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+.nav-link{
+  color: white;
+  text-align: right;
+}
+
+
+
 </style>
 
 
@@ -393,10 +409,10 @@ nav .right a{
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+<nav class="navbar navbar-expand-md  navbar-dark">
     <!-- Brand -->
     <a class="navbar-brand" href="index.html">
-        <img src="/Diessnie-logo.png" alt="logo" style="width:100px;">
+        <img src="/Diessnie-logo.png" alt="logo" style="width:60px;">
     </a>
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -407,21 +423,21 @@ nav .right a{
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Pemrograman</a>
+                <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Database</a>
+                <a class="nav-link" href="#"> About Application</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Framework</a>
+                <a class="nav-link" href="#">About Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Lainnya</a>
+                <a class="nav-link" href="#">Login</a>
             </li>
         </ul>
     </div>
 </nav>
-<div class="jumbotron text-center">
+<div class="jumbotron1">
 <div class="container">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -431,14 +447,14 @@ nav .right a{
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="/ssawah.jpg" alt="First slide">
+                    <img class="d-block w-100" height="550" src="/ssawah.jpg" alt="First slide">
                      
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="/sawit.jpg" alt="Second slide">
+                    <img class="d-block w-100" height="550" src="/sawit.jpg" alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="/sapi.png" alt="Third slide">
+                    <img class="d-block w-100" height="550" src="/sapi.png" alt="Third slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -457,61 +473,187 @@ nav .right a{
     </div>
 </div>
 
-
+<!-- tentang aplikasi -->
 <div class="container">
+        <center>
+          <h1>Aplikasi Diessnie</h1>
+          <h4> Digital Bussiness Millenial Village</h4><br>
+        </center>
     <div class="row">
         <div class="col-sm-3">
             <div class="thumbnail">
-                <a href="artikel.html"><img src="gambar/HTML_&_CSS.png" width="100%" alt="Cinque Terre"></a>
+                <a href="artikel.html"><img src="/ssawah.jpg" width="100%" alt="Cinque Terre"></a>
                 <div class="caption">
-                    <h3>Belajar HTML & CSS</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris</p>
-                    <p><a href="artikel.html" class="btn btn-light btn-block" role="button">Selengkapnya</a></p>
+                <center><h3><a href="artikel.html" style="text-decoration:none;color: black ;">Desa Feed</a> </h3></center>
+                    <p align='justify'>Merupakan fitur yang dapat digunakan untuk saling berkomunikasi antara satu dengan yang lain seperti halnya sosial media desa</p>
+                    
                 </div>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="thumbnail">
-                <a href="artikel.html"><img src="gambar/Programming.png" width="100%" alt="Cinque Terre"></a>
+                <a href="artikel.html"><img src="/ssawah.jpg" width="100%" alt="Cinque Terre"></a>
                 <div class="caption">
-                    <h3><a href="artikel.html" style="text-decoration:none;color: black;">Web Programming</a> </h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris</p>
-                    <p><a href="artikel.html" class="btn btn-light btn-block" role="button">Selengkapnya</a></p>
+                    <center><h3><a href="artikel.html" style="text-decoration:none;color: black ;">Desa Store</a> </h3></center>
+                    <p align='justify'>Merupakan fitur yang digunakan untuk menjual barang/hasil dari UMKM desa</p>
+                    
                 </div>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="thumbnail">
-                <a href="artikel.html"><img src="gambar/Python.png" width="100%" alt="Cinque Terre"></a>
+                <a href="artikel.html"><img src="/ssawah.jpg" width="100%" alt="Cinque Terre"></a>
                 <div class="caption">
-                    <h3>Belajar Python</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris</p>
-                    <p><a href="artikel.html" class="btn btn-light btn-block" role="button">Selengkapnya</a></p>
+                <center><h3><a href="artikel.html" style="text-decoration:none;color: black ;">Desa Tour</a> </h3></center>
+                    <p align='justify'>Merupakan fitur yang digunakan untuk penanaman modal dari orang kota ke pertanian, perkebunan, perikanan yang dijalankan di desa</p>
+                    
                 </div>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="thumbnail">
-                <a href="artikel.html"><img src="gambar/Desain_UI_&_UX.png"  width="100%" alt="Cinque Terre"></a>
+                <a href="artikel.html"><img src="/ssawah.jpg"  width="100%" alt="Cinque Terre"></a>
                 <div class="caption">
-                    <h3>Desain UI & UX</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris</p>
-                    <p><a href="artikel.html" class="btn btn-light btn-block " role="button">Selengkapnya</a></p>
+                <center><h3><a href="artikel.html" style="text-decoration:none;color: black ;">Desa Tube</a> </h3></center>
+                    <p align='justify'>Merupakan fitur yang digunakan untuk mengunggah video-video yang dihasilkan</p>
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <p>Copyright 2020 kelasprogrammer.com</p>
+<!-- Team aplikasi -->
+<div class="jumbotron">
+  <div class="text-center container" style="margin-bottom:0">
+          <center>
+            <h1>Application Team From Diessnie</h1><br>
+          </center>
+          <div class="row">
+            <div class="col-sm-3 ">
+                <div class="thumbnail ">
+                  <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
+                  <img class="card-img-top" src="/ssawah.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Fakhrunnisa Nur Afra</h5>
+                    <p class="card-text">Full Stack Developer</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Email : </li>
+                    <li class="list-group-item">IG :</li>
+                    
+                  </ul>
+                </div>
+                </div>
+            </div>
+            <div class="col-sm-1 ">
+              <div class="thumbnail ">
+              </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="thumbnail">
+                  <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
+                  <img class="card-img-top" src="/ssawah.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Riswan Ardinata</h5>
+                    <p class="card-text">Full Stack Developer</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Email : </li>
+                    <li class="list-group-item">IG :</li>
+                    
+                  </ul>
+                </div>
+                </div>
+            </div>
+            <div class="col-sm-1 ">
+              <div class="thumbnail ">
+              </div>
+            </div>
+            <div class="col-sm-3 ">
+                <div class="thumbnail">
+                <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
+                  <img class="card-img-top" src="/ssawah.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Yusril Wahyuda</h5>
+                    <p class="card-text">Full Stack Developer</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Email : </li>
+                    <li class="list-group-item">IG :</li>
+                    
+                  </ul>
+                </div>
+                </div>
+            </div>
+          </div>
+  </div>
+  <div class="text-center container" style="margin-bottom:0">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="thumbnail">
+              <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
+                  <img class="card-img-top" src="/ssawah.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Sherla Yualinda</h5>
+                    <p class="card-text">Full Stack Developer</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Email : </li>
+                    <li class="list-group-item">IG :</li>
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 ">
+                <div class="thumbnail">
+                </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="thumbnail">
+              <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
+                  <img class="card-img-top" src="/ssawah.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Sherli Yualinda</h5>
+                    <p class="card-text">Full Stack Developer</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Email : </li>
+                    <li class="list-group-item">IG :</li>
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="thumbnail">
+                </div>
+            </div>           
+            <div class="col-sm-3 ">
+            <div class="thumbnail">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
+                  <img class="card-img-top" src="/ssawah.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Gifari Abi Waqqosh</h5>
+                    <p class="card-text">Full Stack Developer</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Email : </li>
+                    <li class="list-group-item">IG :</li>
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+  </div>
 </div>
+<div class="container">
+<center>
+  <p>Copyright Juli 2022 @Diessnie</p>
+</center>
+</div>
+
+
 </body>
 </html>
