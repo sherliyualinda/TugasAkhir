@@ -27,12 +27,14 @@
                                 <th scope="col">Nama Alat</th>
                                 <th scope="col">Gambar</th>
                                 <th scope="col">Deskripsi</th>
+                                <th scope="col">Jumlah Sewa</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col">Hari Sewa</th>
                                 <th scope="col">Total Harga</th>
                                 <th scope="col">Bukti Bayar</th>
                                 <th scope="col">Status</th>
-                                <th colspan="2" >Detail Sewa Lahan</th>
+                                <th scope="col">Detail Sewa Lahan</th>
+                                <th scope="col">Chat</th>
                                
 
                               </tr>
@@ -43,19 +45,24 @@
                                     <td>{{ $index+1}}</td>
                                     <td>{{$projek->nama_alat}}</td>
                                     <td>
-                                        <img src="{{ url('gambar_peralatan') }}/{{ $projek->gambar }} "width="50" height="50">
+                                        <a href="{{ url('gambar_peralatan') }}/{{ $projek->gambar }}" target="_blank">
+                                        <img src="{{ url('gambar_peralatan') }}/{{ $projek->gambar }} "width="50" height="50"><a>
                                     </td>
                                    <td>{{$projek->deskripsi}}</td>
+                                   <td>{{$projek->qty}}</td>
                                    <td>{{$projek->harga}}</td>
                                    <td>{{$projek->totalHari}} Hari</td>
                                    <td>Rp {{$projek->totalHarga}}</td>
                                    <td>
-                                        <img src="{{ url('bukti_bayar') }}/{{ $projek->bukti_bayar }} "width="50" height="50">
+                                        <a href="{{ url('bukti_bayar') }}/{{ $projek->bukti_bayar }}" target="_blank">
+                                        <img src="{{ url('bukti_bayar') }}/{{ $projek->bukti_bayar }} "width="50" height="50"><a>
                                     </td>
                                    <td><b>{{$projek->status}}<b></td>
                                    <td>
-                                        <a href="#" class="btn btn-primary">Detail</a>
-                                        <a href="/peralatan/bukti_bayar/{{$projek->id_sewa}}" class="btn btn-primary">Bukti Bayar</a></br></br>
+                                        <a href="/peralatan/bukti_bayar/{{$projek->id_sewa}}" class="btn btn-primary">Bukti Bayar</a>
+                                        
+                                   </td>
+                                   <td>
                                         <a href="/sosial-media/chat_lahan/{{$projek->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>  
                                    </td>
                                     
