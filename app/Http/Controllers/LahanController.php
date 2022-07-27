@@ -330,7 +330,10 @@ class LahanController extends Controller
         session_start();
         $_SESSION['id_lahan'] = $id;
         $sewa = DB::select("SELECT username,nama,alamat,s.id_sewa,s.id_lahan, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
+
+        // $sewa= DB::table('pengguna')->join('sewa_lahans','pengguna.id_pengguna','=','sewa_lahans.id_penyewa')->select('username','nama','alamat','sewa_lahans.id_sewa','sewa_lahans.id_lahan', 'nik', 'foto_ktp', 'id_penyewa', 'sewa_lahans.status', 'sewa_lahans.progres')->where('id_pengguna',any(DB:table('')))->paginate(3);
         return view('request', compact('sewa'));
+
     }
 
     public function accRequest($id){
@@ -584,7 +587,9 @@ class LahanController extends Controller
             'levelRisk'     => $level,
             'updated_at'    => date("Y-m-d H:i:s")
         ]);
-            $risk = DB::select("SELECT ps.ket, i.ket_impact, r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan, r.id_risk FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa JOIN probabilitas ps ON r.probabilitas=ps.id_probabilitas JOIN impacts i ON r.impact = i.id_impact where r.id_sewa = $request->id_sewa");
+            // $risk = DB::select("SELECT ps.ket, i.ket_impact, r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan, r.id_risk FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa JOIN probabilitas ps ON r.probabilitas=ps.id_probabilitas JOIN impacts i ON r.impact = i.id_impact where r.id_sewa = $request->id_sewa");
+
+            $risk= DB::table('pengguna')->join('sewa_lahans','pengguna.id_pengguna','=','sewa_lahans.id_penyewa')->join('risks','risks.id_sewa','=','sewa_lahans.id_sewa')->join('probabilitas','risks.probabilitas','=','probabilitas.id_probabilitas')->join('impacts','risks.impact','=','impacts.id_impact')->select('nama','sewa_lahans.id_sewa','probabilitas.ket','impacts.ket_impact','risks.id_risk','sewa_lahans.id_lahan','nik', 'id_penyewa', 'risks.levelRisk', 'risks.penyebab', 'risks.strategi', 'risks.dampak', 'risks.biaya', 'risks.probabilitas', 'risks.impact','risks.levelRisk')->where('sewa_lahans.id_sewa',$request->id_sewa)->orwhere('pengguna.id_pengguna',Auth::user()->pengguna->id_pengguna)->paginate(3);
             $risk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
             $risk3 = DB::select("SELECT id_sewa FROM sewa_lahans where id_sewa = $request->id_sewa");
             return view('kelola_risk', compact('risk','risk2','risk3'));
@@ -592,9 +597,15 @@ class LahanController extends Controller
 
         public function risk($id){
         
-            $risk = DB::select("SELECT nama,s.id_sewa,ps.ket,i.ket_impact,r.id_risk,s.id_lahan, nik, id_penyewa, r.levelRisk, r.penyebab, r.strategi, r.dampak, r.biaya, r.probabilitas, r.impact,r.levelRisk FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa JOIN probabilitas ps ON r.probabilitas=ps.id_probabilitas JOIN impacts i ON r.impact = i.id_impact WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+            // $risk = DB::select("SELECT nama,s.id_sewa,ps.ket,i.ket_impact,r.id_risk,s.id_lahan, nik, id_penyewa, r.levelRisk, r.penyebab, r.strategi, r.dampak, r.biaya, r.probabilitas, r.impact,r.levelRisk FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa JOIN probabilitas ps ON r.probabilitas=ps.id_probabilitas JOIN impacts i ON r.impact = i.id_impact WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
             $risk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
             $risk3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
+
+            
+            $risk= DB::table('pengguna')->join('sewa_lahans','pengguna.id_pengguna','=','sewa_lahans.id_penyewa')->join('risks','risks.id_sewa','=','sewa_lahans.id_sewa')->join('probabilitas','risks.probabilitas','=','probabilitas.id_probabilitas')->join('impacts','risks.impact','=','impacts.id_impact')->select('nama','sewa_lahans.id_sewa','probabilitas.ket','impacts.ket_impact','risks.id_risk','sewa_lahans.id_lahan','nik', 'id_penyewa', 'risks.levelRisk', 'risks.penyebab', 'risks.strategi', 'risks.dampak', 'risks.biaya', 'risks.probabilitas', 'risks.impact','risks.levelRisk')->where('sewa_lahans.id_sewa',$id)->orwhere('pengguna.id_pengguna',Auth::user()->pengguna->id_pengguna)->paginate(3);
+
+
+
         return view('kelola_risk', compact('risk','risk2', 'risk3'));
         }
         public function ubahRisk($id){
@@ -625,7 +636,9 @@ class LahanController extends Controller
                 'updated_at' => date("Y-m-d H:i:s")
                 
             ]);
-            $risk = DB::select("SELECT nama,s.id_sewa,ps.ket,i.ket_impact,r.id_risk,s.id_lahan, nik, id_penyewa, r.levelRisk, r.penyebab, r.strategi, r.dampak, r.biaya, r.probabilitas, r.impact,r.levelRisk FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa JOIN probabilitas ps ON r.probabilitas=ps.id_probabilitas JOIN impacts i ON r.impact = i.id_impact WHERE s.id_sewa = $request->id_sewa  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+            // $risk = DB::select("SELECT nama,s.id_sewa,ps.ket,i.ket_impact,r.id_risk,s.id_lahan, nik, id_penyewa, r.levelRisk, r.penyebab, r.strategi, r.dampak, r.biaya, r.probabilitas, r.impact,r.levelRisk FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa JOIN probabilitas ps ON r.probabilitas=ps.id_probabilitas JOIN impacts i ON r.impact = i.id_impact WHERE s.id_sewa = $request->id_sewa  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+
+            $risk= DB::table('pengguna')->join('sewa_lahans','pengguna.id_pengguna','=','sewa_lahans.id_penyewa')->join('risks','risks.id_sewa','=','sewa_lahans.id_sewa')->join('probabilitas','risks.probabilitas','=','probabilitas.id_probabilitas')->join('impacts','risks.impact','=','impacts.id_impact')->select('nama','sewa_lahans.id_sewa','probabilitas.ket','impacts.ket_impact','risks.id_risk','sewa_lahans.id_lahan','nik', 'id_penyewa', 'risks.levelRisk', 'risks.penyebab', 'risks.strategi', 'risks.dampak', 'risks.biaya', 'risks.probabilitas', 'risks.impact','risks.levelRisk')->where('sewa_lahans.id_sewa',$request->id_sewa)->orwhere('pengguna.id_pengguna',Auth::user()->pengguna->id_pengguna)->paginate(3);
             $risk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
             $risk3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $request->id_sewa");
             return view('kelola_risk',compact('risk','risk2','risk3'));
@@ -934,13 +947,17 @@ class LahanController extends Controller
                 'updated_at'    => date("Y-m-d H:i:s")
             ]);
                 
-                $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+                // $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+
+                $manual= DB::table('manual_books')->join('category_lahans','manual_books.id_categoryLahan','=','category_lahans.id')->select('category_lahans.nama', 'manual_books.gambar', 'manual_books.jenis_lahan', 'manual_books.id_categoryLahan', 'manual_books.deskripsi', 'manual_books.sumber', 'manual_books.id_manual')->paginate(2);
                 return view('kelola_manual', compact('manual'));
             }
     
             public function manualBook(){
             
-                $manual = DB::select("SELECT c.nama, m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+                // $manual = DB::select("SELECT c.nama, m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+
+                $manual= DB::table('manual_books')->join('category_lahans','manual_books.id_categoryLahan','=','category_lahans.id')->select('category_lahans.nama', 'manual_books.gambar', 'manual_books.jenis_lahan', 'manual_books.id_categoryLahan', 'manual_books.deskripsi', 'manual_books.sumber', 'manual_books.id_manual')->paginate(2);
                 return view('kelola_manual', compact('manual'));
             }
             public function lihatManual($id){
@@ -970,12 +987,16 @@ class LahanController extends Controller
                     'updated_at'            => date("Y-m-d H:i:s")
                     
                 ]);
-                $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+                // $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+
+                $manual= DB::table('manual_books')->join('category_lahans','manual_books.id_categoryLahan','=','category_lahans.id')->select('category_lahans.nama', 'manual_books.gambar', 'manual_books.jenis_lahan', 'manual_books.id_categoryLahan', 'manual_books.deskripsi', 'manual_books.sumber', 'manual_books.id_manual')->paginate(2);
                 return view('kelola_manual', compact('manual'));
             }
             public function hapusManual($id){
                 DB::table('manual_books')->where('id_manual',$id)->delete();
-                $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+                // $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+
+                $manual= DB::table('manual_books')->join('category_lahans','manual_books.id_categoryLahan','=','category_lahans.id')->select('category_lahans.nama', 'manual_books.gambar', 'manual_books.jenis_lahan', 'manual_books.id_categoryLahan', 'manual_books.deskripsi', 'manual_books.sumber', 'manual_books.id_manual')->paginate(2);
                 return view('kelola_manual', compact('manual'));
             }
 

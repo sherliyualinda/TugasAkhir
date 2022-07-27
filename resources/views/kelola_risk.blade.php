@@ -82,18 +82,18 @@
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($risk as $index=>$risk)
+                            @foreach($risk as $index=>$risks)
                                 <tr>
                                     <td>{{ $index+1}}</td>
-                                    <td>{{ $risk->penyebab}}</td>
-                                    <td>{{ $risk->dampak}}</td>
-                                    <td>{{ $risk->strategi}}</td>
-                                    <td>{{ $risk->biaya}}</td>
-                                    <td>{{ $risk->ket}}</td>
-                                    <td>{{ $risk->ket_impact}}</td>
-                                    <td>{{ $risk->levelRisk}}</td>
+                                    <td>{{ $risks->penyebab}}</td>
+                                    <td>{{ $risks->dampak}}</td>
+                                    <td>{{ $risks->strategi}}</td>
+                                    <td>{{ $risks->biaya}}</td>
+                                    <td>{{ $risks->ket}}</td>
+                                    <td>{{ $risks->ket_impact}}</td>
+                                    <td>{{ $risks->levelRisk}}</td>
                                     <td>
-                                        <a href="/lahan/ubah_risk/{{$risk->id_risk}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                        <a href="/lahan/ubah_risk/{{$risks->id_risk}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                     </td>
 
                                 </tr>
@@ -101,7 +101,15 @@
                               @endforeach   
                             </tbody>
                           </table>  
-                       
+                          <div>
+                            Showing {{ $risk->firstItem() }}
+                            to {{ $risk->lastItem() }}
+                            of {{ $risk->total() }}
+                            entries
+                        </div>
+                        <div class="pull-right">
+                            {{ $risk->links("pagination::bootstrap-4") }}
+                        </div>
                     </div>
                 </div>
             </div>

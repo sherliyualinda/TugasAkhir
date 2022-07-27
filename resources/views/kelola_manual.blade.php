@@ -49,26 +49,26 @@
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($manual as $index=>$manual)
+                            @foreach($manual as $index=>$manuals)
                                 <tr>
                                     <td>{{ $index+1}}</td>
-                                    <td>{{ $manual->nama}}</td>
-                                    <td><img src="{{ url('gambar_manual') }}/{{ $manual->gambar }} "width="50" height="50"></td>
-                                    <td>{{ $manual->jenis_lahan}}</td>
+                                    <td>{{ $manuals->nama}}</td>
+                                    <td><img src="{{ url('gambar_manual') }}/{{ $manuals->gambar }} "width="50" height="50"></td>
+                                    <td>{{ $manuals->jenis_lahan}}</td>
                                     <td>
                                       <div id="myDIV">
                                         <div class="ex1">
-                                            {!! $manual->deskripsi!!}
+                                            {!! $manuals->deskripsi!!}
                                         </div>
                                       </div>
                                     </td>
-                                    <td class="td">{{ $manual->sumber}}</td>
+                                    <td class="td">{{ $manuals->sumber}}</td>
                                     <td>
-                                        <a href="/lahan/lihat_manual/{{$manual->id_manual}}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
-                                        <a href="/lahan/ubah_manual/{{$manual->id_manual}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-                                        <!-- <a href="/lahan/hapus_manual/{{$manual->id_manual}}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda Yakin Untuk Menghapus ?')">Hapus</a> -->
+                                        <a href="/lahan/lihat_manual/{{$manuals->id_manual}}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
+                                        <a href="/lahan/ubah_manual/{{$manuals->id_manual}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                                        <!-- <a href="/lahan/hapus_manual/{{$manuals->id_manual}}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda Yakin Untuk Menghapus ?')">Hapus</a> -->
                                         
-                                        <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$manual->id_manual}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
+                                        <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$manuals->id_manual}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
                                         </button>
                                     </td>
 
@@ -76,7 +76,16 @@
                         
                               @endforeach   
                             </tbody>
-                          </table>  
+                          </table> 
+                          <div>
+                            Showing {{ $manual->firstItem() }}
+                            to {{ $manual->lastItem() }}
+                            of {{ $manual->total() }}
+                            entries
+                        </div>
+                        <div class="pull-right">
+                            {{ $manual->links("pagination::bootstrap-4") }}
+                        </div> 
                           </div>
                     </div>
                 </div>
