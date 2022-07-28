@@ -89,7 +89,7 @@ class PeralatanController extends BaseController
     public function updateperalatan(Request $request){
         $file = $request->file('gambar');
         // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'gambar_lahan';
+        $tujuan_upload = 'gambar_peralatan';
         $file->move($tujuan_upload,$file->getClientOriginalName());
         
         $peralatan = Peralatan::where('id_peralatan', $request->id_peralatan)->update([

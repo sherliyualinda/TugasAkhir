@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use mysqli;
 use Carbon\Carbon;
+use Mockery\Matcher\Any;
 
 class LahanController extends Controller
 {
@@ -331,7 +332,13 @@ class LahanController extends Controller
         $_SESSION['id_lahan'] = $id;
         $sewa = DB::select("SELECT username,nama,alamat,s.id_sewa,s.id_lahan, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
 
-        // $sewa= DB::table('pengguna')->join('sewa_lahans','pengguna.id_pengguna','=','sewa_lahans.id_penyewa')->select('username','nama','alamat','sewa_lahans.id_sewa','sewa_lahans.id_lahan', 'nik', 'foto_ktp', 'id_penyewa', 'sewa_lahans.status', 'sewa_lahans.progres')->where('id_pengguna',any(DB:table('')))->paginate(3);
+        // $sewa= DB::table('pengguna')->join('sewa_lahanssa','pengguna.id_pengguna','=','sewa_lahans.id_penyewa')->select('username','nama','alamat','sewa_lahans.id_sewa','sewa_lahans.id_lahan', 'nik', 'foto_ktp', 'id_penyewa', 'sewa_lahans.status', 'sewa_lahans.progres')->where('id_pengguna',"ANY",function($query){
+        //     $query->select('sewa_lahans.id_penyewa')->from('lahans')->join('sewa_lahans','lahans.id','=','sewa_lahans.id_lahan');
+        // })->where('sewa_lahans.id_lahan',$id)->paginate(3);
+
+
+        // $sewa= DB::table('pengguna')->join('sewa_lahans','pengguna.id_pengguna','=','sewa_lahans.id_penyewa')->select('username','nama','alamat','sewa_lahans.id_sewa','sewa_lahans.id_lahan', 'nik', 'foto_ktp', 'id_penyewa', 'sewa_lahans.status', 'sewa_lahans.progres')->where('id_pengguna','any(SELECT sewa_lahans.id_penyewa FROM lahans join sewa_lahans on lahans.id = sewa_lahans.id_lahan)') ->paginate(3);
+        
         return view('request', compact('sewa'));
 
     }
@@ -744,7 +751,9 @@ class LahanController extends Controller
         public function Kelola_resource($id){
             session_start();
             $_SESSION['id_lahan'] = $id;
-            $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $id ORDER BY r.keterangan;");
+            // $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $id ORDER BY r.keterangan;");
+
+            $resource= DB::table('lahan_resources')->join('lahans','lahan_resources.id_lahan','=','lahans.id')->join('resources','lahan_resources.id_resources','=','resources.id_resources')->select('lahan_resources.id_lahan_resources', 'lahan_resources.resource', 'lahan_resources.keterangan', 'lahan_resources.id_resources', 'lahans.id', 'resources.keterangan as role')->where('lahans.id',$id)->orderby('resources.keterangan')->paginate(3);
             
             return view('kelola_resource', compact('resource'));
         }
@@ -869,7 +878,9 @@ class LahanController extends Controller
                                 'keterangan' => $request->keterangan,
                                 'updated_at' => date("Y-m-d H:i:s"),
                             ]);
-                            $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $request->id_lahan ORDER BY r.keterangan;");
+                            // $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $request->id_lahan ORDER BY r.keterangan;");
+
+                            $resource= DB::table('lahan_resources')->join('lahans','lahan_resources.id_lahan','=','lahans.id')->join('resources','lahan_resources.id_resources','=','resources.id_resources')->select('lahan_resources.id_lahan_resources', 'lahan_resources.resource', 'lahan_resources.keterangan', 'lahan_resources.id_resources', 'lahans.id', 'resources.keterangan as role')->where('lahans.id',$request->id_lahan)->orderby('resources.keterangan')->paginate(3);
                             return view('kelola_resource', compact('resource'));
                            
                         }

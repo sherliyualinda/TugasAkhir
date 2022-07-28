@@ -409,7 +409,7 @@ nav .right a{
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-md  navbar-dark">
+<nav class="navbar navbar-expand-md  navbar-dark" id="navbar_top">
     <!-- Brand -->
     <a class="navbar-brand" href="index.html">
         <img src="/Diessnie-logo.png" alt="logo" style="width:60px;">
@@ -422,53 +422,53 @@ nav .right a{
     <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="#aplikasi"> About Application</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="#team">About Us</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="{{url('/login')}}" target="_blank">Login</a>
             </li>
         </ul>
     </div>
 </nav>
-<div class="jumbotron1">
-<div class="container">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" height="500"  src="/ssawah.jpg" alt="First slide">
-                     
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" height="500" src="/sawit.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" height="500" src="/sapi.png" alt="Third slide">
-                </div>
+
+<!-- Jumbotron -->
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/ssawah.jpg"  class="d-block w-100" height="500" alt="Bunga Matahari">
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <div class="nav-icon">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </div>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <div class="nav-icon">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </div>
-            </a>
+            <div class="carousel-item">
+                <img src="/sawit.jpg" class="d-block w-100" height="500" alt="Kapal Berlayar">
+            </div>
+            <div class="carousel-item">
+                <img src="/sapi.png" class="d-block w-100" height="500" alt="Danau">
+            </div>
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-</div>
+    <br>
+    <br>
+    <br>
+
+
+
 
 <!-- tentang aplikasi -->
 <div class="container" id="aplikasi">
@@ -479,7 +479,7 @@ nav .right a{
     <div class="row">
         <div class="col-sm-3">
             <div class="thumbnail">
-                <a href="artikel.html"><img src="/ssawah.jpg" width="100%" alt="Cinque Terre"></a>
+                <a href="artikel.html"><img src="/F.png" width="100%" alt="Cinque Terre"></a>
                 <div class="caption">
                 <center><h3><a href="artikel.html" style="text-decoration:none;color: black ;">Desa Feed</a> </h3></center>
                     <p align='justify'>Merupakan fitur yang dapat digunakan untuk saling berkomunikasi antara satu dengan yang lain seperti halnya sosial media desa</p>
@@ -489,7 +489,7 @@ nav .right a{
         </div>
         <div class="col-sm-3">
             <div class="thumbnail">
-                <a href="artikel.html"><img src="/ssawah.jpg" width="100%" alt="Cinque Terre"></a>
+                <a href="artikel.html"><img src="/M.png" width="100%" alt="Cinque Terre"></a>
                 <div class="caption">
                     <center><h3><a href="artikel.html" style="text-decoration:none;color: black ;">Desa Store</a> </h3></center>
                     <p align='justify'>Merupakan fitur yang digunakan untuk menjual barang/hasil dari UMKM desa</p>
@@ -499,9 +499,9 @@ nav .right a{
         </div>
         <div class="col-sm-3">
             <div class="thumbnail">
-                <a href="artikel.html"><img src="/ssawah.jpg" width="100%" alt="Cinque Terre"></a>
+                <a href="artikel.html"><img src="/L.png" width="100%" alt="Cinque Terre"></a>
                 <div class="caption">
-                <center><h3><a href="artikel.html" style="text-decoration:none;color: black ;">Desa Tour</a> </h3></center>
+                <center><h3><a href="artikel.html" style="text-decoration:none;color: black ;">Desa Lahanz</a> </h3></center>
                     <p align='justify'>Merupakan fitur yang digunakan untuk penanaman modal dari orang kota ke pertanian, perkebunan, perikanan yang dijalankan di desa</p>
                     
                 </div>
@@ -509,7 +509,7 @@ nav .right a{
         </div>
         <div class="col-sm-3">
             <div class="thumbnail">
-                <a href="artikel.html"><img src="/ssawah.jpg"  width="100%" alt="Cinque Terre"></a>
+                <a href="artikel.html"><img src="/Y.png"  width="100%" alt="Cinque Terre"></a>
                 <div class="caption">
                 <center><h3><a href="artikel.html" style="text-decoration:none;color: black ;">Desa Tube</a> </h3></center>
                     <p align='justify'>Merupakan fitur yang digunakan untuk mengunggah video-video yang dihasilkan</p>
@@ -645,8 +645,8 @@ nav .right a{
                     <p class="card-text">Full Stack Developer</p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Email : </li>
-                    <li class="list-group-item">IG :</li>
+                    <li class="list-group-item">Email : <br>gifariabi9@gmail.com</li>
+                    <li class="list-group-item">IG : @gifarfr</li>
                     
                   </ul>
                 </div>
@@ -664,3 +664,19 @@ nav .right a{
 
 </body>
 </html>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        document.getElementById('navbar_top').classList.add('fixed-top');
+        // add padding top to show content behind navbar
+        navbar_height = document.querySelector('.navbar').offsetHeight;
+        document.body.style.paddingTop = navbar_height + 'px';
+      } else {
+        document.getElementById('navbar_top').classList.remove('fixed-top');
+         // remove padding top from body
+        document.body.style.paddingTop = '0';
+      } 
+  });
+});
+</script>

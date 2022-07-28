@@ -28,17 +28,15 @@
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($resource as $index=>$resource)
+                            @foreach($resource as $index=>$resources)
                                 <tr>
                                     <td>{{ $index+1}}</td>
-                                    <td>{{ $resource->resource}}</td>
-                                    <td>{!! $resource->keterangan!!}</td>
-                                    <td>{{ $resource->role}}</td>
+                                    <td>{{ $resources->resource}}</td>
+                                    <td>{!! $resources->keterangan !!}</td>
+                                    <td>{{ $resources->role}}</td>
                                     <td class="text-center">
-                                            <a href="/lahan/ubah_sdm/{{$resource->id_lahan_resources}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-                                            <!-- <a href="/lahan/hapus_sdm/{{$resource->id_lahan_resources}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a> -->
-
-                                            <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$resource->id_lahan_resources}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
+                                            <a href="/lahan/ubah_sdm/{{$resources->id_lahan_resources}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                                            <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$resources->id_lahan_resources}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
                                         </button>
                                         </form>
                                     </td>
@@ -46,7 +44,15 @@
                               @endforeach   
                             </tbody>
                           </table>  
-                       
+                          <div>
+                            Showing {{ $resource->firstItem() }}
+                            to {{ $resource->lastItem() }}
+                            of {{ $resource->total() }}
+                            entries
+                        </div>
+                        <div class="pull-right">
+                            {{ $resource->links("pagination::bootstrap-4") }}
+                        </div>
                     </div>
                 </div>
             </div>
