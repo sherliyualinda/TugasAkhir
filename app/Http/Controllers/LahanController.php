@@ -1036,5 +1036,51 @@ class LahanController extends Controller
             public function halamanAwal(){
                 return view('halamanAwal');
             }
+
+            public function lihatPortofolio($id){
+                // Scurve
+                    $aktual = Task::where('id_sewa', $id)->with('children')->get();
+                    $boq_aktual = Task::where('id_sewa', $id)->with('children')->get();
+                    $boq_history = Task_histori::where('id_sewa', $id)->with('children')->get();
+                    $tanggalAll = [];
+                    $tanggal = [];
+                    $data_kegiatan = [];
+                    $total_aktual = [];
+                    foreach ($aktual as $key => $parent) {
+                    if ($parent->parent == 0) {
+                        $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+                        $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
+                        $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                        $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                    }
+                    }
+                    
+                    $total_history = [];
+                    $history = Task_histori::where('id_sewa', $id)->with('children')->get();
+                    foreach ($history as $key => $parent) {
+                        if ($parent->parent == 0) {
+                        $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+                        $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                        if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                            $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                        }
+                        }
+                    }
+
+                    usort($tanggalAll, function ($a, $b) {
+                        return strtotime($a) - strtotime($b);
+                    });
+
+                    $dataScurve = [
+                        'data_tanggal' => $tanggalAll,
+                        'total_aktual' => $total_aktual,
+                        'total_history' => $total_history,
+                        'data_kegiatan' => $data_kegiatan
+                    ];
+                    // scurve
+                    // dd($risk);
+                    return view('halPortofolio', compact('boq_aktual','boq_history','dataScurve'));
+                            return view('halPortofolio');
+                    }
     
 }

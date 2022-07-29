@@ -17,7 +17,7 @@ use App\Sewa_lahan;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/halamanAwal', 'LahanController@halamanAwal');
+Route::get('/', 'HalAwalController@halamanAwal');
 Route::get('/masuk', function(){
 	return view('auth/login');
 });
@@ -223,7 +223,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/sosial-media/marketplace', 'HomeController@marketplace');
 
     Route::get('/kamu', 'HomeController@kamu');
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/rank', 'HomeController@rank')->name('rank');
 
     Route::get('/categories', 'CategoryController@index')->name('categories');
@@ -307,7 +307,7 @@ Route::prefix('admin')
 ->namespace('Admin')
 ->middleware(['auth','admin'])
 ->group(function() {
-    Route::get('/', 'DashboardController@index')->name('admin-dashboard')->middleware('auth');
+    Route::get('/admin-dashboard', 'DashboardController@index')->name('admin-dashboard')->middleware('auth');
     Route::resource('category', 'CategoryController')->middleware('auth');
     Route::resource('user', 'UserController')->middleware('auth');
     Route::resource('admin-store-user', 'AdminStoreController')->middleware('auth');
@@ -318,12 +318,12 @@ Route::prefix('admin')
 });
 
 
-Route::get('/', 'DashboardController@index')->name('admin-store-dashboardd');
+Route::get('/admin-store-dashboardd', 'DashboardController@index')->name('admin-store-dashboardd');
 Route::prefix('adminstore')
 ->namespace('AdminStore')
 ->middleware(['auth','adminstore'])
 ->group(function() {
-    Route::get('/', 'DashboardController@index')->name('admin-store-dashboard')->middleware('auth');
+    Route::get('/admin-store-dashboard', 'DashboardController@index')->name('admin-store-dashboard')->middleware('auth');
     Route::resource('adminstore-category', 'CategoryController')->middleware('auth');
     Route::resource('adminstore-user', 'UserController')->middleware('auth');
     Route::get('/adminstore/user/tambahdata', 'UserController@create')->name('tambahdata')->middleware('auth');
@@ -426,6 +426,7 @@ Route::get('/lahan/createManual', 'LahanController@createManual')->name('create_
 Route::post('/lahan/simpan_manual', 'LahanController@simpan_manual')->name('simpan_manual')->middleware('auth');
 Route::get('/lahan/manualBook', 'LahanController@manualBook')->name('manualBook')->middleware('auth');
 Route::get('/lahan/lihat_manual/{id}',  'LahanController@lihatManual')->middleware('auth');
+Route::get('/lahan/lihat_portofolio/{id}',  'LahanController@lihatPortofolio')->middleware('auth');
 Route::get('/lahan/ubah_manual/{id}',  'LahanController@ubahManual')->middleware('auth');
 Route::post('/lahan/update_manual', 'LahanController@updateManual')->name('updateManual')->middleware('auth');
 Route::get('/lahan/hapus_manual/{id}', 'LahanController@hapusManual')->middleware('auth');
