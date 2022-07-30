@@ -139,7 +139,7 @@ class LahanController extends Controller
         $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 2 AND lr.id_lahan = $id");
         $sewa = DB::select("SELECT COUNT(id_lahan) as totSewa FROM sewa_lahans WHERE id_lahan = $id AND progres='Done'");
         $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 3 AND lr.id_lahan = $id");
-        $lahan4 = DB::select("SELECT l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE l.id = $id limit 1");
+        $lahan4 = DB::select("SELECT l.id, l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE l.id = $id limit 1");
         return view('detail_lahan',compact('lahan','orang','material','alat','lahan4','sewa'));  
     }
     public function projek_user(){
@@ -1037,11 +1037,16 @@ class LahanController extends Controller
                 return view('halamanAwal');
             }
 
-            public function lihatPortofolio($id){
+            public function pilihPorto($id){
+                $datas = DB::select("SELECT sw.id_sewa, sw.id_lahan, p.nama as pemilik,l.statusLahan,l.id_user, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id JOIN sewa_lahans sw ON l.id = sw.id_lahan WHERE l.id = $id");
+                return view('halPortofolio', compact('datas'));
+            }
+
+            public function lihatPortofolio(Request $request){
                 // Scurve
-                    $aktual = Task::where('id_sewa', $id)->with('children')->get();
-                    $boq_aktual = Task::where('id_sewa', $id)->with('children')->get();
-                    $boq_history = Task_histori::where('id_sewa', $id)->with('children')->get();
+                    $aktual = Task::where('id_sewa', $request->id_sewa)->with('children')->get();
+                    $boq_aktual = Task::where('id_sewa', $request->id_sewa)->with('children')->get();
+                    $boq_history = Task_histori::where('id_sewa', $request->id_sewa)->with('children')->get();
                     $tanggalAll = [];
                     $tanggal = [];
                     $data_kegiatan = [];
@@ -1056,7 +1061,7 @@ class LahanController extends Controller
                     }
                     
                     $total_history = [];
-                    $history = Task_histori::where('id_sewa', $id)->with('children')->get();
+                    $history = Task_histori::where('id_sewa', $request->id_sewa)->with('children')->get();
                     foreach ($history as $key => $parent) {
                         if ($parent->parent == 0) {
                         $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
@@ -1077,10 +1082,8 @@ class LahanController extends Controller
                         'total_history' => $total_history,
                         'data_kegiatan' => $data_kegiatan
                     ];
-                    // scurve
-                    // dd($risk);
-                    return view('halPortofolio', compact('boq_aktual','boq_history','dataScurve'));
-                            return view('halPortofolio');
+                  
+                    return view('halPortofolioo', compact('boq_aktual','boq_history','dataScurve'));
                     }
     
 }

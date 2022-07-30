@@ -1,3 +1,4 @@
+@include('theme.nav_bar')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,12 +30,7 @@
 </head>
 <body id="bodies" style="overflow-y: auto;">
 <!--<div class="se-pre-con"></div>-->
-<div class="theme-layout">
-	
-	
-	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-		@include('theme.nav_bar')
-	</nav>
+<div>
 		@php
 				var_dump(auth()->user()->pengguna->jenis_akun)
 		@endphp

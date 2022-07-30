@@ -31,7 +31,7 @@
                     <!-- <strong>Deskripsi :</strong> {{ $lahan->deskripsi }} <br> -->
                     <hr>
                     <strong>Deskripsi : </strong> <br>
-                    {{ $lahan->deskripsi }} 
+                    {!! $lahan->deskripsi !!} 
                 </p>
                 <?php if ($lahan->statusLahan == "Ready"){ ?>
                     <a href="/lahan/ubahSewa/{{$lahan->id}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Sewa</a>

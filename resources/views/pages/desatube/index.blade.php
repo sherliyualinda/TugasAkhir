@@ -49,7 +49,7 @@ DesaTube
       <div class="row">
         <div class="col-2">
           <a href="{{ route('desatube.index') }}" class="dropdown-item">
-            <img src="/desatube-logo.png" style="min-width: 150px;">
+            <img src="/TT.png" style="min-width: 150px;">
             <br>
             <small style="white-space: normal!important;">Konten video desa di DesaTube!</small>
           </a>

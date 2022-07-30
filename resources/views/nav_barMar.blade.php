@@ -42,6 +42,27 @@
 							</a>
 							@endif
 						</div>
+						<div class="col desa-col">
+						    @if(Auth::check())
+							<a href="{{ url('/lahan') }}" class="dropdown-item">
+							    <img src="/LL.png" style="width: 197px;">
+								<br>
+								<b style="color: #1F618D ;"><small style="white-space: normal!important;">Investasi di bidang pertanian, perikanan, perkebunan dan peternakan</small></b>
+							</a>
+                            <form id="login-form-tour" action="{{ url('/lahan') }}" method="POST" class="d-none">
+                                <input type="hidden" name="email" value="{{ auth()->user()->pengguna->email }}">
+                                <input type="hidden" name="id_desa" value="{{ auth()->user()->pengguna->village_id }}">
+                            </form>
+							@else
+							<a class="dropdown-item" target="_blank" href="https://desaku-desatour.masuk.id">
+								<img src="/LL.png" style="width: 197px;">
+								<br>
+								<b style="color: #1F618D ;"><small style="white-space: normal!important;">Investasi di bidang pertanian, perikanan, perkebunan dan peternakan</small></b>
+							</a>
+							@endif
+						</div>
+
+
 					</div>
 					<div class="row" style="margin-right: 0; margin-left: 0;">
 						<div class="col desa-col">
@@ -63,30 +84,7 @@
 							</a>
 							@endif
 						</div>
-					</div>
-					<div class="row" style="margin-right: 0; margin-left: 0;">
-						
-						<div class="col desa-col">
-						    @if(Auth::check())
-							<a href="{{ url('/lahan') }}" class="dropdown-item">
-							    <img src="/LL.png" style="width: 197px;">
-								<br>
-								<b style="color: #1F618D ;"><small style="white-space: normal!important;">Investasi di bidang pertanian, perikanan, perkebunan dan peternakan</small></b>
-							</a>
-                            <form id="login-form-tour" action="{{ url('/lahan') }}" method="POST" class="d-none">
-                                <input type="hidden" name="email" value="{{ auth()->user()->pengguna->email }}">
-                                <input type="hidden" name="id_desa" value="{{ auth()->user()->pengguna->village_id }}">
-                            </form>
-							@else
-							<a class="dropdown-item" target="_blank" href="https://desaku-desatour.masuk.id">
-								<img src="/LL.png" style="width: 197px;">
-								<br>
-								<b style="color: #1F618D ;"><small style="white-space: normal!important;">Investasi di bidang pertanian, perikanan, perkebunan dan peternakan</small></b>
-							</a>
-							@endif
-						</div>
-					</div>
-					<div class="row" style="margin-right: 0; margin-left: 0;">
+
 						<div class="col desa-col">
 						    @if(Auth::check())
 							<a href="{{ route('desatube.index') }}" class="dropdown-item">

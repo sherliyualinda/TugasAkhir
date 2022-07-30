@@ -9,7 +9,7 @@
             <a href="{{ url('lahan') }}" class="btn btn-secondary mb-3">< Kembali</a>
             @foreach ($lahan4 as $data4)
                 <a href="/lahan/halmanual/{{$data4->category_lahan_id}}" class="btn btn-info mb-3">Manual Book</a>
-                <a href="/lahan/lihat_portofolio/{{$data4->category_lahan_id}}" class="btn btn-info mb-3">Portofolio</a>
+                <a href="/lahan/lihat_portofolio/{{$data4->id}}" class="btn btn-info mb-3">Portofolio</a>
             @endforeach
             <div class="card mb-5">
                 <div class="card-body">
