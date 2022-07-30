@@ -34,7 +34,7 @@
                                     <tr>
                                         <td>Deskripsi</td>
                                         <td>:</td>
-                                        <td>{{$data->deskripsi}}</td>
+                                        <td>{!! $data->deskripsi !!}</td>
                                     </tr> 
                                     <tr>
                                         <td>Status</td>
