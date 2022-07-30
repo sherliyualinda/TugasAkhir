@@ -399,7 +399,7 @@ nav .right a{
 
 
 <head>
-    <title>Template Web Responsive dengan Bootstrap</title>
+    <title>Web Diessnie </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css2/bootstrap.min.css">
