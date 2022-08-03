@@ -54,7 +54,16 @@
     </nav>
 </div>
 
-<div id="gantt_here" style='width:100%; height:100%;'></div>
+
+
+  
+    <div id="gantt_here" style='width:100%; height:100%;'></div>
+
+
+
+
+
+
 <script type="text/javascript">
     gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
     gantt.config.order_branch = true;

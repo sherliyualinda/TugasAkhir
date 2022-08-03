@@ -430,6 +430,8 @@ Route::get('/lahan/lihat_manual/{id}',  'LahanController@lihatManual')->middlewa
 Route::post('/lahan/lihat_portofolioo',  'LahanController@lihatPortofolio')->name('porto')->middleware('auth');
 Route::get('/lahan/lihat_portofolio/{id}',  'LahanController@pilihPorto')->middleware('auth');
 
+Route::get('/lahan/kelolaReq/{id}',  'LahanController@kelolaReq')->middleware('auth');
+
 Route::get('/lahan/ubah_manual/{id}',  'LahanController@ubahManual')->middleware('auth');
 Route::post('/lahan/update_manual', 'LahanController@updateManual')->name('updateManual')->middleware('auth');
 Route::get('/lahan/hapus_manual/{id}', 'LahanController@hapusManual')->middleware('auth');

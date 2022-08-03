@@ -1085,5 +1085,75 @@ class LahanController extends Controller
                   
                     return view('halPortofolioo', compact('boq_aktual','boq_history','dataScurve'));
                     }
+
+            
+                    public function kelolaReq($id){
+                        session_start();
+                        $_SESSION['id_sewa'] = $id;
+                        $sewa =DB::select("SELECT l.gambar, l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status,sl.id_sewa,sl.id_lahan,sl.id_penyewa FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc' And id_sewa = $id AND id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+                
+                        $daily = DB::select("SELECT d.id_sewa,d.gambar,d.keterangan,d.date,d.updated_at,s.id_lahan, d.id_daily FROM dailies d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $id");
+                
+                        $struk = DB::select("SELECT d.keterangan,d.gambar,d.tanggal,d.updated_at,s.id_lahan, d.id_struk FROM struks d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $id");
+                
+                        $risk3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
+
+            
+                        $risk= DB::table('pengguna')->join('sewa_lahans','pengguna.id_pengguna','=','sewa_lahans.id_penyewa')->join('risks','risks.id_sewa','=','sewa_lahans.id_sewa')->join('probabilitas','risks.probabilitas','=','probabilitas.id_probabilitas')->join('impacts','risks.impact','=','impacts.id_impact')->select('nama','sewa_lahans.id_sewa','probabilitas.ket','impacts.ket_impact','risks.id_risk','sewa_lahans.id_lahan','nik', 'id_penyewa', 'risks.levelRisk', 'risks.penyebab', 'risks.strategi', 'risks.dampak', 'risks.biaya', 'risks.probabilitas', 'risks.impact','risks.levelRisk')->where('sewa_lahans.id_sewa',$id)->orwhere('pengguna.id_pengguna',Auth::user()->pengguna->id_pengguna)->paginate(1);
+                       
+                        $orang = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 1 AND sl.status ='Acc'");
+                        $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 2 AND sl.status ='Acc'");
+                        $alat = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans l JOIN sewa_lahans sl on sl.id_lahan = l.id WHERE lr.id_resources = 3 AND sl.status ='Acc'");
+                
+                        $task = Task::select('*')->orderBy('sortorder')->where('id_sewa', $id)->get();
+                
+                        $jadwal = Jadwal::select('*')->where('id_sewa', $id)->get();
+                        $jadwal2 = Jadwal::select('*')->where('id_sewa', $id)->get();
+                        $boq_aktual = Task::where('id_sewa', $id)->with('children')->get();
+                        $boq_history = Task_histori::where('id_sewa', $id)->with('children')->get();
+                
+                        // Scurve
+                        $aktual = Task::where('id_sewa', $id)->with('children')->get();
+                        $tanggalAll = [];
+                        $tanggal = [];
+                        $data_kegiatan = [];
+                        $total_aktual = [];
+                        foreach ($aktual as $key => $parent) {
+                           if ($parent->parent == 0) {
+                            $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+                            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
+                            $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                            $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                            
+                           }
+                        }
+                        
+                        $total_history = [];
+                        $history = Task_histori::where('id_sewa', $id)->with('children')->get();
+                        foreach ($history as $key => $parent) {
+                            if ($parent->parent == 0) {
+                             $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+                             $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                             if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                                $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                             }
+                           
+                            }
+                         }
+                
+                        usort($tanggalAll, function ($a, $b) {
+                            return strtotime($a) - strtotime($b);
+                        });
+                
+                        $dataScurve = [
+                            'data_tanggal' => $tanggalAll,
+                            'total_aktual' => $total_aktual,
+                            'total_history' => $total_history,
+                            'data_kegiatan' => $data_kegiatan
+                        ];
+                        // scurve
+                
+                        return view('kelolaReq',compact('task','sewa','jadwal2','orang','material','alat','risk','risk3','daily','struk','jadwal','boq_aktual','boq_history','dataScurve'));  
+                    }
     
 }

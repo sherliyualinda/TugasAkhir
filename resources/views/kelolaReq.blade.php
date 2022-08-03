@@ -2,7 +2,15 @@
 
 @section('title', 'Projek Saya')
 
-@section('content')   
+@section('content')  
+
+<link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-style.css') }}">
+    @yield('css') 
+
 <style type="text/css">
         html, body{
             height:100%;
@@ -16,31 +24,13 @@
 
     </style>
     <div class="row">
-        @foreach ($sewa as $data)
-        <div class="col-md-12">
-            <a href="{{ url('lahan/projek_user') }}" class="btn btn-secondary">< Kembali</a>
-            <a href="/lahan/dokumentasi/{{$data->id_sewa}}/{{$data->id_penyewa}}" target="_blank" class="btn btn-secondary"><i class="fa fa-eye"></i>Dokumentasi</a>
-        </div>
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="gambar">
-                            <img src="{{ url('gambar_lahan') }}/{{ $data->gambar }}" class="rounded mx-auto d-block" width="100%" alt="" > 
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class="row">
                         <div>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail"
-                                    aria-selected="false">Detail</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="sdm-tab" data-toggle="tab" href="#sdm" role="tab" aria-controls="sdm"
-                                    aria-selected="false">Sumber Daya</a>
-                                </li>
+                               
                                 <li class="nav-item">
                                     <a class="nav-link" id="gantt-tab" data-toggle="tab" href="#gantt" role="tab" aria-controls="gantt"
                                     aria-selected="false">Jadwal Kegiatan</a>
@@ -79,71 +69,7 @@
 
                             <div class="tab-content" id="myTabContent">
                                 
-                                    <div class="tab-pane fade in active show" id="detail" role="tabpanel" aria-labelledby="detail-tab">
-                                        <h3>{{ $data->nama }}</h3>
-                                        <table class="table">
-                                            <tbody>
-            
-                                                <tr>
-                                                    <td>Ukuran</td>
-                                                    <td>:</td>
-                                                    <td>{{$data->ukuran}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Deskripsi</td>
-                                                    <td>:</td>
-                                                    <td>{{$data->deskripsi}}</td>
-                                                </tr> 
-                                                <tr>
-                                                    <td>Status</td>
-                                                    <td>:</td>
-                                                    <td>{{$data->status}}</td>
-                                                </tr>
-                                            </tbody>
-                                            @endforeach
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane fade" id="sdm" role="tabpanel" aria-labelledby="sdm-tab">
-                                       
-                                        <table class="table table-bordered">
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Nama</th>
-                                </tr>
-                                @foreach($orang as $index=>$orang)
-                                    <tr>
-                                        <td>{{ $index+1}}</td>
-                                        <td>{{ $orang->resource}}</td>
-                                    </tr>
-                                    @endforeach
-                                </table>
-                                <b>Material Yang Digunakan</b>
-                                <table class="table table-bordered">
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Nama Material</th>
-                                </tr>
-                                @foreach($material as $index=>$material)
-                                    <tr>
-                                        <td>{{ $index+1}}</td>
-                                        <td>{{ $material->resource}}</td>
-                                    </tr>
-                                    @endforeach
-                                </table>
-                                <b> Alat Yang Digunakan</b>
-                                <table class="table table-bordered">
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Nama Alat</th>
-                                </tr>
-                                @foreach($alat as $index=>$alat)
-                                    <tr>
-                                        <td>{{ $index+1}}</td>
-                                        <td>{{ $alat->resource}}</td>
-                                    </tr>
-                                    @endforeach
-                                </table>
-                                    </div>
+                                   
                                     <div class="tab-pane fade" id="gantt" role="tabpanel" aria-labelledby="gantt-tab">
                                     <script src="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js"></script>
                                     <link href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css" rel="stylesheet">
@@ -167,34 +93,62 @@
                                     </div>
                                     <div class="tab-pane fade" id="risiko" role="tabpanel" aria-labelledby="risiko-tab">
                                        
-                                        <div>
-                                            <table class="table table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">No</th>                                
-                                                <th scope="col">Penyebab</th>
-                                                <th scope="col">Dampak</th>                               
-                                                <th scope="col">Strategi</th>                               
-                                                <th scope="col">Biaya</th>                               
-                                                <th scope="col">Level Risiko</th>                                                          
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                    @foreach($risk as $index=>$risk)
-                                        <tr>
-                                            <td>{{ $index+1}}</td>
-                                            <td>{{ $risk->penyebab}}</td>
-                                            <td>{{ $risk->dampak}}</td>
-                                            <td>{{ $risk->strategi}}</td>
-                                            <td>{{ $risk->biaya}}</td>
-                                            <td>{{ $risk->levelRisk}}</td>
                                     
-                                        </tr>
-                        
-                                                @endforeach   
-                                                </tbody>
+                                        @foreach($risk3 as $index=>$risk3)
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <a href="/lahan/createRisk/{{$risk3->id_sewa}}" class="btn btn-sm btn-info">Tambah Resiko</a>
+                                                    </td>
+                                                </tr>
+                                            
                                             </table>
-                                        </div>
+                                            @endforeach
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">No</th>                                
+                                                        <th scope="col">Penyebab</th>
+                                                        <th scope="col">Dampak</th>                               
+                                                        <th scope="col">Strategi</th>                               
+                                                        <th scope="col">Biaya</th>                               
+                                                        <th scope="col">Probabilitas</th>                               
+                                                        <th scope="col">Impact</th>                               
+                                                        <th scope="col">Level Risk</th>                               
+                                                        <th scope="col">Kelola</th>                               
+                                                        
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($risk as $index=>$risks)
+                                                        <tr>
+                                                            <td>{{ $index+1}}</td>
+                                                            <td>{{ $risks->penyebab}}</td>
+                                                            <td>{{ $risks->dampak}}</td>
+                                                            <td>{{ $risks->strategi}}</td>
+                                                            <td>{{ $risks->biaya}}</td>
+                                                            <td>{{ $risks->ket}}</td>
+                                                            <td>{{ $risks->ket_impact}}</td>
+                                                            <td>{{ $risks->levelRisk}}</td>
+                                                            <td>
+                                                                <a href="/lahan/ubah_risk/{{$risks->id_risk}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                                            </td>
+
+                                                        </tr>
+                                                
+                                                    @endforeach   
+                                                    </tbody>
+                                                </table>  
+                                                <div>
+                                                    Showing {{ $risk->firstItem() }}
+                                                    to {{ $risk->lastItem() }}
+                                                    of {{ $risk->total() }}
+                                                    entries
+                                                </div>
+                                                <div class="pull-right">
+                                                    {{ $risk->links("pagination::bootstrap-4") }}
+                                                </div>
+                                        
                                       
                                     </div>
                                     <div class="tab-pane fade" id="boq" role="tabpanel" aria-labelledby="boq-tab">
@@ -522,6 +476,14 @@
     dp.setTransactionMode("REST");
     
 </script>
+
+
+<script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> 
+    <script src="{{ asset('js/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    @yield('js')
 
 @endsection
 
