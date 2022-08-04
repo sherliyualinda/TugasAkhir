@@ -694,202 +694,203 @@ class LahanController extends Controller
 
            
             return view('kelola_daily', compact('daily','daily2','daily3'));
-        }
-
-    
-        public function daily($id){
-           
-                // $daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-                $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
-                $daily3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id ");
-
-                $daily= DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$id)->paginate(3);
-            return view('kelola_daily', compact('daily','daily2','daily3'));
-        }
-
-        public function ubahDaily($id){
-            //$daily = Daily::select('*')->where('id_daily',$id)->get();
-            $daily = DB::select("SELECT id_sewa, gambar, keterangan, date, updated_at, id_daily FROM dailies  where id_daily = $id");
-            return view('ubahDaily', compact('daily'));  
-        }
-    
-        public function updateDaily(Request $request){
-            $file = $request->file('gambar');
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'gambar_daily';
-            $file->move($tujuan_upload,$file->getClientOriginalName());
-                 
-            $daily = Daily::where('id_daily',$request->id_daily)->update([
-                'gambar' => $file->getClientOriginalName(),
-                'keterangan' => $request->keterangan,
-                'date' => $request->date,
-                'updated_at' => date("Y-m-d H:i:s")
-                
-            ]);
-            //$daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $request->id_sewa  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-            $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
-            $daily3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $request->id_sewa ");
-
-            $daily= DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$request->id_sewa)->paginate(3);
-            return view('kelola_daily',compact('daily','daily2','daily3'));
-        }
+    }
 
 
-        public function orang($id){
-            $sdm = Lahan::select('*')->where('id', $id)->get();
-            return view('orang',compact('sdm'));
-        }
-        public function material($id){
-            $sdm = Lahan::select('*')->where('id', $id)->get();
-            return view('material',compact('sdm'));
-        }
-        public function alat($id){
-            $sdm = Lahan::select('*')->where('id', $id)->get();
-            return view('alat',compact('sdm'));
-        }
-
-        public function Kelola_resource($id){
-            session_start();
-            $_SESSION['id_lahan'] = $id;
-            // $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $id ORDER BY r.keterangan;");
-
-            $resource= DB::table('lahan_resources')->join('lahans','lahan_resources.id_lahan','=','lahans.id')->join('resources','lahan_resources.id_resources','=','resources.id_resources')->select('lahan_resources.id_lahan_resources', 'lahan_resources.resource', 'lahan_resources.keterangan', 'lahan_resources.id_resources', 'lahans.id', 'resources.keterangan as role')->where('lahans.id',$id)->orderby('resources.keterangan')->paginate(3);
-            
-            return view('kelola_resource', compact('resource'));
-        }
-
-        public function simpan_material(Request $request, $id){   
-            DB::table('lahan_resources')->insert([
-                'resource'        => $request->resource,
-                'id_lahan'        => $request->id_lahan,
-                'keterangan'      => $request->keterangan,
-                'id_resources'    => 2,
-                'updated_at'      => date("Y-m-d H:i:s")
-            ]);
-            
-               
-                //return view('kelola_risk', compact('risk'));
-            }
+    public function daily($id){
         
-            public function simpan_orang(Request $request, $id){   
-                DB::table('lahan_resources')->insert([
-                    'resource'        => $request->resource,
-                    'id_lahan'        => $request->id_lahan,
-                    'keterangan'      => $request->keterangan,
-                    'id_resources'    => 1,
-                    'updated_at'      => date("Y-m-d H:i:s")
-                ]);
+            // $daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+            $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
+            $daily3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id ");
+
+            $daily= DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$id)->paginate(3);
+        return view('kelola_daily', compact('daily','daily2','daily3'));
+    }
+
+    public function ubahDaily($id){
+        //$daily = Daily::select('*')->where('id_daily',$id)->get();
+        $daily = DB::select("SELECT id_sewa, gambar, keterangan, date, updated_at, id_daily FROM dailies  where id_daily = $id");
+        return view('ubahDaily', compact('daily'));  
+    }
+
+    public function updateDaily(Request $request){
+        $file = $request->file('gambar');
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'gambar_daily';
+        $file->move($tujuan_upload,$file->getClientOriginalName());
                 
-                   
-                    //return view('kelola_risk', compact('risk'));
-                }
-                public function simpan_alat(Request $request, $id){   
-                    DB::table('lahan_resources')->insert([
-                        'resource'        => $request->resource,
-                        'id_lahan'        => $request->id_lahan,
-                        'keterangan'      => $request->keterangan,
-                        'id_resources'    => 3,
-                        'updated_at'      => date("Y-m-d H:i:s")
-                    ]);
-                    
-                       
-                        //return view('kelola_risk', compact('risk'));
-                    }     
-                    
-                    public function strukPembayaran($id){
-                        $sewa = Sewa_lahan::select('*')->where('id_sewa', $id)->get();
-                        return view('struk', compact('sewa'));
-                    }
+        $daily = Daily::where('id_daily',$request->id_daily)->update([
+            'gambar' => $file->getClientOriginalName(),
+            'keterangan' => $request->keterangan,
+            'date' => $request->date,
+            'updated_at' => date("Y-m-d H:i:s")
+            
+        ]);
+        //$daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $request->id_sewa  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
+        $daily3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $request->id_sewa ");
 
-                    public function simpan_struk(Request $request){      
-                        session_start();  
-                        $file = $request->file('gambar');
-                        $tujuan_upload = 'gambar_struk';
-                        $file->move($tujuan_upload,$file->getClientOriginalName());
+        $daily= DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$request->id_sewa)->paginate(3);
+        return view('kelola_daily',compact('daily','daily2','daily3'));
+    }
 
-                        DB::table('struks')->insert([
-                            'keterangan'        => $request->keterangan,
-                            'tanggal'           => $request->tanggal,
-                            'id_sewa'           => $request->id_sewa,
-                            'gambar'            => $file->getClientOriginalName(),
-                            'updated_at'        => date("Y-m-d H:i:s")
-                        ]);
-                       
-                        //$struk = Struk::select('*')->where('id_sewa', $request->id_sewa )->get();
-                        $struk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
 
-                        $struk= DB::table('struks')->join('sewa_lahans','struks.id_sewa','=','sewa_lahans.id_sewa')->select('id_struk','keterangan','gambar','tanggal','struks.updated_at','struks.id_sewa')->where('struks.id_sewa',$request->id_sewa)->paginate(3);
-                        
-                        return view('Kelola_struk', compact('struk','struk2'));
-                           
-                            //return view('kelola_risk', compact('risk'));
-                        }
-                    public function kelolaStruk($id){
-                        session_start();
-                        $_SESSION['id_sewa']=$id;
-                           // $struk = Struk::select('*')->where('id_sewa', $id)->get();
-                            $struk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
+    public function orang($id){
+        $sdm = Lahan::select('*')->where('id', $id)->get();
+        return view('orang',compact('sdm'));
+    }
+    public function material($id){
+        $sdm = Lahan::select('*')->where('id', $id)->get();
+        return view('material',compact('sdm'));
+    }
+    public function alat($id){
+        $sdm = Lahan::select('*')->where('id', $id)->get();
+        return view('alat',compact('sdm'));
+    }
 
-                            $struk= DB::table('struks')->join('sewa_lahans','struks.id_sewa','=','sewa_lahans.id_sewa')->select('id_struk','keterangan','gambar','tanggal','struks.updated_at','struks.id_sewa')->where('struks.id_sewa',$id)->paginate(3);
-                            return view('Kelola_struk', compact('struk','struk2'));
-                        }
-                        public function ubahStruk($id){
-                            $struk = Struk::select('*')->where('id_struk',$id)->get();
-                            return view('ubahStruk', compact('struk'));  
-                        }
-                    
-                        public function updateStruk(Request $request){
-                       
-                            $file = $request->file('gambar');
-                            // isi dengan nama folder tempat kemana file diupload
-                            $tujuan_upload = 'gambar_struk';
-                            $file->move($tujuan_upload,$file->getClientOriginalName());
-                            
-                            $struk = Struk::where('id_struk',$request->id_struk)->update([
-                                'keterangan' => $request->keterangan,
-                                'tanggal' => $request->tanggal,
-                                'updated_at' => date("Y-m-d H:i:s"),
-                                'gambar' => $file->getClientOriginalName()
-                            ]);
-                                                        
-                            return redirect()->route('kelolaStruk',$request->id_sewa);
-                        }
-                        public function hapusStruk($id){
-                            session_start();
-                            DB::table('struks')->where('id_struk',$id)->delete();
-                            return redirect()->route('kelolaStruk',$_SESSION['id_sewa']);
-                        }
+    public function Kelola_resource($id){
+        session_start();
+        $_SESSION['id_lahan'] = $id;
+        // $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $id ORDER BY r.keterangan;");
 
-                        public function simpan_history($id){   
+        $resource= DB::table('lahan_resources')->join('lahans','lahan_resources.id_lahan','=','lahans.id')->join('resources','lahan_resources.id_resources','=','resources.id_resources')->select('lahan_resources.id_lahan_resources', 'lahan_resources.resource', 'lahan_resources.keterangan', 'lahan_resources.id_resources', 'lahans.id', 'resources.keterangan as role')->where('lahans.id',$id)->orderby('resources.keterangan')->paginate(3);
+        
+        return view('kelola_resource', compact('resource'));
+    }
 
-                            DB::insert("Insert Into task_historis(id_task, text, duration, progress, start_date, parent, sortorder, created_at, updated_at, id_sewa, qty, satuan, harga, totalHarga) SELECT id, text, duration, progress, start_date, parent, sortorder, created_at, updated_at, id_sewa, qty, satuan, harga, totalHarga From tasks WHERE id_sewa = $id");
-                            return redirect()->back();
-                        }
+    public function simpan_material(Request $request, $id){   
+        DB::table('lahan_resources')->insert([
+            'resource'        => $request->resource,
+            'id_lahan'        => $request->id_lahan,
+            'keterangan'      => $request->keterangan,
+            'id_resources'    => 2,
+            'updated_at'      => date("Y-m-d H:i:s")
+        ]);
+        
+            
+            //return view('kelola_risk', compact('risk'));
+    }
 
-                        public function ubahSDM($id){
-                            $resource = Lahan_resources::select('*')->where('id_lahan_resources',$id)->get();
-                            return view('ubahSDM', compact('resource'));  
-                        }
-                    
-                        public function updateSDM(Request $request){
-                            
-                            $resource = Lahan_resources::where('id_lahan_resources',$request->id_lahan_resources)->update([
-                                'resource' => $request->resource,
-                                'keterangan' => $request->keterangan,
-                                'updated_at' => date("Y-m-d H:i:s"),
-                            ]);
-                            // $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $request->id_lahan ORDER BY r.keterangan;");
+    public function simpan_orang(Request $request, $id){   
+        DB::table('lahan_resources')->insert([
+            'resource'        => $request->resource,
+            'id_lahan'        => $request->id_lahan,
+            'keterangan'      => $request->keterangan,
+            'id_resources'    => 1,
+            'updated_at'      => date("Y-m-d H:i:s")
+        ]);
+        
+            
+            //return view('kelola_risk', compact('risk'));
+    }
+    public function simpan_alat(Request $request, $id){   
+        DB::table('lahan_resources')->insert([
+            'resource'        => $request->resource,
+            'id_lahan'        => $request->id_lahan,
+            'keterangan'      => $request->keterangan,
+            'id_resources'    => 3,
+            'updated_at'      => date("Y-m-d H:i:s")
+        ]);
+        
+            
+            //return view('kelola_risk', compact('risk'));
+    }     
+    
+    public function strukPembayaran($id){
+        $sewa = Sewa_lahan::select('*')->where('id_sewa', $id)->get();
+        return view('struk', compact('sewa'));
+    }
 
-                            $resource= DB::table('lahan_resources')->join('lahans','lahan_resources.id_lahan','=','lahans.id')->join('resources','lahan_resources.id_resources','=','resources.id_resources')->select('lahan_resources.id_lahan_resources', 'lahan_resources.resource', 'lahan_resources.keterangan', 'lahan_resources.id_resources', 'lahans.id', 'resources.keterangan as role')->where('lahans.id',$request->id_lahan)->orderby('resources.keterangan')->paginate(3);
-                            return view('kelola_resource', compact('resource'));
-                           
-                        }
-                        public function hapusSDM($id){
-                            session_start();
-                            DB::table('lahan_resources')->where('id_lahan_resources',$id)->delete();
-                            $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = '".$_SESSION['id_lahan']."' Order by r.keterangan");
-                            return view('kelola_resource', compact('resource'));
-                        }
+    public function simpan_struk(Request $request){      
+        session_start();  
+        $file = $request->file('gambar');
+        $tujuan_upload = 'gambar_struk';
+        $file->move($tujuan_upload,$file->getClientOriginalName());
+
+        DB::table('struks')->insert([
+            'keterangan'        => $request->keterangan,
+            'tanggal'           => $request->tanggal,
+            'id_sewa'           => $request->id_sewa,
+            'gambar'            => $file->getClientOriginalName(),
+            'updated_at'        => date("Y-m-d H:i:s")
+        ]);
+        
+        //$struk = Struk::select('*')->where('id_sewa', $request->id_sewa )->get();
+        $struk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
+
+        $struk= DB::table('struks')->join('sewa_lahans','struks.id_sewa','=','sewa_lahans.id_sewa')->select('id_struk','keterangan','gambar','tanggal','struks.updated_at','struks.id_sewa')->where('struks.id_sewa',$request->id_sewa)->paginate(3);
+        
+        return view('Kelola_struk', compact('struk','struk2'));
+            
+            //return view('kelola_risk', compact('risk'));
+        }
+    public function kelolaStruk($id){
+        session_start();
+        $_SESSION['id_sewa']=$id;
+            // $struk = Struk::select('*')->where('id_sewa', $id)->get();
+            $struk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
+
+            $struk= DB::table('struks')->join('sewa_lahans','struks.id_sewa','=','sewa_lahans.id_sewa')->select('id_struk','keterangan','gambar','tanggal','struks.updated_at','struks.id_sewa')->where('struks.id_sewa',$id)->paginate(3);
+            return view('Kelola_struk', compact('struk','struk2'));
+    }
+    public function ubahStruk($id){
+        $struk = Struk::select('*')->where('id_struk',$id)->get();
+        return view('ubahStruk', compact('struk'));  
+    }
+
+    public function updateStruk(Request $request){
+    
+        $file = $request->file('gambar');
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'gambar_struk';
+        $file->move($tujuan_upload,$file->getClientOriginalName());
+        
+        $struk = Struk::where('id_struk',$request->id_struk)->update([
+            'keterangan' => $request->keterangan,
+            'tanggal' => $request->tanggal,
+            'updated_at' => date("Y-m-d H:i:s"),
+            'gambar' => $file->getClientOriginalName()
+        ]);
+                                    
+        return redirect()->route('kelolaStruk',$request->id_sewa);
+    }
+    public function hapusStruk($id){
+        session_start();
+        DB::table('struks')->where('id_struk',$id)->delete();
+        return redirect()->route('kelolaStruk',$_SESSION['id_sewa']);
+    }
+
+    public function simpan_history($id){   
+
+        DB::insert("Insert Into task_historis(id_task, text, duration, progress, start_date, parent, sortorder, created_at, updated_at, id_sewa, qty, satuan, harga, totalHarga) SELECT id, text, duration, progress, start_date, parent, sortorder, created_at, updated_at, id_sewa, qty, satuan, harga, totalHarga From tasks WHERE id_sewa = $id");
+        Task::where("id_sewa", $id)->update(['harga' => 0, 'totalHarga' => 0, 'qty' => 0]);
+        return redirect()->back();
+    }
+
+    public function ubahSDM($id){
+        $resource = Lahan_resources::select('*')->where('id_lahan_resources',$id)->get();
+        return view('ubahSDM', compact('resource'));  
+    }
+
+    public function updateSDM(Request $request){
+        
+        $resource = Lahan_resources::where('id_lahan_resources',$request->id_lahan_resources)->update([
+            'resource' => $request->resource,
+            'keterangan' => $request->keterangan,
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+        // $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $request->id_lahan ORDER BY r.keterangan;");
+
+        $resource= DB::table('lahan_resources')->join('lahans','lahan_resources.id_lahan','=','lahans.id')->join('resources','lahan_resources.id_resources','=','resources.id_resources')->select('lahan_resources.id_lahan_resources', 'lahan_resources.resource', 'lahan_resources.keterangan', 'lahan_resources.id_resources', 'lahans.id', 'resources.keterangan as role')->where('lahans.id',$request->id_lahan)->orderby('resources.keterangan')->paginate(3);
+        return view('kelola_resource', compact('resource'));
+        
+    }
+    public function hapusSDM($id){
+        session_start();
+        DB::table('lahan_resources')->where('id_lahan_resources',$id)->delete();
+        $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = '".$_SESSION['id_lahan']."' Order by r.keterangan");
+        return view('kelola_resource', compact('resource'));
+    }
 
     public function kelola_jadwal($id){
         // $jadwal = Jadwal::select('*')->where('id_sewa', $id)->get();
