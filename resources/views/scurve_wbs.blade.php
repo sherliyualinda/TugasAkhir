@@ -74,9 +74,11 @@
             for (const key in total_aktual) {
                 if (Object.hasOwnProperty.call(total_aktual, key)) {
                     const data = total_aktual[key];
-                    const chart_data = data + tempArrFirst;
-                    tempArrFirst = chart_data;
-                    arrFirst.push(chart_data)
+                    if (data != 0) {   
+                        const chart_data = data + tempArrFirst;
+                        tempArrFirst = chart_data;
+                        arrFirst.push(chart_data)
+                    }
                 }
             }
             
@@ -98,8 +100,6 @@
                     arrSecond.push(chart_data)
                 }
             }
-            console.log(arrFirst);
-            console.log(arrSecond);
         var dataSecond = {
             label: "Histori",
             data: arrSecond,
