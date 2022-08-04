@@ -460,15 +460,8 @@ class LahanController extends Controller
             'totalHarga' => $total,
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-       // $wbs = DB::select("SELECT w.harga, w.qty, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
-        //$wbs = DB::select("SELECT a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN lahans l on a.id_lahan =l.id WHERE a.id_lahan = '".$_SESSION['id_lahan']."' AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc");
-        
-        $wbs = DB::select("SELECT a.id_sewa, a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa =  '".$_SESSION['id_sewa']."' AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc;");
 
-        $wbs2 = Task::select('*')->where('id_sewa', $request->id_sewa)->limit(1)->get();
-
-       return view('create_wbs', compact('wbs','wbs2'));
-       
+       return redirect()->route('wbs', $_SESSION['id_sewa']);
     }
 
     public function update_wbs($id){

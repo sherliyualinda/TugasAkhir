@@ -389,7 +389,7 @@ Route::get('/lahan/ubah_risk/{id}',  'LahanController@ubahRisk')->middleware('au
 Route::post('/lahan/update_risk', 'LahanController@updateRisk')->name('updateRisk')->middleware('auth');
 
 Route::get('/wbs/{id}', 'LahanController@wbs')->name('wbs')->middleware('auth');
-Route::get('/wbs_user/{id}', 'LahanController@wbs_user')->name('wbs')->middleware('auth');
+Route::get('/wbs_user/{id}', 'LahanController@wbs_user')->name('wbs-user')->middleware('auth');
 Route::get('/s-curve/wbs/{id}', 'LahanController@scurve')->name('scurve')->middleware('auth');
 Route::get('/wbs/boq/{id}', 'LahanController@boq_wbs')->name('boq-wbs')->middleware('auth');
 
