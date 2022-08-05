@@ -332,6 +332,8 @@ class LahanController extends Controller
         $_SESSION['id_lahan'] = $id;
         $sewa = DB::select("SELECT username,nama,alamat,s.id_sewa,s.id_lahan, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
 
+        $gambarnya = DB::select("SELECT gambar, deskripsi, ukuran from lahans Join sewa_lahans on lahans.id = sewa_lahans.id_lahan where sewa_lahans.id_lahan = $id limit 1");
+
         // $sewa= DB::table('pengguna')->join('sewa_lahanssa','pengguna.id_pengguna','=','sewa_lahans.id_penyewa')->select('username','nama','alamat','sewa_lahans.id_sewa','sewa_lahans.id_lahan', 'nik', 'foto_ktp', 'id_penyewa', 'sewa_lahans.status', 'sewa_lahans.progres')->where('id_pengguna',"ANY",function($query){
         //     $query->select('sewa_lahans.id_penyewa')->from('lahans')->join('sewa_lahans','lahans.id','=','sewa_lahans.id_lahan');
         // })->where('sewa_lahans.id_lahan',$id)->paginate(3);
@@ -339,7 +341,7 @@ class LahanController extends Controller
 
         // $sewa= DB::table('pengguna')->join('sewa_lahans','pengguna.id_pengguna','=','sewa_lahans.id_penyewa')->select('username','nama','alamat','sewa_lahans.id_sewa','sewa_lahans.id_lahan', 'nik', 'foto_ktp', 'id_penyewa', 'sewa_lahans.status', 'sewa_lahans.progres')->where('id_pengguna','any(SELECT sewa_lahans.id_penyewa FROM lahans join sewa_lahans on lahans.id = sewa_lahans.id_lahan)') ->paginate(3);
         
-        return view('request', compact('sewa'));
+        return view('request', compact('sewa','gambarnya'));
 
     }
 
@@ -559,7 +561,8 @@ class LahanController extends Controller
     //     ]);
     //     return view('wbs', compact('wbs'));
         
-    // }
+    ///
+
     public function createRisk($id){
 
         $risk = Sewa_lahan::select('*')->where('id_sewa', $id)->get();

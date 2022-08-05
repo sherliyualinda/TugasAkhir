@@ -7,13 +7,47 @@
     <title>Halaman S-Curve WBS</title>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+     <!-- Core theme CSS (includes Bootstrap)-->
+     <link href="css3/styles.css" rel="stylesheet" />
+
+
 </head>
+
+<style>
+
+    .container{
+        padding-top: 3%;
+    }
+  
+    
+</style>
 
 
 <body style="background: lightgray">
     @include('nav_barMar')
     
-    <div class="container">
+    <?php session_start(); ?>
+    <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/gantt/{{$_SESSION['id_sewa']}}">Jadwal Kegiatan</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/wbs/{{$_SESSION['id_sewa']}}">Anggaran Kegiatan</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('boq-wbs', $_SESSION['id_sewa'])}}">Anggaran Awal</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('scurve', $_SESSION['id_sewa'])}}">Grafik</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_risk/{{$_SESSION['id_sewa']}}">Risiko</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/jadwal/kelola/{{$_SESSION['id_sewa']}}">Jadwal Ketemu</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_daily/{{$_SESSION['id_sewa']}}">Laporan Harian</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_struk/{{$_SESSION['id_sewa']}}">Struk Pembayaran</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+           
+                <!-- Page content-->
+                <div class="container">
+                    <!-- ini isi -->
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
@@ -55,6 +89,9 @@
             <div class="col-md-6">
             </div>
         </div>
+    </div>
+
+    <!-- tutup isi -->
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -161,5 +198,7 @@
             return [year, month, day].join('-');
         }
     </script>
+
+
 </body>
 </html>

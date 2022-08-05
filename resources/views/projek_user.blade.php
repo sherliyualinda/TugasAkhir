@@ -145,25 +145,14 @@
                                 </table>
                                     </div>
                                     <div class="tab-pane fade" id="gantt" role="tabpanel" aria-labelledby="gantt-tab">
+                                        
                                     <script src="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js"></script>
                                     <link href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css" rel="stylesheet">
+                                    
                                         <a href="/gantt/{{$_SESSION['id_sewa']}}" class="btn btn-info mt-3">Gantt Chart</a>
-                                    <div id="gantt_here" style='width:100%; height:100%;'></div>
-                                    <script type="text/javascript">
-                                            gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
-                                            gantt.config.order_branch = true;
-                                            gantt.config.order_branch_free = true;
-                                            gantt.config.readonly =true;
-
-                                            gantt.init("gantt_here");
-                                            
-                                            gantt.load("/api/data");
-                                            
-                                            var dp = new gantt.dataProcessor("/api");
-                                            dp.init(gantt);
-                                            dp.setTransactionMode("REST");
-                                            
-                                    </script>
+                                    
+                                        <div id="gantt_here" style='width:100%; height:100%;'></div>
+                                    
                                     </div>
                                     <div class="tab-pane fade" id="risiko" role="tabpanel" aria-labelledby="risiko-tab">
                                        

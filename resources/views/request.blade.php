@@ -17,11 +17,25 @@
 
 .card-body{
     width: auto;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: auto;
  }
  
 </style>
-
+<!-- <div class="row">
+    <div class="col-md-12 mt-1">
+        <div class="card mb-5">
+            <div class="card-body">
+                @foreach($gambarnya as $manual)
+                <center>
+                    <img src="{{ url('gambar_lahan') }}/{{ $manual->gambar }} ">
+                    {!! $manual->deskripsi !!}
+                </center>
+                @endforeach   
+            </div>
+        </div>
+    </div>
+</div> -->
 
         <div class="row1" >
             <div class="col-md-21">
@@ -36,15 +50,17 @@
                                 <th scope="col">NIK</th>
                                 <th scope="col">Alamat Penyewa</th>
                                 <th scope="col">KTP</th>
+                                <th scope="col" >Persetujuan</th>
                                 <th scope="col" >Kelola</th>
-                                <th scope="col">Jadwal Kegiatan</th>
+                                
+                                <!-- <th scope="col">Jadwal Kegiatan</th>
                                 <th scope="col" >Risiko</th>
                                 <th scope="col" >Jadwal Ketemu</th>
                                 <th scope="col">Laporan Harian</th>
-                                <th scope="col">Struk Pembayaran</th>
+                                <th scope="col">Struk Pembayaran</th> -->
                                 <th scope="col">Report</th>
-                                <th colspan="2">Progres</th>
                                 <th scope="col" >Pesan</th>
+                                <th colspan="2">Progres</th>
                                 
                                
 
@@ -78,64 +94,21 @@
                                         </form>
                                        
                                     </td>
-                                    <td >
 
-                                    <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
-                                        <a href="/gantt/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Kelola</a>
-                                        <?php }else{?>
-                                            <a href="#" class="btn btn-sm btn-secondary"> Kelola</a>
-                                        <?php } ?>
-
-                                        
-                                    </td>
                                     <td>
                                         <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
-                                             <a href="/lahan/kelola_risk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Kelola</a>
+                                            <a href="/gantt/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Kelola</a>
                                         <?php }else{?>
                                             <a href="#" class="btn btn-sm btn-secondary"> Kelola</a>
-                                        <?php } ?>
-                                    </td>
-                                    <td>
-                                        <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
-                                            <a href="/jadwal/kelola/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">kelola</a>
-                                        <?php }else{?>
-                                            <a href="#" class="btn btn-sm btn-secondary"> Kelola</a>
-                                        <?php } ?>
-
-                                        
-                                    </td>
-                                  
-                                    <td>
-                                        <?php if($sewa->status == 'Acc'&& $sewa->progres != 'Done'){?>
-                                            <a href="/lahan/kelola_daily/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Kelola</a>
-                                        <?php }else{?>
-                                            <a href="#" class="btn btn-sm btn-secondary">Kelola</a>
-                                        <?php } ?>
-                                    </td>
-                                    <td>
-                                        <?php if($sewa->status == 'Acc'&& $sewa->progres != 'Done'){?>
-                                            <a href="/lahan/kelola_struk/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">kelola</a>
-                                        <?php }else{?>
-                                            <a href="#" class="btn btn-sm btn-secondary">Kelola</a>
                                         <?php } ?>
                                     </td>
                                     <td>
                                         <a href="/lahan/dokumentasi/{{$sewa->id_sewa}}/{{$sewa->id_penyewa}}" target="_blank" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     </td>
-                                    <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
-                                        {{ csrf_field() }}
-                                            <input type="hidden" name="progres" class="form-control form-control-user" value="Done">
-                                            <input type="hidden" name="id_penyewa" class="form-control form-control-user" value="{{$sewa->id_penyewa}}">
-                                            <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
-                                                Proses
-                                            <?php }elseif($sewa->status == 'Acc' && $sewa->progres == 'Done'){?>
-                                                Done
-                                            <?php }else{?>
-                                                -
-                                            <?php } ?>
-                                        </form>
+                                    <td>
+                                    <a href="/sosial-media/chat_lahan/{{$sewa->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
                                     </td>
+
                                     <td>
                                          <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
                                             <a href="/lahan/doneRequest/{{$sewa->id_sewa}}" class="btn btn-sm btn-success">Done</a>
@@ -144,9 +117,7 @@
                                         <?php } ?>
                                     </td>
 
-                                    <td>
-                                    <a href="/sosial-media/chat_lahan/{{$sewa->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
-                                    </td>
+                                    
                                     
                                 </tr>
                         

@@ -43,9 +43,9 @@
                 <?php } ?>
 
                 <?php if($sewa->id_pemilik == Auth::user()->pengguna->id_pengguna){?>
-                    <a href="/wbs/{{$_SESSION['id_sewa']}}" class="btn btn-sm btn-info">Anggaran Kegiatan</a>
-                    <a href="{{route('boq-wbs', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">Anggaran Awal</a>
-                    <a href="{{route('scurve', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">Grafik</a>
+                    <!-- <a href="/wbs/{{$_SESSION['id_sewa']}}" class="btn btn-sm btn-info">Anggaran Kegiatan</a> -->
+                    <!-- <a href="{{route('boq-wbs', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">Anggaran Awal</a>
+                    <a href="{{route('scurve', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">Grafik</a> -->
                     <?php }else{ ?>
 
                 <?php } ?>
@@ -55,9 +55,32 @@
 </div>
 
 
+<div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/gantt/{{$_SESSION['id_sewa']}}">Jadwal Kegiatan</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/wbs/{{$_SESSION['id_sewa']}}">Anggaran Kegiatan</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('boq-wbs', $_SESSION['id_sewa'])}}">Anggaran Awal</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('scurve', $_SESSION['id_sewa'])}}">Grafik</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_risk/{{$_SESSION['id_sewa']}}">Risiko</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/jadwal/kelola/{{$_SESSION['id_sewa']}}">Jadwal Ketemu</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_daily/{{$_SESSION['id_sewa']}}">Laporan Harian</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_struk/{{$_SESSION['id_sewa']}}">Struk Pembayaran</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+           
+                <!-- Page content-->
+                <div class="container">
+                    <!-- ini isi -->
+
 
   
-    <div id="gantt_here" style='width:100%; height:100%;'></div>
+                <div id="gantt_here" style='width:100%; height:100%;'></div>
+
+                </div>
+                <!-- tutup isi -->
 
 
 
