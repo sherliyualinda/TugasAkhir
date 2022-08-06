@@ -73,11 +73,12 @@
             <!-- Page content wrapper-->
            
                 <!-- Page content-->
+                
                 <div class="container">
                     <!-- ini isi -->
 
-
-  
+                    
+                
                 <div id="gantt_here" style='width:100%; height:100%;'></div>
 
                 </div>
