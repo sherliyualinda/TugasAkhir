@@ -52,7 +52,7 @@
                         <!-- <input type="text" name="title" placeholder="Masukkan Title" class="form-control"> -->
                         <select class="form-control" name="category_lahan_id" placeholder="--Pilih Kategori">
                             <option value="">Pilih Kategori</option>
-                            @foreach($lahanCat as $categorii)
+                            @foreach($categori as $categorii)
                                 <option value="{{$categorii->id}}">{{$categorii->nama}}</option>
                             @endforeach
                         </select>
