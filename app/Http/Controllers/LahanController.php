@@ -592,19 +592,12 @@ class LahanController extends Controller
             'levelRisk'     => $level,
             'updated_at'    => date("Y-m-d H:i:s")
         ]);
-            // $risk = DB::select("SELECT ps.ket, i.ket_impact, r.id_sewa,r.penyebab,r.dampak,r.strategi,r.biaya,r.probabilitas,r.impact,r.levelRisk,r.updated_at,s.id_lahan, r.id_risk FROM risks r JOIN sewa_lahans s ON r.id_sewa= s.id_sewa JOIN probabilitas ps ON r.probabilitas=ps.id_probabilitas JOIN impacts i ON r.impact = i.id_impact where r.id_sewa = $request->id_sewa");
+        return redirect()->route('kelola_risk',$request->id_sewa);
 
-            $risk= DB::table('pengguna')->join('sewa_lahans','pengguna.id_pengguna','=','sewa_lahans.id_penyewa')->join('risks','risks.id_sewa','=','sewa_lahans.id_sewa')->join('probabilitas','risks.probabilitas','=','probabilitas.id_probabilitas')->join('impacts','risks.impact','=','impacts.id_impact')->select('nama','sewa_lahans.id_sewa','probabilitas.ket','impacts.ket_impact','risks.id_risk','sewa_lahans.id_lahan','nik', 'id_penyewa', 'risks.levelRisk', 'risks.penyebab', 'risks.strategi', 'risks.dampak', 'risks.biaya', 'risks.probabilitas', 'risks.impact','risks.levelRisk')->where('sewa_lahans.id_sewa',$request->id_sewa)->orwhere('pengguna.id_pengguna',Auth::user()->pengguna->id_pengguna)->paginate(3);
-            $risk4 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $request->id_sewa");
-            $risk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
-            $risk3 = DB::select("SELECT id_sewa FROM sewa_lahans where id_sewa = $request->id_sewa");
-            return view('kelola_risk', compact('risk','risk2','risk3','risk4'));
 
         }
 
         public function risk($id){
-        
-            // $risk = DB::select("SELECT nama,s.id_sewa,ps.ket,i.ket_impact,r.id_risk,s.id_lahan, nik, id_penyewa, r.levelRisk, r.penyebab, r.strategi, r.dampak, r.biaya, r.probabilitas, r.impact,r.levelRisk FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa JOIN probabilitas ps ON r.probabilitas=ps.id_probabilitas JOIN impacts i ON r.impact = i.id_impact WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
             $risk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
             $risk3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
 
@@ -616,6 +609,7 @@ class LahanController extends Controller
 
         return view('kelola_risk', compact('risk','risk2', 'risk3','risk4'));
         }
+
         public function ubahRisk($id){
             //$risk = Risk::select('*')->where('id_risk',$id)->get();
             $risk = DB::select("SELECT r.id_risk, r.id_sewa, r.penyebab, r.dampak, r.strategi, r.biaya, r.probabilitas, r.impact, i.ket_impact, p.ket FROM `risks` r JOIN probabilitas p ON r.probabilitas=p.id_probabilitas JOIN impacts i ON r.impact = i.id_impact WHERE id_risk = $id");
@@ -646,10 +640,7 @@ class LahanController extends Controller
             ]);
             // $risk = DB::select("SELECT nama,s.id_sewa,ps.ket,i.ket_impact,r.id_risk,s.id_lahan, nik, id_penyewa, r.levelRisk, r.penyebab, r.strategi, r.dampak, r.biaya, r.probabilitas, r.impact,r.levelRisk FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN risks r on r.id_sewa = s.id_sewa JOIN probabilitas ps ON r.probabilitas=ps.id_probabilitas JOIN impacts i ON r.impact = i.id_impact WHERE s.id_sewa = $request->id_sewa  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
 
-            $risk= DB::table('pengguna')->join('sewa_lahans','pengguna.id_pengguna','=','sewa_lahans.id_penyewa')->join('risks','risks.id_sewa','=','sewa_lahans.id_sewa')->join('probabilitas','risks.probabilitas','=','probabilitas.id_probabilitas')->join('impacts','risks.impact','=','impacts.id_impact')->select('nama','sewa_lahans.id_sewa','probabilitas.ket','impacts.ket_impact','risks.id_risk','sewa_lahans.id_lahan','nik', 'id_penyewa', 'risks.levelRisk', 'risks.penyebab', 'risks.strategi', 'risks.dampak', 'risks.biaya', 'risks.probabilitas', 'risks.impact','risks.levelRisk')->where('sewa_lahans.id_sewa',$request->id_sewa)->orwhere('pengguna.id_pengguna',Auth::user()->pengguna->id_pengguna)->paginate(3);
-            $risk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
-            $risk3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $request->id_sewa");
-            return view('kelola_risk',compact('risk','risk2','risk3'));
+            return redirect()->route('kelola_risk',$request->id_sewa);
         }
 
         public function createBoq(Request $request, $id){
@@ -665,13 +656,10 @@ class LahanController extends Controller
 
              }
 
-
-        
-
         public function createDaily($id){
-        $daily = Sewa_lahan::select('*')->where('id_sewa', $id)->get();
-        return view('create_daily',compact('daily'));
-    }
+            $daily = Sewa_lahan::select('*')->where('id_sewa', $id)->get();
+            return view('create_daily',compact('daily'));
+        }
 
     public function simpan_daily(Request $request){
         $file = $request->file('gambar');
@@ -687,15 +675,8 @@ class LahanController extends Controller
             'date'          => $request->date,
             'updated_at'     => date("Y-m-d H:i:s")
         ]);
-            // $daily = DB::select("SELECT d.id_sewa,d.gambar,d.keterangan,d.date,d.updated_at,s.id_lahan, d.id_daily FROM dailies d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $request->id_sewa");
-            $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
-            $daily3 = DB::select("SELECT id_sewa FROM sewa_lahans where id_sewa = $request->id_sewa");
-            $daily4 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $request->id_sewa");
+            return redirect()->route('kelola_daily',$request->id_sewa);
 
-            $daily= DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$request->id_sewa)->paginate(3);
-
-           
-            return view('kelola_daily', compact('daily','daily2','daily3','daily4'));
     }
 
 
@@ -707,7 +688,7 @@ class LahanController extends Controller
             $daily4 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
 
             $daily= DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$id)->paginate(3);
-        return view('kelola_daily', compact('daily','daily2','daily3','daily4'));
+            return view('kelola_daily', compact('daily','daily2','daily3','daily4'));
     }
 
     public function ubahDaily($id){
@@ -729,12 +710,7 @@ class LahanController extends Controller
             'updated_at' => date("Y-m-d H:i:s")
             
         ]);
-        //$daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $request->id_sewa  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-        $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
-        $daily3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $request->id_sewa ");
-
-        $daily= DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$request->id_sewa)->paginate(3);
-        return view('kelola_daily',compact('daily','daily2','daily3'));
+        return redirect()->route('kelola_daily',$request->id_sewa);
     }
 
 
@@ -819,12 +795,13 @@ class LahanController extends Controller
         ]);
         
         //$struk = Struk::select('*')->where('id_sewa', $request->id_sewa )->get();
-        $struk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
-        $struk4 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $request->id_sewa");
+        // $struk2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
+        // $struk4 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $request->id_sewa");
 
-        $struk= DB::table('struks')->join('sewa_lahans','struks.id_sewa','=','sewa_lahans.id_sewa')->select('id_struk','keterangan','gambar','tanggal','struks.updated_at','struks.id_sewa')->where('struks.id_sewa',$request->id_sewa)->paginate(3);
+        // $struk= DB::table('struks')->join('sewa_lahans','struks.id_sewa','=','sewa_lahans.id_sewa')->select('id_struk','keterangan','gambar','tanggal','struks.updated_at','struks.id_sewa')->where('struks.id_sewa',$request->id_sewa)->paginate(3);
         
-        return view('Kelola_struk', compact('struk','struk2','struk4'));
+        // return view('Kelola_struk', compact('struk','struk2','struk4'));
+        return redirect()->route('kelolaStruk',$request->id_sewa);
             
             //return view('kelola_risk', compact('risk'));
         }
@@ -930,13 +907,9 @@ class LahanController extends Controller
             'linkMeet'      => $request->linkMeet,
             'updated_at'    => date("Y-m-d H:i:s")
         ]);
-        // $jadwal = Jadwal::select('*')->where('id_sewa', $request->id_sewa)->get();
-        $jadwal2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
-        $jadwal3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa =$request->id_sewa");
-        $jadwal= DB::table('jadwals')->select('id_jadwal','agenda','date','keterangan','id_sewa','linkMeet','updated_at')->where('id_sewa',$request->id_sewa)->paginate(3);
-        $jadwal4 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $request->id_sewa");
-        return view('kelola_jadwal',compact('jadwal','jadwal2','jadwal3','jadwal4'));
+        return redirect()->route('kelola_jadwal',$request->id_sewa);
         }
+
         public function ubahJadwal($id){
             
             $jadwal = DB::select("SELECT id_sewa, date, keterangan, agenda,linkMeet, updated_at, id_jadwal FROM jadwals  where id_jadwal = $id");
@@ -954,12 +927,8 @@ class LahanController extends Controller
                 
             ]);
             //$jadwal = Jadwal::select('*')->where('id_sewa', $request->id_sewa)->get();
-            $jadwal2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $request->id_sewa");
-            $jadwal3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa =$request->id_sewa");
-
-            $jadwal= DB::table('jadwals')->select('id_jadwal','agenda','date','keterangan','id_sewa','linkMeet','updated_at')->where('id_sewa',$request->id_sewa)->paginate(3);
-        
-        return view('kelola_jadwal',compact('jadwal','jadwal2','jadwal3'));
+            return redirect()->route('kelola_jadwal',$request->id_sewa);
+         
         }
 
 
