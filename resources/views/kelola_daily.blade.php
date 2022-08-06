@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/dataTables.bootstrap4.min.css') }}">
@@ -23,6 +25,21 @@
 @include('nav_barMar')
  
 </head>
+
+     <!-- Core theme CSS (includes Bootstrap)-->
+     <link href="css3/styles.css" rel="stylesheet" />
+
+
+    <style>
+    
+    
+    .modal-body{
+        height: 80vh;
+        
+    }
+    </style>
+
+
 <?php session_start(); ?>
 <div class="col-md-12 mt-2">
         <nav aria-label="breadcrumb">
@@ -85,14 +102,62 @@
                     @endforeach
 
                     @foreach($daily3 as $index=>$daily3)
-                    <table>
+                    <!-- <table>
                         <tr>
                              <td>
                                  <a href="/lahan/createDaily/{{$daily3->id_sewa}}" class="btn btn-sm btn-info">Tambah Laporan Harian</a>
                             </td>
                         </tr>
                     
-                    </table>
+                    </table> -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="/lahan/createDaily/{{$daily3->id_sewa}}">
+                    Tambah Data
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Tambah Laporan Harian </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="{{url('lahan/simpan_daily/{id}')}}" method="POST" enctype="multipart/form-data">
+                        <div class="modal-body">
+
+                        {{ csrf_field() }}
+                            @foreach ($daily4 as $dailyy)
+                                <div class="form-group">
+                                    <input type="hidden" name="id_sewa" value="{{$dailyy->id_sewa}}">
+                                </div>
+                            @endforeach
+                                <div class="form-group">
+                                    <label>Gambar</label>
+                                    <input type="file" name="gambar">
+                                </div>
+                                <div class="form-group">
+                                    <label>Keterangan</label>
+                                    <textarea name="keterangan" class="form-control form-control-user" rows="4" placeholder="Masukkan Keterangan"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tanggal</label>
+                                    <input type="date" name="date" class="form-control form-control-user" placeholder="Tanggal">
+                                </div>                  
+                                                    
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">SIMPAN</button>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+
+                    <!-- tutup modal -->
+
+
                     @endforeach
                         <table class="table table-bordered">
                             <thead>
@@ -157,3 +222,7 @@
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js3/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js3/scripts.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>

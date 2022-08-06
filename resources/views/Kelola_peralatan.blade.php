@@ -12,12 +12,76 @@
     <link rel="stylesheet" href="{{ asset('css/admin-style.css') }}">
     @yield('css')
 
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+<style>
+
+
+.modal-body{
+    height: 80vh;
+    
+}
+</style>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                         <a href="{{ route('peralatan') }}" class="btn btn-secondary mb-3">< Kembali</a>
-                        <a href="{{ route('peralatan.create') }}" class="btn btn-md btn-info mb-3">+ Tambah Alat</a>
+                        <!-- <a href="{{ route('peralatan.create') }}" class="btn btn-md btn-info mb-3">+ Tambah Alat</a> -->
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="{{ route('peralatan.create') }}">
+                        Tambah Data
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Alat</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="{{route('peralatan.simpan')}}" method="POST" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                
+                            {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <label> Nama Alat</label>
+                                        <input type="input" name="nama_alat" class="form-control form-control-user" placeholder="nama alat">
+                                    </div>
+                                    <div class="form-group">
+                                        <label> Harga Sewa</label>
+                                        <input type="input" name="harga" class="form-control form-control-user" placeholder="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label> Stok</label>
+                                        <input type="input" name="stok" class="form-control form-control-user" placeholder="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Deskripsi</label>
+                                        <!-- <textarea class="form-control" name="content" placeholder="Masukkan Content" rows="4"></textarea> -->
+                                        <textarea name="deskripsi" id="deskripsi" class="form-control form-control-user" rows="4" placeholder="Masukkan Deskripsi"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Gambar</label>
+                                        <input type="file" name="gambar" class="form-control form-control-user">
+                                    </div>
+                                                       
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success">SIMPAN</button>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- tutup modal -->
+
+
                         
                         <table class="table table-bordered">
                             <thead>
@@ -129,6 +193,12 @@
     });
     });
 </script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 @endsection
 
 
