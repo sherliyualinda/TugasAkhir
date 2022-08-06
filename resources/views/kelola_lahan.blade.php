@@ -85,11 +85,6 @@
 
 
 
-
-
-
-
-
             <div class="card border-0 shadow rounded">
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -161,7 +156,7 @@
                             entries
                         </div>
                         <div class="pull-right">
-                            {{ $lahan->links("pagination::bootstrap-4") }}
+                        {{ $lahan->links("pagination::bootstrap-4") }}
                         </div>
                 </div>
             </div>
