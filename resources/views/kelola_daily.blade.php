@@ -1,9 +1,14 @@
-@extends('layouts2.main')
 
-@section('title', 'Request Lahan')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kelola Laporan Harian</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-@section('content') 
-    
 
     <link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/dataTables.bootstrap4.min.css') }}">
@@ -12,14 +17,24 @@
     <link rel="stylesheet" href="{{ asset('css/admin-style.css') }}">
     @yield('css')
 
-     <!-- Core theme CSS (includes Bootstrap)-->
-     <link href="css3/styles.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css3/styles.css" rel="stylesheet" />
 
-
-
-<body style="background: lightgray">
-
+@include('nav_barMar')
+ 
+</head>
 <?php session_start(); ?>
+<div class="col-md-12 mt-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li>            
+                    <a href="/lahan/request/{{$_SESSION['id_lahan']}}" class="btn btn-secondary"> < Kembali</a>
+                </li>
+            </ol>
+        </nav>
+</div>
+<!-- <body style="background: lightgray"> -->
+
     <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
@@ -29,6 +44,7 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('boq-wbs', $_SESSION['id_sewa'])}}">Anggaran Awal</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('scurve', $_SESSION['id_sewa'])}}">Grafik</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_risk/{{$_SESSION['id_sewa']}}">Risiko</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/lihat_jadwal/{{$_SESSION['id_sewa']}}">Kalender Ketemu</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/jadwal/kelola/{{$_SESSION['id_sewa']}}">Jadwal Ketemu</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_daily/{{$_SESSION['id_sewa']}}">Laporan Harian</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_struk/{{$_SESSION['id_sewa']}}">Struk Pembayaran</a>
@@ -45,10 +61,10 @@
                     <div class="card-body">
                     <div class="col-md-12 mt-2">
                         <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
+                        <!-- <ol class="breadcrumb">
                         
                         <li class="breadcrumb-item"><a href="/lahan/request/{{$_SESSION['id_lahan']}}">Back</a></li>
-                        </ol>
+                        </ol> -->
                         </nav>
                     </div>
                     @foreach($daily2 as $index=>$daily2)
@@ -125,9 +141,9 @@
     </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> -->
 
 
     <script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
@@ -141,5 +157,3 @@
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js3/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js3/scripts.js"></script>
-
-        @endsection

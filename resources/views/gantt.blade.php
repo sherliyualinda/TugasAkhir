@@ -15,9 +15,9 @@
     <link href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css" rel="stylesheet">
 
     @foreach ($sewa as $sewa)
-                <form action="{{route('tambahgantt',$sewa->id_sewa)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('tambahgantt',$sewa->id_sewa)}}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
-                <input type="hidden" name="id_sewa" value="{{$sewa->id_sewa}}">
+    <input type="hidden" name="id_sewa" value="{{$sewa->id_sewa}}">
                 
                 
    
@@ -64,6 +64,7 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('boq-wbs', $_SESSION['id_sewa'])}}">Anggaran Awal</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('scurve', $_SESSION['id_sewa'])}}">Grafik</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_risk/{{$_SESSION['id_sewa']}}">Risiko</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/lihat_jadwal/{{$_SESSION['id_sewa']}}">Kalender Ketemu</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/jadwal/kelola/{{$_SESSION['id_sewa']}}">Jadwal Ketemu</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_daily/{{$_SESSION['id_sewa']}}">Laporan Harian</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_struk/{{$_SESSION['id_sewa']}}">Struk Pembayaran</a>

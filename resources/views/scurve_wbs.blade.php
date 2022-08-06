@@ -12,22 +12,21 @@
      <link href="css3/styles.css" rel="stylesheet" />
 
 
+     @include('nav_barMar')
 </head>
 
-<style>
-
-    .container{
-        padding-top: 3%;
-    }
-  
+<?php session_start(); ?>
+<div class="col-md-12 mt-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li>            
+                    <a href="/lahan/request/{{$_SESSION['id_lahan']}}" class="btn btn-secondary"> < Kembali</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+<!-- <body style="background: lightgray"> -->
     
-</style>
-
-
-<body style="background: lightgray">
-    @include('nav_barMar')
-    
-    <?php session_start(); ?>
     <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
@@ -37,6 +36,7 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('boq-wbs', $_SESSION['id_sewa'])}}">Anggaran Awal</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('scurve', $_SESSION['id_sewa'])}}">Grafik</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_risk/{{$_SESSION['id_sewa']}}">Risiko</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/lihat_jadwal/{{$_SESSION['id_sewa']}}">Kalender Ketemu</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/jadwal/kelola/{{$_SESSION['id_sewa']}}">Jadwal Ketemu</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_daily/{{$_SESSION['id_sewa']}}">Laporan Harian</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_struk/{{$_SESSION['id_sewa']}}">Struk Pembayaran</a>
@@ -80,9 +80,6 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{{ url()->previous() }}" class="btn btn-warning">Kembali</a>
                     </div>
                 </div>
             </div>
