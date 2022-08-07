@@ -951,9 +951,10 @@ class LahanController extends Controller
             ]);
                 
                 // $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
+                return redirect()->route('manualBook');
 
-                $manual= DB::table('manual_books')->join('category_lahans','manual_books.id_categoryLahan','=','category_lahans.id')->select('category_lahans.nama', 'manual_books.gambar', 'manual_books.jenis_lahan', 'manual_books.id_categoryLahan', 'manual_books.deskripsi', 'manual_books.sumber', 'manual_books.id_manual')->paginate(2);
-                return view('kelola_manual', compact('manual'));
+                // $manual= DB::table('manual_books')->join('category_lahans','manual_books.id_categoryLahan','=','category_lahans.id')->select('category_lahans.nama', 'manual_books.gambar', 'manual_books.jenis_lahan', 'manual_books.id_categoryLahan', 'manual_books.deskripsi', 'manual_books.sumber', 'manual_books.id_manual')->paginate(2);
+                // return view('kelola_manual', compact('manual'));
             }
     
             public function manualBook(){
@@ -992,15 +993,13 @@ class LahanController extends Controller
                 ]);
                 // $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
 
-                $manual= DB::table('manual_books')->join('category_lahans','manual_books.id_categoryLahan','=','category_lahans.id')->select('category_lahans.nama', 'manual_books.gambar', 'manual_books.jenis_lahan', 'manual_books.id_categoryLahan', 'manual_books.deskripsi', 'manual_books.sumber', 'manual_books.id_manual')->paginate(2);
-                return view('kelola_manual', compact('manual'));
+                return redirect()->route('manualBook');
             }
             public function hapusManual($id){
                 DB::table('manual_books')->where('id_manual',$id)->delete();
                 // $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id");
 
-                $manual= DB::table('manual_books')->join('category_lahans','manual_books.id_categoryLahan','=','category_lahans.id')->select('category_lahans.nama', 'manual_books.gambar', 'manual_books.jenis_lahan', 'manual_books.id_categoryLahan', 'manual_books.deskripsi', 'manual_books.sumber', 'manual_books.id_manual')->paginate(2);
-                return view('kelola_manual', compact('manual'));
+                return redirect()->route('manualBook');
             }
 
             public function detailManual($id){
