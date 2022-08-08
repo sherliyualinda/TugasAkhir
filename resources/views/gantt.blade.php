@@ -12,6 +12,8 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
  
     <script src="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js"></script>
+    <script src="http://export.dhtmlx.com/gantt/api.js"></script>
+    <link rel="stylesheet" href="codebase/dhtmlxgantt.css" type="text/css">
     <link href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css" rel="stylesheet">
 
     @foreach ($sewa as $sewa)
@@ -77,16 +79,12 @@
                 <div class="container">
                     <!-- ini isi -->
 
-                    
+                 <input value="Export to PNG" type="button" onclick='gantt.exportToPNG()'>
                 
                 <div id="gantt_here" style='width:100%; height:100%;'></div>
 
                 </div>
                 <!-- tutup isi -->
-
-
-
-
 
 
 <script type="text/javascript">
@@ -99,7 +97,7 @@
     <?php }else{ ?>
         gantt.config.readonly =true;
     <?php } ?>
-
+    
     gantt.init("gantt_here");
     
     gantt.load("/api/data");
