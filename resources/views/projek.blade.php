@@ -43,7 +43,7 @@
 
                                         <!-- <img src="{{ url('gambar_lahan') }}/{{ $projek->gambar }} "width="50" height="50"> -->
                                     </td>
-                                   <td>{{$projek->deskripsi}}</td>
+                                   <td>{!! $projek->deskripsi !!}</td>
                                    <td>
                                         <a href="/lahan/Dprojek_user/{{$projek->id_sewa}}" class="btn btn-primary">lihat</a>
                                         <a href="/sosial-media/chat_lahan/{{$projek->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
