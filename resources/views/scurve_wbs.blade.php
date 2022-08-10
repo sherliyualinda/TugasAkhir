@@ -50,7 +50,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="card border-0 shadow rounded">
+                <div class="card border-0 shadow rounded mb-5">
                     <!-- <div class="card-header text-center"><h2>S-Curve</h2></div> -->
                     <div class="card-body">
                         <div class="row">
