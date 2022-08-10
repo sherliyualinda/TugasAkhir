@@ -12,10 +12,79 @@
     @yield('css')
 
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+<style>
+
+
+.modal-body{
+    height: 80vh;
+    
+}
+</style>
+
+
+
     <div class="row">
         <div class="col-md-12">
             <a href="{{ route('lahan') }}" class="btn btn-secondary mb-3">< Kembali</a>
-            <a href="{{ route('lahan.create') }}" class="btn btn-info  mb-3">+ Buat Lahan</a>
+            <!-- <a href="{{ route('lahan.create') }}" class="btn btn-info  mb-3">+ Buat Lahan</a> -->
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="{{ route('lahan.create') }}">
+            Buat Lahan
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Lahan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{route('lahan.simpan')}}" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    
+                {{ csrf_field() }}
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <!-- <input type="text" name="title" placeholder="Masukkan Title" class="form-control"> -->
+                        <select class="form-control" name="category_lahan_id" placeholder="--Pilih Kategori">
+                            <option value="">Pilih Kategori</option>
+                            @foreach($categori as $categorii)
+                                <option value="{{$categorii->id}}">{{$categorii->nama}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ukuran</label>
+                        <input type="input" name="ukuran" class="form-control" placeholder="Ukuran">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <!-- <textarea class="form-control" name="content" placeholder="Masukkan Content" rows="4"></textarea> -->
+                        <textarea name="deskripsi" id="deskripsi" class="form-control" rows="4" placeholder="Masukkan Deskripsi"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Gambar</label>
+                        <input type="file" name="gambar">
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">SIMPAN</button>  
+                    </div>
+                </div>
+            </form>
+                </div>
+            </div>
+            </div>
+
+            <!-- tutup modal -->
+
+
+
             <div class="card border-0 shadow rounded">
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -57,7 +126,7 @@
 
                                         <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$lahans->id}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
                                         </button>
-                                        @if ($lahans->statusLahan === 'Ready')
+                                        @if ($lahans->statusLahan != 'Waiting' )
                                         <a href="/lahan/request/{{$lahans->id}}" class="btn btn-sm btn-info">Request</a>
                                         @endif
                                     </div>
@@ -87,7 +156,7 @@
                             entries
                         </div>
                         <div class="pull-right">
-                            {{ $lahan->links("pagination::bootstrap-4") }}
+                        {{ $lahan->links("pagination::bootstrap-4") }}
                         </div>
                 </div>
             </div>
@@ -143,4 +212,10 @@
     });
     });
 </script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 @endsection

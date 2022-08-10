@@ -7,17 +7,51 @@
     <title>Halaman S-Curve WBS</title>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+     <!-- Core theme CSS (includes Bootstrap)-->
+     <link href="css3/styles.css" rel="stylesheet" />
+
+
+     @include('nav_barMar')
 </head>
 
-
-<body style="background: lightgray">
-    @include('nav_barMar')
+<?php session_start(); ?>
+<div class="col-md-12 mt-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li>            
+                    <a href="/lahan/request/{{$_SESSION['id_lahan']}}" class="btn btn-secondary"> < Kembali</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+<!-- <body style="background: lightgray"> -->
     
-    <div class="container">
+    <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/gantt/{{$_SESSION['id_sewa']}}">Jadwal Kegiatan</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/wbs/{{$_SESSION['id_sewa']}}">Anggaran Kegiatan</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('boq-wbs', $_SESSION['id_sewa'])}}">Anggaran Awal</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 active" href="{{route('scurve', $_SESSION['id_sewa'])}}">Grafik</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_risk/{{$_SESSION['id_sewa']}}">Risiko</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/lihat_jadwal/{{$_SESSION['id_sewa']}}">Kalender Ketemu</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/jadwal/kelola/{{$_SESSION['id_sewa']}}">Jadwal Ketemu</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_daily/{{$_SESSION['id_sewa']}}">Laporan Harian</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_struk/{{$_SESSION['id_sewa']}}">Struk Pembayaran</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+           
+                <!-- Page content-->
+                <div class="container">
+                    <!-- ini isi -->
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
-                    <div class="card-header text-center"><h2>S-Curve</h2></div>
+                    <!-- <div class="card-header text-center"><h2>S-Curve</h2></div> -->
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-9">
@@ -56,15 +90,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <a href="{{ url()->previous() }}" class="btn btn-warning">Kembali</a>
-                    </div>
                 </div>
             </div>
             <div class="col-md-6">
             </div>
         </div>
     </div>
+
+    <!-- tutup isi -->
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/chart.js/Chart.min.js') }}"></script>
@@ -186,5 +221,7 @@ console.log(arrSecond);
             return [year, month, day].join('-');
         }
     </script>
+
+
 </body>
 </html>

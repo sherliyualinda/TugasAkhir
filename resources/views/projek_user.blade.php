@@ -2,7 +2,13 @@
 
 @section('title', 'Projek Saya')
 
-@section('content')   
+<script src="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js"></script> 
+<script src="http://export.dhtmlx.com/gantt/api.js"></script>
+<link rel="stylesheet" href="codebase/dhtmlxgantt.css" type="text/css">
+<link href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css" rel="stylesheet">
+@section('content')  
+
+
 <style type="text/css">
         html, body{
             height:100%;
@@ -42,7 +48,7 @@
                                     aria-selected="false">Sumber Daya</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="gantt-tab" data-toggle="tab" href="#gantt" role="tab" aria-controls="gantt"
+                                    <a class="nav-link" id="tabel-tab" data-toggle="tab" href="#tabel" role="tab" aria-controls="tabel"
                                     aria-selected="false">Jadwal Kegiatan</a>
                                 </li>
                                 <li class="nav-item">
@@ -92,7 +98,7 @@
                                                 <tr>
                                                     <td>Deskripsi</td>
                                                     <td>:</td>
-                                                    <td>{{$data->deskripsi}}</td>
+                                                    <td>{!! $data->deskripsi !!}</td>
                                                 </tr> 
                                                 <tr>
                                                     <td>Status</td>
@@ -144,26 +150,13 @@
                                     @endforeach
                                 </table>
                                     </div>
-                                    <div class="tab-pane fade" id="gantt" role="tabpanel" aria-labelledby="gantt-tab">
-                                    <script src="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js"></script>
-                                    <link href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css" rel="stylesheet">
-                                        <a href="/gantt/{{$_SESSION['id_sewa']}}" class="btn btn-info mt-3">Gantt Chart</a>
-                                    <div id="gantt_here" style='width:100%; height:100%;'></div>
-                                    <script type="text/javascript">
-                                            gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
-                                            gantt.config.order_branch = true;
-                                            gantt.config.order_branch_free = true;
-                                            gantt.config.readonly =true;
-
-                                            gantt.init("gantt_here");
-                                            
-                                            gantt.load("/api/data");
-                                            
-                                            var dp = new gantt.dataProcessor("/api");
-                                            dp.init(gantt);
-                                            dp.setTransactionMode("REST");
-                                            
-                                    </script>
+                                    
+                                    <div class="tab-pane fade" id="tabel" role="tabpanel" aria-labelledby="tabel-tab">
+                                        <input value="Export to PNG" type="button" onclick='gantt.exportToPNG()'>
+                                        <div id="gantt_here"  style='width:100%; height:83%;'></div>
+                                        <!-- <a href="/gantt/{{$_SESSION['id_sewa']}}" class="btn btn-info mt-3">Gantt Chart</a> -->
+                                    
+                                    
                                     </div>
                                     <div class="tab-pane fade" id="risiko" role="tabpanel" aria-labelledby="risiko-tab">
                                        
@@ -369,6 +362,31 @@
         </div>
        
     </div>
+    
+    <!-- gantt -->
+    
+    
+    
+    <script type="text/javascript">
+        gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
+        gantt.config.order_branch = true;
+        gantt.config.order_branch_free = true;
+    
+        gantt.config.readonly =true;
+      
+    
+        gantt.init("gantt_here");
+        
+        gantt.load("/api/data");
+        
+        var dp = new gantt.dataProcessor("/api");
+        dp.init(gantt);
+        dp.setTransactionMode("REST");
+    </script>
+    
+    
+    
+    <!-- tutup gantt -->
 @endsection
 
 @section('js')
@@ -488,6 +506,7 @@
         }
     </script>
 
+
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
@@ -507,21 +526,7 @@
                     });
         </script>
 
-<script type="text/javascript">
-    gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
-    gantt.config.order_branch = true;
-    gantt.config.order_branch_free = true;
-    gantt.config.readonly =true;
 
-    gantt.init("gantt_here");
-    
-    gantt.load("/api/data");
-    
-    var dp = new gantt.dataProcessor("/api");
-    dp.init(gantt);
-    dp.setTransactionMode("REST");
-    
-</script>
 
 @endsection
 

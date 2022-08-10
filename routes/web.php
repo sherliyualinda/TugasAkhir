@@ -385,7 +385,6 @@ Route::post('/lahan/update_struk', 'LahanController@updateStruk')->name('updateS
 Route::get('/lahan/hapus_Struk/{id}', 'LahanController@hapusStruk')->middleware('auth');
 
 Route::post('/lahan/simpan_struk', 'LahanController@simpan_struk')->name('simpan_struk')->middleware('auth');
-Route::get('/lahan/ubah_risk/{id}',  'LahanController@ubahRisk')->middleware('auth');
 Route::post('/lahan/update_risk', 'LahanController@updateRisk')->name('updateRisk')->middleware('auth');
 
 Route::get('/wbs/{id}', 'LahanController@wbs')->name('wbs')->middleware('auth');
@@ -393,9 +392,15 @@ Route::get('/wbs_user/{id}', 'LahanController@wbs_user')->name('wbs-user')->midd
 Route::get('/s-curve/wbs/{id}', 'LahanController@scurve')->name('scurve')->middleware('auth');
 Route::get('/wbs/boq/{id}', 'LahanController@boq_wbs')->name('boq-wbs')->middleware('auth');
 
+
+Route::get('/lahan/ubah_risk/{id}',  'LahanController@ubahRisk')->middleware('auth');
 Route::get('/lahan/createRisk/{id}', 'LahanController@createRisk')->name('create_risk')->middleware('auth');
 Route::post('/lahan/simpan_risk/{id}', 'LahanController@simpan_risk')->name('simpan_risk')->middleware('auth');
 Route::get('/lahan/kelola_risk/{id}', 'LahanController@risk')->name('kelola_risk')->middleware('auth');
+Route::get('/lahan/kelola_riskku/', 'LahanController@cobaRisk')->middleware('auth');
+
+
+
 
 Route::get('/lahan/ubah_daily/{id}',  'LahanController@ubahDaily')->middleware('auth');
 Route::post('/lahan/update_daily', 'LahanController@updateDaily')->name('updateDaily')->middleware('auth');

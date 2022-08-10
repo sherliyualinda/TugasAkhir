@@ -17,7 +17,7 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/gantt/{{$sewa->id_sewa}}">Jadwal Kegiatan</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Jadwal Kegiatan</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Risiko</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Jadwal Ketemu</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Laporan Harian</a>

@@ -12,12 +12,14 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
  
     <script src="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js"></script>
+    <script src="http://export.dhtmlx.com/gantt/api.js"></script>
+    <link rel="stylesheet" href="codebase/dhtmlxgantt.css" type="text/css">
     <link href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css" rel="stylesheet">
 
     @foreach ($sewa as $sewa)
-                <form action="{{route('tambahgantt',$sewa->id_sewa)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('tambahgantt',$sewa->id_sewa)}}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
-                <input type="hidden" name="id_sewa" value="{{$sewa->id_sewa}}">
+    <input type="hidden" name="id_sewa" value="{{$sewa->id_sewa}}">
                 
                 
    
@@ -43,9 +45,9 @@
                 <?php } ?>
 
                 <?php if($sewa->id_pemilik == Auth::user()->pengguna->id_pengguna){?>
-                    <a href="/wbs/{{$_SESSION['id_sewa']}}" class="btn btn-sm btn-info">Anggaran Kegiatan</a>
-                    <a href="{{route('boq-wbs', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">Anggaran Awal</a>
-                    <a href="{{route('scurve', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">Grafik</a>
+                    <!-- <a href="/wbs/{{$_SESSION['id_sewa']}}" class="btn btn-sm btn-info">Anggaran Kegiatan</a> -->
+                    <!-- <a href="{{route('boq-wbs', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">Anggaran Awal</a>
+                    <a href="{{route('scurve', $_SESSION['id_sewa'])}}" class="btn btn-sm btn-info">Grafik</a> -->
                     <?php }else{ ?>
 
                 <?php } ?>
@@ -55,13 +57,34 @@
 </div>
 
 
+<div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 active" href="/gantt/{{$_SESSION['id_sewa']}}">Jadwal Kegiatan</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/wbs/{{$_SESSION['id_sewa']}}">Anggaran Kegiatan</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('boq-wbs', $_SESSION['id_sewa'])}}">Anggaran Awal</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('scurve', $_SESSION['id_sewa'])}}">Grafik</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_risk/{{$_SESSION['id_sewa']}}">Risiko</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/lihat_jadwal/{{$_SESSION['id_sewa']}}">Kalender Ketemu</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/jadwal/kelola/{{$_SESSION['id_sewa']}}">Jadwal Ketemu</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_daily/{{$_SESSION['id_sewa']}}">Laporan Harian</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/lahan/kelola_struk/{{$_SESSION['id_sewa']}}">Struk Pembayaran</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+           
+                <!-- Page content-->
+                
+                <div class="container">
+                    <!-- ini isi -->
 
-  
-    <div id="gantt_here" style='width:100%; height:100%;'></div>
+                 <input value="Export to PNG" type="button" onclick='gantt.exportToPNG()'>
+                
+                <div id="gantt_here" style='width:100%; height:90%;'></div>
 
-
-
-
+                </div>
+                <!-- tutup isi -->
 
 
 <script type="text/javascript">
@@ -74,7 +97,7 @@
     <?php }else{ ?>
         gantt.config.readonly =true;
     <?php } ?>
-
+    
     gantt.init("gantt_here");
     
     gantt.load("/api/data");

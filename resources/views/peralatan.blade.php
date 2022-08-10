@@ -26,7 +26,7 @@
                     <strong>Harga : </strong>Rp {{ $peralatan->harga}} <br>
                     <hr>
                     <strong>Deskripsi : </strong> <br>
-                    {{ $peralatan->deskripsi }} 
+                    {!! $peralatan->deskripsi !!} 
                 </p>
                 <a href="/peralatan/sewaPeralatan/{{$peralatan->id_peralatan}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Sewa</a>
                 <!-- <a href="#" class="btn btn-primary"><i class="fa fa-info"></i> Detail Lahan</a> -->
