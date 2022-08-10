@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Jul 2022 pada 14.06
+-- Waktu pembuatan: 10 Agu 2022 pada 10.47
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -257,7 +257,9 @@ CREATE TABLE `dailies` (
 --
 
 INSERT INTO `dailies` (`id_daily`, `id_sewa`, `gambar`, `keterangan`, `date`, `updated_at`) VALUES
-(4, 7, '1.PNG', 'apa aja', '2022-06-21', '2022-06-21');
+(4, 7, 'arit.jfif', 'apa aja', '2022-06-21', '2022-07-27'),
+(5, 8, 'disel.jfif', 'clmekcoelsjcmkse', '2022-08-16', '2022-08-06'),
+(6, 8, 'contoh.PNG', 'wsdefce', '2022-08-06', '2022-08-06');
 
 -- --------------------------------------------------------
 
@@ -7641,7 +7643,8 @@ CREATE TABLE `jadwals` (
 --
 
 INSERT INTO `jadwals` (`id_jadwal`, `date`, `agenda`, `keterangan`, `id_sewa`, `linkMeet`, `updated_at`) VALUES
-(3, '2022-06-30', 'hhhhhhhhhhhii', 'aaaaaaaaaaaaaa', 7, 'hhhhhhhhhhhhhhhhhii', '2022-06-28');
+(3, '2022-06-30', 'hhhhhhhhhhhiiaaa', 'aaaaaaaaaaaaaa', 7, 'hhhhhhhhhhhhhhhhhii', '2022-07-27'),
+(4, '2022-08-09', 'Controlling Area', 'cdkcjeoselcjmslacmoals', 8, 'hhhhhhhhhhhhhhhhh', '2022-08-06');
 
 -- --------------------------------------------------------
 
@@ -7699,10 +7702,16 @@ CREATE TABLE `lahans` (
 --
 
 INSERT INTO `lahans` (`id`, `category_lahan_id`, `ukuran`, `deskripsi`, `gambar`, `id_user`, `statusLahan`, `created_at`, `updated_at`) VALUES
-(4, 1, '70 x 30', 'Ayam2an', '1.PNG', 42, 'Ready', '0000-00-00 00:00:00', '2022-06-30 00:00:00'),
-(5, 2, '30X40', 'Lebar banget', 'Untitled Diagram.drawio (2).png', 42, 'Not Ready', '0000-00-00 00:00:00', '2022-06-30 00:00:00'),
-(6, 1, '100x20', 'masuk 10 besar dunia', '5.jpeg', 46, 'Ready', '0000-00-00 00:00:00', '2022-06-28 00:00:00'),
-(11, 4, '100 x 1000', 'testijng', 'matthew-fassnacht-eBbRSsV4JqU-unsplash.jpg', 42, 'Waiting', '2022-07-13 12:23:11', '2022-07-13 12:24:59');
+(4, 1, '70 x 30', '<p>padiku</p>', 'ssawah.jpg', 42, 'Not Ready', '0000-00-00 00:00:00', '2022-08-06 12:08:30'),
+(5, 2, '30X40', '<p>Perkebunan Kelapa Sawit</p>', 'sawit.jpg', 42, 'Not Ready', '0000-00-00 00:00:00', '2022-08-10 14:14:56'),
+(6, 1, '100x20', '<p>masuk 10 besar dunia</p>', 'padi.PNG', 46, 'Ready', '0000-00-00 00:00:00', '2022-08-03 14:28:25'),
+(11, 4, '10 x 10', '<p>Peternakan Ayam</p>', 'ayamm.jpg', 42, 'Ready', '2022-07-13 12:23:11', '2022-08-10 14:21:29'),
+(22, 1, '50 x 60', '<p>Pertanian Jagung</p>', 'jagung.jfif', 42, 'Ready', '2022-08-07 13:52:14', '2022-08-10 14:30:27'),
+(23, 1, '30X40', 'Pertanian padi', 'padiiii.jpg', 45, 'Ready', '2022-08-10 14:26:36', '2022-08-10 14:30:47'),
+(24, 2, '2 hektar', 'perkebunan strawberry', 'stobeli.jpg', 45, 'Waiting', '2022-08-10 14:28:19', '2022-08-10 14:28:19'),
+(25, 2, '30X40', 'perkebunan tebu', 'lahan-tebu.jpg', 45, 'Ready', '2022-08-10 14:29:28', '2022-08-10 14:30:38'),
+(26, 3, '40 x 40 meter', 'Ikan Gurame dan lain-lain', 'gurame.jpg', 46, 'Ready', '2022-08-10 14:36:14', '2022-08-10 14:37:48'),
+(27, 1, '40 x 40 meter', 'Budidaya Ikan lele', 'ternaklele.jpg', 46, 'Ready', '2022-08-10 14:37:28', '2022-08-10 14:37:56');
 
 -- --------------------------------------------------------
 
@@ -7787,7 +7796,7 @@ CREATE TABLE `manual_books` (
 INSERT INTO `manual_books` (`id_manual`, `id_categoryLahan`, `gambar`, `jenis_lahan`, `deskripsi`, `updated_at`, `sumber`) VALUES
 (8, 1, 'padi.PNG', 'Pertanian Padi', '1. Persiapan media tanam\r\n\r\nMedia tanam untuk menanam padi haruslah disiapkan minimal dua minggu sebelum penanaman. Persiapan dilakukan dengan mengolah tanah sebagai media tanam. Tanah harus dipastikan bebas dari gulma dan rumput liar. Jangan sampai pertumbuhan tanaman padi terganggu karena harus berbagi nutrisi dan air dengan rumput-rumput liar. Jika sudah bebas dari tanaman liar, basahi tanah dengan air lalu lakukan pembajakan. Pembajakan dilakukan untuk mempersiapkan tanah dalam keadaan lunak dan gembur serta cocok untuk penanaman. Di zaman modern ini pembajakan tidak lagi dilakukan dengan mencangkul tetapi dengan menggunakan sapi ataupun traktor. Setelah melalui pembajakan, kembali genangi media tanam dengan air. Air diberikan dalam jumlah banyak untuk menutupi seluruh lahan dengan ketinggian hingga 10 cm. Biarkan air pada media tanam terus menggenang. Air yang menggenang selama dua minggu akan menyebabkan media tanam menjadi berlumbur dan racun pun dapat hilang karena ternetralisir.\r\n\r\n2. Pemilihan bibit\r\n\r\nBibit pada tanaman padi harus melalui pengujian terlebih dahulu untuk menentukan kualitasnya. Pengujian dilakukan dengan merendam sekitar 100 butir benih padi dalam air. Setelah dua jam periksalah benih tersebut. Cara menanam benih padi yaitu dengan Pemeriksaan benih dilakukan dengan mengidentifikasi perubahan pada benih. Jika terdapat lebih dari 90 butir benih atau lebih dari 90% benih mengeluarkan kecambah, maka artinya benih tersebut berkualitas unggul dan bermutu tinggi. Tentu benih yang berkualitas unggul dan bermutu tinggi inilah yang layak untuk dibudidayakan. Sedangkan jika benih tidak menunjukkan tanda seperti yang disebutkan diatas, artinya benih tersebut tidak disarankan untuk dibudidayakan. Setelah menentukan benih yang akan dijadikan bibit, maka dapat dilakukan persemaian segera.\r\n\r\n3. Persemaian\r\n\r\nPersemaian dilakukan setelah menentukan bibit yang unggul. Bibit unggul tersebut kemudian akan disemai di wadah persemaian. Wadah persemaian terlebih dahulu harus disiapkan. Kebutuhan wadah semai diberikan dalam perbandingan sebesar 1 : 20. Misalkan akan menggunakan lahan sawah sebesar 1 hektar maka wadah persemaiannya sekitar 500 m2. Lahan pada wadah persemaian haruslah juga berair dan berlumpur. Berikan pupuk urea dan pupuk TSP pada lahan persemaian dengan dosis masing-masing 10 gr per 1 m2. Jika lahan persemaian sudah siap, sebarkan benih yang telah berkecambah dengan merata.\r\n\r\n4. Penanaman\r\n\r\nProses penanaman dilakukan setelah benih pada proses persemaian telah tumbuh daun sempurna sebanyak tiga hingga empat helai. Jangka waktu dari persemaian ke bibit siap tanam umumnya sekitar 12 hingga 14 hari saja. Jika sudah siap tanam, pindahkan bibit dari lahan semai ke lahan tanam. Pemidahan dilakukan dengan hati-hati dan tidak merusak tanaman. Penanaman dilakukan pada lubang-lubang tanam yang telah disiapkan. Khusus untuk tanaman padi dalam satu lubang dapat ditanam dua bibit sekaligus. Penanaman dilakukan dengan memasukkan bagian akar membentuk huruf L agar akar dapat tumbuh dengan sempurna. Kedalaman bibit ditanam pun ditentukan berkisar pada rentang 1 cm hingga 15 cm. Masa penanaman padi lebih baik dilakukan dua kali dalam setahun berdasarkan masa penanamannya yang ideal.\r\n\r\n5. Perawatan lahan\r\n\r\nPerawatan dilakukan dengan tiga hal yaitu penyiangan, pengairan, dan pemupukan. Penyiangan dilakukan dengan menjaga kebersihan lahan dari tanaman pengganggu. Penyiangan harus dilakukan rutin setiap periode waktu tertentu. Bisa dilakukan dua minggu sekali atau tiga minggu sekali. Pengairan diberikan sesuai kebutuhan. Seperti pada tanaman lainnya, pastikan tidak ada kekurangan atau kelebihan air. Selanjutnya untuk pemupukan, dilakukan pertama kali setelah tanaman padi berusia satu minggu. Jenis pupuk yang diberikan adalah pupuk urea dengan dosis 100 kg per hektar dan pupuk TPS dengan dosis 50 kg per hektar. Pemupukan selanjutnya dilakukan setelah 25 hari hingga 30 hari setelah penanaman. Diberikan kembali pupuk urea dengan dosis 50 kg per hektar dan pupuk Phonska dengan dosis 100 kg per hektar.\r\n\r\n6. Pencegahan hama dan penyakit\r\n\r\nHama dan penyakit dapat dicegah dengan memberikan pestisida.\r\n\r\n7. Pemanenan\r\n\r\nPanen dilakukan dengan tanda-tanda padi yang sudah menguning dan merunduk. Gunakan sabit gerigi untuk memanen dan letakkan hasil panen pada tikar dengan merontokkan beras dari dalam bulir-bulir padi yang ada.', '2022-07-12 01:11:12', 'http://carakumenanam.com/padi/'),
 (9, 3, 'ikan.jpg', 'Perikanan ikan nila', '1. Persiapan media tanam\r\n\r\nMedia tanam untuk menanam padi haruslah disiapkan minimal dua minggu sebelum penanaman. Persiapan dilakukan dengan mengolah tanah sebagai media tanam. Tanah harus dipastikan bebas dari gulma dan rumput liar. Jangan sampai pertumbuhan tanaman padi terganggu karena harus berbagi nutrisi dan air dengan rumput-rumput liar. Jika sudah bebas dari tanaman liar, basahi tanah dengan air lalu lakukan pembajakan. Pembajakan dilakukan untuk mempersiapkan tanah dalam keadaan lunak dan gembur serta cocok untuk penanaman. Di zaman modern ini pembajakan tidak lagi dilakukan dengan mencangkul tetapi dengan menggunakan sapi ataupun traktor. Setelah melalui pembajakan, kembali genangi media tanam dengan air. Air diberikan dalam jumlah banyak untuk menutupi seluruh lahan dengan ketinggian hingga 10 cm. Biarkan air pada media tanam terus menggenang. Air yang menggenang selama dua minggu akan menyebabkan media tanam menjadi berlumbur dan racun pun dapat hilang karena ternetralisir.\r\n\r\n2. Pemilihan bibit\r\n\r\nBibit pada tanaman padi harus melalui pengujian terlebih dahulu untuk menentukan kualitasnya. Pengujian dilakukan dengan merendam sekitar 100 butir benih padi dalam air. Setelah dua jam periksalah benih tersebut. Cara menanam benih padi yaitu dengan Pemeriksaan benih dilakukan dengan mengidentifikasi perubahan pada benih. Jika terdapat lebih dari 90 butir benih atau lebih dari 90% benih mengeluarkan kecambah, maka artinya benih tersebut berkualitas unggul dan bermutu tinggi. Tentu benih yang berkualitas unggul dan bermutu tinggi inilah yang layak untuk dibudidayakan. Sedangkan jika benih tidak menunjukkan tanda seperti yang disebutkan diatas, artinya benih tersebut tidak disarankan untuk dibudidayakan. Setelah menentukan benih yang akan dijadikan bibit, maka dapat dilakukan persemaian segera.\r\n\r\n3. Persemaian\r\n\r\nPersemaian dilakukan setelah menentukan bibit yang unggul. Bibit unggul tersebut kemudian akan disemai di wadah persemaian. Wadah persemaian terlebih dahulu harus disiapkan. Kebutuhan wadah semai diberikan dalam perbandingan sebesar 1 : 20. Misalkan akan menggunakan lahan sawah sebesar 1 hektar maka wadah persemaiannya sekitar 500 m2. Lahan pada wadah persemaian haruslah juga berair dan berlumpur. Berikan pupuk urea dan pupuk TSP pada lahan persemaian dengan dosis masing-masing 10 gr per 1 m2. Jika lahan persemaian sudah siap, sebarkan benih yang telah berkecambah dengan merata.\r\n\r\n4. Penanaman\r\n\r\nProses penanaman dilakukan setelah benih pada proses persemaian telah tumbuh daun sempurna sebanyak tiga hingga empat helai. Jangka waktu dari persemaian ke bibit siap tanam umumnya sekitar 12 hingga 14 hari saja. Jika sudah siap tanam, pindahkan bibit dari lahan semai ke lahan tanam. Pemidahan dilakukan dengan hati-hati dan tidak merusak tanaman. Penanaman dilakukan pada lubang-lubang tanam yang telah disiapkan. Khusus untuk tanaman padi dalam satu lubang dapat ditanam dua bibit sekaligus. Penanaman dilakukan dengan memasukkan bagian akar membentuk huruf L agar akar dapat tumbuh dengan sempurna. Kedalaman bibit ditanam pun ditentukan berkisar pada rentang 1 cm hingga 15 cm. Masa penanaman padi lebih baik dilakukan dua kali dalam setahun berdasarkan masa penanamannya yang ideal.\r\n\r\n5. Perawatan lahan\r\n\r\nPerawatan dilakukan dengan tiga hal yaitu penyiangan, pengairan, dan pemupukan. Penyiangan dilakukan dengan menjaga kebersihan lahan dari tanaman pengganggu. Penyiangan harus dilakukan rutin setiap periode waktu tertentu. Bisa dilakukan dua minggu sekali atau tiga minggu sekali. Pengairan diberikan sesuai kebutuhan. Seperti pada tanaman lainnya, pastikan tidak ada kekurangan atau kelebihan air. Selanjutnya untuk pemupukan, dilakukan pertama kali setelah tanaman padi berusia satu minggu. Jenis pupuk yang diberikan adalah pupuk urea dengan dosis 100 kg per hektar dan pupuk TPS dengan dosis 50 kg per hektar. Pemupukan selanjutnya dilakukan setelah 25 hari hingga 30 hari setelah penanaman. Diberikan kembali pupuk urea dengan dosis 50 kg per hektar dan pupuk Phonska dengan dosis 100 kg per hektar.\r\n\r\n6. Pencegahan hama dan penyakit\r\n\r\nHama dan penyakit dapat dicegah dengan memberikan pestisida.\r\n\r\n7. Pemanenan\r\n\r\nPanen dilakukan dengan tanda-tanda padi yang sudah menguning dan merunduk. Gunakan sabit gerigi untuk memanen dan letakkan hasil panen pada tikar dengan merontokkan beras dari dalam bulir-bulir padi yang ada.', '2022-07-12 01:07:25', 'http://carakumenanam.com/ikan/'),
-(10, 1, 'jagung.jpg', 'jagung', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2022-07-12 01:22:48', 'www');
+(11, 4, 'sapi.jpg', 'sapi', '<p>1.&nbsp;<strong>&nbsp;<strong><strong><strong><strong><strong><strong><strong><strong>Proses Pemilihan Bibit Sapi Simental</strong></strong></strong></strong></strong></strong></strong></strong></strong></p>\r\n\r\n<p>Bibit pejantan yang sehat memiliki ciri fisik sehat dengan badan gempal, kualitas semen unggulan serta kapasitas servis yang cukup mumpuni. Sementara untuk kriteria sehat bagi bibit betina ialah memiliki 4 buah puting, bentuk ambing cenderung besar dan simetris, dan kemiringan vulva yang tidak terlalu ke atas.</p>\r\n\r\n<p>2.&nbsp;<strong><strong><strong><strong><strong><strong><strong><strong><strong>Pemberian Pakan</strong></strong></strong></strong></strong></strong></strong></strong></strong></p>\r\n\r\n<p>Makanan pokok bagi sapi asal Swiss ini ialah hijauan, limbah pertanian, konsentrat onggok, kacang-kacangan, ampas tahu, dan dedak padi. Sementara makanan tambahan baginya boleh berupa mineral, urea, dan/ atau vitamin. Untuk porsi pakan yang dapat diberikan pada sapi simental dalam 1 hari ialah:</p>\r\n\r\n<ul>\r\n	<li>35 sampai 47 kg hijauan, atau sesuaikan dengan besar badan dan bobot dari sapi itu sendiri.</li>\r\n	<li>2 sampai 5 kg konsentrat.</li>\r\n	<li>Bila diperlukan, tambahkan pakan tambahan dengan porsi 30 sampai 50 kg per harinya.</li>\r\n</ul>\r\n\r\n<p>Selain itu, peternak juga dianjurkan untuk memberikan jerami fermentasi sebagai campuran pakan sapi. Konon, jerami fermentasi mampu menyokong nutrisi tambahan penggemuk sapi. Dengan begitu, pertumbuhan bobot simental bisa dicapai secara optimal dalam kurun waktu lebih cepat.</p>\r\n\r\n<p>3.&nbsp;<strong><strong><strong><strong><strong><strong><strong><strong><strong>Pembuatan Kandang</strong></strong></strong></strong></strong></strong></strong></strong></strong></p>\r\n\r\n<p>Demi terwujudnya kesuksesan budidaya sapi mental, syarat pembuatan kandang yang harus dipenuhi ialah penggunaan bahan dasar kandang berupa bambu atau kayu. Pun dengan peletakannya yang harus didesain lebih tinggi dibandingkan tanah di sekitarnya. Ditambah lagi, drainase dan saluran di dalam atau luar kandang harus layak.</p>\r\n\r\n<p>Ukuran kandang bagi sapi simental sendiri dibagi berdasarkan kriteria usia dan jenis kelaminnya, yakni:</p>\r\n\r\n<ul>\r\n	<li>1,5 x 2 meter per ekor untuk sapi simental betina dewasa.</li>\r\n	<li>1,8 x 2 meter per ekor untuk sapi simental jantan dewasa.</li>\r\n	<li>1,5 x 2 meter per ekor untuk pedet atau anak sapi.</li>\r\n</ul>\r\n\r\n<p>4.&nbsp;<strong><strong><strong><strong><strong><strong><strong><strong><strong>Pengawasan Maksimal</strong></strong></strong></strong></strong></strong></strong></strong></strong></p>\r\n\r\n<p>Penyakit sangat dimungkinkan timbul pada hewan ternak super rentan sekelas sapi simental. Oleh karena itu, pengawasan maksimal sangatlah diperlukan agar tanda-tanda penyakit bisa dideteksi lebih dini. Sehingga penyakit tersebut tidak akan bertambah parah maupun menjangkit sapi lain di dekatnya.</p>\r\n\r\n<p>Kebutuhan masyarakat akan daging sapi bertekstur lembut dan susu segar bernutrisi tinggi membuat bisnis budidaya sapi simental semakin populer di Indonesia. Apalagi dengan prosedur cara ternak sapi simental yang dapat dilakukan oleh sembarang orang, bahkan pemula di era modern seperti saat ini.</p>', '2022-08-10 08:43:40', 'https://trikmerawat.com/cara-ternak-sapi-simental/');
 
 -- --------------------------------------------------------
 
@@ -7848,9 +7857,9 @@ CREATE TABLE `notif` (
 
 INSERT INTO `notif` (`id_notif`, `jenis_notif`, `isi_notif`, `created_at`, `id_likes`, `id_comment`, `id_konten`, `id_undangan`, `id_followers`, `id_anggota`, `id_video`, `id_user`, `status`, `is_active`, `updated_at`) VALUES
 (1, 'Followers', 'desa_wangunjaya mulai mengikuti Anda', '2021-08-11 13:46:30', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 'Belum Dibaca', 1, NULL),
-(2, 'Menyukai', 'afraaknim_ menyukai postingan anda', '2021-08-13 17:55:01', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1, NULL),
 (3, 'Komentar', 'afraaknim_ mengomentari postingan Anda', '2021-08-13 17:56:33', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1, NULL),
-(4, 'Komentar', 'ade mengomentari postingan Anda', '2022-07-12 15:49:02', NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1, NULL);
+(4, 'Komentar', 'ade mengomentari postingan Anda', '2022-07-12 15:49:02', NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1, NULL),
+(5, 'Menyukai', 'sherla menyukai postingan anda', '2022-08-06 17:22:09', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Belum Dibaca', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -8024,11 +8033,12 @@ CREATE TABLE `peralatans` (
 --
 
 INSERT INTO `peralatans` (`id_peralatan`, `nama_alat`, `stok`, `harga`, `deskripsi`, `gambar`, `id_pemilik`, `status`, `updated_at`) VALUES
-(1, 'cangkul', 2, 1000, 'cangkul', 'IMG_20220209_143004.jpg', 42, 'Ready', '2022-07-13'),
-(2, 'ember', 2, 20000, 'yusril nggk kuat buat memiliki', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 45, 'Waiting', '2022-07-13'),
-(3, 'Cetok', 2, 2000, 'Cetok Besar', 'ss1.png', 42, 'Ready', '2022-07-13'),
-(5, 'Arit', 3, 3000, 'Arit ges', 'tbl komentar.png', 42, 'Reject', '2022-07-13'),
-(6, 'diesel', 2, 1000, '<p>disel buat listrik</p>', 'disel.jfif', 42, 'Waiting', '2022-07-23');
+(1, 'sekop', 2, 1000, '<p>sekop</p>', 'sekopnya.jpg', 42, 'Ready', '2022-08-10'),
+(2, 'Cangkul', 2, 2000, 'cangkul untuk bertani', 'cangkul.jpeg', 45, 'Ready', '2022-08-10'),
+(3, 'Cangkul', 2, 2000, '<p>cangkul</p>', 'sawit.jpeg', 42, 'Ready', '2022-08-10'),
+(5, 'Arit', 3, 3000, '<p>Arit</p>', 'arittt.jfif', 42, 'Reject', '2022-08-10'),
+(6, 'diesel', 2, 1000, '<p>disel buat listrik</p>', 'diselnya.jpg', 42, 'Ready', '2022-08-10'),
+(8, 'Jaring Ikan', 12, 5000, '<p>-</p>', 'jaring.jpg', 42, 'Waiting', '2022-08-10');
 
 -- --------------------------------------------------------
 
@@ -8808,8 +8818,14 @@ CREATE TABLE `risks` (
 --
 
 INSERT INTO `risks` (`id_risk`, `id_sewa`, `penyebab`, `dampak`, `strategi`, `biaya`, `probabilitas`, `impact`, `levelRisk`, `updated_at`) VALUES
-(7, 7, 'hujan', 'gak bisa beli pupuk', 'minjem duit', 2000, 3, 2, 'High', '2022-06-27'),
-(8, 7, 'hujan gede', 'gak bisa beli pupuk', 'apa aja', 10000, 3, 3, 'High', '2022-06-27');
+(7, 7, 'hujankuue', 'gak bisa beli pupuk', 'minjem duit', 2000, 3, 2, 'High', '2022-08-07'),
+(8, 7, 'hujan gede', 'gak bisa beli pupuk', 'apa aja', 10000, 3, 3, 'High', '2022-06-27'),
+(9, 7, 'kemarau', 'mati', 'air', 100000, 2, 1, 'Low', '2022-08-07'),
+(10, 7, 'kemarau', 'mati', 'air', 100000, 2, 1, 'Low', '2022-08-05'),
+(11, 7, 'banjir nih', 'mati', 'air', 60, 2, 2, 'Medium', '2022-08-05'),
+(12, 7, 'banjir', 'mati', 'air', 60, 3, 3, 'High', '2022-08-05'),
+(16, 8, 'banjir nih', 'mati', 'air', 100000, 1, 1, 'Low', '2022-08-06'),
+(17, 8, 'kemarau', 'mati', 'air', 100000, 1, 1, 'Low', '2022-08-06');
 
 -- --------------------------------------------------------
 
@@ -8864,7 +8880,7 @@ INSERT INTO `sewa_lahans` (`id_sewa`, `id_penyewa`, `id_pemilik`, `id_lahan`, `s
 (3, 45, 42, 5, 'Acc', 'Done', '2022-06-21 13:03:46'),
 (6, 46, 42, 5, 'Acc', 'Proses', '2022-06-30 12:11:31'),
 (7, 46, 42, 4, 'Acc', 'Proses', '2022-06-30 12:13:09'),
-(8, 45, 42, 4, 'Tolak', '-', '2022-06-21 13:34:15'),
+(8, 45, 42, 4, 'Acc', 'Proses', '2022-08-06 12:08:31'),
 (9, 45, 46, 6, 'Belum Acc', '-', '2022-07-18 23:27:49');
 
 -- --------------------------------------------------------
@@ -8918,7 +8934,8 @@ CREATE TABLE `struks` (
 
 INSERT INTO `struks` (`id_struk`, `keterangan`, `gambar`, `tanggal`, `updated_at`, `id_sewa`) VALUES
 (2, 'beli pupuk 2', 'sawah.jpg', '2022-06-27', '2022-06-27', 7),
-(8, 'beli cangkul', 'IMG_20220209_143004.jpg', '2022-06-27', '2022-06-27', 7);
+(8, 'beli cangkul 1', 'arit.jfif', '2022-06-27', '2022-07-27', 7),
+(9, 'cdmnckedcels', 'contoh 2.PNG', '2022-08-06', '2022-08-06', 8);
 
 -- --------------------------------------------------------
 
@@ -8948,17 +8965,31 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent`, `sortorder`, `created_at`, `updated_at`, `id_sewa`, `qty`, `satuan`, `harga`, `totalHarga`) VALUES
-(120, 'persiapan lahan', 4, 0.00, '2022-06-23 00:00:00', 0, 1, '2022-06-24 00:10:57', '2022-07-22 17:00:39', 7, 0, '', 0, 62900),
-(121, 'pembersihan lahan', 1, 0.00, '2022-06-23 00:00:00', 120, 2, '2022-06-24 00:19:17', '2022-07-22 17:00:39', 7, 0, '', 0, 62000),
-(122, 'arit', 1, 0.00, '2022-06-24 00:00:00', 121, 3, '2022-06-24 00:19:25', '2022-07-22 17:00:39', 7, 20, 'buah', 3000, 60000),
-(123, 'cangkul', 1, 0.00, '2022-06-25 00:00:00', 121, 4, '2022-06-24 00:19:35', '2022-07-22 16:29:33', 7, 1, 'buah', 2000, 2000),
-(124, 'pembajakan', 1, 0.00, '2022-06-26 00:00:00', 120, 5, '2022-06-24 00:19:45', '2022-07-22 16:53:40', 7, 3, 'buah', 300, 900),
-(125, 'coba', 3, 0.00, '2022-06-27 00:00:00', 0, 6, '2022-07-22 16:50:53', '2022-07-22 16:59:39', 7, 0, '', 0, 16000),
-(126, 'coba1', 2, 0.00, '2022-06-27 00:00:00', 125, 7, '2022-07-22 16:51:07', '2022-07-22 16:59:39', 7, 4, 'kg', 4000, 16000),
-(127, 'coba2', 1, 0.00, '2022-06-30 00:00:00', 0, 8, '2022-07-22 16:54:54', '2022-07-22 16:57:56', 7, 2, '0', 2000, 4000),
-(128, 'coba3', 1, 0.00, '2022-07-01 00:00:00', 0, 9, '2022-07-22 16:55:07', '2022-07-22 16:58:07', 7, 2, '0', 1000, 2000),
-(129, 'coba4', 1, 0.00, '2022-07-03 00:00:00', 0, 10, '2022-07-22 16:55:17', '2022-07-22 16:58:22', 7, 1, '0', 3500, 3500),
-(130, 'coba5', 1, 0.00, '2022-07-04 00:00:00', 0, 11, '2022-07-22 16:55:41', '2022-07-22 16:56:42', 7, 1, '0', 1000, 1000);
+(120, 'persiapan lahan', 4, 0.00, '2022-06-23 00:00:00', 0, 1, '2022-06-24 00:10:57', '2022-08-10 08:31:35', 7, 0, '', 0, 27000),
+(121, 'pembersihan lahan', 1, 0.00, '2022-06-23 00:00:00', 120, 2, '2022-06-24 00:19:17', '2022-08-10 08:31:10', 7, 0, '', 0, 7000),
+(122, 'arit', 1, 0.00, '2022-06-24 00:00:00', 121, 3, '2022-06-24 00:19:25', '2022-08-10 08:30:55', 7, 2, 'buah', 1500, 3000),
+(123, 'cangkul', 1, 0.00, '2022-06-25 00:00:00', 121, 4, '2022-06-24 00:19:35', '2022-08-10 08:31:10', 7, 2, 'buah', 2000, 4000),
+(124, 'pembajakan', 1, 0.00, '2022-06-26 00:00:00', 120, 5, '2022-06-24 00:19:45', '2022-08-10 08:31:35', 7, 1, 'hektar', 20000, 20000),
+(125, 'Pemilihan Bibit', 3, 0.00, '2022-06-27 00:00:00', 0, 6, '2022-07-22 16:50:53', '2022-08-10 08:32:41', 7, 0, '', 0, 220000),
+(126, 'Perendaman Bibit', 2, 0.00, '2022-06-27 00:00:00', 125, 7, '2022-07-22 16:51:07', '2022-08-10 08:32:17', 7, 2, 'kg', 10000, 20000),
+(127, 'Persemaian', 2, 0.00, '2022-06-30 00:00:00', 0, 8, '2022-07-22 16:54:54', '2022-08-10 08:32:59', 7, 0, '', 0, 480000),
+(128, 'Penanaman', 2, 0.00, '2022-07-02 00:00:00', 0, 9, '2022-07-22 16:55:07', '2022-08-10 08:29:43', 7, 0, 'hektar', 0, 0),
+(129, 'Perawatan Lahan', 2, 0.00, '2022-07-04 00:00:00', 0, 10, '2022-07-22 16:55:17', '2022-08-10 08:29:43', 7, 0, 'hektar', 0, 0),
+(130, 'Pencegahan Hama dan Penyakit', 2, 0.00, '2022-07-05 00:00:00', 0, 11, '2022-07-22 16:55:41', '2022-08-10 08:29:43', 7, 0, 'hektar', 0, 0),
+(136, 'Pengolahan Lahan', 2, 0.00, '2022-07-27 00:00:00', 0, 12, '2022-08-03 04:02:35', '2022-08-03 04:14:23', 8, 2, '0', 700000, 1400000),
+(137, 'Persiapan Benih', 2, 0.00, '2022-07-29 00:00:00', 0, 13, '2022-08-03 04:02:54', '2022-08-03 04:08:51', 8, 1, '0', 1500000, 1500000),
+(138, 'Penanaman', 3, 0.00, '2022-07-30 00:00:00', 0, 14, '2022-08-03 04:02:58', '2022-08-03 04:09:02', 8, 1, '0', 1300000, 1300000),
+(139, 'pemupukan', 3, 0.00, '2022-07-31 00:00:00', 0, 15, '2022-08-03 04:03:09', '2022-08-03 04:14:06', 8, 2, '0', 2000000, 4000000),
+(140, 'pemeliharaan', 2, 0.00, '2022-08-02 00:00:00', 0, 16, '2022-08-03 04:03:15', '2022-08-03 04:13:51', 8, 1, '0', 0, 0),
+(141, 'pengendalian', 2, 0.00, '2022-08-04 00:00:00', 0, 17, '2022-08-03 04:03:36', '2022-08-03 04:13:46', 8, 1, '0', 0, 0),
+(142, 'panen', 2, 0.00, '2022-08-06 00:00:00', 0, 18, '2022-08-03 04:03:43', '2022-08-03 04:13:40', 8, 1, '0', 0, 0),
+(143, 'pasca panen', 1, 0.00, '2022-08-08 00:00:00', 0, 19, '2022-08-03 04:03:48', '2022-08-03 04:13:32', 8, 1, '0', 0, 0),
+(144, 'Menanam Bibit', 1, 0.00, '2022-06-29 00:00:00', 125, 20, '2022-08-05 11:55:41', '2022-08-10 08:32:41', 7, 1, 'hektar', 200000, 200000),
+(147, 'New task', 1, 0.00, '2022-08-07 00:00:00', 0, 22, '2022-08-08 07:56:17', '2022-08-08 07:56:17', 6, 0, '0', 0, 0),
+(148, 'New task', 1, 0.00, '2022-08-07 00:00:00', 147, 23, '2022-08-08 07:56:20', '2022-08-08 07:56:20', 6, 0, '0', 0, 0),
+(149, 'Pemupukan Lahan Persemaian', 1, 0.00, '2022-06-30 00:00:00', 127, 24, '2022-08-10 08:21:58', '2022-08-10 08:32:59', 7, 3, 'buah', 160000, 480000),
+(150, 'Pesebaran Benih', 1, 0.00, '2022-07-01 00:00:00', 127, 25, '2022-08-10 08:22:24', '2022-08-10 08:29:43', 7, 0, 'kilo', 0, 0),
+(151, 'Pemanenan', 2, 0.00, '2022-07-07 00:00:00', 0, 26, '2022-08-10 08:24:35', '2022-08-10 08:29:43', 7, 0, 'hekatar', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -8989,17 +9020,21 @@ CREATE TABLE `task_historis` (
 --
 
 INSERT INTO `task_historis` (`id_history`, `id_task`, `text`, `duration`, `progress`, `start_date`, `parent`, `sortorder`, `created_at`, `updated_at`, `id_sewa`, `qty`, `satuan`, `harga`, `totalHarga`) VALUES
-(8, 120, 'persiapan lahan', 4, 0, '2022-06-23 00:00:00', 0, 1, '2022-06-24 00:10:57', '2022-07-22 16:53:40', 7, 0, '', 0, 42900),
-(9, 121, 'pembersihan lahan', 1, 0, '2022-06-23 00:00:00', 120, 2, '2022-06-24 00:19:17', '2022-07-22 16:53:28', 7, 0, '', 0, 42000),
-(10, 122, 'arit', 1, 0, '2022-06-24 00:00:00', 121, 3, '2022-06-24 00:19:25', '2022-07-22 16:53:28', 7, 20, 'buah', 2000, 40000),
-(11, 123, 'cangkul', 1, 0, '2022-06-25 00:00:00', 121, 4, '2022-06-24 00:19:35', '2022-07-22 16:29:33', 7, 1, 'buah', 2000, 2000),
-(12, 124, 'pembajakan', 1, 0, '2022-06-26 00:00:00', 120, 5, '2022-06-24 00:19:45', '2022-07-22 16:53:40', 7, 3, 'buah', 300, 900),
-(13, 125, 'coba', 3, 0, '2022-06-27 00:00:00', 0, 6, '2022-07-22 16:50:53', '2022-07-22 16:53:53', 7, 0, '', 0, 8000),
-(14, 126, 'coba1', 2, 0, '2022-06-27 00:00:00', 125, 7, '2022-07-22 16:51:07', '2022-07-22 16:53:53', 7, 2, 'kg', 4000, 8000),
-(15, 127, 'coba2', 1, 0, '2022-06-30 00:00:00', 0, 8, '2022-07-22 16:54:54', '2022-07-22 16:56:06', 7, 1, '0', 2000, 2000),
-(16, 128, 'coba3', 1, 0, '2022-07-01 00:00:00', 0, 9, '2022-07-22 16:55:07', '2022-07-22 16:56:18', 7, 2, '0', 2000, 4000),
-(17, 129, 'coba4', 1, 0, '2022-07-03 00:00:00', 0, 10, '2022-07-22 16:55:17', '2022-07-22 16:56:32', 7, 1, '0', 3000, 3000),
-(18, 130, 'coba5', 1, 0, '2022-07-04 00:00:00', 0, 11, '2022-07-22 16:55:41', '2022-07-22 16:56:42', 7, 1, '0', 1000, 1000);
+(56, 120, 'persiapan lahan', 4, 0, '2022-06-23 00:00:00', 0, 1, '2022-06-24 00:10:57', '2022-08-07 07:17:51', 7, 0, '', 0, 12000),
+(57, 121, 'pembersihan lahan', 1, 0, '2022-06-23 00:00:00', 120, 2, '2022-06-24 00:19:17', '2022-08-07 07:17:51', 7, 0, '', 0, 12000),
+(58, 122, 'arit', 1, 0, '2022-06-24 00:00:00', 121, 3, '2022-06-24 00:19:25', '2022-08-07 07:17:37', 7, 2, 'buah', 3000, 6000),
+(59, 123, 'cangkul', 1, 0, '2022-06-25 00:00:00', 121, 4, '2022-06-24 00:19:35', '2022-08-07 07:17:51', 7, 3, 'buah', 2000, 6000),
+(60, 124, 'pembajakan', 1, 0, '2022-06-26 00:00:00', 120, 5, '2022-06-24 00:19:45', '2022-08-07 07:17:17', 7, 0, 'buah', 0, 0),
+(61, 125, 'Pemilihan Bibit', 3, 0, '2022-06-27 00:00:00', 0, 6, '2022-07-22 16:50:53', '2022-08-10 08:01:42', 7, 0, '', 0, 3500),
+(62, 126, 'Perendaman Bibit', 2, 0, '2022-06-27 00:00:00', 125, 7, '2022-07-22 16:51:07', '2022-08-10 08:20:39', 7, 1, 'kg', 1000, 1000),
+(63, 127, 'Persemaian', 2, 0, '2022-06-30 00:00:00', 0, 8, '2022-07-22 16:54:54', '2022-08-10 08:28:06', 7, 0, '', 0, 505000),
+(64, 128, 'Penanaman', 2, 0, '2022-07-02 00:00:00', 0, 9, '2022-07-22 16:55:07', '2022-08-10 08:28:43', 7, 1, 'hektar', 200000, 200000),
+(65, 129, 'Perawatan Lahan', 2, 0, '2022-07-04 00:00:00', 0, 10, '2022-07-22 16:55:17', '2022-08-10 08:29:03', 7, 1, 'hektar', 100000, 100000),
+(66, 130, 'Pencegahan Hama dan Penyakit', 2, 0, '2022-07-05 00:00:00', 0, 11, '2022-07-22 16:55:41', '2022-08-10 08:29:20', 7, 1, 'hektar', 100000, 100000),
+(67, 144, 'Menanam Bibit', 1, 0, '2022-06-29 00:00:00', 125, 20, '2022-08-05 11:55:41', '2022-08-10 08:20:58', 7, 5, '0', 500, 2500),
+(68, 149, 'Pemupukan Lahan Persemaian', 1, 0, '2022-06-30 00:00:00', 127, 24, '2022-08-10 08:21:58', '2022-08-10 08:27:31', 7, 5, 'buah', 100000, 500000),
+(69, 150, 'Pesebaran Benih', 1, 0, '2022-07-01 00:00:00', 127, 25, '2022-08-10 08:22:24', '2022-08-10 08:28:06', 7, 5, 'kilo', 1000, 5000),
+(70, 151, 'Pemanenan', 2, 0, '2022-07-07 00:00:00', 0, 26, '2022-08-10 08:24:35', '2022-08-10 08:29:39', 7, 1, 'hekatar', 200000, 200000);
 
 -- --------------------------------------------------------
 
@@ -9127,10 +9162,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `id_role`) VALUES
-(1, 'Super Admin', 'superadmin@gmail.com', '$2a$04$cXLImFpNCHnKqiAstB..TOFtNAzQhqjnpSbmJs7XPRMKg9dQA3qM.', '0rjhSd7s7rvZTU4ejqwv4SWLJM8hW0F45NDNPNUz4QwyxrUjo0brDkTEjWT6', '2021-08-10 23:02:32', '2021-08-10 23:02:32', 1),
+(1, 'Super Admin', 'superadmin@gmail.com', '$2a$04$cXLImFpNCHnKqiAstB..TOFtNAzQhqjnpSbmJs7XPRMKg9dQA3qM.', 'bsdDBRj0l54IYBW6ADtGAqz4HOnIgeqgiO85kEI4atsMBpPfvy3EtNCDDEdh', '2021-08-10 23:02:32', '2021-08-10 23:02:32', 1),
 (2, 'Fakhrunnisa Nur Afra', 'afrakiww@gmail.com', '$2y$10$/OY.jgvJsGhqnx8P2UcGw.LfpYBEtjwbd0Gy18Xp3axQ2MDJ3RtZW', 'FM9RPPTPRCxSW0FvjV1RDdOTKnAsNrRCx5fU36RNP0nddiWVEiRCvWaA2YBz', '2021-08-10 23:02:32', '2021-08-10 23:02:32', 2),
 (3, 'Muhammad Derry Salman S', 'mderry3@gmail.com', '$2y$10$2uo5Gfj7w0.PmdnSXyrjKe9FPtsHyqFaAyhYGofaYiptgY3t.x1.K', NULL, '2021-08-10 23:10:30', '2021-08-10 23:10:30', 2),
-(4, 'Desa Malasari', 'desa.malasari@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '3dQMZLPKr3GR78dT9M28fOMt6i7vW6DJGsatFZN7QEbyhpi1rf0Tx1QAW91v', '2021-08-10 23:26:56', '2021-08-10 23:26:56', 2),
+(4, 'Desa Malasari', 'desa.malasari@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'GYIY8c2FMBuQoB0Ty1bdzy7k1jY54piXbR3j3wdqSTZOGzurHKIgiKDY6CaB', '2021-08-10 23:26:56', '2021-08-10 23:26:56', 2),
 (5, 'Desa Purasari', 'desa.purasari@gmail.com', '$2y$10$ABtmoTzCVtIzwSvJFHxtWebtFZzgSRduavNmzGpCHL.j4WXRSGDsG', NULL, '2021-08-10 23:28:35', '2021-08-10 23:28:35', 2),
 (6, 'Desa Wangun Jaya', 'desa.wangunjaya@gmail.com', '$2y$10$aHe.gLO4VkYss66EdMKSXul66hDbe72Rr37bY.VF4iYICx7JA0FHW', 'ZJyv56mRO0y25wsaGNfS6uEVsHhLwmth9tMRNUpc8ur8RpfarETk6gA8xcNP', '2021-08-10 23:30:07', '2021-08-10 23:30:07', 2),
 (7, 'Hermansyah', 'herman@gmail.com', '$2y$10$Mb0uetUSi2YaVAAgfGcAfeqXWtbMzLCMbbmV3RUOzR2Ehk3uQRq4a', 'ikjqjHfrwXREGxJu0MaReZy3jriS0axzLw8iDxuNNG9B6vZkAyCnvFMXzlcE', '2021-08-11 07:22:15', '2021-08-11 07:22:15', 2),
@@ -9161,10 +9196,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 10:19:42', '2021-08-14 10:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-16 20:53:26', '2021-08-16 20:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-16 21:07:23', '2021-08-16 21:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'dmfX78o4cWD7IlKPQypKx9F1dd6NQmubS93MGWezBtGrZvMPs8Gh2WelGURA', '2022-04-03 03:54:28', '2022-04-03 03:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '1HupuAfk5wTqiPyQuImM1tA3foUpZcV0IDVwkMAIhRrTGf05QRFlxwRzJKwD', '2022-04-03 03:54:28', '2022-04-03 03:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 00:37:26', '2022-04-18 00:37:26', 2),
-(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'Wy9CsSrUHAhERSjcPRjkfSq1ptSAREvfoD7OwZlwpbfewVfxXPi5lkSkdWwQ', '2022-06-04 23:42:37', '2022-06-04 23:42:37', 2),
-(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'ssEF6bXjm4s16mdh0ZL6PBR5gUQGZvOMIgZW1Tu0kbX0HOqiVpilXA8RVQT7', '2022-06-05 05:02:18', '2022-06-05 05:02:18', 2),
+(45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'l6eWnd6x3ks7ri2WsfULjaTKuBdSJiZ1XMswES8vXpSMJ2B6RVVgQ2R9mV6n', '2022-06-04 23:42:37', '2022-06-04 23:42:37', 2),
+(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'DhJoYOfqnc8zdENdDa3G5oYsim5XzzSwYIhSgEjmAJz9DTOLmaoRzTGuD9ED', '2022-06-05 05:02:18', '2022-06-05 05:02:18', 2),
 (47, 'Imam', 'imam@gmail.com', '$2y$10$v1yK4ZkSKKsMA/NFDfEigeF8UGFxHbijSQyjPD0PR4vAY58B6SIba', '5CfIfNsqn98Cs86n6s1RQQupOmt1YfWeGyanxSAko8RmoZs20TZ77SmljZM3', '2022-07-12 22:35:27', '2022-07-12 22:35:27', 2);
 
 -- --------------------------------------------------------
@@ -9239,7 +9274,7 @@ CREATE TABLE `video_details` (
 
 INSERT INTO `video_details` (`id`, `id_video`, `views`, `subscribes`, `like`, `dont_like`, `comment`, `id_user`, `created_at`, `updated_at`) VALUES
 (10, 23, 1, 0, 1, 0, 1, 45, '2022-07-18 23:38:27', '2022-07-18 23:43:26'),
-(11, 22, 1, 0, 0, 1, 0, 45, '2022-07-18 23:41:23', '2022-07-18 23:44:09');
+(11, 22, 2, 0, 0, 1, 0, 45, '2022-07-18 23:41:23', '2022-07-30 12:02:01');
 
 -- --------------------------------------------------------
 
@@ -90342,7 +90377,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT untuk tabel `dailies`
 --
 ALTER TABLE `dailies`
-  MODIFY `id_daily` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_daily` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `followers`
@@ -90378,7 +90413,7 @@ ALTER TABLE `hapus_akun`
 -- AUTO_INCREMENT untuk tabel `jadwals`
 --
 ALTER TABLE `jadwals`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `konten`
@@ -90390,7 +90425,7 @@ ALTER TABLE `konten`
 -- AUTO_INCREMENT untuk tabel `lahans`
 --
 ALTER TABLE `lahans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `lahan_resources`
@@ -90402,25 +90437,25 @@ ALTER TABLE `lahan_resources`
 -- AUTO_INCREMENT untuk tabel `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `links`
 --
 ALTER TABLE `links`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `manual_books`
 --
 ALTER TABLE `manual_books`
-  MODIFY `id_manual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_manual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `notif`
 --
 ALTER TABLE `notif`
-  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengguna`
@@ -90432,7 +90467,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT untuk tabel `peralatans`
 --
 ALTER TABLE `peralatans`
-  MODIFY `id_peralatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_peralatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `products`
@@ -90450,7 +90485,7 @@ ALTER TABLE `product_gallaries`
 -- AUTO_INCREMENT untuk tabel `risks`
 --
 ALTER TABLE `risks`
-  MODIFY `id_risk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_risk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `room_chat`
@@ -90474,19 +90509,19 @@ ALTER TABLE `sewa_peralatans`
 -- AUTO_INCREMENT untuk tabel `struks`
 --
 ALTER TABLE `struks`
-  MODIFY `id_struk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_struk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT untuk tabel `task_historis`
 --
 ALTER TABLE `task_historis`
-  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT untuk tabel `transactions`
