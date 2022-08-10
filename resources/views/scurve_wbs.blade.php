@@ -29,21 +29,30 @@
                                     <tr>
                                         <th scope="col">Tanggal</th>
                                         <th scope="col">Kegiatan</th>
+                                        {{-- <th scope="col">Jumlah</th> --}}
                                     </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($data['data_kegiatan'] as $key => $item)
                                             <tr>
                                                 <td>{{$key}}</td>
-                                                <td>
                                                 @foreach ($item as $value)
-                                                    {{$value}},
-                                                @endforeach
+                                                <td>
+                                                    {{$value}}
                                                 </td>
+                                                @endforeach
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+                            <div class="col-md-9">
+                                <canvas id="Percent" width="600" height="400"></canvas>
+                            </div>
+                            <div class="col-md-3">
                             </div>
                         </div>
                     </div>
@@ -56,12 +65,12 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/chart.js/Chart.min.js') }}"></script>
     <script>
         var speedCanvas = document.getElementById("Aktual");
+        var speedCanvasPercent = document.getElementById("Percent");
 
             Chart.defaults.global.defaultFontFamily = "Roboto";
             Chart.defaults.global.defaultFontSize = 18;
@@ -78,6 +87,7 @@
                         const chart_data = data + tempArrFirst;
                         tempArrFirst = chart_data;
                         arrFirst.push(chart_data)
+                        console.log(arrFirst);
                     }
                 }
             }
@@ -107,19 +117,23 @@
             fill: false,
             borderColor: 'blue'
         };
-
+// console.log(arrSecond[arrSecond.length-1]);
+console.log(arrSecond);
         // line three
         var arrDifference = [];
         var tempArrDifference = 0;
+        var history_total = arrSecond[arrSecond.length-1]
             for (let index = 0; index < arrFirst.length; index++) {
-                const difference = arrFirst[index] - arrSecond[index];
-                const chart_data = difference + tempArrDifference;
-                tempArrDifference = chart_data;
-                arrDifference.push(chart_data);
+                if(arrFirst[index] != 0){
+                    const weight = (arrFirst[index] / history_total) * 100;
+                    console.log(weight.toFixed(2));
+                    tempArrDifference = weight.toFixed(2);
+                    arrDifference.push(weight.toFixed(2));
+                }
             }
 
         var dataDifference = {
-            label: "Selisih",
+            label: "Progress",
             data: arrDifference,
             lineTension: 0,
             fill: false,
@@ -129,7 +143,12 @@
 
         var speedData = {
             labels: data_tanggal,
-            datasets: [dataFirst, dataSecond,dataDifference]
+            datasets: [dataFirst, dataSecond]
+        };
+        
+        var speedDataPercent = {
+            labels: data_tanggal,
+            datasets: [dataDifference]
         };
 
         var chartOptions = {
@@ -146,6 +165,12 @@
         var lineChart = new Chart(speedCanvas, {
             type: 'line',
             data: speedData,
+            options: chartOptions
+        });
+
+        var lineChart = new Chart(speedCanvasPercent, {
+            type: 'line',
+            data: speedDataPercent,
             options: chartOptions
         });
 

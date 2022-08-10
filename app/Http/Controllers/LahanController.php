@@ -482,6 +482,7 @@ class LahanController extends Controller
            if ($parent->parent == 0) {
             $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
             $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
+            // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
             $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
             $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
             // foreach ($parent->children as $child) {
@@ -532,6 +533,7 @@ class LahanController extends Controller
             'total_history' => $total_history,
             'data_kegiatan' => $data_kegiatan
         ];
+        // dd($data);
         return view('scurve_wbs', compact('data'));
     }
 
