@@ -122,7 +122,7 @@
                         const chart_data = data + tempArrFirst;
                         tempArrFirst = chart_data;
                         arrFirst.push(chart_data)
-                        console.log(arrFirst);
+                        // console.log(arrFirst);
                     }
                 }
             }
@@ -154,21 +154,30 @@
         };
 // console.log(arrSecond[arrSecond.length-1]);
 console.log(arrSecond);
+console.log(arrFirst );
         // line three
         var arrDifference = [];
         var tempArrDifference = 0;
         var history_total = arrSecond[arrSecond.length-1]
             for (let index = 0; index < arrFirst.length; index++) {
                 if(arrFirst[index] != 0){
-                    const weight = (arrFirst[index] / history_total) * 100;
-                    console.log(weight.toFixed(2));
-                    tempArrDifference = weight.toFixed(2);
-                    arrDifference.push(weight.toFixed(2));
+                    // const weight = (arrFirst[index] / history_total) * 100;
+                    // console.log(weight.toFixed(2));
+                    // const num = history_total * (weight.toFixed(0) / 100);
+                    // console.log(num);
+                    // tempArrDifference = num.toFixed(0);
+                    // arrDifference.push(num.toFixed(0));
+                    const difference = arrFirst[index] - arrSecond[index];
+                    const lineDifference = arrSecond[index] - convert_positive(difference);
+                    console.log(lineDifference);
+                    const chart_data = lineDifference + tempArrDifference;
+                    tempArrDifference = chart_data;
+                    arrDifference.push(chart_data)
                 }
             }
 
         var dataDifference = {
-            label: "Progress",
+            label: "Selisih",
             data: arrDifference,
             lineTension: 0,
             fill: false,
@@ -178,12 +187,7 @@ console.log(arrSecond);
 
         var speedData = {
             labels: data_tanggal,
-            datasets: [dataFirst, dataSecond]
-        };
-        
-        var speedDataPercent = {
-            labels: data_tanggal,
-            datasets: [dataDifference]
+            datasets: [dataFirst, dataSecond, dataDifference]
         };
 
         var chartOptions = {
@@ -203,12 +207,6 @@ console.log(arrSecond);
             options: chartOptions
         });
 
-        var lineChart = new Chart(speedCanvasPercent, {
-            type: 'line',
-            data: speedDataPercent,
-            options: chartOptions
-        });
-
         function formatDate(date) {
             var d = new Date(date),
                 month = '' + (d.getMonth() + 1),
@@ -219,6 +217,16 @@ console.log(arrSecond);
             if (day.length < 2) day = '0' + day;
 
             return [year, month, day].join('-');
+        }
+        function convert_positive(a) {
+        // Check the number is negative
+            if (a < 0) {
+                // Multiply number with -1
+                // to make it positive
+                a = a * -1;
+            }
+            // Return the positive number
+            return a;
         }
     </script>
 
