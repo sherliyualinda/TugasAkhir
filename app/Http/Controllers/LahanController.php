@@ -477,6 +477,7 @@ class LahanController extends Controller
     public function scurve(Request $request,$id){
         $aktual = Task::where('id_sewa', $id)->with('children')->get();
         $tanggalAll = [];
+        $tanggalData = [];
         $tanggal = [];
         $data_kegiatan = [];
         $total_aktual = [];
@@ -486,7 +487,10 @@ class LahanController extends Controller
             $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
             // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
             $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
-            $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+            if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                $tanggalData[Carbon::parse($parent->start_date)->format('d-m-Y')] = Carbon::parse($parent->start_date)->format('d-m-Y');
+            }
             // foreach ($parent->children as $child) {
             //     if($child->totalHarga > 0){
             //         if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
@@ -509,6 +513,7 @@ class LahanController extends Controller
              $tanggal[] = Carbon::parse($parent->start_date)->format('d-m-Y');
              if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                $tanggalData[Carbon::parse($parent->start_date)->format('d-m-Y')] = Carbon::parse($parent->start_date)->format('d-m-Y');
              }
             //  foreach ($parent->children as $child) {
             //      if($child->totalHarga > 0){
@@ -533,7 +538,8 @@ class LahanController extends Controller
             'data_tanggal' => $tanggalAll,
             'total_aktual' => $total_aktual,
             'total_history' => $total_history,
-            'data_kegiatan' => $data_kegiatan
+            'data_kegiatan' => $data_kegiatan,
+            'tanggal_data' => $tanggalData
         ];
         // dd($data);
         return view('scurve_wbs', compact('data'));

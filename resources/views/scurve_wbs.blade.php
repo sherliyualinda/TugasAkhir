@@ -110,12 +110,13 @@
             Chart.defaults.global.defaultFontFamily = "Roboto";
             Chart.defaults.global.defaultFontSize = 18;
         var data_tanggal = @json($data['data_tanggal']);
+        var tanggal_data = @json($data['tanggal_data']);
         var total_aktual = @json($data['total_aktual']);
         var total_history = @json($data['total_history']);
         //line one
         var arrFirst = [];
         var tempArrFirst = 0;
-            for (const key in total_aktual) {
+            for (const key in tanggal_data) {
                 if (Object.hasOwnProperty.call(total_aktual, key)) {
                     const data = total_aktual[key];
                     if (data != 0) {   
@@ -123,6 +124,10 @@
                         tempArrFirst = chart_data;
                         arrFirst.push(chart_data)
                         // console.log(arrFirst);
+                    }else{
+                        const chart_data = tempArrFirst;
+                        tempArrFirst = chart_data;
+                        arrFirst.push(chart_data)
                     }
                 }
             }
@@ -137,10 +142,20 @@
         // line two
         var arrSecond = [];
         var tempArrSecond = 0;
-            for (const key in total_history) {
+            for (const key in tanggal_data) {
                 if (Object.hasOwnProperty.call(total_history, key)) {
                     const data = total_history[key];
-                    const chart_data = data + tempArrSecond;
+                    if (data != 0) {  
+                        const chart_data = data + tempArrSecond;
+                        tempArrSecond = chart_data;
+                        arrSecond.push(chart_data)
+                    }else{
+                        const chart_data = tempArrSecond;
+                        tempArrSecond = chart_data;
+                        arrSecond.push(chart_data)
+                    }
+                }else{
+                    const chart_data = tempArrSecond;
                     tempArrSecond = chart_data;
                     arrSecond.push(chart_data)
                 }
@@ -153,8 +168,9 @@
             borderColor: 'blue'
         };
 // console.log(arrSecond[arrSecond.length-1]);
-console.log(arrSecond);
-console.log(arrFirst );
+// console.log(data_tanggal);
+// console.log(total_aktual );
+// console.log(total_history );
         // line three
         var arrDifference = [];
         var tempArrDifference = 0;
