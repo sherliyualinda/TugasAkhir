@@ -109,28 +109,19 @@
 
             Chart.defaults.global.defaultFontFamily = "Roboto";
             Chart.defaults.global.defaultFontSize = 18;
-        var data_tanggal = @json($data['data_tanggal']);
-        var tanggal_data = @json($data['tanggal_data']);
+        var tanggal = @json($data['tanggal']);
         var total_aktual = @json($data['total_aktual']);
         var total_history = @json($data['total_history']);
         //line one
         var arrFirst = [];
         var tempArrFirst = 0;
-            for (const key in tanggal_data) {
-                if (Object.hasOwnProperty.call(total_aktual, key)) {
-                    const data = total_aktual[key];
-                    if (data != 0) {   
-                        const chart_data = data + tempArrFirst;
-                        tempArrFirst = chart_data;
-                        arrFirst.push(chart_data)
-                        // console.log(arrFirst);
-                    }else{
-                        const chart_data = tempArrFirst;
-                        tempArrFirst = chart_data;
-                        arrFirst.push(chart_data)
-                    }
-                }
-            }
+        let chart_data_first = 0;
+        for (var i = 0; i < tanggal.length; i++) {
+            const data = total_aktual[tanggal[i]];
+            chart_data_first = data + tempArrFirst;
+            tempArrFirst = chart_data_first;
+            arrFirst.push(chart_data_first)
+        }
             
         var dataFirst = {
             label: "Aktual",
@@ -142,22 +133,13 @@
         // line two
         var arrSecond = [];
         var tempArrSecond = 0;
-            for (const key in tanggal_data) {
-                if (Object.hasOwnProperty.call(total_history, key)) {
-                    const data = total_history[key];
-                    if (data != 0) {  
-                        const chart_data = data + tempArrSecond;
-                        tempArrSecond = chart_data;
-                        arrSecond.push(chart_data)
-                    }else{
-                        const chart_data = tempArrSecond;
-                        tempArrSecond = chart_data;
-                        arrSecond.push(chart_data)
-                    }
-                }else{
-                    const chart_data = tempArrSecond;
-                    tempArrSecond = chart_data;
-                    arrSecond.push(chart_data)
+        let chart_data_second = 0;
+            for (var i = 0; i < tanggal.length; i++) {
+                if (Object.hasOwnProperty.call(total_history, tanggal[i])) {
+                    const data = total_history[tanggal[i]];
+                        chart_data_second = data + tempArrSecond;
+                        tempArrSecond = chart_data_second;
+                        arrSecond.push(chart_data_second)
                 }
             }
         var dataSecond = {
@@ -167,28 +149,17 @@
             fill: false,
             borderColor: 'blue'
         };
-// console.log(arrSecond[arrSecond.length-1]);
-// console.log(data_tanggal);
-// console.log(total_aktual );
-// console.log(total_history );
+        
         // line three
         var arrDifference = [];
         var tempArrDifference = 0;
         var history_total = arrSecond[arrSecond.length-1]
             for (let index = 0; index < arrFirst.length; index++) {
                 if(arrFirst[index] != 0){
-                    // const weight = (arrFirst[index] / history_total) * 100;
-                    // console.log(weight.toFixed(2));
-                    // const num = history_total * (weight.toFixed(0) / 100);
-                    // console.log(num);
-                    // tempArrDifference = num.toFixed(0);
-                    // arrDifference.push(num.toFixed(0));
-                    const difference = arrFirst[index] - arrSecond[index];
-                    const lineDifference = arrSecond[index] - convert_positive(difference);
-                    console.log(lineDifference);
-                    const chart_data = lineDifference + tempArrDifference;
-                    tempArrDifference = chart_data;
-                    arrDifference.push(chart_data)
+                    const weight = (arrFirst[index] / history_total) * 100;
+                    const num = history_total * (weight.toFixed(0) / 100);
+                    tempArrDifference = num.toFixed(0);
+                    arrDifference.push(num.toFixed(0));
                 }
             }
 
@@ -202,7 +173,7 @@
             
 
         var speedData = {
-            labels: data_tanggal,
+            labels: tanggal,
             datasets: [dataFirst, dataSecond, dataDifference]
         };
 

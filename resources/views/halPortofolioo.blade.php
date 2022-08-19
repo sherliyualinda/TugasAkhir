@@ -30,20 +30,19 @@
 
             Chart.defaults.global.defaultFontFamily = "Roboto";
             Chart.defaults.global.defaultFontSize = 18;
-        var data_tanggal = @json($dataScurve['data_tanggal']);
-        var total_aktual = @json($dataScurve['total_aktual']);
-        var total_history = @json($dataScurve['total_history']);
+            var tanggal = @json($data['tanggal']);
+        var total_aktual = @json($data['total_aktual']);
+        var total_history = @json($data['total_history']);
         //line one
         var arrFirst = [];
         var tempArrFirst = 0;
-            for (const key in total_aktual) {
-                if (Object.hasOwnProperty.call(total_aktual, key)) {
-                    const data = total_aktual[key];
-                    const chart_data = data + tempArrFirst;
-                    tempArrFirst = chart_data;
-                    arrFirst.push(chart_data)
-                }
-            }
+        let chart_data_first = 0;
+        for (var i = 0; i < tanggal.length; i++) {
+            const data = total_aktual[tanggal[i]];
+            chart_data_first = data + tempArrFirst;
+            tempArrFirst = chart_data_first;
+            arrFirst.push(chart_data_first)
+        }
             
         var dataFirst = {
             label: "Aktual",
@@ -55,16 +54,15 @@
         // line two
         var arrSecond = [];
         var tempArrSecond = 0;
-            for (const key in total_history) {
-                if (Object.hasOwnProperty.call(total_history, key)) {
-                    const data = total_history[key];
-                    const chart_data = data + tempArrSecond;
-                    tempArrSecond = chart_data;
-                    arrSecond.push(chart_data)
+        let chart_data_second = 0;
+            for (var i = 0; i < tanggal.length; i++) {
+                if (Object.hasOwnProperty.call(total_history, tanggal[i])) {
+                    const data = total_history[tanggal[i]];
+                        chart_data_second = data + tempArrSecond;
+                        tempArrSecond = chart_data_second;
+                        arrSecond.push(chart_data_second)
                 }
             }
-            console.log(arrFirst);
-            console.log(arrSecond);
         var dataSecond = {
             label: "Histori",
             data: arrSecond,
@@ -72,15 +70,18 @@
             fill: false,
             borderColor: 'blue'
         };
-
+        
         // line three
         var arrDifference = [];
         var tempArrDifference = 0;
+        var history_total = arrSecond[arrSecond.length-1]
             for (let index = 0; index < arrFirst.length; index++) {
-                const difference = arrFirst[index] - arrSecond[index];
-                const chart_data = difference + tempArrDifference;
-                tempArrDifference = chart_data;
-                arrDifference.push(chart_data);
+                if(arrFirst[index] != 0){
+                    const weight = (arrFirst[index] / history_total) * 100;
+                    const num = history_total * (weight.toFixed(0) / 100);
+                    tempArrDifference = num.toFixed(0);
+                    arrDifference.push(num.toFixed(0));
+                }
             }
 
         var dataDifference = {
@@ -93,8 +94,8 @@
             
 
         var speedData = {
-            labels: data_tanggal,
-            datasets: [dataFirst, dataSecond,dataDifference]
+            labels: tanggal,
+            datasets: [dataFirst, dataSecond, dataDifference]
         };
 
         var chartOptions = {
@@ -113,6 +114,17 @@
             data: speedData,
             options: chartOptions
         });
+
+        function convert_positive(a) {
+        // Check the number is negative
+            if (a < 0) {
+                // Multiply number with -1
+                // to make it positive
+                a = a * -1;
+            }
+            // Return the positive number
+            return a;
+        }
 
         function formatDate(date) {
             var d = new Date(date),
