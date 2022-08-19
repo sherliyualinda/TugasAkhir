@@ -501,7 +501,7 @@ nav .right a{
             <div class="thumbnail">
                 <a href="artikel.html"><img src="/L.png" width="100%" alt="Cinque Terre"></a>
                 <div class="caption">
-                <center><h3><a href="artikel.html" style="text-decoration:none;color: black ;">Desa Lahanz</a> </h3></center>
+                <center><h3><a href="artikel.html" style="text-decoration:none;color: black ;">Desa Lahan</a> </h3></center>
                     <p align='justify'>Merupakan fitur yang digunakan untuk penanaman modal dari orang kota ke pertanian, perkebunan, perikanan yang dijalankan di desa</p>
                     
                 </div>
