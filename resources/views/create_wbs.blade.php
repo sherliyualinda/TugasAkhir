@@ -103,8 +103,8 @@
                                         <td>{{ $wbs->tanggalNenek }}</td>
                                         <td>{{ (int)$wbs->qtyNenek > 0 ? $wbs->qtyNenek : "-" }}</td>
                                         <td>{{ (int)$wbs->qtyNenek > 0 ? $wbs->satuanNenek : "-" }}</td>
-                                        <td>{{ (int)$wbs->hargaNenek > 0 ? $wbs->hargaNenek : "-" }}</td>
-                                        <td>{{ $wbs->thNenek }}</td>
+                                        <td>Rp. {{ (int)$wbs->hargaNenek > 0 ? $wbs->hargaNenek : "-" }}</td>
+                                        <td>Rp. {{ $wbs->thNenek }}</td>
                                         <td>
                                             <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
                                                 
@@ -122,8 +122,8 @@
                                         <td>{{ $wbs->tanggalIbu }}</td>
                                         <td>{{ (int)$wbs->qtyIbu > 0 ? $wbs->qtyIbu : "-" }}</td>
                                         <td>{{ (int)$wbs->qtyIbu > 0 ? $wbs->satuanIbu : "-" }}</td>
-                                        <td>{{ $wbs->hargaIbu > 0 ? $wbs->hargaIbu : "-" }}</td>
-                                        <td>{{ $wbs->thIbu }}</td>
+                                        <td>Rp. {{ $wbs->hargaIbu > 0 ? $wbs->hargaIbu : "-" }}</td>
+                                        <td>Rp. {{ $wbs->thIbu }}</td>
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
                                                 
@@ -141,8 +141,8 @@
                                         <td>{{ $wbs->tanggalCucu }}</td>
                                         <td>{{ $wbs->qtyCucu }}</td>
                                         <td>{{ $wbs->satuanCucu }}</td>
-                                        <td>{{ $wbs->hargaCucu }}</td>
-                                        <td>{{ $wbs->thCucu }}</td>
+                                        <td>Rp. {{ $wbs->hargaCucu }}</td>
+                                        <td>Rp. {{ $wbs->thCucu }}</td>
                                         <td>
                                              <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                         </td>
@@ -157,8 +157,8 @@
                                         <td>{{ $wbs->tanggalCucu }}</td>
                                         <td>{{ $wbs->qtyCucu }}</td>
                                         <td>{{ $wbs->satuanCucu }}</td>
-                                        <td>{{ $wbs->hargaCucu }}</td>
-                                        <td>{{ $wbs->thCucu }}</td>
+                                        <td>Rp. {{ $wbs->hargaCucu }}</td>
+                                        <td>Rp. {{ $wbs->thCucu }}</td>
                                         <td>
                                              <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                         </td>
@@ -174,8 +174,8 @@
                                         <td>{{ $wbs->tanggalIbu }}</td>
                                         <td>{{ (int)$wbs->qtyIbu > 0 ? $wbs->qtyIbu : "-" }}</td>
                                         <td>{{ (int)$wbs->qtyIbu > 0 ? $wbs->satuanIbu : "-" }}</td>
-                                        <td>{{ $wbs->hargaIbu > 0 ? $wbs->hargaIbu : "-" }}</td>
-                                        <td>{{ $wbs->thIbu }}</td>
+                                        <td>Rp. {{ $wbs->hargaIbu > 0 ? $wbs->hargaIbu : "-" }}</td>
+                                        <td>Rp. {{ $wbs->thIbu }}</td>
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
                                                 
@@ -192,8 +192,8 @@
                                         <td>{{ $wbs->tanggalCucu }}</td>
                                         <td>{{ $wbs->qtyCucu }}</td>
                                         <td>{{ $wbs->satuanCucu }}</td>
-                                        <td>{{ $wbs->hargaCucu }}</td>
-                                        <td>{{ $wbs->thCucu }}</td>
+                                        <td>Rp. {{ $wbs->hargaCucu }}</td>
+                                        <td>Rp. {{ $wbs->thCucu }}</td>
                                         <td>
                                              <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                         </td>
@@ -212,8 +212,8 @@
                                         <td>{{ $wbs->tanggalNenek }}</td>
                                         <td>{{ (int)$wbs->qtyNenek > 0 ? $wbs->qtyNenek : "-" }}</td>
                                         <td>{{ (int)$wbs->qtyNenek > 0 ? $wbs->satuanNenek : "-" }}</td>
-                                        <td>{{ (int)$wbs->hargaNenek > 0 ? $wbs->hargaNenek : "-" }}</td>
-                                        <td>{{ $wbs->thNenek }}</td>
+                                        <td>Rp. {{ (int)$wbs->hargaNenek > 0 ? $wbs->hargaNenek : "-" }}</td>
+                                        <td>Rp. {{ $wbs->thNenek }}</td>
                                         <td>
                                             <?php if($wbs->Id_Nenek != $wbs->Parent_Ibu){?>
                                                 
@@ -230,8 +230,8 @@
                                         <td>{{ $wbs->tanggalIbu }}</td>
                                         <td>{{ (int)$wbs->qtyIbu > 0 ? $wbs->qtyIbu : "-" }}</td>
                                         <td>{{ (int)$wbs->qtyIbu > 0 ? $wbs->satuanIbu : "-" }}</td>
-                                        <td>{{ $wbs->hargaIbu > 0 ? $wbs->hargaIbu : "-" }}</td>
-                                        <td>{{ $wbs->thIbu }}</td>
+                                        <td>Rp. {{ $wbs->hargaIbu > 0 ? $wbs->hargaIbu : "-" }}</td>
+                                        <td>Rp. {{ $wbs->thIbu }}</td>
                                         <td>
                                             <?php if($wbs->Id_Ibu != $wbs->Parent_Cucu){?>
                                                 
@@ -248,8 +248,8 @@
                                         <td>{{ $wbs->tanggalCucu }}</td>
                                         <td>{{ $wbs->qtyCucu }}</td>
                                         <td>{{ $wbs->satuanCucu }}</td>
-                                        <td>{{ $wbs->hargaCucu }}</td>
-                                        <td>{{ $wbs->thCucu }}</td>
+                                        <td>Rp. {{ $wbs->hargaCucu }}</td>
+                                        <td>Rp. {{ $wbs->thCucu }}</td>
                                         <td>
                                              <a href="/lahan/update_wbs/{{$wbs->Id_Cucu}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                         </td>

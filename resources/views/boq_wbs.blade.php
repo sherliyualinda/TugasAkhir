@@ -87,7 +87,7 @@
                                     <tr>
                                         <th scope="row">{{$i++}}</th>
                                         <td>{{$parent->text}}</td>
-                                        <td>{{number_format($parent->totalHarga)}}
+                                        <td>Rp. {{number_format($parent->totalHarga)}}
                                             @php
                                                 $total += $parent->totalHarga
                                             @endphp
@@ -97,7 +97,7 @@
                                 @endforeach
                                 <tr>
                                     <td colspan="2" class="text-right h5">Total</td>
-                                    <td class="h5">{{number_format($total)}}</td>
+                                    <td class="h5">Rp. {{number_format($total)}}</td>
                                 </tr>
                             </tbody>
                           </table>
