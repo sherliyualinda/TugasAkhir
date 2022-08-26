@@ -2,11 +2,14 @@
 
 @section('title', 'Kelola Lahan')
 
+<link rel="icon" href="/logo-home.png" type="image/png" sizes="16x16"> 	    
+<link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
+
 @section('content') 
     <div class="row justify-content-center mb-5">
         <div class="col-md-12 mb-5">
             <a href="{{ url('lahan') }}" class="btn btn-secondary">< Kembali</a>
-        <a href="{{ route('peralatan.create') }}" class="btn btn-primary">+ Upload</a>
+        <!-- <a href="{{ route('peralatan.create') }}" class="btn btn-primary">+ Upload</a> -->
         <a href="{{ route('peralatan.kelola_peralatan') }}" class="btn btn-primary">  Kelola </a>
         <a href="{{ route('transaksi.peralatan') }}" class="btn btn-primary">  Transaksi </a>
         <hr>
@@ -31,7 +34,7 @@
                 <a href="/peralatan/sewaPeralatan/{{$peralatan->id_peralatan}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Sewa</a>
                 <!-- <a href="#" class="btn btn-primary"><i class="fa fa-info"></i> Detail Lahan</a> -->
                 <a href="/lahan/detail_peralatan/{{$peralatan->id_peralatan}}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
-                <a href="/sosial-media/chat_lahan/{{$peralatan->pengguna->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
+                <a href="/sosial-media/chat_lahan/{{$peralatan->pengguna->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> Pesan</a>
               </div>
             </div> 
         </div>

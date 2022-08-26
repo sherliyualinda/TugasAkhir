@@ -400,6 +400,11 @@ Route::get('/lahan/kelola_risk/{id}', 'LahanController@risk')->name('kelola_risk
 Route::get('/lahan/kelola_riskku/', 'LahanController@cobaRisk')->middleware('auth');
 
 
+Route::get('/lahan/Surat', 'LahanController@Surat')->middleware('auth');
+
+Route::get('/surat_pemilik/{id}', 'LahanController@Surat_pemilik')->middleware('auth');
+Route::post('/lahan/surat_perjanjian', 'LahanController@Surat_perjanjian')->name('unggahSurat')->middleware('auth');
+
 
 
 Route::get('/lahan/ubah_daily/{id}',  'LahanController@ubahDaily')->middleware('auth');

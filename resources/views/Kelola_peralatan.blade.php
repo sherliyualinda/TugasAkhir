@@ -110,7 +110,15 @@
                                         <img src="{{ url('gambar_peralatan') }}/{{ $peralatanss->gambar }} "width="50" height="50"><a>
                                         </center>
                                     </td>
-                                    <td>{{ $peralatanss->status }}</td>
+                                    <td>
+                                        @if ($peralatanss->status === 'Ready')
+                                        <span class="badge badge-success">Tersedia</span>
+                                    @elseif ($peralatanss->status === 'Waiting')
+                                        <span class="badge badge-warning">Menunggu</span>
+                                    @elseif ($peralatanss->status === 'Reject')
+                                        <span class="badge badge-danger">Ditolak</span>
+                                    @endif
+                                    </td>
                                     <td class="text-center">
                                         
                                             <a href="/peralatan/ubah/{{$peralatanss->id_peralatan}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
@@ -118,7 +126,7 @@
 
                                             <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$peralatanss->id_peralatan}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i></button>
                                             @if ($peralatanss->status === 'Ready')
-                                            <a href="/peralatan/request/{{$peralatanss->id_peralatan}}" class="btn btn-sm btn-info">Request</a>
+                                            <a href="/peralatan/request/{{$peralatanss->id_peralatan}}" class="btn btn-sm btn-info">Permintaan</a>
                                             @endif
                                         
                                     </td>

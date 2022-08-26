@@ -112,11 +112,13 @@
                                 </td>
                                 <td>
                                     @if ($lahans->statusLahan === 'Ready')
-                                        <span class="badge badge-success">{{ $lahans->statusLahan }}</span>
+                                        <span class="badge badge-success">Tersedia</span>
                                     @elseif ($lahans->statusLahan === 'Waiting')
-                                        <span class="badge badge-warning">{{ $lahans->statusLahan }}</span>
+                                        <span class="badge badge-warning">Menunggu</span>
                                     @elseif ($lahans->statusLahan === 'Not Ready')
-                                        <span class="badge badge-danger">{{ $lahans->statusLahan }}</span>
+                                        <span class="badge badge-danger">Tidak Tersedia</span>
+                                    @elseif ($lahans->statusLahan === 'Reject')
+                                        <span class="badge badge-danger">Ditolak</span>
                                     @endif
                                 </td>
                                 <td class="text-center">
@@ -127,7 +129,7 @@
                                         <button class="btn btn-sm btn-danger deleteProduct" data-id="{{$lahans->id}}" data-token="{{ csrf_token() }}" ><i class="fa fa-trash"></i>
                                         </button>
                                         @if ($lahans->statusLahan != 'Waiting' )
-                                        <a href="/lahan/request/{{$lahans->id}}" class="btn btn-sm btn-info">Request</a>
+                                        <a href="/lahan/request/{{$lahans->id}}" class="btn btn-sm btn-info">Permintaan</a>
                                         @endif
                                     </div>
                                     

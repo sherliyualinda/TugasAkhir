@@ -49,16 +49,16 @@
                                 <th scope="col">Nama Penyewa</th>
                                 <th scope="col">NIK</th>
                                 <th scope="col">Alamat Penyewa</th>
-                                <th scope="col">KTP</th>
+                                <th scope="col">Foto</th>
                                 <th scope="col" >Persetujuan</th>
-                                <th scope="col" >Kelola</th>
+                                <th scope="col" >Kelola Proyek</th>
                                 
                                 <!-- <th scope="col">Jadwal Kegiatan</th>
                                 <th scope="col" >Risiko</th>
                                 <th scope="col" >Jadwal Ketemu</th>
                                 <th scope="col">Laporan Harian</th>
                                 <th scope="col">Struk Pembayaran</th> -->
-                                <th scope="col">Report</th>
+                                <th scope="col">Laporan</th>
                                 <th scope="col" >Pesan</th>
                                 <th colspan="2">Progres</th>
                                 
@@ -74,7 +74,7 @@
                                     <td>{{ $sewa->nik}}</td>
                                     <td>{{ $sewa->alamat}}</td>
                                     <td>
-                                        <a href="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }}" target="_blank"><img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50"><a>
+                                        <a href="/data_file/{{$sewa->nama}}/foto_profil/{{ $sewa->foto_profil }}" target="_blank"><img src="/data_file/{{$sewa->nama}}/foto_profil/{{ $sewa->foto_profil }} "width="50" height="50"><a>
 <!-- 
                                         <img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50"> -->
                                     </td>
@@ -97,23 +97,29 @@
 
                                     <td>
                                         <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
-                                            <a href="/gantt/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Kelola</a>
+                                            <center>
+
+                                                <a href="/gantt/{{$sewa->id_sewa}}"><i class="fa fa-list-alt fa-2x"></i></a>
+                                            </center>
                                         <?php }else{?>
-                                            <a href="#" class="btn btn-sm btn-secondary"> Kelola</a>
+                                            <center>
+
+                                                <a href="#" class="btn btn-sm btn-secondary"><i class="fa fa-list-alt fa-2x"></i> </a>
+                                            </center>
                                         <?php } ?>
                                     </td>
                                     <td>
-                                        <a href="/lahan/dokumentasi/{{$sewa->id_sewa}}/{{$sewa->id_penyewa}}" target="_blank" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                        <a href="/lahan/dokumentasi/{{$sewa->id_sewa}}/{{$sewa->id_penyewa}}" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
                                     </td>
                                     <td>
-                                    <a href="/sosial-media/chat_lahan/{{$sewa->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
+                                    <a href="/sosial-media/chat_lahan/{{$sewa->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i></a>
                                     </td>
 
                                     <td>
                                          <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
-                                            <a href="/lahan/doneRequest/{{$sewa->id_sewa}}" class="btn btn-sm btn-success">Done</a>
+                                            <a href="/lahan/doneRequest/{{$sewa->id_sewa}}" class="btn btn-sm btn-success">Selesai</a>
                                         <?php }else{ ?>
-                                            <a href="#" class="btn btn-sm btn-secondary">Done</a>
+                                            <a href="#" class="btn btn-sm btn-secondary">Selesai</a>
                                         <?php } ?>
                                     </td>
 
