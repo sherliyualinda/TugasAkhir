@@ -44,6 +44,44 @@
     height: 80vh;
     
 }
+.container .popup-image{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0,.9);
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    display: none;
+
+}
+.container .popup-image span{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 60px;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+    z-index: 100%;
+
+}
+.container .popup-image img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 5px solid #fff;
+    border-radius: 5px;
+    width: 500px;
+    object-fit: cover;
+
+}
+@media (max-width:768px){
+    .container .popup-image img{
+        width: 95%;
+    }
+}
 </style>
 
 
@@ -173,7 +211,13 @@
                                 <tr>
                                     <td>{{ $index+1}}</td>
                                     <td>
-                                        <a href="{{ url('gambar_struk') }}/{{ $struks->gambar }}" target="_blank"><img src="{{ url('gambar_struk') }}/{{ $struks->gambar }} "width="50" height="50"><a>
+                                        <img src="{{ url('gambar_struk') }}/{{ $struks->gambar }} "width="50" height="50">
+                                        <div class="popup-image">
+                                        <span>
+                                            &times;
+                                        </span>
+                                        <img src="{{ url('gambar_struk') }}/{{ $struks->gambar }} ">
+                                        </div>
                                         
                                     </td>
                                     <td>{{ $struks->keterangan}}</td>
@@ -281,6 +325,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <script>
+    document.querySelectorAll('.card-body img').forEach(image =>{
+       image.onclick =() =>{
+           document.querySelector('.popup-image').style.display ='block';
+           document.querySelector('.popup-image img').src=image.getAttribute('src');
+           
+       } 
+    });
+    document.querySelector('.popup-image span').onclick = () =>{
+        document.querySelector('.popup-image').style.display ='none';
+    }
+</script>
    
 
     
