@@ -109,6 +109,9 @@
 
             Chart.defaults.global.defaultFontFamily = "Roboto";
             Chart.defaults.global.defaultFontSize = 18;
+        const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
+        const down = (ctx, value) => ctx.p0.parsed.y > ctx.p1.parsed.y ? value : undefined;
+
         var tanggal = @json($data['tanggal']);
         var total_aktual = @json($data['total_aktual']);
         var total_history = @json($data['total_history']);
@@ -118,59 +121,95 @@
         let chart_data_first = 0;
         for (var i = 0; i < tanggal.length; i++) {
             const data = total_aktual[tanggal[i]];
-            chart_data_first = data + tempArrFirst;
-            tempArrFirst = chart_data_first;
-            arrFirst.push(chart_data_first)
+            if(i > 0 && data > 0){
+                chart_data_first = data + tempArrFirst;
+                tempArrFirst = chart_data_first;
+                arrFirst.push(chart_data_first)
+            }else if(i == 0){
+                chart_data_first = data + tempArrFirst;
+                tempArrFirst = chart_data_first;
+                arrFirst.push(chart_data_first)
+            }else{
+                arrFirst.push(NaN)
+            }
         }
-            
         var dataFirst = {
             label: "Aktual",
             data: arrFirst,
             lineTension: 0,
             fill: false,
-            borderColor: 'green'
+            borderColor: 'green',
+            segment: {
+                borderColor: ctx => skipped(ctx, 'rgb(0,0,0,0.2)') || down(ctx, 'rgb(192,75,75)'),
+                borderDash: ctx => skipped(ctx, [6, 6]),
+            },
+            spanGaps: true
         };
         // line two
+        var for_history = [];
         var arrSecond = [];
         var tempArrSecond = 0;
         let chart_data_second = 0;
             for (var i = 0; i < tanggal.length; i++) {
-                if (Object.hasOwnProperty.call(total_history, tanggal[i])) {
-                    const data = total_history[tanggal[i]];
-                        chart_data_second = data + tempArrSecond;
-                        tempArrSecond = chart_data_second;
-                        arrSecond.push(chart_data_second)
+                const data = total_history[tanggal[i]];
+
+                if(i > 0 && data > 0){
+                    chart_data_second = data + tempArrSecond;
+                    tempArrSecond = chart_data_second;
+                    for_history.push(chart_data_second);
+                    arrSecond.push(chart_data_second)
+                }else if(i == 0){
+                    chart_data_second = data + tempArrSecond;
+                    tempArrSecond = chart_data_second;
+                    arrSecond.push(chart_data_second)
+                }else{
+                    arrSecond.push(NaN)
                 }
             }
+            
         var dataSecond = {
             label: "Histori",
             data: arrSecond,
             lineTension: 0,
             fill: false,
-            borderColor: 'blue'
+            borderColor: 'blue',
+            segment: {
+                borderColor: ctx => skipped(ctx, 'rgb(0,0,0,0.2)') || down(ctx, 'rgb(192,75,75)'),
+                borderDash: ctx => skipped(ctx, [6, 6]),
+            },
+            spanGaps: true
         };
         
         // line three
         var arrDifference = [];
         var tempArrDifference = 0;
-        var history_total = arrSecond[arrSecond.length-1]
+        var history_total = for_history[for_history.length-1]
             for (let index = 0; index < arrFirst.length; index++) {
-                if(arrFirst[index] != 0){
+                if(arrFirst[index] > 0){
                     const weight = (arrFirst[index] / history_total) * 100;
                     const num = history_total * (weight.toFixed(0) / 100);
+                    // console.log(num);
                     tempArrDifference = num.toFixed(0);
                     arrDifference.push(num.toFixed(0));
+                }else if(index == 0){
+                    arrDifference.push(arrFirst[index]);
+                }else{
+                    arrDifference.push(arrFirst[index]);
                 }
             }
-
+        // console.log(arrDifference);
         var dataDifference = {
             label: "Selisih",
             data: arrDifference,
             lineTension: 0,
             fill: false,
-            borderColor: 'red'
-        };
-            
+            borderColor: 'red',
+            segment: {
+                borderColor: ctx => skipped(ctx, 'rgb(0,0,0,0.2)') || down(ctx, 'rgb(192,75,75)'),
+                borderDash: ctx => skipped(ctx, [6, 6]),
+            },
+            spanGaps: true
+        };            
 
         var speedData = {
             labels: tanggal,
@@ -184,6 +223,11 @@
                 labels: {
                 boxWidth: 80,
                 fontColor: 'black'
+                }
+            },
+            elements: {
+                point:{
+                    radius: 0
                 }
             }
         };

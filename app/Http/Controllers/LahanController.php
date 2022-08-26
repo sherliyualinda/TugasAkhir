@@ -608,7 +608,7 @@ class LahanController extends Controller
                 if ($total_aktual[$temp] > 0) {
                     # code...
                 }else{
-                    $total_aktual[$temp] = 'stop';
+                    $total_aktual[$temp] = 'NaN';
                     $stop = 'stop';
                 }
             }else{
