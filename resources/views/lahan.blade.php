@@ -34,12 +34,12 @@
                     {!! $lahan->deskripsi !!} 
                 </p>
                 <?php if ($lahan->statusLahan == "Ready"){ ?>
-                    <a href="/lahan/ubahSewa/{{$lahan->id}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Sewa</a>
+                    <a href="/lahan/ubahSewa/{{$lahan->id}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Investasi</a>
                 <?php }else{ ?>
-                    <a href="#" class="btn btn-secondary"><i class="fa fa-shopping-cart"></i> Sewa</a>
+                    <a href="#" class="btn btn-secondary"><i class="fa fa-shopping-cart"></i> Investasi</a>
                 <?php } ?>
                 <!-- <a href="/detailLahan" class="btn btn-primary"><i class="fa fa-info"></i> Detail Lahan</a> -->
-                <a href="/lahan/detail_lahan/{{$lahan->id}}" class="btn btn-primary"><i class="fa fa-info"></i> Detail Lahan</a>
+                <a href="/lahan/detail_lahan/{{$lahan->id}}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
                 <a href="/sosial-media/chat_lahan/{{$lahan->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
                 
                 

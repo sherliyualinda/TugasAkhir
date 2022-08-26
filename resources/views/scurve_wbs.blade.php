@@ -168,7 +168,7 @@
             }
             
         var dataSecond = {
-            label: "Histori",
+            label: "Plan",
             data: arrSecond,
             lineTension: 0,
             fill: false,
