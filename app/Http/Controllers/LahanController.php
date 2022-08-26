@@ -178,7 +178,6 @@ class LahanController extends Controller
         foreach ($aktual as $key => $parent) {
             if ($parent->parent == 0) {
              $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
-             $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
              // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
              if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
                  $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
@@ -192,6 +191,7 @@ class LahanController extends Controller
          foreach ($history as $key => $parent) {
              if ($parent->parent == 0) {
               $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+             $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
               if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
                  $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
               }
@@ -262,7 +262,6 @@ class LahanController extends Controller
         foreach ($aktual as $key => $parent) {
             if ($parent->parent == 0) {
              $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
-             $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
              // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
              if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
                  $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
@@ -276,6 +275,7 @@ class LahanController extends Controller
          foreach ($history as $key => $parent) {
              if ($parent->parent == 0) {
               $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+             $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
               if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
                  $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
               }
@@ -524,7 +524,6 @@ class LahanController extends Controller
         foreach ($aktual as $key => $parent) {
            if ($parent->parent == 0) {
             $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
-            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
             // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
             if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
@@ -549,6 +548,7 @@ class LahanController extends Controller
         foreach ($history as $key => $parent) {
             if ($parent->parent == 0) {
              $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
              if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
              }
@@ -599,14 +599,14 @@ class LahanController extends Controller
             }
         }
         
-        $data = [
+        $dataScurve = [
             'tanggal' => $dates,
             'total_aktual' => $total_aktual,
             'total_history' => $total_history,
             'data_kegiatan' => $data_kegiatan,
         ];
         // dd($data);
-        return view('scurve_wbs', compact('data', 'total_notif', 'list_notif_display', 'notif_pesan', 'notif_group'));
+        return view('scurve_wbs', compact('dataScurve', 'total_notif', 'list_notif_display', 'notif_pesan', 'notif_group'));
     }
 
     public function boq_wbs($id)
@@ -1113,6 +1113,7 @@ class LahanController extends Controller
                      foreach ($history as $key => $parent) {
                          if ($parent->parent == 0) {
                           $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+                            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
                           if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
                              $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
                           }

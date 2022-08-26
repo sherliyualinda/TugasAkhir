@@ -112,9 +112,9 @@
         const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
         const down = (ctx, value) => ctx.p0.parsed.y > ctx.p1.parsed.y ? value : undefined;
 
-        var tanggal = @json($data['tanggal']);
-        var total_aktual = @json($data['total_aktual']);
-        var total_history = @json($data['total_history']);
+        var tanggal = @json($dataScurve['tanggal']);
+        var total_aktual = @json($dataScurve['total_aktual']);
+        var total_history = @json($dataScurve['total_history']);
         //line one
         var arrFirst = [];
         var tempArrFirst = 0;
@@ -133,6 +133,7 @@
                 arrFirst.push(NaN)
             }
         }
+        // console.log(arrFirst);
         var dataFirst = {
             label: "Aktual",
             data: arrFirst,
@@ -213,7 +214,7 @@
 
         var speedData = {
             labels: tanggal,
-            datasets: [dataFirst, dataSecond, dataDifference]
+            datasets: [dataFirst, dataSecond]
         };
 
         var chartOptions = {
