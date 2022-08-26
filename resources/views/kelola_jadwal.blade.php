@@ -55,7 +55,8 @@
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/gantt/{{$_SESSION['id_sewa']}}">Jadwal Kegiatan</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/surat_pemilik/{{$_SESSION['id_sewa']}}">Surat Perjanjian</a>    
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/gantt/{{$_SESSION['id_sewa']}}">Jadwal Kegiatan</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/wbs/{{$_SESSION['id_sewa']}}">Anggaran Kegiatan</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('boq-wbs', $_SESSION['id_sewa'])}}">Anggaran Awal</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('scurve', $_SESSION['id_sewa'])}}">Grafik</a>
@@ -140,7 +141,7 @@
                                                 <input type="input" name="agenda" class="form-control form-control-user" rows="4" placeholder="Masukkan Agenda"></input>
                                             </div>
                                             <div class="form-group">
-                                                <label>Keterangan</label>
+                                                <label>Notulensi</label>
                                                 <textarea name="keterangan" class="form-control form-control-user" rows="4" placeholder="Masukkan Keterangan"></textarea>
                                             </div>  
                                             <div class="form-group">
@@ -170,7 +171,7 @@
                                 <th scope="col">No</th>                                
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Agenda</th>                               
-                                <th scope="col">Keterangan</th>
+                                <th scope="col">Notulensi</th>
                                 <th scope="col">Link Meet</th>
                                 <th scope="col">Kelola</th>
                               </tr>

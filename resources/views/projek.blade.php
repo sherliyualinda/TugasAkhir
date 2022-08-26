@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
+
+<link rel="icon" href="/logo-home.png" type="image/png" sizes="16x16"> 	    
+<link rel="stylesheet" href="{{ asset('Winku-Social-Network-Corporate-Responsive-Template/css/main.min.css') }}">
 	
         @include('nav_barMar')
 
@@ -45,8 +48,9 @@
                                     </td>
                                    <td>{!! $projek->deskripsi !!}</td>
                                    <td>
-                                        <a href="/lahan/Dprojek_user/{{$projek->id_sewa}}" class="btn btn-primary">lihat</a>
-                                        <a href="/sosial-media/chat_lahan/{{$projek->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
+                                        <a href="/lahan/Dprojek_user/{{$projek->id_sewa}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                                        <a href="/sosial-media/chat_lahan/{{$projek->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> Pesan</a>
+                                        
                                    </td>
                                     
                                 </tr>

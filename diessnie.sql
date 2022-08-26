@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Agu 2022 pada 08.34
+-- Waktu pembuatan: 26 Agu 2022 pada 13.30
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -210,7 +210,8 @@ CREATE TABLE `chat` (
 --
 
 INSERT INTO `chat` (`id_chat`, `id_room_chat`, `tanggal_chat`, `id_pengirim`, `id_penerima`, `isi_chat`, `media`, `status`) VALUES
-(1, 1, '2022-06-05 13:57:26', 45, 42, 'oo', NULL, 'Sudah Dibaca');
+(1, 1, '2022-06-05 13:57:26', 45, 42, 'oo', NULL, 'Sudah Dibaca'),
+(2, 2, '2022-08-16 20:32:45', 42, 46, 'hai', NULL, 'Sudah Dibaca');
 
 -- --------------------------------------------------------
 
@@ -7705,7 +7706,7 @@ INSERT INTO `lahans` (`id`, `category_lahan_id`, `ukuran`, `deskripsi`, `gambar`
 (4, 1, '70 x 30', '<p>padiku</p>', 'ssawah.jpg', 42, 'Not Ready', '0000-00-00 00:00:00', '2022-08-06 12:08:30'),
 (5, 2, '30X40', '<p>Perkebunan Kelapa Sawit</p>', 'sawit.jpg', 42, 'Not Ready', '0000-00-00 00:00:00', '2022-08-10 14:14:56'),
 (6, 1, '100x20', '<p>masuk 10 besar dunia</p>', 'padi.PNG', 46, 'Ready', '0000-00-00 00:00:00', '2022-08-03 14:28:25'),
-(11, 4, '10 x 10', '<p>Peternakan Ayam</p>', 'ayamm.jpg', 42, 'Ready', '2022-07-13 12:23:11', '2022-08-10 14:21:29'),
+(11, 4, '10 x 10', '<p>Peternakan Ayam</p>', 'ayamm.jpg', 42, 'Ready', '2022-07-13 12:23:11', '2022-08-16 20:37:13'),
 (22, 1, '50 x 60', '<p>Pertanian Jagung</p>', 'jagung.jfif', 42, 'Ready', '2022-08-07 13:52:14', '2022-08-10 14:30:27'),
 (23, 1, '30X40', 'Pertanian padi', 'padiiii.jpg', 45, 'Ready', '2022-08-10 14:26:36', '2022-08-10 14:30:47'),
 (24, 2, '2 hektar', 'perkebunan strawberry', 'stobeli.jpg', 45, 'Waiting', '2022-08-10 14:28:19', '2022-08-10 14:28:19'),
@@ -8007,7 +8008,7 @@ INSERT INTO `pengguna` (`id_pengguna`, `id`, `jenis_akun`, `username`, `password
 (42, 42, 'pribadi', 'sherla', '$2y$10$BpkqUNwXv5iAARXc5YbeMem6x/cwPTLWOdw7BtmOCv70OISldwhdi', 'Sherla', 3201010001, 'sherla@gmail.com', '087765567789', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'WhatsApp Image 2022-06-30 at 16.00.29.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, 'WIN_20201124_00_09_32_Pro.jpg', 'WIN_20201124_00_09_32_Pro.jpg', 'APPROVE', '2022-04-03 03:54:28', '2022-07-19 23:13:12'),
 (43, 43, 'pribadi', 'jessika', '$2y$10$Vb100zSKHos6PMeNNHZ1v.RgnoxblFk2hG7EcCPLhSzg9GKAx0.sS', 'Jessika', 1504040014, 'jessika@gmail.com', '098765432123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', 'WhatsApp Image 2022-04-14 at 12.01.30.jpeg', NULL, '2022-04-18 14:37:26', NULL),
 (45, 45, 'pribadi', 'sherli', '$2y$10$klEKyIMsZpBPnz6bEESFOe9Hrwe1RR46UrhDHps02.uQN0JrGzqw2', 'Sherli', 1102010004, 'sherli@gmail.com', '082127385643', 'Jalan sunan giri', '2345271628345', 'Mahasiswa', 'WhatsApp Image 2022-06-30 at 16.00.29.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, '4.PNG', '4.PNG', NULL, '2022-06-05 13:42:37', '2022-07-18 23:27:48'),
-(46, 46, 'pribadi', 'ade', '$2y$10$aWYkPtEBOVO8mU0AfjmJPeZCwkByU7id909343kK.PoTUhuqM7ByW', 'Ade', 1201060015, 'ade@gmail.com', '08234571635', 'Brebes', '1923640281619', 'Mahasiswa', 'WhatsApp Image 2021-11-16 at 17.34.07.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', NULL, '2022-06-05 19:02:18', '2022-07-23 00:59:52'),
+(46, 46, 'pribadi', 'ade', '$2y$10$aWYkPtEBOVO8mU0AfjmJPeZCwkByU7id909343kK.PoTUhuqM7ByW', 'Ade', 1201060015, 'ade@gmail.com', '08234571635', 'Brebes', '1923640281619', 'Mahasiswa', 'dian1 001.jpg', NULL, NULL, NULL, NULL, NULL, NULL, 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', 'WhatsApp Image 2022-05-29 at 19.15.59.jpeg', NULL, '2022-06-05 19:02:18', '2022-08-16 20:31:26'),
 (47, 47, 'pribadi', 'imamn', '$2y$10$uBW.adx4Rfh4Eh3fWcEc7OlsBRNAax/NDaTxdv73jBN5x5474p.KW', 'Imam', 3201010001, 'imam@gmail.com', '0394896384', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'matthew-fassnacht-eBbRSsV4JqU-unsplash.jpg', 'Pemilu run.jpg', 'PENDING', '2022-07-13 12:35:27', NULL);
 
 -- --------------------------------------------------------
@@ -8881,7 +8882,8 @@ INSERT INTO `sewa_lahans` (`id_sewa`, `id_penyewa`, `id_pemilik`, `id_lahan`, `s
 (6, 46, 42, 5, 'Acc', 'Proses', '2022-06-30 12:11:31'),
 (7, 46, 42, 4, 'Acc', 'Proses', '2022-06-30 12:13:09'),
 (8, 45, 42, 4, 'Acc', 'Proses', '2022-08-06 12:08:31'),
-(9, 45, 46, 6, 'Belum Acc', '-', '2022-07-18 23:27:49');
+(9, 45, 46, 6, 'Belum Acc', '-', '2022-07-18 23:27:49'),
+(10, 46, 42, 11, 'Tolak', 'Gagal', '2022-08-16 20:37:13');
 
 -- --------------------------------------------------------
 
@@ -8940,6 +8942,26 @@ INSERT INTO `struks` (`id_struk`, `keterangan`, `gambar`, `tanggal`, `updated_at
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `surats`
+--
+
+CREATE TABLE `surats` (
+  `id_surat` int(11) NOT NULL,
+  `id_sewa` int(11) NOT NULL,
+  `surat_perjanjian` varchar(255) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `surats`
+--
+
+INSERT INTO `surats` (`id_surat`, `id_sewa`, `surat_perjanjian`, `updated_at`) VALUES
+(3, 7, 'Surat.pdf', '2022-08-26 11:00:55');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tasks`
 --
 
@@ -8965,31 +8987,46 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent`, `sortorder`, `created_at`, `updated_at`, `id_sewa`, `qty`, `satuan`, `harga`, `totalHarga`) VALUES
-(120, 'persiapan lahan', 4, 0.00, '2022-06-25 00:00:00', 0, 1, '2022-06-24 00:10:57', '2022-08-13 09:26:55', 7, 0, '', 0, 27000),
-(121, 'pembersihan lahan', 1, 0.00, '2022-06-25 00:00:00', 120, 2, '2022-06-24 00:19:17', '2022-08-13 09:26:57', 7, 0, '', 0, 7000),
-(122, 'arit', 1, 0.00, '2022-06-26 00:00:00', 121, 3, '2022-06-24 00:19:25', '2022-08-13 09:26:59', 7, 2, 'buah', 1500, 3000),
-(123, 'cangkul', 1, 0.00, '2022-06-27 00:00:00', 121, 4, '2022-06-24 00:19:35', '2022-08-13 09:27:01', 7, 2, 'buah', 2000, 4000),
-(124, 'pembajakan', 1, 0.00, '2022-06-28 00:00:00', 120, 5, '2022-06-24 00:19:45', '2022-08-13 09:27:03', 7, 1, 'hektar', 20000, 20000),
-(125, 'Pemilihan Bibit', 3, 0.00, '2022-06-29 00:00:00', 0, 6, '2022-07-22 16:50:53', '2022-08-13 09:27:07', 7, 0, '', 0, 220000),
-(126, 'Perendaman Bibit', 2, 0.00, '2022-06-29 00:00:00', 125, 7, '2022-07-22 16:51:07', '2022-08-13 09:27:09', 7, 2, 'kg', 10000, 20000),
-(127, 'Persemaian', 2, 0.00, '2022-07-02 00:00:00', 0, 8, '2022-07-22 16:54:54', '2022-08-13 09:27:13', 7, 0, '', 0, 480000),
-(128, 'Penanaman', 2, 0.00, '2022-07-04 00:00:00', 0, 9, '2022-07-22 16:55:07', '2022-08-13 09:27:22', 7, 0, 'hektar', 0, 0),
-(129, 'Perawatan Lahan', 2, 0.00, '2022-07-06 00:00:00', 0, 10, '2022-07-22 16:55:17', '2022-08-13 09:27:25', 7, 0, 'hektar', 0, 0),
-(130, 'Pencegahan Hama dan Penyakit', 2, 0.00, '2022-07-08 00:00:00', 0, 11, '2022-07-22 16:55:41', '2022-08-13 09:27:27', 7, 0, 'hektar', 0, 0),
-(136, 'Pengolahan Lahan', 2, 0.00, '2022-07-27 00:00:00', 0, 12, '2022-08-03 04:02:35', '2022-08-03 04:14:23', 8, 2, '0', 700000, 1400000),
-(137, 'Persiapan Benih', 2, 0.00, '2022-07-29 00:00:00', 0, 13, '2022-08-03 04:02:54', '2022-08-03 04:08:51', 8, 1, '0', 1500000, 1500000),
-(138, 'Penanaman', 3, 0.00, '2022-07-30 00:00:00', 0, 14, '2022-08-03 04:02:58', '2022-08-03 04:09:02', 8, 1, '0', 1300000, 1300000),
-(139, 'pemupukan', 3, 0.00, '2022-07-31 00:00:00', 0, 15, '2022-08-03 04:03:09', '2022-08-03 04:14:06', 8, 2, '0', 2000000, 4000000),
-(140, 'pemeliharaan', 2, 0.00, '2022-08-02 00:00:00', 0, 16, '2022-08-03 04:03:15', '2022-08-03 04:13:51', 8, 1, '0', 0, 0),
-(141, 'pengendalian', 2, 0.00, '2022-08-04 00:00:00', 0, 17, '2022-08-03 04:03:36', '2022-08-03 04:13:46', 8, 1, '0', 0, 0),
-(142, 'panen', 2, 0.00, '2022-08-06 00:00:00', 0, 18, '2022-08-03 04:03:43', '2022-08-03 04:13:40', 8, 1, '0', 0, 0),
-(143, 'pasca panen', 1, 0.00, '2022-08-08 00:00:00', 0, 19, '2022-08-03 04:03:48', '2022-08-03 04:13:32', 8, 1, '0', 0, 0),
-(144, 'Menanam Bibit', 1, 0.00, '2022-07-01 00:00:00', 125, 20, '2022-08-05 11:55:41', '2022-08-13 09:27:11', 7, 1, 'hektar', 200000, 200000),
-(147, 'New task', 1, 0.00, '2022-08-07 00:00:00', 0, 22, '2022-08-08 07:56:17', '2022-08-08 07:56:17', 6, 0, '0', 0, 0),
-(148, 'New task', 1, 0.00, '2022-08-07 00:00:00', 147, 23, '2022-08-08 07:56:20', '2022-08-08 07:56:20', 6, 0, '0', 0, 0),
-(149, 'Pemupukan Lahan Persemaian', 1, 0.00, '2022-07-02 00:00:00', 127, 24, '2022-08-10 08:21:58', '2022-08-13 09:27:16', 7, 3, 'buah', 160000, 480000),
-(150, 'Pesebaran Benih', 1, 0.00, '2022-07-03 00:00:00', 127, 25, '2022-08-10 08:22:24', '2022-08-13 09:27:17', 7, 0, 'kilo', 0, 0),
-(151, 'Pemanenan', 2, 0.00, '2022-07-10 00:00:00', 0, 26, '2022-08-10 08:24:35', '2022-08-13 09:27:31', 7, 0, 'hekatar', 0, 0);
+(120, 'persiapan lahan', 4, 0.00, '2022-06-29 00:00:00', 0, 1, '2022-06-24 00:10:57', '2022-08-26 08:27:48', 7, 0, '', 0, 60600),
+(121, 'pembersihan lahan', 1, 0.00, '2022-06-29 00:00:00', 120, 2, '2022-06-24 00:19:17', '2022-08-26 08:27:48', 7, 0, '', 0, 60000),
+(122, 'arit', 1, 0.00, '2022-06-30 00:00:00', 121, 3, '2022-06-24 00:19:25', '2022-08-26 08:27:48', 7, 2, 'buah', 10000, 20000),
+(123, 'cangkul', 1, 0.00, '2022-07-01 00:00:00', 121, 4, '2022-06-24 00:19:35', '2022-08-26 08:25:58', 7, 2, 'buah', 20000, 40000),
+(124, 'pembajakan', 1, 0.00, '2022-07-02 00:00:00', 120, 5, '2022-06-24 00:19:45', '2022-08-26 08:26:52', 7, 3, 'hektar', 200, 600),
+(125, 'Pemilihan Bibit', 3, 0.00, '2022-07-03 00:00:00', 0, 6, '2022-07-22 16:50:53', '2022-08-23 05:06:17', 7, 0, '', 0, 101000),
+(126, 'Perendaman Bibit', 2, 0.00, '2022-07-03 00:00:00', 125, 7, '2022-07-22 16:51:07', '2022-08-23 05:06:20', 7, 5, 'kg', 5000, 25000),
+(127, 'Persemaian', 2, 0.00, '2022-07-06 00:00:00', 0, 8, '2022-07-22 16:54:54', '2022-08-23 05:06:26', 7, 0, '', 0, 12000),
+(128, 'Penanaman', 2, 0.00, '2022-07-08 00:00:00', 0, 9, '2022-07-22 16:55:07', '2022-08-23 05:06:35', 7, 0, 'hektar', 0, 0),
+(129, 'Perawatan Lahan', 2, 0.00, '2022-07-10 00:00:00', 0, 10, '2022-07-22 16:55:17', '2022-08-23 05:06:39', 7, 0, 'hektar', 0, 0),
+(130, 'Pencegahan Hama dan Penyakit', 2, 0.00, '2022-07-12 00:00:00', 0, 11, '2022-07-22 16:55:41', '2022-08-23 05:06:41', 7, 0, 'hektar', 0, 0),
+(136, 'Pengolahan Lahan', 2, 0.00, '2022-07-28 00:00:00', 0, 12, '2022-08-03 04:02:35', '2022-08-19 04:53:14', 8, 2, '0', 20000, 40000),
+(137, 'Persiapan Benih', 2, 0.00, '2022-07-30 00:00:00', 0, 13, '2022-08-03 04:02:54', '2022-08-19 04:52:14', 8, 0, '0', 0, 0),
+(138, 'Penanaman', 3, 0.00, '2022-08-01 00:00:00', 0, 14, '2022-08-03 04:02:58', '2022-08-19 04:52:16', 8, 0, '0', 0, 0),
+(139, 'pemupukan', 3, 0.00, '2022-08-04 00:00:00', 0, 15, '2022-08-03 04:03:09', '2022-08-19 04:52:19', 8, 0, '0', 0, 0),
+(140, 'pemeliharaan', 2, 0.00, '2022-08-07 00:00:00', 0, 16, '2022-08-03 04:03:15', '2022-08-19 04:52:22', 8, 0, '0', 0, 0),
+(141, 'pengendalian', 2, 0.00, '2022-08-09 00:00:00', 0, 17, '2022-08-03 04:03:36', '2022-08-19 04:52:25', 8, 0, '0', 0, 0),
+(142, 'panen', 2, 0.00, '2022-08-11 00:00:00', 0, 18, '2022-08-03 04:03:43', '2022-08-19 04:52:44', 8, 0, '0', 0, 0),
+(143, 'pasca panen', 1, 0.00, '2022-08-13 00:00:00', 0, 19, '2022-08-03 04:03:48', '2022-08-19 04:52:58', 8, 0, '0', 0, 0),
+(144, 'Menanam Bibit', 1, 0.00, '2022-07-05 00:00:00', 125, 20, '2022-08-05 11:55:41', '2022-08-23 05:06:23', 7, 4, 'hektar', 19000, 76000),
+(147, 'Development', 20, 0.00, '2022-06-20 00:00:00', 0, 22, '2022-08-08 07:56:17', '2022-08-21 08:09:03', 6, 0, '0', 0, 0),
+(148, 'Development system', 20, 0.00, '2022-06-20 00:00:00', 147, 23, '2022-08-08 07:56:20', '2022-08-21 08:09:29', 6, 0, '0', 0, 0),
+(149, 'Pemupukan Lahan Persemaian', 1, 0.00, '2022-07-06 00:00:00', 127, 24, '2022-08-10 08:21:58', '2022-08-23 05:06:29', 7, 6, 'buah', 2000, 12000),
+(150, 'Pesebaran Benih', 1, 0.00, '2022-07-07 00:00:00', 127, 25, '2022-08-10 08:22:24', '2022-08-23 05:06:31', 7, 0, 'kilo', 0, 0),
+(151, 'Pemanenan', 2, 0.00, '2022-07-13 00:00:00', 0, 26, '2022-08-10 08:24:35', '2022-08-23 05:06:43', 7, 0, 'hekatar', 0, 0),
+(152, 'SIT', 7, 0.00, '2022-07-15 00:00:00', 0, 27, '2022-08-21 08:09:56', '2022-08-21 08:09:56', 6, 0, '0', 0, 0),
+(153, 'Skenario', 2, 0.00, '2022-07-18 00:00:00', 152, 28, '2022-08-21 08:10:14', '2022-08-21 08:10:14', 6, 0, '0', 0, 0),
+(154, 'Execution', 3, 0.00, '2022-07-19 00:00:00', 152, 29, '2022-08-21 08:10:30', '2022-08-21 08:10:30', 6, 0, '0', 0, 0),
+(155, 'Documentation', 2, 0.00, '2022-07-22 00:00:00', 152, 30, '2022-08-21 08:10:59', '2022-08-21 08:10:59', 6, 0, '0', 0, 0),
+(156, 'UAT', 7, 0.00, '2022-06-26 00:00:00', 0, 31, '2022-08-21 08:11:17', '2022-08-21 08:11:17', 6, 0, '0', 0, 0),
+(157, 'Skenario', 2, 0.00, '2022-06-26 00:00:00', 156, 32, '2022-08-21 08:11:25', '2022-08-21 08:11:25', 6, 0, '0', 0, 0),
+(158, 'Execution', 3, 0.00, '2022-06-27 00:00:00', 156, 33, '2022-08-21 08:11:46', '2022-08-21 08:11:46', 6, 0, '0', 0, 0),
+(160, 'Documentation', 2, 0.00, '2022-08-01 00:00:00', 156, 34, '2022-08-21 08:12:29', '2022-08-21 08:12:29', 6, 0, '0', 0, 0),
+(161, 'Deployment', 5, 0.00, '2022-08-02 00:00:00', 0, 35, '2022-08-21 08:12:52', '2022-08-21 08:12:52', 6, 0, '0', 0, 0),
+(162, 'Package dan Preparation', 1, 0.00, '2022-08-03 00:00:00', 161, 36, '2022-08-21 08:13:18', '2022-08-21 08:13:18', 6, 0, '0', 0, 0),
+(163, 'Deployment Request Form Creation', 1, 0.00, '2022-08-03 00:00:00', 161, 37, '2022-08-21 08:13:44', '2022-08-21 08:13:44', 6, 0, '0', 0, 0),
+(164, 'Deployment Request Form Apporval', 3, 0.00, '2022-08-04 00:00:00', 161, 38, '2022-08-21 08:14:11', '2022-08-21 08:14:11', 6, 0, '0', 0, 0),
+(165, 'Deployment To Production', 1, 0.00, '2022-08-09 00:00:00', 161, 39, '2022-08-21 08:14:32', '2022-08-21 08:14:32', 6, 0, '0', 0, 0),
+(166, 'Post Implementation Review', 20, 0.00, '2022-08-02 00:00:00', 0, 40, '2022-08-21 08:14:58', '2022-08-21 08:14:58', 6, 0, '0', 0, 0),
+(167, 'Monitoring', 20, 0.00, '2022-08-10 00:00:00', 166, 41, '2022-08-21 08:15:15', '2022-08-21 08:15:15', 6, 0, '0', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -9020,21 +9057,29 @@ CREATE TABLE `task_historis` (
 --
 
 INSERT INTO `task_historis` (`id_history`, `id_task`, `text`, `duration`, `progress`, `start_date`, `parent`, `sortorder`, `created_at`, `updated_at`, `id_sewa`, `qty`, `satuan`, `harga`, `totalHarga`) VALUES
-(56, 120, 'persiapan lahan', 4, 0, '2022-06-23 00:00:00', 0, 1, '2022-06-24 00:10:57', '2022-08-07 07:17:51', 7, 0, '', 0, 12000),
-(57, 121, 'pembersihan lahan', 1, 0, '2022-06-23 00:00:00', 120, 2, '2022-06-24 00:19:17', '2022-08-07 07:17:51', 7, 0, '', 0, 12000),
-(58, 122, 'arit', 1, 0, '2022-06-24 00:00:00', 121, 3, '2022-06-24 00:19:25', '2022-08-07 07:17:37', 7, 2, 'buah', 3000, 6000),
-(59, 123, 'cangkul', 1, 0, '2022-06-25 00:00:00', 121, 4, '2022-06-24 00:19:35', '2022-08-07 07:17:51', 7, 3, 'buah', 2000, 6000),
-(60, 124, 'pembajakan', 1, 0, '2022-06-26 00:00:00', 120, 5, '2022-06-24 00:19:45', '2022-08-07 07:17:17', 7, 0, 'buah', 0, 0),
-(61, 125, 'Pemilihan Bibit', 3, 0, '2022-06-27 00:00:00', 0, 6, '2022-07-22 16:50:53', '2022-08-10 08:01:42', 7, 0, '', 0, 3500),
-(62, 126, 'Perendaman Bibit', 2, 0, '2022-06-27 00:00:00', 125, 7, '2022-07-22 16:51:07', '2022-08-10 08:20:39', 7, 1, 'kg', 1000, 1000),
-(63, 127, 'Persemaian', 2, 0, '2022-06-30 00:00:00', 0, 8, '2022-07-22 16:54:54', '2022-08-10 08:28:06', 7, 0, '', 0, 505000),
-(64, 128, 'Penanaman', 2, 0, '2022-07-02 00:00:00', 0, 9, '2022-07-22 16:55:07', '2022-08-10 08:28:43', 7, 1, 'hektar', 200000, 200000),
-(65, 129, 'Perawatan Lahan', 2, 0, '2022-07-04 00:00:00', 0, 10, '2022-07-22 16:55:17', '2022-08-10 08:29:03', 7, 1, 'hektar', 100000, 100000),
-(66, 130, 'Pencegahan Hama dan Penyakit', 2, 0, '2022-07-05 00:00:00', 0, 11, '2022-07-22 16:55:41', '2022-08-10 08:29:20', 7, 1, 'hektar', 100000, 100000),
-(67, 144, 'Menanam Bibit', 1, 0, '2022-06-29 00:00:00', 125, 20, '2022-08-05 11:55:41', '2022-08-10 08:20:58', 7, 5, '0', 500, 2500),
-(68, 149, 'Pemupukan Lahan Persemaian', 1, 0, '2022-06-30 00:00:00', 127, 24, '2022-08-10 08:21:58', '2022-08-10 08:27:31', 7, 5, 'buah', 100000, 500000),
-(69, 150, 'Pesebaran Benih', 1, 0, '2022-07-01 00:00:00', 127, 25, '2022-08-10 08:22:24', '2022-08-10 08:28:06', 7, 5, 'kilo', 1000, 5000),
-(70, 151, 'Pemanenan', 2, 0, '2022-07-07 00:00:00', 0, 26, '2022-08-10 08:24:35', '2022-08-10 08:29:39', 7, 1, 'hekatar', 200000, 200000);
+(71, 120, 'persiapan lahan', 4, 0, '2022-06-25 00:00:00', 0, 1, '2022-06-24 00:10:57', '2022-08-13 09:26:55', 7, 0, '', 0, 27000),
+(72, 121, 'pembersihan lahan', 1, 0, '2022-06-25 00:00:00', 120, 2, '2022-06-24 00:19:17', '2022-08-13 09:26:57', 7, 0, '', 0, 7000),
+(73, 122, 'arit', 1, 0, '2022-06-26 00:00:00', 121, 3, '2022-06-24 00:19:25', '2022-08-13 09:26:59', 7, 2, 'buah', 1500, 3000),
+(74, 123, 'cangkul', 1, 0, '2022-06-27 00:00:00', 121, 4, '2022-06-24 00:19:35', '2022-08-13 09:27:01', 7, 2, 'buah', 2000, 4000),
+(75, 124, 'pembajakan', 1, 0, '2022-06-28 00:00:00', 120, 5, '2022-06-24 00:19:45', '2022-08-13 09:27:03', 7, 1, 'hektar', 20000, 20000),
+(76, 125, 'Pemilihan Bibit', 3, 0, '2022-06-29 00:00:00', 0, 6, '2022-07-22 16:50:53', '2022-08-13 09:27:07', 7, 0, '', 0, 220000),
+(77, 126, 'Perendaman Bibit', 2, 0, '2022-06-29 00:00:00', 125, 7, '2022-07-22 16:51:07', '2022-08-13 09:27:09', 7, 2, 'kg', 10000, 20000),
+(78, 127, 'Persemaian', 2, 0, '2022-07-02 00:00:00', 0, 8, '2022-07-22 16:54:54', '2022-08-16 13:39:28', 7, 0, '', 0, 481000),
+(79, 128, 'Penanaman', 2, 0, '2022-07-04 00:00:00', 0, 9, '2022-07-22 16:55:07', '2022-08-16 13:40:30', 7, 12, 'hektar', 10000, 120000),
+(80, 129, 'Perawatan Lahan', 2, 0, '2022-07-06 00:00:00', 0, 10, '2022-07-22 16:55:17', '2022-08-16 13:40:42', 7, 1, 'hektar', 10000, 10000),
+(81, 130, 'Pencegahan Hama dan Penyakit', 2, 0, '2022-07-08 00:00:00', 0, 11, '2022-07-22 16:55:41', '2022-08-16 13:40:53', 7, 1, 'hektar', 2999, 2999),
+(82, 144, 'Menanam Bibit', 1, 0, '2022-07-01 00:00:00', 125, 20, '2022-08-05 11:55:41', '2022-08-13 09:27:11', 7, 1, 'hektar', 200000, 200000),
+(83, 149, 'Pemupukan Lahan Persemaian', 1, 0, '2022-07-02 00:00:00', 127, 24, '2022-08-10 08:21:58', '2022-08-13 09:27:16', 7, 3, 'buah', 160000, 480000),
+(84, 150, 'Pesebaran Benih', 1, 0, '2022-07-03 00:00:00', 127, 25, '2022-08-10 08:22:24', '2022-08-16 13:39:29', 7, 1, 'kilo', 1000, 1000),
+(85, 151, 'Pemanenan', 2, 0, '2022-07-10 00:00:00', 0, 26, '2022-08-10 08:24:35', '2022-08-16 13:41:07', 7, 12, 'hekatar', 10000, 120000),
+(86, 136, 'Pengolahan Lahan', 2, 0, '2022-07-27 00:00:00', 0, 12, '2022-08-03 04:02:35', '2022-08-03 04:14:23', 8, 2, '0', 700000, 1400000),
+(87, 137, 'Persiapan Benih', 2, 0, '2022-07-29 00:00:00', 0, 13, '2022-08-03 04:02:54', '2022-08-03 04:08:51', 8, 1, '0', 1500000, 1500000),
+(88, 138, 'Penanaman', 3, 0, '2022-07-30 00:00:00', 0, 14, '2022-08-03 04:02:58', '2022-08-03 04:09:02', 8, 1, '0', 1300000, 1300000),
+(89, 139, 'pemupukan', 3, 0, '2022-07-31 00:00:00', 0, 15, '2022-08-03 04:03:09', '2022-08-03 04:14:06', 8, 2, '0', 2000000, 4000000),
+(90, 140, 'pemeliharaan', 2, 0, '2022-08-02 00:00:00', 0, 16, '2022-08-03 04:03:15', '2022-08-19 04:51:04', 8, 2, '0', 20000, 40000),
+(91, 141, 'pengendalian', 2, 0, '2022-08-04 00:00:00', 0, 17, '2022-08-03 04:03:36', '2022-08-19 04:51:15', 8, 3, '0', 1000, 3000),
+(92, 142, 'panen', 2, 0, '2022-08-06 00:00:00', 0, 18, '2022-08-03 04:03:43', '2022-08-19 04:51:30', 8, 30, '0', 2000, 60000),
+(93, 143, 'pasca panen', 1, 0, '2022-08-08 00:00:00', 0, 19, '2022-08-03 04:03:48', '2022-08-19 04:51:44', 8, 2, '0', 30000, 60000);
 
 -- --------------------------------------------------------
 
@@ -9165,7 +9210,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (1, 'Super Admin', 'superadmin@gmail.com', '$2a$04$cXLImFpNCHnKqiAstB..TOFtNAzQhqjnpSbmJs7XPRMKg9dQA3qM.', 'bsdDBRj0l54IYBW6ADtGAqz4HOnIgeqgiO85kEI4atsMBpPfvy3EtNCDDEdh', '2021-08-10 23:02:32', '2021-08-10 23:02:32', 1),
 (2, 'Fakhrunnisa Nur Afra', 'afrakiww@gmail.com', '$2y$10$/OY.jgvJsGhqnx8P2UcGw.LfpYBEtjwbd0Gy18Xp3axQ2MDJ3RtZW', 'FM9RPPTPRCxSW0FvjV1RDdOTKnAsNrRCx5fU36RNP0nddiWVEiRCvWaA2YBz', '2021-08-10 23:02:32', '2021-08-10 23:02:32', 2),
 (3, 'Muhammad Derry Salman S', 'mderry3@gmail.com', '$2y$10$2uo5Gfj7w0.PmdnSXyrjKe9FPtsHyqFaAyhYGofaYiptgY3t.x1.K', NULL, '2021-08-10 23:10:30', '2021-08-10 23:10:30', 2),
-(4, 'Desa Malasari', 'desa.malasari@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'GYIY8c2FMBuQoB0Ty1bdzy7k1jY54piXbR3j3wdqSTZOGzurHKIgiKDY6CaB', '2021-08-10 23:26:56', '2021-08-10 23:26:56', 2),
+(4, 'Desa Malasari', 'desa.malasari@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'CsZL1WXwttIyMobwfQkX85kjRSTlOxZfTeMiYNZrnWOO1TOPxIKv5LbVz7nb', '2021-08-10 23:26:56', '2021-08-10 23:26:56', 2),
 (5, 'Desa Purasari', 'desa.purasari@gmail.com', '$2y$10$ABtmoTzCVtIzwSvJFHxtWebtFZzgSRduavNmzGpCHL.j4WXRSGDsG', NULL, '2021-08-10 23:28:35', '2021-08-10 23:28:35', 2),
 (6, 'Desa Wangun Jaya', 'desa.wangunjaya@gmail.com', '$2y$10$aHe.gLO4VkYss66EdMKSXul66hDbe72Rr37bY.VF4iYICx7JA0FHW', 'ZJyv56mRO0y25wsaGNfS6uEVsHhLwmth9tMRNUpc8ur8RpfarETk6gA8xcNP', '2021-08-10 23:30:07', '2021-08-10 23:30:07', 2),
 (7, 'Hermansyah', 'herman@gmail.com', '$2y$10$Mb0uetUSi2YaVAAgfGcAfeqXWtbMzLCMbbmV3RUOzR2Ehk3uQRq4a', 'ikjqjHfrwXREGxJu0MaReZy3jriS0axzLw8iDxuNNG9B6vZkAyCnvFMXzlcE', '2021-08-11 07:22:15', '2021-08-11 07:22:15', 2),
@@ -9196,10 +9241,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 10:19:42', '2021-08-14 10:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-16 20:53:26', '2021-08-16 20:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-16 21:07:23', '2021-08-16 21:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', '1HupuAfk5wTqiPyQuImM1tA3foUpZcV0IDVwkMAIhRrTGf05QRFlxwRzJKwD', '2022-04-03 03:54:28', '2022-04-03 03:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'Zh4pe8sAx3fO9bNdGkutAgVrnsGC1V0jRmcTt8M2CHtAOV085GcaZkYZ2SSD', '2022-04-03 03:54:28', '2022-04-03 03:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 00:37:26', '2022-04-18 00:37:26', 2),
 (45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'l6eWnd6x3ks7ri2WsfULjaTKuBdSJiZ1XMswES8vXpSMJ2B6RVVgQ2R9mV6n', '2022-06-04 23:42:37', '2022-06-04 23:42:37', 2),
-(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'DhJoYOfqnc8zdENdDa3G5oYsim5XzzSwYIhSgEjmAJz9DTOLmaoRzTGuD9ED', '2022-06-05 05:02:18', '2022-06-05 05:02:18', 2),
+(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'LIm36H5k0gr6GZhDuyRUXQ130hP3XGrIZ3rbiVyBMs5pSPiI51ehx1CcQy77', '2022-06-05 05:02:18', '2022-06-05 05:02:18', 2),
 (47, 'Imam', 'imam@gmail.com', '$2y$10$v1yK4ZkSKKsMA/NFDfEigeF8UGFxHbijSQyjPD0PR4vAY58B6SIba', '5CfIfNsqn98Cs86n6s1RQQupOmt1YfWeGyanxSAko8RmoZs20TZ77SmljZM3', '2022-07-12 22:35:27', '2022-07-12 22:35:27', 2);
 
 -- --------------------------------------------------------
@@ -90264,6 +90309,13 @@ ALTER TABLE `struks`
   ADD KEY `id_sewa` (`id_sewa`);
 
 --
+-- Indeks untuk tabel `surats`
+--
+ALTER TABLE `surats`
+  ADD PRIMARY KEY (`id_surat`),
+  ADD KEY `id_sewa` (`id_sewa`);
+
+--
 -- Indeks untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
@@ -90365,7 +90417,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT untuk tabel `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id_chat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_chat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `comment`
@@ -90497,7 +90549,7 @@ ALTER TABLE `room_chat`
 -- AUTO_INCREMENT untuk tabel `sewa_lahans`
 --
 ALTER TABLE `sewa_lahans`
-  MODIFY `id_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `sewa_peralatans`
@@ -90512,16 +90564,22 @@ ALTER TABLE `struks`
   MODIFY `id_struk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT untuk tabel `surats`
+--
+ALTER TABLE `surats`
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
 
 --
 -- AUTO_INCREMENT untuk tabel `task_historis`
 --
 ALTER TABLE `task_historis`
-  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT untuk tabel `transactions`
@@ -90546,6 +90604,16 @@ ALTER TABLE `undangan_grup`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `surats`
+--
+ALTER TABLE `surats`
+  ADD CONSTRAINT `surats_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_lahans` (`id_sewa`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

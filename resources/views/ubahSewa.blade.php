@@ -38,7 +38,8 @@
                             <img src="{{ url('foto_ktp') }}/{{ $pengguna->foto_ktp }} "width="50" height="50" class="mt-2">
                         </div>
                         @endforeach
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Sewa</button>                    
+                        <center>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Ajukan Investasi</button>                    
                     </form>
                 </div>
             </div>

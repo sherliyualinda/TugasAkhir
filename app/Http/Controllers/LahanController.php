@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use mysqli;
 use Carbon\Carbon;
+use GuzzleHttp\Psr7\Response;
 use Mockery\Matcher\Any;
 
 class LahanController extends Controller
@@ -58,8 +59,8 @@ class LahanController extends Controller
 
     public function lahan(){
         // $lahan = Lahan::paginate(9);
-        $lahan = DB::select("SELECT p.nama as pemilik,l.statusLahan, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
-        $lahans = DB::select("SELECT p.nama as pemilik,l.statusLahan, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
+        $lahan = DB::select("SELECT p.nama as pemilik,l.statusLahan, p.alamat,l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
+        $lahans = DB::select("SELECT p.nama as pemilik,l.statusLahan,p.alamat, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
         $total_notif = $this->total_notif();
         $list_notif_display = $this->list_notif_display();
         $notif_pesan = $this->notif_pesan();
@@ -153,6 +154,8 @@ class LahanController extends Controller
         $_SESSION['id_sewa'] = $id;
         $sewa =DB::select("SELECT l.gambar, l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status,sl.id_sewa,sl.id_lahan,sl.id_penyewa FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc' And id_sewa = $id AND id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
 
+        $surat = DB::Select("Select surat_perjanjian, id_sewa FROM surats Where id_sewa='".$_SESSION['id_sewa']."' ORDER BY updated_at DESC LIMIT 1");
+
         $daily = DB::select("SELECT d.id_sewa,d.gambar,d.keterangan,d.date,d.updated_at,s.id_lahan, d.id_daily FROM dailies d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $id");
 
         $struk = DB::select("SELECT d.keterangan,d.gambar,d.tanggal,d.updated_at,s.id_lahan, d.id_struk FROM struks d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $id");
@@ -239,7 +242,7 @@ class LahanController extends Controller
 
         // scurve
 
-        return view('projek_user',compact('task','sewa','jadwal2','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history','dataScurve'));  
+        return view('projek_user',compact('task','sewa','jadwal2','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history','dataScurve','surat'));  
     }
 
     public function dokumentasi($id, $penyewa_id)
@@ -367,7 +370,7 @@ class LahanController extends Controller
     public function request($id){
         session_start();
         $_SESSION['id_lahan'] = $id;
-        $sewa = DB::select("SELECT username,nama,alamat,s.id_sewa,s.id_lahan, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
+        $sewa = DB::select("SELECT username,nama,alamat,s.id_sewa,s.id_lahan, nik, foto_ktp, id_penyewa, s.status,p.foto_profil, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
 
         $gambarnya = DB::select("SELECT gambar, deskripsi, ukuran from lahans Join sewa_lahans on lahans.id = sewa_lahans.id_lahan where sewa_lahans.id_lahan = $id limit 1");
 
@@ -446,7 +449,7 @@ class LahanController extends Controller
         session_start();
         //$wbs = DB::select("SELECT w.harga, w.qty, w.satuan, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
 
-        $wbs = DB::select("SELECT a.id_sewa, a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa = $id AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc;");
+        $wbs = DB::select("SELECT a.id_sewa, format(a.harga,0) as hargaNenek, a.satuan as satuanNenek, format(a.totalHarga,0) as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,format(b.harga,0) as hargaIbu, b.satuan as satuanIbu, format(b.totalHarga,0) as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,format(c.harga,0) as hargaCucu, c.satuan as satuanCucu, format(c.totalHarga,0) as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa = $id AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc;");
 
         $wbs2 = Task::select('*')->where('id_sewa', $id)->limit(1)->get();
 
@@ -1257,6 +1260,37 @@ class LahanController extends Controller
                         // scurve
                 
                         return view('kelolaReq',compact('task','sewa','jadwal2','orang','material','alat','risk','risk3','daily','struk','jadwal','boq_aktual','boq_history','dataScurve'));  
+                    }
+
+                    public function Surat(){
+                        $url = 'Surat.pdf';
+
+                        return response()->file($url); // <-- display file directly in browser
+
+                        
+
+                    }
+
+                    public function Surat_pemilik($id){
+                        session_start();
+                        $surat = DB::Select("Select surat_perjanjian, id_sewa FROM surats Where id_sewa='".$_SESSION['id_sewa']."' ORDER BY updated_at DESC LIMIT 1");
+                        return view('surat',compact('surat'));
+                    }
+
+                    public function Surat_perjanjian(Request $request){
+                        session_start();
+                        $file = $request->file('surat_perjanjian');
+                        // isi dengan nama folder tempat kemana file diupload
+                        $tujuan_upload = 'surat_perjanjian';
+                        $file->move($tujuan_upload,$file->getClientOriginalName());
+                        
+                        DB::table('surats')->insert([
+                            'id_sewa' => $_SESSION['id_sewa'],
+                            'surat_perjanjian' => $file->getClientOriginalName(),
+                            'updated_at'    => date("Y-m-d H:i:s")
+                        ]);
+                        $surat = DB::Select("Select surat_perjanjian, id_sewa FROM surats Where id_sewa='".$_SESSION['id_sewa']."' ORDER BY updated_at DESC LIMIT 1");
+                        return view('surat',compact('surat'));
                     }
     
 }
