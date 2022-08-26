@@ -68,7 +68,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data['data_kegiatan'] as $key => $item)
+                                        @foreach ($dataScurve['data_kegiatan'] as $key => $item)
                                             <tr>
                                                 <td>{{$key}}</td>
                                                 @foreach ($item as $value)
