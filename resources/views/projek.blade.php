@@ -15,6 +15,46 @@
         @include('nav_barMar')
 
 </div>
+<style>
+       .container .popup-image{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0,.9);
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    display: none;
+
+}
+.container .popup-image span{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 60px;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+    z-index: 100%;
+
+}
+.container .popup-image img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 5px solid #fff;
+    border-radius: 5px;
+    width: 500px;
+    object-fit: cover;
+
+}
+@media (max-width:768px){
+    .container .popup-image img{
+        width: 95%;
+    }
+}
+</style>
 <body>
 
     <div class="container mt-5">
@@ -41,8 +81,13 @@
                                     <td>{{ $index+1}}</td>
                                     <td>{{$projek->nama}}</td>
                                     <td>
-                                        <a href="{{ url('gambar_lahan') }}/{{ $projek->gambar }}" target="_blank"><img src="{{ url('gambar_lahan') }}/{{ $projek->gambar }} "width="50" height="50"><a>
-
+                                        <img src="{{ url('gambar_lahan') }}/{{ $projek->gambar }} "width="50" height="50">
+                                        <div class="popup-image">
+                                        <span>
+                                            &times;
+                                        </span>
+                                        <img src="{{ url('gambar_lahan') }}/{{ $projek->gambar }} ">
+                                        </div>
 
                                         <!-- <img src="{{ url('gambar_lahan') }}/{{ $projek->gambar }} "width="50" height="50"> -->
                                     </td>
@@ -68,6 +113,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+    document.querySelectorAll('.card-body img').forEach(image =>{
+       image.onclick =() =>{
+           document.querySelector('.popup-image').style.display ='block';
+           document.querySelector('.popup-image img').src=image.getAttribute('src');
+           
+       } 
+    });
+    document.querySelector('.popup-image span').onclick = () =>{
+        document.querySelector('.popup-image').style.display ='none';
+    }
+</script>
 
 </body>
 </html>
