@@ -165,8 +165,8 @@
                               <tr>
                                 <th scope="col">No</th>                                
                                 <th scope="col">Gambar</th>
-                                <th scope="col">keterangan</th>                               
-                                <th scope="col">date</th>
+                                <th scope="col">Deskripsi Kegiatan</th>                               
+                                <th scope="col">Tanggal</th>
                                 <th scope="col">Kelola</th>
                               </tr>
                             </thead>
