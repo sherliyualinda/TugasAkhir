@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
      <!-- Core theme CSS (includes Bootstrap)-->
-     <link href="css3/styles.css" rel="stylesheet" />
+     <link href="/css3/styles.css" rel="stylesheet" />
 
 
-     @include('nav_barMar')
-</head>
-
+    </head>
+    
+    @include('theme.nav_bar')
 <?php session_start(); ?>
 <div class="col-md-12 mt-2">
         <nav aria-label="breadcrumb">
@@ -168,7 +168,7 @@
             }
             
         var dataSecond = {
-            label: "Plan",
+            label: "Histori",
             data: arrSecond,
             lineTension: 0,
             fill: false,
@@ -188,7 +188,7 @@
                 if(arrFirst[index] > 0){
                     const weight = (arrFirst[index] / history_total) * 100;
                     const num = history_total * (weight.toFixed(0) / 100);
-                    // console.log(num);
+                    //// n// e.log(num);
                     tempArrDifference = num.toFixed(0);
                     arrDifference.push(num.toFixed(0));
                 }else if(index == 0){
@@ -197,7 +197,7 @@
                     arrDifference.push(arrFirst[index]);
                 }
             }
-        // console.log(arrDifference);
+        // con// e.log(arrDifference);
         var dataDifference = {
             label: "Selisih",
             data: arrDifference,
