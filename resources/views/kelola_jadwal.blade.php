@@ -141,7 +141,7 @@
                                                 <input type="input" name="agenda" class="form-control form-control-user" rows="4" placeholder="Masukkan Agenda"></input>
                                             </div>
                                             <div class="form-group">
-                                                <label>Keterangan</label>
+                                                <label>Notulensi</label>
                                                 <textarea name="keterangan" class="form-control form-control-user" rows="4" placeholder="Masukkan Keterangan"></textarea>
                                             </div>  
                                             <div class="form-group">
@@ -171,7 +171,7 @@
                                 <th scope="col">No</th>                                
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Agenda</th>                               
-                                <th scope="col">Keterangan</th>
+                                <th scope="col">Notulensi</th>
                                 <th scope="col">Link Meet</th>
                                 <th scope="col">Kelola</th>
                               </tr>
