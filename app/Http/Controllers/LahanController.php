@@ -154,6 +154,8 @@ class LahanController extends Controller
         $_SESSION['id_sewa'] = $id;
         $sewa =DB::select("SELECT l.gambar, l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status,sl.id_sewa,sl.id_lahan,sl.id_penyewa FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc' And id_sewa = $id AND id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
 
+        $surat = DB::Select("Select surat_perjanjian, id_sewa FROM surats Where id_sewa='".$_SESSION['id_sewa']."' ORDER BY updated_at DESC LIMIT 1");
+
         $daily = DB::select("SELECT d.id_sewa,d.gambar,d.keterangan,d.date,d.updated_at,s.id_lahan, d.id_daily FROM dailies d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $id");
 
         $struk = DB::select("SELECT d.keterangan,d.gambar,d.tanggal,d.updated_at,s.id_lahan, d.id_struk FROM struks d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $id");
@@ -240,7 +242,7 @@ class LahanController extends Controller
 
         // scurve
 
-        return view('projek_user',compact('task','sewa','jadwal2','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history','dataScurve'));  
+        return view('projek_user',compact('task','sewa','jadwal2','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history','dataScurve','surat'));  
     }
 
     public function dokumentasi($id, $penyewa_id)

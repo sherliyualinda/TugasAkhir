@@ -40,6 +40,10 @@
                         <div>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
+                                    <a class="nav-link" id="surat-tab" data-toggle="tab" href="#surat" role="tab" aria-controls="surat"
+                                    aria-selected="false">Surat Perjanjian</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link active" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail"
                                     aria-selected="false">Detail</a>
                                 </li>
@@ -84,7 +88,17 @@
                                 
 
                             <div class="tab-content" id="myTabContent">
-                                
+
+                                     
+                                    <div class="tab-pane fade" id="surat" role="tabpanel" aria-labelledby="surat-tab">
+                                        
+                                    @foreach($surat as $surats)
+                                        <iframe src="/surat_perjanjian/{{$surats->surat_perjanjian}}" width="100%" height="400px">
+                                         </iframe>
+                                    @endforeach
+                                    
+                                    </div>
+
                                     <div class="tab-pane fade in active show" id="detail" role="tabpanel" aria-labelledby="detail-tab">
                                         <h3>{{ $data->nama }}</h3>
                                         <table class="table">
