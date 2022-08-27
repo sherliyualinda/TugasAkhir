@@ -135,7 +135,7 @@ class LahanController extends Controller
     }
     public function detail_lahan($id){
        
-        $lahan = DB::select("SELECT p.nama as pemilik,l.statusLahan,l.id_user, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE l.id = $id");
+        $lahan = DB::select("SELECT p.username, p.nama as pemilik,l.statusLahan,l.id_user, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE l.id = $id");
         $orang = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 1 AND lr.id_lahan = $id");
         $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 2 AND lr.id_lahan = $id");
         $sewa = DB::select("SELECT COUNT(id_lahan) as totSewa FROM sewa_lahans WHERE id_lahan = $id AND progres='Done'");
@@ -789,7 +789,8 @@ class LahanController extends Controller
 
     public function orang($id){
         $sdm = Lahan::select('*')->where('id', $id)->get();
-        return view('orang',compact('sdm'));
+        $orang = Pengguna::all();
+        return view('orang',compact('sdm','orang'));
     }
     public function material($id){
         $sdm = Lahan::select('*')->where('id', $id)->get();
@@ -805,7 +806,7 @@ class LahanController extends Controller
         $_SESSION['id_lahan'] = $id;
         // $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $id ORDER BY r.keterangan;");
 
-        $resource= DB::table('lahan_resources')->join('lahans','lahan_resources.id_lahan','=','lahans.id')->join('resources','lahan_resources.id_resources','=','resources.id_resources')->select('lahan_resources.id_lahan_resources', 'lahan_resources.resource', 'lahan_resources.keterangan', 'lahan_resources.id_resources', 'lahans.id', 'resources.keterangan as role')->where('lahans.id',$id)->orderby('resources.keterangan')->paginate(3);
+        $resource= DB::table('lahan_resources')->join('lahans','lahan_resources.id_lahan','=','lahans.id')->join('resources','lahan_resources.id_resources','=','resources.id_resources')->join('pengguna', 'lahans.id_user','=','pengguna.id_pengguna')->select('pengguna.username','lahan_resources.id_lahan_resources', 'lahan_resources.resource', 'lahan_resources.keterangan', 'lahan_resources.id_resources', 'lahans.id', 'resources.keterangan as role')->where('lahans.id',$id)->orderby('resources.keterangan')->paginate(3);
         
         return view('kelola_resource', compact('resource'));
     }
@@ -976,7 +977,7 @@ class LahanController extends Controller
             'id_sewa'       => $request->id_sewa,
             'date'          => $request->date,
             'agenda'        => $request->agenda,
-            'keterangan'    => $request->keterangan,
+            'keterangan'    => '',
             'linkMeet'      => $request->linkMeet,
             'updated_at'    => date("Y-m-d H:i:s")
         ]);
@@ -1293,4 +1294,5 @@ class LahanController extends Controller
                         return view('surat',compact('surat'));
                     }
     
+                    
 }

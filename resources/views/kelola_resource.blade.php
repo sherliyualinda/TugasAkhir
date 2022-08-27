@@ -31,7 +31,11 @@
                             @foreach($resource as $index=>$resources)
                                 <tr>
                                     <td>{{ $index+1}}</td>
+                                    @if ($resources->role === 'Orang')
+                                    <td><a href="/sosial-media/profil/{{$resources->resource}}" style="color: black">{{$resources->resource}}</a></td>
+                                    @else
                                     <td>{{ $resources->resource}}</td>
+                                    @endif
                                     <td>{!! $resources->keterangan !!}</td>
                                     <td>{{ $resources->role}}</td>
                                     <td class="text-center">

@@ -84,10 +84,10 @@
                             <thead>
                               <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Nama Penyewa</th>
-                                <th scope="col">NIK</th>
-                                <th scope="col">Alamat Penyewa</th>
                                 <th scope="col">Foto</th>
+                                <th scope="col">Nama Penyewa</th>
+                                <th scope="col">Alamat Penyewa</th>
+                                <th scope="col">Foto KTP</th>
                                 <th scope="col" >Persetujuan</th>
                                 <th scope="col" >Kelola Proyek</th>
                                 
@@ -108,17 +108,29 @@
                             @foreach($sewa as $index=>$sewa)
                                 <tr >
                                     <td>{{ $index+1}}</td>
+                                    <td>
+                                        <img src="/data_file/{{$sewa->nama}}/foto_profil/{{ $sewa->foto_profil }}"width="50" height="50">
+
+                                        <div class="popup-image">
+                                            <span>
+                                                &times;
+                                            </span>
+                                                <img src="/data_file/{{$sewa->nama}}/foto_profil/{{ $sewa->foto_profil }} ">
+                                        </div>
+                                    </td>
                                     <td>{{ $sewa->nama}}</td>
-                                    <td>{{ $sewa->nik}}</td>
                                     <td>{{ $sewa->alamat}}</td>
                                     <td>
-                                        <img src="/data_file/{{$sewa->nama}}/foto_profil/{{ $sewa->foto_profil }} "width="50" height="50">
+                                        <center>
+
+                                            <img src="/foto_ktp/{{ $sewa->foto_ktp }} "width="50" height="50">
+                                        </center>
 
                                         <div class="popup-image">
                                         <span>
                                             &times;
                                         </span>
-                                        <img src="/data_file/{{$sewa->nama}}/foto_profil/{{ $sewa->foto_profil }} ">
+                                        <img src="/foto_ktp/{{ $sewa->foto_profil }} ">
                                         </div>
 <!-- 
                                         <img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50"> -->

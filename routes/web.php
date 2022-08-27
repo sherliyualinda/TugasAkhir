@@ -485,6 +485,7 @@ Route::get('/peralatan/transaksi', 'PeralatanController@transaksi')->name('trans
 Route::get('/peralatan/bukti_bayar/{id}', 'PeralatanController@bukti_bayar')->middleware('auth');
 Route::post('/peralatan/simpan_bukti', 'PeralatanController@simpan_bukti')->name('uploadBukti')->middleware('auth');
 
+
 // Auth::routes();
 // Auth::routes();
 
