@@ -36,7 +36,7 @@
             <div class="card">
                     
                 <div class="card-header">
-                    Ubah Resiko 
+                    Ubah Risiko 
                 </div>
                 <div class="card-body">
                 @foreach ($risk as $risk)
@@ -74,7 +74,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <label>Impact</label>
+                            <label>Dampak</label>
                             <select class="form-control" name="impact" placeholder="--Pilih Impact">
                                 @foreach ($impact as $impact)
                                     <option value="{{$impact->id_impact}}" @if(old('impact',$risk->impact) == $impact->id_impact) selected="selected" @endif>

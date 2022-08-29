@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Agu 2022 pada 13.30
+-- Waktu pembuatan: 29 Agu 2022 pada 09.08
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -7619,9 +7619,9 @@ CREATE TABLE `impacts` (
 --
 
 INSERT INTO `impacts` (`id_impact`, `ket_impact`) VALUES
-(1, 'Low'),
-(2, 'Medium'),
-(3, 'High');
+(1, 'Rendah'),
+(2, 'Sedang'),
+(3, 'Tinggi');
 
 -- --------------------------------------------------------
 
@@ -7644,8 +7644,9 @@ CREATE TABLE `jadwals` (
 --
 
 INSERT INTO `jadwals` (`id_jadwal`, `date`, `agenda`, `keterangan`, `id_sewa`, `linkMeet`, `updated_at`) VALUES
-(3, '2022-06-30', 'hhhhhhhhhhhiiaaa', 'aaaaaaaaaaaaaa', 7, 'hhhhhhhhhhhhhhhhhii', '2022-07-27'),
-(4, '2022-08-09', 'Controlling Area', 'cdkcjeoselcjmslacmoals', 8, 'hhhhhhhhhhhhhhhhh', '2022-08-06');
+(3, '2022-06-30', 'hhhhhhhhhhhiiaaa', '<p>aaaaaaaaaaaaaa</p>', 7, 'hhhhhhhhhhhhhhhhhii', '2022-08-27'),
+(4, '2022-08-09', 'Controlling Area', 'cdkcjeoselcjmslacmoals', 8, 'hhhhhhhhhhhhhhhhh', '2022-08-06'),
+(5, '2022-08-29', 'Controlling Area', 'diikuti oleh semua', 7, 'ketemu langsung dirumah saya', '2022-08-27');
 
 -- --------------------------------------------------------
 
@@ -7734,9 +7735,12 @@ CREATE TABLE `lahan_resources` (
 --
 
 INSERT INTO `lahan_resources` (`id_lahan_resources`, `resource`, `keterangan`, `id_resources`, `id_lahan`, `updated_at`) VALUES
-(11, 'pak tarnoxx', 'petani yo', 1, 4, '2022-06-27'),
 (12, 'pupuk kandang', 'supaya subur', 2, 4, '2022-06-27'),
-(13, 'cangkul', 'cangkul 3', 3, 4, '2022-06-27');
+(13, 'cangkul', 'cangkul 3', 3, 4, '2022-06-27'),
+(16, 'Sherli', '<p>petani</p>', 1, 4, '2022-08-27'),
+(18, 'fakhrunnisa', '<p>petani</p>', 1, 4, '2022-08-27'),
+(19, 'Imam', '<p>petani</p>', 1, 5, '2022-08-27'),
+(20, 'Jessika', '<p>kk</p>', 1, 5, '2022-08-27');
 
 -- --------------------------------------------------------
 
@@ -7971,7 +7975,7 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id_pengguna`, `id`, `jenis_akun`, `username`, `password`, `nama`, `village_id`, `email`, `nomor_hp`, `alamat`, `nik`, `pekerjaan`, `foto_ktp`, `bio`, `website`, `youtube`, `marketplace`, `berita`, `musrembang`, `foto_profil`, `foto_sampul`, `status_pengajuan_store`, `tgl_join`, `updated_at`) VALUES
-(2, 2, 'pribadi', 'afraaknim_', '$2y$10$Dx.EQZZaoygHpYECle4IWOqompfFFWH2NhdgPapFgAuhAKMjgAfSu', 'Fakhrunnisa Nur Afra', 3273090003, 'afrakiww@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'IMG_20160323_181535.jpeg', 'erin_1.JPG', NULL, '2021-08-11 13:02:32', NULL),
+(2, 2, 'pribadi', 'Fakhrunnisaa', '$2y$10$Dx.EQZZaoygHpYECle4IWOqompfFFWH2NhdgPapFgAuhAKMjgAfSu', 'Fakhrunnisaa', 3273090003, 'afrakiww@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'IMG_20160323_181535.jpeg', 'erin_1.JPG', NULL, '2021-08-11 13:02:32', NULL),
 (3, 3, 'pribadi', 'mderry', '$2y$10$mkbUVmcyKfSBaRGEvv0Xw.5CkgKZQ131yaWT2925fobkuDYWDXnHS', 'Muhammad Derry Salman S', 3273090003, 'mderry3@gmail.com', '082258980578', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'user.jpg', 'sampul.jpg', NULL, '2021-08-11 13:10:30', NULL),
 (4, 4, 'desa', 'desa_malasari', 'malasari', 'Desa Malasari', 3201010001, 'desa.malasari@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201010&desa[]=3201010001&keyword=', 'https://desatube.masuk.web.id/search?query=MALASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3201010001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', NULL, '2021-08-11 13:26:56', NULL),
 (5, 5, 'desa', 'desa_purasari', 'purasari', 'Desa Purasari', 3201020001, 'desa.purasari@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3201&kecamatan[]=3201020&desa[]=3201020001&keyword=', 'https://desatube.masuk.web.id/search?query=PURASARI', 'http://marketpalcedesaku.masuk.web.id/stores/3201020001', 'https://desaku-desanews.masuk.id/', NULL, 'user.jpg', 'sampul.jpg', NULL, '2021-08-11 13:28:35', NULL),
@@ -7984,7 +7988,7 @@ INSERT INTO `pengguna` (`id_pengguna`, `id`, `jenis_akun`, `username`, `password
 (13, 13, 'pribadi', 'ujang', '123456', 'Ujang', 3204270004, 'ujang@email.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 21:57:36', NULL),
 (14, 14, 'pribadi', 'mughny-mubarak', '$2y$10$wcui338WylB5xm8i34LcEOPVyHiQVAQiYRu5qMVQituG1aaxmoed6', 'Mughny Mubarak', 3204280005, 'mmughnymubarak@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-12 23:26:12', NULL),
 (15, 15, 'pribadi', 'fakhri-naufal', '$2y$10$IxnldiOmvbSSoX85Rp/ZE.Cp9tLk75/scynSvoGV5l5cKgU.5D9M.', 'Fakhri Naufal', 3273090004, 'fakhrinfla47@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 00:08:54', NULL),
-(16, 16, 'pribadi', 'fakhrunisa-nur-afra', '$2y$10$Hq1tUmTA3YGojaXa8DPOquq.BuZAAeN3aKMZQTE1qF16mBVV2A/42', 'Fakhrunisa Nur Afra', 3273160005, 'afrakiw@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 00:45:10', NULL),
+(16, 16, 'pribadi', 'fakhrunnisa', '$2y$10$Hq1tUmTA3YGojaXa8DPOquq.BuZAAeN3aKMZQTE1qF16mBVV2A/42', 'fakhrunnisa', 3273160005, 'afrakiw@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 00:45:10', NULL),
 (17, 17, 'pribadi', 'riswan-ardinata', '$2y$10$H6yoKRNLV0IjhLUZjZQoDuIJuhGY3fL.nzXgarpYoJZHz7k805l4G', 'Riswan Ardinata', 3204270006, 'riswan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-13 01:12:40', NULL),
 (18, 18, 'desa', 'desa_cibenda', 'desacibenda', 'Desa Cibenda', 3202010001, 'desa.cibenda@gmail.com', '081536600397', NULL, NULL, NULL, NULL, NULL, 'https://desaku-desatour.masuk.id/pariwisata-wisata-filter?kota[]=3202&kecamatan[]=3202010&desa[]=3202010001', 'https://desatube.masuk.web.id/search?query=CIBENDA', 'http://marketpalcedesaku.masuk.web.id/stores/3202010001', 'https://desaku-desanews.masuk.id/3202010001', NULL, 'user.jpg', 'sampul.jpg', NULL, '2021-08-13 18:21:56', NULL),
 (19, 19, 'pribadi', 'afra', '$2y$10$5neuMnM6SNddcBp/denOReNNw1UFCPhKZkwDaRgoFhzZcoEolLRbu', 'Afra', 3204010001, 'afra@gmail.com', '081221504744', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-14 09:12:40', NULL),
@@ -8057,9 +8061,9 @@ CREATE TABLE `probabilitas` (
 --
 
 INSERT INTO `probabilitas` (`id_probabilitas`, `ket`) VALUES
-(1, 'Low'),
-(2, 'Medium'),
-(3, 'High');
+(1, 'Rendah'),
+(2, 'Sedang'),
+(3, 'Tinggi');
 
 -- --------------------------------------------------------
 
@@ -8819,14 +8823,15 @@ CREATE TABLE `risks` (
 --
 
 INSERT INTO `risks` (`id_risk`, `id_sewa`, `penyebab`, `dampak`, `strategi`, `biaya`, `probabilitas`, `impact`, `levelRisk`, `updated_at`) VALUES
-(7, 7, 'hujankuue', 'gak bisa beli pupuk', 'minjem duit', 2000, 3, 2, 'High', '2022-08-07'),
-(8, 7, 'hujan gede', 'gak bisa beli pupuk', 'apa aja', 10000, 3, 3, 'High', '2022-06-27'),
-(9, 7, 'kemarau', 'mati', 'air', 100000, 2, 1, 'Low', '2022-08-07'),
-(10, 7, 'kemarau', 'mati', 'air', 100000, 2, 1, 'Low', '2022-08-05'),
-(11, 7, 'banjir nih', 'mati', 'air', 60, 2, 2, 'Medium', '2022-08-05'),
-(12, 7, 'banjir', 'mati', 'air', 60, 3, 3, 'High', '2022-08-05'),
-(16, 8, 'banjir nih', 'mati', 'air', 100000, 1, 1, 'Low', '2022-08-06'),
-(17, 8, 'kemarau', 'mati', 'air', 100000, 1, 1, 'Low', '2022-08-06');
+(7, 7, 'hujankuue', 'gak bisa beli pupuk', 'minjem duit', 2000, 3, 1, 'Sedang', '2022-08-29'),
+(8, 7, 'hujan gede', 'gak bisa beli pupuk', 'apa aja', 10000, 3, 3, 'Tinggi', '2022-06-27'),
+(9, 7, 'kemarau', 'mati', 'air', 100000, 2, 1, 'Rendah', '2022-08-07'),
+(10, 7, 'kemarau', 'mati', 'air', 100000, 2, 1, 'Rendah', '2022-08-05'),
+(11, 7, 'banjir nih', 'mati', 'air', 60, 2, 2, 'Sedang', '2022-08-05'),
+(12, 7, 'banjir', 'mati', 'air', 60, 3, 3, 'Tinggi', '2022-08-05'),
+(16, 8, 'banjir nih', 'mati', 'air', 100000, 1, 1, 'Rendah', '2022-08-06'),
+(17, 8, 'kemarau', 'mati', 'air', 100000, 1, 1, 'Rendah', '2022-08-06'),
+(18, 7, 'kemarau besar', 'mati', 'minjem duit', 10000, 1, 3, 'Sedang', '2022-08-29');
 
 -- --------------------------------------------------------
 
@@ -9207,7 +9212,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `id_role`) VALUES
-(1, 'Super Admin', 'superadmin@gmail.com', '$2a$04$cXLImFpNCHnKqiAstB..TOFtNAzQhqjnpSbmJs7XPRMKg9dQA3qM.', 'bsdDBRj0l54IYBW6ADtGAqz4HOnIgeqgiO85kEI4atsMBpPfvy3EtNCDDEdh', '2021-08-10 23:02:32', '2021-08-10 23:02:32', 1),
+(1, 'Super Admin', 'superadmin@gmail.com', '$2a$04$cXLImFpNCHnKqiAstB..TOFtNAzQhqjnpSbmJs7XPRMKg9dQA3qM.', 'F8FtCljl83Utpz8urRZ02wPPYRljGdtwMT58A3YTJ8VslFXYV6c7xoYIbbgd', '2021-08-10 23:02:32', '2021-08-10 23:02:32', 1),
 (2, 'Fakhrunnisa Nur Afra', 'afrakiww@gmail.com', '$2y$10$/OY.jgvJsGhqnx8P2UcGw.LfpYBEtjwbd0Gy18Xp3axQ2MDJ3RtZW', 'FM9RPPTPRCxSW0FvjV1RDdOTKnAsNrRCx5fU36RNP0nddiWVEiRCvWaA2YBz', '2021-08-10 23:02:32', '2021-08-10 23:02:32', 2),
 (3, 'Muhammad Derry Salman S', 'mderry3@gmail.com', '$2y$10$2uo5Gfj7w0.PmdnSXyrjKe9FPtsHyqFaAyhYGofaYiptgY3t.x1.K', NULL, '2021-08-10 23:10:30', '2021-08-10 23:10:30', 2),
 (4, 'Desa Malasari', 'desa.malasari@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'CsZL1WXwttIyMobwfQkX85kjRSTlOxZfTeMiYNZrnWOO1TOPxIKv5LbVz7nb', '2021-08-10 23:26:56', '2021-08-10 23:26:56', 2),
@@ -9241,10 +9246,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 10:19:42', '2021-08-14 10:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-16 20:53:26', '2021-08-16 20:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-16 21:07:23', '2021-08-16 21:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'Zh4pe8sAx3fO9bNdGkutAgVrnsGC1V0jRmcTt8M2CHtAOV085GcaZkYZ2SSD', '2022-04-03 03:54:28', '2022-04-03 03:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'nlLDT3m3z3RNfpIr2Sd7fOHBDf5Rz3dkMgeM1KdMOkPAASj1W7KLdXdALIZq', '2022-04-03 03:54:28', '2022-04-03 03:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 00:37:26', '2022-04-18 00:37:26', 2),
 (45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'l6eWnd6x3ks7ri2WsfULjaTKuBdSJiZ1XMswES8vXpSMJ2B6RVVgQ2R9mV6n', '2022-06-04 23:42:37', '2022-06-04 23:42:37', 2),
-(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'LIm36H5k0gr6GZhDuyRUXQ130hP3XGrIZ3rbiVyBMs5pSPiI51ehx1CcQy77', '2022-06-05 05:02:18', '2022-06-05 05:02:18', 2),
+(46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'yxIGfl1uFruLP2Q8jZshnjn6WnoWdGK37OnFs4VIMMEm9j3bwTOUdp9Bem8o', '2022-06-05 05:02:18', '2022-06-05 05:02:18', 2),
 (47, 'Imam', 'imam@gmail.com', '$2y$10$v1yK4ZkSKKsMA/NFDfEigeF8UGFxHbijSQyjPD0PR4vAY58B6SIba', '5CfIfNsqn98Cs86n6s1RQQupOmt1YfWeGyanxSAko8RmoZs20TZ77SmljZM3', '2022-07-12 22:35:27', '2022-07-12 22:35:27', 2);
 
 -- --------------------------------------------------------
@@ -90465,7 +90470,7 @@ ALTER TABLE `hapus_akun`
 -- AUTO_INCREMENT untuk tabel `jadwals`
 --
 ALTER TABLE `jadwals`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `konten`
@@ -90483,7 +90488,7 @@ ALTER TABLE `lahans`
 -- AUTO_INCREMENT untuk tabel `lahan_resources`
 --
 ALTER TABLE `lahan_resources`
-  MODIFY `id_lahan_resources` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_lahan_resources` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `likes`
@@ -90537,7 +90542,7 @@ ALTER TABLE `product_gallaries`
 -- AUTO_INCREMENT untuk tabel `risks`
 --
 ALTER TABLE `risks`
-  MODIFY `id_risk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_risk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `room_chat`

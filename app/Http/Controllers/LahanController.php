@@ -647,11 +647,11 @@ class LahanController extends Controller
     public function simpan_risk(Request $request){
         // menyimpan data file yang diupload ke variabel $file
         if($request->probabilitas * $request->impact <= 2){
-            $level = "Low";
+            $level = "Rendah";
         }elseif($request->probabilitas * $request->impact == 3 or $request->probabilitas * $request->impact == 4 ){
-            $level = "Medium";
+            $level = "Sedang";
         }else{
-            $level = "High";
+            $level = "Tinggi";
         }
         
         DB::table('risks')->insert([
@@ -693,11 +693,11 @@ class LahanController extends Controller
     
         public function updateRisk(Request $request){
             if($request->probabilitas * $request->impact <= 2){
-                $level = "Low";
+                $level = "Rendah";
             }elseif($request->probabilitas * $request->impact == 3 or $request->probabilitas * $request->impact == 4 ){
-                $level = "Medium";
+                $level = "Sedang";
             }else{
-                $level = "High";
+                $level = "Tinggi";
             }
             
             $risk = Risk::where('id_risk',$request->id_risk)->update([
