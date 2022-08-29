@@ -70,9 +70,9 @@ class LahanController extends Controller
     }
 
     public function create(){
-        //$data['categori']= "select * from category_lahan";
+        //$data['categori']= "select * from Category_lahan";
         //$user = User::find($id);
-        $categori=category_lahan::all();
+        $categori=Category_lahan::all();
         return view('create_lahan',[
             'categori' => $categori,
             'id_pengguna' => Auth::user()->pengguna->id_pengguna
@@ -101,14 +101,14 @@ class LahanController extends Controller
     }
     public function kelola_lahan(){
         // $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, l.statusLahan, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-        $categori=category_lahan::all();
+        $categori=Category_lahan::all();
         $lahan = DB::table('pengguna')->join('lahans', 'pengguna.id_pengguna', '=', 'lahans.id_user')->join('category_lahans', 'lahans.category_lahan_id', '=', 'category_lahans.id')->select('pengguna.nama as pemilik', 'lahans.id','lahans.category_lahan_id','lahans.ukuran','lahans.deskripsi','lahans.gambar', 'lahans.statusLahan', 'category_lahans.nama')->where('pengguna.id_pengguna', Auth::user()->pengguna->id_pengguna)->orderby('lahans.updated_at')->Paginate(3);
 
         return view('kelola_lahan', compact('lahan','categori'));
         
     }    
     public function ubahlahan($id){
-        $categori = category_lahan::all();
+        $categori = Category_lahan::all();
         $lahan = Lahan::select('*')->where('id', $id)->get();
         $lahan2 = Lahan::select('*')->where('id', $id)->get();
         return view('ubahlahan', compact('lahan','categori','lahan2'));  
