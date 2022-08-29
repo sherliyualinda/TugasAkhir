@@ -1094,74 +1094,73 @@ class LahanController extends Controller
 
             public function lihatPortofolio(Request $request){
                 // Scurve
-                    $boq_aktual = Task::where('id_sewa', $request->id_sewa)->with('children')->get();
-                    $boq_history = Task_histori::where('id_sewa', $request->id_sewa)->with('children')->get();
-                    $aktual = Task::where('id_sewa', $request->id_sewa)->with('children')->get();
-                    $tanggalAll = [];
-                    $data_kegiatan = [];
-                    $total_aktual = [];
-                    foreach ($aktual as $key => $parent) {
-                        if ($parent->parent == 0) {
-                         $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
-                         $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
-                         // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
-                         if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
-                             $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
-                         }
-                        }
+                $boq_aktual = Task::where('id_sewa', $request->id_sewa)->with('children')->get();
+                $boq_history = Task_histori::where('id_sewa', $request->id_sewa)->with('children')->get();
+                $aktual = Task::where('id_sewa', $request->id_sewa)->with('children')->get();
+                $tanggalAll = [];
+                $data_kegiatan = [];
+                $total_aktual = [];
+                foreach ($aktual as $key => $parent) {
+                    if ($parent->parent == 0) {
+                     $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+                     // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
+                     if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                         $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
                      }
-                     
-                     $total_history = [];
-                     $date_history = [];
-                     $history = Task_histori::where('id_sewa', $id)->with('children')->get();
-                     foreach ($history as $key => $parent) {
-                         if ($parent->parent == 0) {
-                          $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
-                            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
-                          if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
-                             $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
-                          }
-                         }
+                    }
+                 }
+                 
+                 $total_history = [];
+                 $date_history = [];
+                 $history = Task_histori::where('id_sewa', $request->id_sewa)->with('children')->get();
+                 foreach ($history as $key => $parent) {
+                     if ($parent->parent == 0) {
+                      $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+                     $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
+                      if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                         $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                      }
                      }
-             
-                     usort($tanggalAll, function ($a, $b) {
-                         return strtotime($a) - strtotime($b);
-                     });
-             
-                     $start = Carbon::parse($tanggalAll[0]);
-                     $end = Carbon::parse($tanggalAll[count($tanggalAll)-1]);
-                     $period = \Carbon\CarbonPeriod::create($start, $end);
-                     // Convert the period to an array of dates
-                     $dates = [];
-                     // Iterate over the period
-                     $stop = 0;
-                     foreach ($period as $date) {
-                         $temp = $date->format('d-m-Y');
-                         $dates[] = $temp;
-                         if (array_key_exists($temp, $total_history)) {
-                             // print_r(array_key_exists($temp, $total_history));
+                 }
+         
+                 usort($tanggalAll, function ($a, $b) {
+                     return strtotime($a) - strtotime($b);
+                 });
+         
+                 $start = Carbon::parse($tanggalAll[0]);
+                 $end = Carbon::parse($tanggalAll[count($tanggalAll)-1]);
+                 $period = \Carbon\CarbonPeriod::create($start, $end);
+                 // Convert the period to an array of dates
+                 $dates = [];
+                 // Iterate over the period
+                 $stop = 0;
+                 foreach ($period as $date) {
+                     $temp = $date->format('d-m-Y');
+                     $dates[] = $temp;
+                     if (array_key_exists($temp, $total_history)) {
+                         // print_r(array_key_exists($temp, $total_history));
+                     }else{
+                         $total_history[$temp] = false;
+                     }
+                     if (array_key_exists($temp, $total_aktual)) {
+                         // print_r(array_key_exists($temp, $total_aktual));
+                         if ($total_aktual[$temp] > 0) {
+                             # code...
                          }else{
-                             $total_history[$temp] = false;
+                             $total_aktual[$temp] = 'NaN';
+                             $stop = 'stop';
                          }
-                         if (array_key_exists($temp, $total_aktual)) {
-                             // print_r(array_key_exists($temp, $total_aktual));
-                             if ($total_aktual[$temp] > 0) {
-                                 # code...
-                             }else{
-                                 $total_aktual[$temp] = 'NaN';
-                                 $stop = 'stop';
-                             }
-                         }else{
-                             $total_aktual[$temp] = $stop;
-                         }
+                     }else{
+                         $total_aktual[$temp] = $stop;
                      }
-                    
-                    $dataScurve = [
-                        'tanggal' => $dates,
-                        'total_aktual' => $total_aktual,
-                        'total_history' => $total_history,
-                        'data_kegiatan' => $data_kegiatan,
-                    ];                  
+                 }
+                
+                $dataScurve = [
+                    'tanggal' => $dates,
+                    'total_aktual' => $total_aktual,
+                    'total_history' => $total_history,
+                    'data_kegiatan' => $data_kegiatan,
+                ];
                     return view('halPortofolioo', compact('boq_aktual','boq_history','dataScurve'));
                     }
 
