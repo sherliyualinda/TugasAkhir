@@ -1,6 +1,6 @@
 @extends('layouts2.main')
 
-@section('title', 'Kelola Pralatan')
+@section('title', 'Kelola Sumberdaya')
 
 @section('content') 
 

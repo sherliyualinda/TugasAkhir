@@ -413,7 +413,7 @@ Route::get('/lahan/createDaily/{id}', 'LahanController@createDaily')->name('crea
 Route::post('/lahan/simpan_daily/{id}', 'LahanController@simpan_daily')->name('simpan_daily')->middleware('auth');
 Route::get('/lahan/kelola_daily/{id}', 'LahanController@daily')->name('kelola_daily')->middleware('auth');
 
-Route::get('/lahan/kelola_resource/{id}', 'LahanController@kelola_resource')->middleware('auth');
+Route::get('/lahan/kelola_resource/{id}', 'LahanController@kelola_resource')->name('sdm')->middleware('auth');
 
 Route::get('/lahan/halmanual/{id}', 'LahanController@detailManual')->middleware('auth');
 
@@ -484,7 +484,6 @@ Route::get('/lahan/lihat_jadwal/{id}',  'LahanController@lihat_kalender')->middl
 Route::get('/peralatan/transaksi', 'PeralatanController@transaksi')->name('transaksi.peralatan')->middleware('auth');
 Route::get('/peralatan/bukti_bayar/{id}', 'PeralatanController@bukti_bayar')->middleware('auth');
 Route::post('/peralatan/simpan_bukti', 'PeralatanController@simpan_bukti')->name('uploadBukti')->middleware('auth');
-
 
 // Auth::routes();
 // Auth::routes();

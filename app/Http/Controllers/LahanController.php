@@ -821,7 +821,7 @@ class LahanController extends Controller
         ]);
         
             
-            //return view('kelola_risk', compact('risk'));
+        return redirect()->route('sdm',$request->id_lahan);
     }
 
     public function simpan_orang(Request $request, $id){   
@@ -834,7 +834,7 @@ class LahanController extends Controller
         ]);
         
             
-            //return view('kelola_risk', compact('risk'));
+        return redirect()->route('sdm',$request->id_lahan);
     }
     public function simpan_alat(Request $request, $id){   
         DB::table('lahan_resources')->insert([
@@ -846,7 +846,7 @@ class LahanController extends Controller
         ]);
         
             
-            //return view('kelola_risk', compact('risk'));
+        return redirect()->route('sdm',$request->id_lahan);
     }     
     
     public function strukPembayaran($id){
