@@ -66,7 +66,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('peralatan') }}" class="btn btn-secondary mb-3">< Kembali</a>
+                        <a href="{{ route('peralatan') }}" class="btn btn-secondary">< Kembali</a>
                         <!-- <a href="{{ route('peralatan.create') }}" class="btn btn-md btn-info mb-3">+ Tambah Alat</a> -->
 
                         <!-- Button trigger modal -->

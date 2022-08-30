@@ -65,7 +65,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ route('lahan') }}" class="btn btn-secondary mb-3">< Kembali</a>
+            <a href="{{ route('lahan') }}" class="btn btn-secondary">< Kembali</a>
             <!-- <a href="{{ route('lahan.create') }}" class="btn btn-info  mb-3">+ Buat Lahan</a> -->
 
             <!-- Button trigger modal -->
