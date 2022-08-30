@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Lahan;
 use App\Struk;
-use App\Category_lahan;
+use App\Category_Lahan;
 use App\Category;
 use App\Daily;
 use App\Impact;
@@ -72,7 +72,7 @@ class LahanController extends Controller
     public function create(){
         //$data['categori']= "select * from Category_lahan";
         //$user = User::find($id);
-        $categori=Category_lahan::all();
+        $categori=Category_Lahan::all();
         return view('create_lahan',[
             'categori' => $categori,
             'id_pengguna' => Auth::user()->pengguna->id_pengguna
@@ -101,14 +101,14 @@ class LahanController extends Controller
     }
     public function kelola_lahan(){
         // $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, l.statusLahan, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");//
-        $categori=Category_lahan::all();
+        $categori=Category_Lahan::all();
         $lahan = DB::table('pengguna')->join('lahans', 'pengguna.id_pengguna', '=', 'lahans.id_user')->join('category_lahans', 'lahans.category_lahan_id', '=', 'category_lahans.id')->select('pengguna.nama as pemilik', 'lahans.id','lahans.category_lahan_id','lahans.ukuran','lahans.deskripsi','lahans.gambar', 'lahans.statusLahan', 'category_lahans.nama')->where('pengguna.id_pengguna', Auth::user()->pengguna->id_pengguna)->orderby('lahans.updated_at')->Paginate(3);
 
         return view('kelola_lahan', compact('lahan','categori'));
         
     }    
     public function ubahlahan($id){
-        $categori = Category_lahan::all();
+        $categori = Category_Lahan::all();
         $lahan = Lahan::select('*')->where('id', $id)->get();
         $lahan2 = Lahan::select('*')->where('id', $id)->get();
         return view('ubahlahan', compact('lahan','categori','lahan2'));  
@@ -1048,7 +1048,7 @@ class LahanController extends Controller
             public function ubahManual($id){
                 //$risk = Risk::select('*')->where('id_risk',$id)->get();
                 $manual = DB::select("SELECT c.nama, m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id WHERE m.id_manual = $id");
-                $category = Category_lahan::all();
+                $category = Category_Lahan::all();
                 return view('ubahManual', compact('manual','category'));  
             }
         
