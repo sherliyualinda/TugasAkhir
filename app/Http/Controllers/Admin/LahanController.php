@@ -4,25 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\lahan;
+use App\Lahan;
 
 class LahanController extends Controller
 {
     public function index()
     {
-        $lahans = lahan::where('statusLahan', 'Waiting')->with('category')->get();
+        $lahans = Lahan::where('statusLahan', 'Waiting')->with('category')->get();
         return view('pages.adminstore.lahan.index', compact('lahans'));
     }
     
     public function show($id)
     {
-        $lahan = lahan::where('id', $id)->with('category','user','pengguna')->first();
+        $lahan = Lahan::where('id', $id)->with('category','user','pengguna')->first();
         return view('pages.adminstore.lahan.show', compact('lahan'));
     }
     
     public function approval(Request $request, $id)
     {
-        $lahan = lahan::where('id', $id)->first();
+        $lahan = Lahan::where('id', $id)->first();
         if ($request->post('approve')) {
             $lahan->statusLahan = 'Ready';
             $lahan->save();

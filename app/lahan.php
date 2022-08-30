@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class lahan extends Model
+class Lahan extends Model
 {
     protected $fillable = [
         'id_user', 
