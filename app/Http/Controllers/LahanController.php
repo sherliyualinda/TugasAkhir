@@ -753,15 +753,20 @@ class LahanController extends Controller
     }
 
 
-    public function daily($id){
+    public function daily(Request $request, $id){
         
-            // $daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-            $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
-            $daily3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id ");
-            $daily4 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
-
-            $daily= DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$id)->paginate(3);
-            return view('kelola_daily', compact('daily','daily2','daily3','daily4'));
+        // $daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
+        $daily3 = Sewa_lahan::where('id_sewa', $id)->first();
+        $daily4 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
+        $query = DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$id);
+        if($request->get('start') && $request->get('end')){
+            $from = date('2018-01-01');
+            $to = date('2018-05-02');
+            $query->whereBetween('dailies.date', [$request->get('start'), $request->get('end')]);
+        }
+        $daily= $query->paginate(3);
+        return view('kelola_daily', compact('daily','daily2','daily3','daily4'));
     }
 
     public function ubahDaily($id){
