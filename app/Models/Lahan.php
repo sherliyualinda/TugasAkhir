@@ -38,6 +38,6 @@ class Lahan extends Model
      */
     public function regencies()
     {
-        return $this->belongsTo(Category_lahan::class);
+        return $this->belongsTo(CategoryLahan::class);
     }
 }

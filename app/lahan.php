@@ -24,6 +24,6 @@ class lahan extends Model
     }
 
     public function category(){
-        return $this->belongsTo(Category_Lahan::class, 'category_lahan_id');
+        return $this->belongsTo(CategoryLahan::class, 'category_lahan_id');
     }
 }
