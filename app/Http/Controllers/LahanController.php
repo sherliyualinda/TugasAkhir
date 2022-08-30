@@ -887,7 +887,7 @@ class LahanController extends Controller
             $struk4 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
 
             $struk= DB::table('struks')->join('sewa_lahans','struks.id_sewa','=','sewa_lahans.id_sewa')->select('id_struk','keterangan','gambar','tanggal','struks.updated_at','struks.id_sewa')->where('struks.id_sewa',$id)->paginate(3);
-            return view('Kelola_struk', compact('struk','struk2','struk4'));
+            return view('kelola_struk', compact('struk','struk2','struk4'));
     }
     public function ubahStruk($id){
         $struk = Struk::select('*')->where('id_struk',$id)->get();
