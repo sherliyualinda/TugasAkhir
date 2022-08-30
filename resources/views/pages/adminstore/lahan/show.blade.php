@@ -47,7 +47,7 @@ Lahan Detail
                     </div>
                     <div class="form-group">
                       <label for="">Deskripsi</label>
-                      <textarea class="form-control" rows="4" readonly>{{ $lahan->deskripsi }}</textarea>
+                      <textarea class="form-control" rows="4" readonly>{!! $lahan->deskripsi !!}</textarea>
                     </div>
                   </div>
                   <div class="col-md-6">

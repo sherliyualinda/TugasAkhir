@@ -19,7 +19,7 @@
 @endphp
         @foreach($peralatans as $peralatan)
         <div class="col-md-4">
-            <div class="card" >
+            <div class="card mt-2" >
                 <div style="width:100%; height:300px;">
                     <img src="{{ url('gambar_peralatan') }}/{{ $peralatan->gambar }}" class="card-img-top" alt="peralatan"  style="width:100%; height:100%; object-fit:cover;">
                 </div>

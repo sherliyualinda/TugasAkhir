@@ -95,7 +95,7 @@
                                         <img src="{{ url('gambar_peralatan') }}/{{ $projek->gambar }} ">
                                         </div>
                                     </td>
-                                   <td>{{$projek->deskripsi}}</td>
+                                   <td>{!! $projek->deskripsi !!}</td>
                                    <td>{{$projek->qty}}</td>
                                    <td>{{$projek->harga}}</td>
                                    <td>{{$projek->totalHari}} Hari</td>
