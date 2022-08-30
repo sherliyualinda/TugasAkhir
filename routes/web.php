@@ -413,7 +413,7 @@ Route::get('/lahan/createDaily/{id}', 'LahanController@createDaily')->name('crea
 Route::post('/lahan/simpan_daily/{id}', 'LahanController@simpan_daily')->name('simpan_daily')->middleware('auth');
 Route::get('/lahan/kelola_daily/{id}', 'LahanController@daily')->name('kelola_daily')->middleware('auth');
 
-Route::get('/lahan/kelola_resource/{id}', 'LahanController@kelola_resource')->middleware('auth');
+Route::get('/lahan/kelola_resource/{id}', 'LahanController@kelola_resource')->name('sdm')->middleware('auth');
 
 Route::get('/lahan/halmanual/{id}', 'LahanController@detailManual')->middleware('auth');
 

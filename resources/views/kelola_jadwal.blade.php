@@ -140,10 +140,10 @@
                                                 <label>Agenda</label>
                                                 <input type="input" name="agenda" class="form-control form-control-user" rows="4" placeholder="Masukkan Agenda"></input>
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label>Notulensi</label>
                                                 <textarea name="keterangan" class="form-control form-control-user" rows="4" placeholder="Masukkan Keterangan"></textarea>
-                                            </div>  
+                                            </div>   -->
                                             <div class="form-group">
                                                 <label>Link Meet</label>
                                                 <input type="input" name="linkMeet" class="form-control form-control-user" rows="4" placeholder="Masukkan Link Meet"></input>
@@ -182,7 +182,7 @@
                                     <td>{{ $index+1}}</td>
                                     <td>{{$jadwals->date}}</td>
                                     <td>{{$jadwals->agenda}}</td>
-                                    <td>{{$jadwals->keterangan}}</td>
+                                    <td>{!! $jadwals->keterangan !!}</td>
                                     <td>{{$jadwals->linkMeet}}</td>
                                     <td>
                                         <a href="/lahan/ubah_jadwal/{{$jadwals->id_jadwal}}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>

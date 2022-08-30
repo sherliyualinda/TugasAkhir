@@ -23,14 +23,16 @@
     
     
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/chart.js/Chart.min.js') }}"></script>
     <script>
         var speedCanvas = document.getElementById("Aktual");
+        var speedCanvasPercent = document.getElementById("Percent");
 
             Chart.defaults.global.defaultFontFamily = "Roboto";
             Chart.defaults.global.defaultFontSize = 18;
-            const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
+        const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
         const down = (ctx, value) => ctx.p0.parsed.y > ctx.p1.parsed.y ? value : undefined;
 
         var tanggal = @json($dataScurve['tanggal']);
@@ -54,6 +56,7 @@
                 arrFirst.push(NaN)
             }
         }
+        // console.log(arrFirst);
         var dataFirst = {
             label: "Aktual",
             data: arrFirst,
@@ -89,7 +92,7 @@
             }
             
         var dataSecond = {
-            label: "Plan",
+            label: "Histori",
             data: arrSecond,
             lineTension: 0,
             fill: false,
@@ -109,7 +112,7 @@
                 if(arrFirst[index] > 0){
                     const weight = (arrFirst[index] / history_total) * 100;
                     const num = history_total * (weight.toFixed(0) / 100);
-                    // console.log(num);
+                    //// n// e.log(num);
                     tempArrDifference = num.toFixed(0);
                     arrDifference.push(num.toFixed(0));
                 }else if(index == 0){
@@ -118,7 +121,7 @@
                     arrDifference.push(arrFirst[index]);
                 }
             }
-        // console.log(arrDifference);
+        // con// e.log(arrDifference);
         var dataDifference = {
             label: "Selisih",
             data: arrDifference,
@@ -179,17 +182,6 @@
             }
             // Return the positive number
             return a;
-        }
-
-        function printDiv(divName) {
-            var printContents = document.getElementById(divName).innerHTML;
-            var originalContents = document.body.innerHTML;
-
-            document.body.innerHTML = printContents;
-
-            window.print();
-
-            document.body.innerHTML = originalContents;
         }
     </script>
 @endsection

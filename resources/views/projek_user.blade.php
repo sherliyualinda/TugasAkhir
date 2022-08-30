@@ -209,7 +209,7 @@
                                             <div class="col-3 pt-3">
                                               <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                                 <a class="nav-link active" id="v-pills-aktual-tab" data-toggle="pill" href="#v-pills-aktual" role="tab" aria-controls="v-pills-aktual" aria-selected="true">Aktual</a>
-                                                <a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">Histori</a>
+                                                <a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">Rencana</a>
                                                </div>
                                             </div>
                                             <div class="col-9">
@@ -482,7 +482,7 @@
             }
             
         var dataSecond = {
-            label: "Plan",
+            label: "Rencana",
             data: arrSecond,
             lineTension: 0,
             fill: false,
