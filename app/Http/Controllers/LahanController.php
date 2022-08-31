@@ -333,7 +333,7 @@ class LahanController extends Controller
     public function ubahSewa($id){
         $pengguna = Pengguna::select('*')->where('id_pengguna', Auth::user()->pengguna->id_pengguna)->get();
         $lahan = lahan::select('*')->where('id', $id)->get();
-        return view('ubahsewa', compact('pengguna','lahan'));  
+        return view('ubahSewa', compact('pengguna','lahan'));  
     }
 
     public function updateSewa(Request $request){
@@ -1086,7 +1086,7 @@ class LahanController extends Controller
             public function detailManual($id){
                 //DB::table('manual_books')->where('id_manual',$id)->delete();
                 $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id where id_categoryLahan = $id");
-                return view('halManual', compact('manual'));
+                return view('halmanual', compact('manual'));
             }
             public function halamanAwal(){
                 return view('halamanAwal');
