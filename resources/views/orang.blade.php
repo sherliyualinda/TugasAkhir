@@ -18,9 +18,17 @@
                     <input type="hidden" name="id_lahan" value="{{$sdm->id}}" >
                 </div>
                 @endforeach
-                <div class="form-group">
+                <!-- <div class="form-group">
                             <label>Nama</label>
                             <input type="input" name="resource"  class="form-control form-control-user" placeholder="Nama">
+                        </div> -->
+                        <div class="form-group">
+                        <select class="form-control" name="resource" placeholder="--Pilih Kategori">
+                            <option value="">Nama</option>
+                            @foreach($orang as $orang)
+                                <option value="{{$orang->nama}}">{{$orang->nama}}</option>
+                            @endforeach
+                        </select>
                         </div>
                         <div class="form-group">
                             <label>Keterangan</label>

@@ -20,6 +20,44 @@
     overflow-x: auto;
     overflow-y: auto;
  }
+ .container .popup-image{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0,.9);
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    display: none;
+
+}
+.container .popup-image span{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 60px;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+    z-index: 100%;
+
+}
+.container .popup-image img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 5px solid #fff;
+    border-radius: 5px;
+    width: 500px;
+    object-fit: cover;
+
+}
+@media (max-width:768px){
+    .container .popup-image img{
+        width: 95%;
+    }
+}
  
 </style>
 <!-- <div class="row">
@@ -46,19 +84,19 @@
                             <thead>
                               <tr>
                                 <th scope="col">No</th>
+                                <th scope="col">Foto</th>
                                 <th scope="col">Nama Penyewa</th>
-                                <th scope="col">NIK</th>
                                 <th scope="col">Alamat Penyewa</th>
-                                <th scope="col">KTP</th>
+                                <th scope="col">Foto KTP</th>
                                 <th scope="col" >Persetujuan</th>
-                                <th scope="col" >Kelola</th>
+                                <th scope="col" >Kelola Proyek</th>
                                 
                                 <!-- <th scope="col">Jadwal Kegiatan</th>
                                 <th scope="col" >Risiko</th>
                                 <th scope="col" >Jadwal Ketemu</th>
                                 <th scope="col">Laporan Harian</th>
                                 <th scope="col">Struk Pembayaran</th> -->
-                                <th scope="col">Report</th>
+                                <th scope="col">Laporan</th>
                                 <th scope="col" >Pesan</th>
                                 <th colspan="2">Progres</th>
                                 
@@ -70,11 +108,30 @@
                             @foreach($sewa as $index=>$sewa)
                                 <tr >
                                     <td>{{ $index+1}}</td>
+                                    <td>
+                                        <img src="/data_file/{{$sewa->nama}}/foto_profil/{{ $sewa->foto_profil }}"width="50" height="50">
+
+                                        <div class="popup-image">
+                                            <span>
+                                                &times;
+                                            </span>
+                                                <img src="/data_file/{{$sewa->nama}}/foto_profil/{{ $sewa->foto_profil }} ">
+                                        </div>
+                                    </td>
                                     <td>{{ $sewa->nama}}</td>
-                                    <td>{{ $sewa->nik}}</td>
                                     <td>{{ $sewa->alamat}}</td>
                                     <td>
-                                        <a href="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }}" target="_blank"><img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50"><a>
+                                        <center>
+
+                                            <img src="/foto_ktp/{{ $sewa->foto_ktp }} "width="50" height="50">
+                                        </center>
+
+                                        <div class="popup-image">
+                                        <span>
+                                            &times;
+                                        </span>
+                                        <img src="/foto_ktp/{{ $sewa->foto_profil }} ">
+                                        </div>
 <!-- 
                                         <img src="{{ url('foto_ktp') }}/{{ $sewa->foto_ktp }} "width="50" height="50"> -->
                                     </td>
@@ -97,23 +154,29 @@
 
                                     <td>
                                         <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
-                                            <a href="/gantt/{{$sewa->id_sewa}}" class="btn btn-sm btn-info">Kelola</a>
+                                            <center>
+
+                                                <a href="/gantt/{{$sewa->id_sewa}}"><i class="fa fa-list-alt fa-2x"></i></a>
+                                            </center>
                                         <?php }else{?>
-                                            <a href="#" class="btn btn-sm btn-secondary"> Kelola</a>
+                                            <center>
+
+                                                <a href="#" class="btn btn-sm btn-secondary"><i class="fa fa-list-alt fa-2x"></i> </a>
+                                            </center>
                                         <?php } ?>
                                     </td>
                                     <td>
-                                        <a href="/lahan/dokumentasi/{{$sewa->id_sewa}}/{{$sewa->id_penyewa}}" target="_blank" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                        <a href="/lahan/dokumentasi/{{$sewa->id_sewa}}/{{$sewa->id_penyewa}}" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
                                     </td>
                                     <td>
-                                    <a href="/sosial-media/chat_lahan/{{$sewa->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
+                                    <a href="/sosial-media/chat_lahan/{{$sewa->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i></a>
                                     </td>
 
                                     <td>
                                          <?php if($sewa->status == 'Acc' && $sewa->progres != 'Done'){?>
-                                            <a href="/lahan/doneRequest/{{$sewa->id_sewa}}" class="btn btn-sm btn-success">Done</a>
+                                            <a href="/lahan/doneRequest/{{$sewa->id_sewa}}" class="btn btn-sm btn-success">Selesai</a>
                                         <?php }else{ ?>
-                                            <a href="#" class="btn btn-sm btn-secondary">Done</a>
+                                            <a href="#" class="btn btn-sm btn-secondary">Selesai</a>
                                         <?php } ?>
                                     </td>
 
@@ -130,6 +193,20 @@
             </div>
         </div>
     </div>
+    <script>
+    document.querySelectorAll('.card-body img').forEach(image =>{
+       image.onclick =() =>{
+           document.querySelector('.popup-image').style.display ='block';
+           document.querySelector('.popup-image img').src=image.getAttribute('src');
+           
+       } 
+    });
+    document.querySelector('.popup-image span').onclick = () =>{
+        document.querySelector('.popup-image').style.display ='none';
+    }
+</script>
+
+    
 @endsection
 
 

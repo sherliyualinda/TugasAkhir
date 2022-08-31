@@ -37,6 +37,6 @@ class Category_lahan extends Model
      */
     public function lahan()
     {
-        return $this->hasMany(lahan::class);
+        return $this->hasMany(Lahan::class);
     }
 }

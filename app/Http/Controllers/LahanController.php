@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Lahan;
 use App\Struk;
-use App\Category_lahan;
+use App\CategoryLahan;
 use App\Category;
 use App\Daily;
 use App\Impact;
@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use mysqli;
 use Carbon\Carbon;
+use GuzzleHttp\Psr7\Response;
 use Mockery\Matcher\Any;
 
 class LahanController extends Controller
@@ -58,8 +59,8 @@ class LahanController extends Controller
 
     public function lahan(){
         // $lahan = Lahan::paginate(9);
-        $lahan = DB::select("SELECT p.nama as pemilik,l.statusLahan, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
-        $lahans = DB::select("SELECT p.nama as pemilik,l.statusLahan, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
+        $lahan = DB::select("SELECT p.nama as pemilik,l.statusLahan, p.alamat,l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
+        $lahans = DB::select("SELECT p.nama as pemilik,l.statusLahan,p.alamat, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama, l.id_user, p.username FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna != '".Auth::user()->pengguna->id_pengguna."'");
         $total_notif = $this->total_notif();
         $list_notif_display = $this->list_notif_display();
         $notif_pesan = $this->notif_pesan();
@@ -69,9 +70,9 @@ class LahanController extends Controller
     }
 
     public function create(){
-        //$data['categori']= "select * from category_lahan";
+        //$data['categori']= "select * from Category_lahan";
         //$user = User::find($id);
-        $categori=category_lahan::all();
+        $categori=CategoryLahan::all();
         return view('create_lahan',[
             'categori' => $categori,
             'id_pengguna' => Auth::user()->pengguna->id_pengguna
@@ -99,15 +100,15 @@ class LahanController extends Controller
         return redirect()->route('lahan.kelola_lahan');
     }
     public function kelola_lahan(){
-        // $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, l.statusLahan, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-        $categori=category_lahan::all();
+        // $lahan = DB::select("SELECT p.nama as pemilik, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, l.statusLahan, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");//
+        $categori=CategoryLahan::all();
         $lahan = DB::table('pengguna')->join('lahans', 'pengguna.id_pengguna', '=', 'lahans.id_user')->join('category_lahans', 'lahans.category_lahan_id', '=', 'category_lahans.id')->select('pengguna.nama as pemilik', 'lahans.id','lahans.category_lahan_id','lahans.ukuran','lahans.deskripsi','lahans.gambar', 'lahans.statusLahan', 'category_lahans.nama')->where('pengguna.id_pengguna', Auth::user()->pengguna->id_pengguna)->orderby('lahans.updated_at')->Paginate(3);
 
         return view('kelola_lahan', compact('lahan','categori'));
         
     }    
     public function ubahlahan($id){
-        $categori = category_lahan::all();
+        $categori = CategoryLahan::all();
         $lahan = Lahan::select('*')->where('id', $id)->get();
         $lahan2 = Lahan::select('*')->where('id', $id)->get();
         return view('ubahlahan', compact('lahan','categori','lahan2'));  
@@ -134,7 +135,7 @@ class LahanController extends Controller
     }
     public function detail_lahan($id){
        
-        $lahan = DB::select("SELECT p.nama as pemilik,l.statusLahan,l.id_user, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE l.id = $id");
+        $lahan = DB::select("SELECT p.username, p.nama as pemilik,l.statusLahan,l.id_user, l.id,l.category_lahan_id,l.ukuran,l.deskripsi,l.gambar, cl.nama FROM pengguna p JOIN lahans l ON p.id_pengguna = l.id_user JOIN category_lahans cl ON l.category_lahan_id = cl.id WHERE l.id = $id");
         $orang = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 1 AND lr.id_lahan = $id");
         $material = DB::select("SELECT DISTINCT lr.keterangan, lr.resource FROM lahan_resources lr JOIN lahans s WHERE lr.id_resources = 2 AND lr.id_lahan = $id");
         $sewa = DB::select("SELECT COUNT(id_lahan) as totSewa FROM sewa_lahans WHERE id_lahan = $id AND progres='Done'");
@@ -152,6 +153,8 @@ class LahanController extends Controller
         session_start();
         $_SESSION['id_sewa'] = $id;
         $sewa =DB::select("SELECT l.gambar, l.deskripsi,l.ukuran,l.category_lahan_id, cl.nama,sl.progres, sl.status,sl.id_sewa,sl.id_lahan,sl.id_penyewa FROM lahans l JOIN category_lahans cl on cl.id =l.category_lahan_id  JOIN sewa_lahans sl on l.id =sl.id_lahan  WHERE sl.status='Acc' And id_sewa = $id AND id_penyewa ='".Auth::user()->pengguna->id_pengguna."'");
+
+        $surat = DB::Select("Select surat_perjanjian, id_sewa FROM surats Where id_sewa='".$_SESSION['id_sewa']."' ORDER BY updated_at DESC LIMIT 1");
 
         $daily = DB::select("SELECT d.id_sewa,d.gambar,d.keterangan,d.date,d.updated_at,s.id_lahan, d.id_daily FROM dailies d JOIN sewa_lahans s ON d.id_sewa= s.id_sewa where d.id_sewa = $id");
 
@@ -176,82 +179,59 @@ class LahanController extends Controller
         $data_kegiatan = [];
         $total_aktual = [];
         foreach ($aktual as $key => $parent) {
-           if ($parent->parent == 0) {
-            $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
-            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
-            // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
-            if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
-                $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
-            }
-            // foreach ($parent->children as $child) {
-            //     if($child->totalHarga > 0){
-            //         if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
-            //             $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
-            //         }else{
-            //             $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
-            //             $total_aktual[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
-            //         }
-            //         $data_kegiatan[Carbon::parse($child->start_date)->format('d-m-Y')][] = $child->text;
-            //     }
-            // }
-           }
-        }
-        
-        $total_history = [];
-        $date_history = [];
-        $history = Task_histori::where('id_sewa', $id)->with('children')->get();
-        foreach ($history as $key => $parent) {
             if ($parent->parent == 0) {
-             $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+             $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+             // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
              if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
-                $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
              }
-            //  foreach ($parent->children as $child) {
-            //      if($child->totalHarga > 0){
-            //          if (in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggal)) {
-            //              $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] + $child->totalHarga;
-            //          }else{
-            //             if (!in_array(Carbon::parse($child->start_date)->format('d-m-Y'), $tanggalAll)) {
-            //                 $tanggalAll[] = Carbon::parse($child->start_date)->format('d-m-Y');
-            //              }
-            //              $total_history[Carbon::parse($child->start_date)->format('d-m-Y')] = $child->totalHarga;
-            //          }
-            //      }
-            //  }
             }
-        }
-
-        usort($tanggalAll, function ($a, $b) {
-            return strtotime($a) - strtotime($b);
-        });
-
-        $start = Carbon::parse($tanggalAll[0]);
-        $end = Carbon::parse($tanggalAll[count($tanggalAll)-1]);
-        $period = \Carbon\CarbonPeriod::create($start, $end);
-        // Convert the period to an array of dates
-        $dates = [];
-        // Iterate over the period
-        $stop = 0;
-        foreach ($period as $date) {
-            $temp = $date->format('d-m-Y');
-            $dates[] = $temp;
-            if (array_key_exists($temp, $total_history)) {
-                // print_r(array_key_exists($temp, $total_history));
-            }else{
-                $total_history[$temp] = false;
-            }
-            if (array_key_exists($temp, $total_aktual)) {
-                // print_r(array_key_exists($temp, $total_aktual));
-                if ($total_aktual[$temp] > 0) {
-                    # code...
-                }else{
-                    $total_aktual[$temp] = 'stop';
-                    $stop = 'stop';
-                }
-            }else{
-                $total_aktual[$temp] = $stop;
-            }
-        }
+         }
+         
+         $total_history = [];
+         $date_history = [];
+         $history = Task_histori::where('id_sewa', $id)->with('children')->get();
+         foreach ($history as $key => $parent) {
+             if ($parent->parent == 0) {
+              $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+             $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
+              if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+              }
+             }
+         }
+ 
+         usort($tanggalAll, function ($a, $b) {
+             return strtotime($a) - strtotime($b);
+         });
+ 
+         $start = Carbon::parse($tanggalAll[0]);
+         $end = Carbon::parse($tanggalAll[count($tanggalAll)-1]);
+         $period = \Carbon\CarbonPeriod::create($start, $end);
+         // Convert the period to an array of dates
+         $dates = [];
+         // Iterate over the period
+         $stop = 0;
+         foreach ($period as $date) {
+             $temp = $date->format('d-m-Y');
+             $dates[] = $temp;
+             if (array_key_exists($temp, $total_history)) {
+                 // print_r(array_key_exists($temp, $total_history));
+             }else{
+                 $total_history[$temp] = false;
+             }
+             if (array_key_exists($temp, $total_aktual)) {
+                 // print_r(array_key_exists($temp, $total_aktual));
+                 if ($total_aktual[$temp] > 0) {
+                     # code...
+                 }else{
+                     $total_aktual[$temp] = 'NaN';
+                     $stop = 'stop';
+                 }
+             }else{
+                 $total_aktual[$temp] = $stop;
+             }
+         }
         
         $dataScurve = [
             'tanggal' => $dates,
@@ -262,7 +242,7 @@ class LahanController extends Controller
 
         // scurve
 
-        return view('projek_user',compact('task','sewa','jadwal2','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history','dataScurve'));  
+        return view('projek_user',compact('task','sewa','jadwal2','orang','material','alat','risk','daily','struk','jadwal','boq_aktual','boq_history','dataScurve','surat'));  
     }
 
     public function dokumentasi($id, $penyewa_id)
@@ -283,66 +263,67 @@ class LahanController extends Controller
         $data_kegiatan = [];
         $total_aktual = [];
         foreach ($aktual as $key => $parent) {
-           if ($parent->parent == 0) {
-            $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
-            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
-            // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
-            if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
-                $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
-            }
-           }
-        }
-        
-        $total_history = [];
-        $date_history = [];
-        $history = Task_histori::where('id_sewa', $id)->with('children')->get();
-        foreach ($history as $key => $parent) {
             if ($parent->parent == 0) {
-             $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+             $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+             // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
              if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
-                $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
              }
             }
-        }
-
-        usort($tanggalAll, function ($a, $b) {
-            return strtotime($a) - strtotime($b);
-        });
-
-        $start = Carbon::parse($tanggalAll[0]);
-        $end = Carbon::parse($tanggalAll[count($tanggalAll)-1]);
-        $period = \Carbon\CarbonPeriod::create($start, $end);
-        // Convert the period to an array of dates
-        $dates = [];
-        // Iterate over the period
-        $stop = 0;
-        foreach ($period as $date) {
-            $temp = $date->format('d-m-Y');
-            $dates[] = $temp;
-            if (array_key_exists($temp, $total_history)) {
-                // print_r(array_key_exists($temp, $total_history));
-            }else{
-                $total_history[$temp] = false;
-            }
-            if (array_key_exists($temp, $total_aktual)) {
-                // print_r(array_key_exists($temp, $total_aktual));
-                if ($total_aktual[$temp] > 0) {
-                    # code...
-                }else{
-                    $total_aktual[$temp] = 'stop';
-                    $stop = 'stop';
-                }
-            }else{
-                $total_aktual[$temp] = $stop;
-            }
-        }
+         }
+         
+         $total_history = [];
+         $date_history = [];
+         $history = Task_histori::where('id_sewa', $id)->with('children')->get();
+         foreach ($history as $key => $parent) {
+             if ($parent->parent == 0) {
+              $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+             $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
+              if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+              }
+             }
+         }
+ 
+         usort($tanggalAll, function ($a, $b) {
+             return strtotime($a) - strtotime($b);
+         });
+ 
+         $start = Carbon::parse($tanggalAll[0]);
+         $end = Carbon::parse($tanggalAll[count($tanggalAll)-1]);
+         $period = \Carbon\CarbonPeriod::create($start, $end);
+         // Convert the period to an array of dates
+         $dates = [];
+         // Iterate over the period
+         $stop = 0;
+         foreach ($period as $date) {
+             $temp = $date->format('d-m-Y');
+             $dates[] = $temp;
+             if (array_key_exists($temp, $total_history)) {
+                 // print_r(array_key_exists($temp, $total_history));
+             }else{
+                 $total_history[$temp] = false;
+             }
+             if (array_key_exists($temp, $total_aktual)) {
+                 // print_r(array_key_exists($temp, $total_aktual));
+                 if ($total_aktual[$temp] > 0) {
+                     # code...
+                 }else{
+                     $total_aktual[$temp] = 'NaN';
+                     $stop = 'stop';
+                 }
+             }else{
+                 $total_aktual[$temp] = $stop;
+             }
+         }
+         
+         $dataScurve = [
+             'tanggal' => $dates,
+             'total_aktual' => $total_aktual,
+             'total_history' => $total_history,
+             'data_kegiatan' => $data_kegiatan,
+         ];
         
-        $dataScurve = [
-            'tanggal' => $dates,
-            'total_aktual' => $total_aktual,
-            'total_history' => $total_history,
-            'data_kegiatan' => $data_kegiatan,
-        ];
         // scurve
         // dd($risk);
         return view('projek_dokumentasi', compact('sewa','orang','material','alat','risk','daily','struk','boq_aktual','boq_history','dataScurve'));
@@ -352,7 +333,7 @@ class LahanController extends Controller
     public function ubahSewa($id){
         $pengguna = Pengguna::select('*')->where('id_pengguna', Auth::user()->pengguna->id_pengguna)->get();
         $lahan = lahan::select('*')->where('id', $id)->get();
-        return view('ubahsewa', compact('pengguna','lahan'));  
+        return view('ubahSewa', compact('pengguna','lahan'));  
     }
 
     public function updateSewa(Request $request){
@@ -389,7 +370,7 @@ class LahanController extends Controller
     public function request($id){
         session_start();
         $_SESSION['id_lahan'] = $id;
-        $sewa = DB::select("SELECT username,nama,alamat,s.id_sewa,s.id_lahan, nik, foto_ktp, id_penyewa, s.status, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
+        $sewa = DB::select("SELECT username,nama,alamat,s.id_sewa,s.id_lahan, nik, foto_ktp, id_penyewa, s.status,p.foto_profil, s.progres FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM lahans l join sewa_lahans s on l.id = s.id_lahan) and s.id_lahan = $id");
 
         $gambarnya = DB::select("SELECT gambar, deskripsi, ukuran from lahans Join sewa_lahans on lahans.id = sewa_lahans.id_lahan where sewa_lahans.id_lahan = $id limit 1");
 
@@ -468,7 +449,7 @@ class LahanController extends Controller
         session_start();
         //$wbs = DB::select("SELECT w.harga, w.qty, w.satuan, w.totalHarga, text, duration,start_date, parent, t.id FROM tasks t JOIN lahans l on t.id_lahan =l.id JOIN wbs w on t.id = w.id_kegiatan");
 
-        $wbs = DB::select("SELECT a.id_sewa, a.harga as hargaNenek, a.satuan as satuanNenek, a.totalHarga as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,b.harga as hargaIbu, b.satuan as satuanIbu, b.totalHarga as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,c.harga as hargaCucu, c.satuan as satuanCucu, c.totalHarga as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa = $id AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc;");
+        $wbs = DB::select("SELECT a.id_sewa, format(a.harga,0) as hargaNenek, a.satuan as satuanNenek, format(a.totalHarga,0) as thNenek, a.qty as qtyNenek, a.start_date as tanggalNenek ,format(b.harga,0) as hargaIbu, b.satuan as satuanIbu, format(b.totalHarga,0) as thIbu, b.qty as qtyIbu,b.start_date as tanggalIbu,c.start_date as tanggalCucu, a.id as Id_Nenek,a.text as Nenek,a.parent as Parent_Nenek,b.id as Id_Ibu, b.text as Ibu,b.parent as Parent_Ibu,c.id as Id_Cucu,format(c.harga,0) as hargaCucu, c.satuan as satuanCucu, format(c.totalHarga,0) as thCucu, c.qty as qtyCucu, c.text as Cucu,c.parent as Parent_Cucu from tasks a left join tasks b on a.id = b.parent LEFT JOIN tasks c on b.id = c.parent JOIN sewa_lahans l on a.id_sewa =l.id_sewa WHERE a.id_sewa = $id AND a.parent =0 ORDER BY a.id asc,a.parent asc,b.id asc, b.parent asc,c.id asc, c.parent asc;");
 
         $wbs2 = Task::select('*')->where('id_sewa', $id)->limit(1)->get();
 
@@ -534,6 +515,11 @@ class LahanController extends Controller
     }
 
     public function scurve(Request $request,$id){
+        $total_notif = $this->total_notif();
+        $list_notif_display = $this->list_notif_display();
+        $notif_pesan = $this->notif_pesan();
+        $notif_group = $this->notif_group();
+        
         $aktual = Task::where('id_sewa', $id)->with('children')->get();
         $tanggalAll = [];
         $data_kegiatan = [];
@@ -541,7 +527,6 @@ class LahanController extends Controller
         foreach ($aktual as $key => $parent) {
            if ($parent->parent == 0) {
             $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
-            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
             // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
             if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
@@ -566,6 +551,7 @@ class LahanController extends Controller
         foreach ($history as $key => $parent) {
             if ($parent->parent == 0) {
              $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
              if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
              }
@@ -608,7 +594,7 @@ class LahanController extends Controller
                 if ($total_aktual[$temp] > 0) {
                     # code...
                 }else{
-                    $total_aktual[$temp] = 'stop';
+                    $total_aktual[$temp] = 'NaN';
                     $stop = 'stop';
                 }
             }else{
@@ -616,14 +602,14 @@ class LahanController extends Controller
             }
         }
         
-        $data = [
+        $dataScurve = [
             'tanggal' => $dates,
             'total_aktual' => $total_aktual,
             'total_history' => $total_history,
             'data_kegiatan' => $data_kegiatan,
         ];
         // dd($data);
-        return view('scurve_wbs', compact('data'));
+        return view('scurve_wbs', compact('dataScurve', 'total_notif', 'list_notif_display', 'notif_pesan', 'notif_group'));
     }
 
     public function boq_wbs($id)
@@ -661,11 +647,11 @@ class LahanController extends Controller
     public function simpan_risk(Request $request){
         // menyimpan data file yang diupload ke variabel $file
         if($request->probabilitas * $request->impact <= 2){
-            $level = "Low";
+            $level = "Rendah";
         }elseif($request->probabilitas * $request->impact == 3 or $request->probabilitas * $request->impact == 4 ){
-            $level = "Medium";
+            $level = "Sedang";
         }else{
-            $level = "High";
+            $level = "Tinggi";
         }
         
         DB::table('risks')->insert([
@@ -707,11 +693,11 @@ class LahanController extends Controller
     
         public function updateRisk(Request $request){
             if($request->probabilitas * $request->impact <= 2){
-                $level = "Low";
+                $level = "Rendah";
             }elseif($request->probabilitas * $request->impact == 3 or $request->probabilitas * $request->impact == 4 ){
-                $level = "Medium";
+                $level = "Sedang";
             }else{
-                $level = "High";
+                $level = "Tinggi";
             }
             
             $risk = Risk::where('id_risk',$request->id_risk)->update([
@@ -767,15 +753,20 @@ class LahanController extends Controller
     }
 
 
-    public function daily($id){
+    public function daily(Request $request, $id){
         
-            // $daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-            $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
-            $daily3 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id ");
-            $daily4 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
-
-            $daily= DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$id)->paginate(3);
-            return view('kelola_daily', compact('daily','daily2','daily3','daily4'));
+        // $daily = DB::select("SELECT nama,s.id_sewa,s.id_lahan, nik, id_penyewa, d.id_daily, d.gambar,d.keterangan, d.date, d.updated_at FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa JOIN dailies d on d.id_sewa = s.id_sewa WHERE s.id_sewa = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $daily2 = DB::select("SELECT DISTINCT nama, nik FROM pengguna p join sewa_lahans s on p.id_pengguna = s.id_penyewa  where s.id_sewa = $id");
+        $daily3 = Sewa_lahan::where('id_sewa', $id)->first();
+        $daily4 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
+        $query = DB::table('dailies')->join('sewa_lahans','dailies.id_sewa','=','sewa_lahans.id_sewa')->select('dailies.id_sewa','dailies.gambar','dailies.keterangan','dailies.date','dailies.updated_at','sewa_lahans.id_lahan', 'dailies.id_daily')->where('dailies.id_sewa',$id);
+        if($request->get('start') && $request->get('end')){
+            $from = date('2018-01-01');
+            $to = date('2018-05-02');
+            $query->whereBetween('dailies.date', [$request->get('start'), $request->get('end')]);
+        }
+        $daily= $query->paginate(3);
+        return view('kelola_daily', compact('daily','daily2','daily3','daily4'));
     }
 
     public function ubahDaily($id){
@@ -803,7 +794,8 @@ class LahanController extends Controller
 
     public function orang($id){
         $sdm = Lahan::select('*')->where('id', $id)->get();
-        return view('orang',compact('sdm'));
+        $orang = Pengguna::all();
+        return view('orang',compact('sdm','orang'));
     }
     public function material($id){
         $sdm = Lahan::select('*')->where('id', $id)->get();
@@ -819,7 +811,7 @@ class LahanController extends Controller
         $_SESSION['id_lahan'] = $id;
         // $resource = DB::select("SELECT lr.id_lahan_resources, lr.resource, lr.keterangan, lr.id_resources, l.id, r.keterangan as role FROM lahan_resources lr JOIN lahans l ON lr.id_lahan = l.id JOIN resources r ON lr.id_resources = r.id_resources WHERE l.id = $id ORDER BY r.keterangan;");
 
-        $resource= DB::table('lahan_resources')->join('lahans','lahan_resources.id_lahan','=','lahans.id')->join('resources','lahan_resources.id_resources','=','resources.id_resources')->select('lahan_resources.id_lahan_resources', 'lahan_resources.resource', 'lahan_resources.keterangan', 'lahan_resources.id_resources', 'lahans.id', 'resources.keterangan as role')->where('lahans.id',$id)->orderby('resources.keterangan')->paginate(3);
+        $resource= DB::table('lahan_resources')->join('lahans','lahan_resources.id_lahan','=','lahans.id')->join('resources','lahan_resources.id_resources','=','resources.id_resources')->join('pengguna', 'lahans.id_user','=','pengguna.id_pengguna')->select('pengguna.username','lahan_resources.id_lahan_resources', 'lahan_resources.resource', 'lahan_resources.keterangan', 'lahan_resources.id_resources', 'lahans.id', 'resources.keterangan as role')->where('lahans.id',$id)->orderby('resources.keterangan')->paginate(3);
         
         return view('kelola_resource', compact('resource'));
     }
@@ -834,7 +826,7 @@ class LahanController extends Controller
         ]);
         
             
-            //return view('kelola_risk', compact('risk'));
+        return redirect()->route('sdm',$request->id_lahan);
     }
 
     public function simpan_orang(Request $request, $id){   
@@ -847,7 +839,7 @@ class LahanController extends Controller
         ]);
         
             
-            //return view('kelola_risk', compact('risk'));
+        return redirect()->route('sdm',$request->id_lahan);
     }
     public function simpan_alat(Request $request, $id){   
         DB::table('lahan_resources')->insert([
@@ -859,7 +851,7 @@ class LahanController extends Controller
         ]);
         
             
-            //return view('kelola_risk', compact('risk'));
+        return redirect()->route('sdm',$request->id_lahan);
     }     
     
     public function strukPembayaran($id){
@@ -900,7 +892,7 @@ class LahanController extends Controller
             $struk4 = DB::select("SELECT id_sewa FROM sewa_lahans WHERE id_sewa = $id");
 
             $struk= DB::table('struks')->join('sewa_lahans','struks.id_sewa','=','sewa_lahans.id_sewa')->select('id_struk','keterangan','gambar','tanggal','struks.updated_at','struks.id_sewa')->where('struks.id_sewa',$id)->paginate(3);
-            return view('Kelola_struk', compact('struk','struk2','struk4'));
+            return view('kelola_struk', compact('struk','struk2','struk4'));
     }
     public function ubahStruk($id){
         $struk = Struk::select('*')->where('id_struk',$id)->get();
@@ -990,7 +982,7 @@ class LahanController extends Controller
             'id_sewa'       => $request->id_sewa,
             'date'          => $request->date,
             'agenda'        => $request->agenda,
-            'keterangan'    => $request->keterangan,
+            'keterangan'    => '',
             'linkMeet'      => $request->linkMeet,
             'updated_at'    => date("Y-m-d H:i:s")
         ]);
@@ -1061,7 +1053,7 @@ class LahanController extends Controller
             public function ubahManual($id){
                 //$risk = Risk::select('*')->where('id_risk',$id)->get();
                 $manual = DB::select("SELECT c.nama, m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id WHERE m.id_manual = $id");
-                $category = Category_lahan::all();
+                $category = CategoryLahan::all();
                 return view('ubahManual', compact('manual','category'));  
             }
         
@@ -1094,7 +1086,7 @@ class LahanController extends Controller
             public function detailManual($id){
                 //DB::table('manual_books')->where('id_manual',$id)->delete();
                 $manual = DB::select("SELECT c.nama,m.gambar, m.jenis_lahan, m.id_categoryLahan, m.deskripsi, m.sumber, m.id_manual FROM manual_books m JOIN category_lahans c on m.id_categoryLahan = c.id where id_categoryLahan = $id");
-                return view('halManual', compact('manual'));
+                return view('halmanual', compact('manual'));
             }
             public function halamanAwal(){
                 return view('halamanAwal');
@@ -1107,73 +1099,73 @@ class LahanController extends Controller
 
             public function lihatPortofolio(Request $request){
                 // Scurve
-                    $boq_aktual = Task::where('id_sewa', $request->id_sewa)->with('children')->get();
-                    $boq_history = Task_histori::where('id_sewa', $request->id_sewa)->with('children')->get();
-                    $aktual = Task::where('id_sewa', $request->id_sewa)->with('children')->get();
-                    $tanggalAll = [];
-                    $data_kegiatan = [];
-                    $total_aktual = [];
-                    foreach ($aktual as $key => $parent) {
-                        if ($parent->parent == 0) {
-                            $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
-                            $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
-                            // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
-                            if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
-                                $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
-                            }
-                        }
+                $boq_aktual = Task::where('id_sewa', $request->id_sewa)->with('children')->get();
+                $boq_history = Task_histori::where('id_sewa', $request->id_sewa)->with('children')->get();
+                $aktual = Task::where('id_sewa', $request->id_sewa)->with('children')->get();
+                $tanggalAll = [];
+                $data_kegiatan = [];
+                $total_aktual = [];
+                foreach ($aktual as $key => $parent) {
+                    if ($parent->parent == 0) {
+                     $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+                     // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
+                     if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                         $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                     }
                     }
-                    
-                    $total_history = [];
-                    $date_history = [];
-                    $history = Task_histori::where('id_sewa', $id)->with('children')->get();
-                    foreach ($history as $key => $parent) {
-                        if ($parent->parent == 0) {
-                        $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
-                            if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
-                                $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
-                            }
-                        }
-                    }
-
-                    usort($tanggalAll, function ($a, $b) {
-                        return strtotime($a) - strtotime($b);
-                    });
-
-                    $start = Carbon::parse($tanggalAll[0]);
-                    $end = Carbon::parse($tanggalAll[count($tanggalAll)-1]);
-                    $period = \Carbon\CarbonPeriod::create($start, $end);
-                    // Convert the period to an array of dates
-                    $dates = [];
-                    // Iterate over the period
-                    $stop = 0;
-                    foreach ($period as $date) {
-                        $temp = $date->format('d-m-Y');
-                        $dates[] = $temp;
-                        if (array_key_exists($temp, $total_history)) {
-                            // print_r(array_key_exists($temp, $total_history));
-                        }else{
-                            $total_history[$temp] = false;
-                        }
-                        if (array_key_exists($temp, $total_aktual)) {
-                            // print_r(array_key_exists($temp, $total_aktual));
-                            if ($total_aktual[$temp] > 0) {
-                                # code...
-                            }else{
-                                $total_aktual[$temp] = 'stop';
-                                $stop = 'stop';
-                            }
-                        }else{
-                            $total_aktual[$temp] = $stop;
-                        }
-                    }
-                    
-                    $dataScurve = [
-                        'tanggal' => $dates,
-                        'total_aktual' => $total_aktual,
-                        'total_history' => $total_history,
-                        'data_kegiatan' => $data_kegiatan,
-                    ];                  
+                 }
+                 
+                 $total_history = [];
+                 $date_history = [];
+                 $history = Task_histori::where('id_sewa', $request->id_sewa)->with('children')->get();
+                 foreach ($history as $key => $parent) {
+                     if ($parent->parent == 0) {
+                      $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+                     $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
+                      if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                         $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                      }
+                     }
+                 }
+         
+                 usort($tanggalAll, function ($a, $b) {
+                     return strtotime($a) - strtotime($b);
+                 });
+         
+                 $start = Carbon::parse($tanggalAll[0]);
+                 $end = Carbon::parse($tanggalAll[count($tanggalAll)-1]);
+                 $period = \Carbon\CarbonPeriod::create($start, $end);
+                 // Convert the period to an array of dates
+                 $dates = [];
+                 // Iterate over the period
+                 $stop = 0;
+                 foreach ($period as $date) {
+                     $temp = $date->format('d-m-Y');
+                     $dates[] = $temp;
+                     if (array_key_exists($temp, $total_history)) {
+                         // print_r(array_key_exists($temp, $total_history));
+                     }else{
+                         $total_history[$temp] = false;
+                     }
+                     if (array_key_exists($temp, $total_aktual)) {
+                         // print_r(array_key_exists($temp, $total_aktual));
+                         if ($total_aktual[$temp] > 0) {
+                             # code...
+                         }else{
+                             $total_aktual[$temp] = 'NaN';
+                             $stop = 'stop';
+                         }
+                     }else{
+                         $total_aktual[$temp] = $stop;
+                     }
+                 }
+                
+                $dataScurve = [
+                    'tanggal' => $dates,
+                    'total_aktual' => $total_aktual,
+                    'total_history' => $total_history,
+                    'data_kegiatan' => $data_kegiatan,
+                ];
                     return view('halPortofolioo', compact('boq_aktual','boq_history','dataScurve'));
                     }
 
@@ -1210,68 +1202,101 @@ class LahanController extends Controller
                         $total_aktual = [];
                         foreach ($aktual as $key => $parent) {
                             if ($parent->parent == 0) {
-                                $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
-                                $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
-                                // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
-                                if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
-                                    $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
-                                }
+                             $total_aktual[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+                             $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->text;
+                             // $data_kegiatan[Carbon::parse($parent->start_date)->format('d-m-Y')][] = $parent->totalHarga;
+                             if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                             }
                             }
-                        }
-                        
-                        $total_history = [];
-                        $date_history = [];
-                        $history = Task_histori::where('id_sewa', $id)->with('children')->get();
-                        foreach ($history as $key => $parent) {
-                            if ($parent->parent == 0) {
-                            $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
-                                if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
-                                    $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
-                                }
-                            }
-                        }
-
-                        usort($tanggalAll, function ($a, $b) {
-                            return strtotime($a) - strtotime($b);
-                        });
-
-                        $start = Carbon::parse($tanggalAll[0]);
-                        $end = Carbon::parse($tanggalAll[count($tanggalAll)-1]);
-                        $period = \Carbon\CarbonPeriod::create($start, $end);
-                        // Convert the period to an array of dates
-                        $dates = [];
-                        // Iterate over the period
-                        $stop = 0;
-                        foreach ($period as $date) {
-                            $temp = $date->format('d-m-Y');
-                            $dates[] = $temp;
-                            if (array_key_exists($temp, $total_history)) {
-                                // print_r(array_key_exists($temp, $total_history));
-                            }else{
-                                $total_history[$temp] = false;
-                            }
-                            if (array_key_exists($temp, $total_aktual)) {
-                                // print_r(array_key_exists($temp, $total_aktual));
-                                if ($total_aktual[$temp] > 0) {
-                                    # code...
-                                }else{
-                                    $total_aktual[$temp] = 'stop';
-                                    $stop = 'stop';
-                                }
-                            }else{
-                                $total_aktual[$temp] = $stop;
-                            }
-                        }
+                         }
+                         
+                         $total_history = [];
+                         $date_history = [];
+                         $history = Task_histori::where('id_sewa', $id)->with('children')->get();
+                         foreach ($history as $key => $parent) {
+                             if ($parent->parent == 0) {
+                              $total_history[Carbon::parse($parent->start_date)->format('d-m-Y')] = $parent->totalHarga;
+                              if (!in_array(Carbon::parse($parent->start_date)->format('d-m-Y'), $tanggalAll)) {
+                                 $tanggalAll[] = Carbon::parse($parent->start_date)->format('d-m-Y');
+                              }
+                             }
+                         }
+                 
+                         usort($tanggalAll, function ($a, $b) {
+                             return strtotime($a) - strtotime($b);
+                         });
+                 
+                         $start = Carbon::parse($tanggalAll[0]);
+                         $end = Carbon::parse($tanggalAll[count($tanggalAll)-1]);
+                         $period = \Carbon\CarbonPeriod::create($start, $end);
+                         // Convert the period to an array of dates
+                         $dates = [];
+                         // Iterate over the period
+                         $stop = 0;
+                         foreach ($period as $date) {
+                             $temp = $date->format('d-m-Y');
+                             $dates[] = $temp;
+                             if (array_key_exists($temp, $total_history)) {
+                                 // print_r(array_key_exists($temp, $total_history));
+                             }else{
+                                 $total_history[$temp] = false;
+                             }
+                             if (array_key_exists($temp, $total_aktual)) {
+                                 // print_r(array_key_exists($temp, $total_aktual));
+                                 if ($total_aktual[$temp] > 0) {
+                                     # code...
+                                 }else{
+                                     $total_aktual[$temp] = 'NaN';
+                                     $stop = 'stop';
+                                 }
+                             }else{
+                                 $total_aktual[$temp] = $stop;
+                             }
+                         }
+                         
+                         $dataScurve = [
+                             'tanggal' => $dates,
+                             'total_aktual' => $total_aktual,
+                             'total_history' => $total_history,
+                             'data_kegiatan' => $data_kegiatan,
+                         ];
                 
-                        $dataScurve = [
-                            'data_tanggal' => $tanggalAll,
-                            'total_aktual' => $total_aktual,
-                            'total_history' => $total_history,
-                            'data_kegiatan' => $data_kegiatan
-                        ];
                         // scurve
                 
                         return view('kelolaReq',compact('task','sewa','jadwal2','orang','material','alat','risk','risk3','daily','struk','jadwal','boq_aktual','boq_history','dataScurve'));  
                     }
+
+                    public function Surat(){
+                        $url = 'Surat.pdf';
+
+                        return response()->file($url); // <-- display file directly in browser
+
+                        
+
+                    }
+
+                    public function Surat_pemilik($id){
+                        session_start();
+                        $surat = DB::Select("Select surat_perjanjian, id_sewa FROM surats Where id_sewa='".$_SESSION['id_sewa']."' ORDER BY updated_at DESC LIMIT 1");
+                        return view('surat',compact('surat'));
+                    }
+
+                    public function Surat_perjanjian(Request $request){
+                        session_start();
+                        $file = $request->file('surat_perjanjian');
+                        // isi dengan nama folder tempat kemana file diupload
+                        $tujuan_upload = 'surat_perjanjian';
+                        $file->move($tujuan_upload,$file->getClientOriginalName());
+                        
+                        DB::table('surats')->insert([
+                            'id_sewa' => $_SESSION['id_sewa'],
+                            'surat_perjanjian' => $file->getClientOriginalName(),
+                            'updated_at'    => date("Y-m-d H:i:s")
+                        ]);
+                        $surat = DB::Select("Select surat_perjanjian, id_sewa FROM surats Where id_sewa='".$_SESSION['id_sewa']."' ORDER BY updated_at DESC LIMIT 1");
+                        return view('surat',compact('surat'));
+                    }
     
+                    
 }

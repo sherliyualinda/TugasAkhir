@@ -400,6 +400,11 @@ Route::get('/lahan/kelola_risk/{id}', 'LahanController@risk')->name('kelola_risk
 Route::get('/lahan/kelola_riskku/', 'LahanController@cobaRisk')->middleware('auth');
 
 
+Route::get('/lahan/Surat', 'LahanController@Surat')->middleware('auth');
+
+Route::get('/surat_pemilik/{id}', 'LahanController@Surat_pemilik')->middleware('auth');
+Route::post('/lahan/surat_perjanjian', 'LahanController@Surat_perjanjian')->name('unggahSurat')->middleware('auth');
+
 
 
 Route::get('/lahan/ubah_daily/{id}',  'LahanController@ubahDaily')->middleware('auth');
@@ -408,7 +413,7 @@ Route::get('/lahan/createDaily/{id}', 'LahanController@createDaily')->name('crea
 Route::post('/lahan/simpan_daily/{id}', 'LahanController@simpan_daily')->name('simpan_daily')->middleware('auth');
 Route::get('/lahan/kelola_daily/{id}', 'LahanController@daily')->name('kelola_daily')->middleware('auth');
 
-Route::get('/lahan/kelola_resource/{id}', 'LahanController@kelola_resource')->middleware('auth');
+Route::get('/lahan/kelola_resource/{id}', 'LahanController@kelola_resource')->name('sdm')->middleware('auth');
 
 Route::get('/lahan/halmanual/{id}', 'LahanController@detailManual')->middleware('auth');
 
@@ -459,11 +464,11 @@ Route::get('/lahan/detail_peralatan/{id}', 'PeralatanController@detail_peralatan
 Route::get('/peralatan/sewaPeralatan/{id}', 'PeralatanController@sewaPeralatan')->middleware('auth');
 Route::post('/peralatan/updateSewaPeralatan/', 'PeralatanController@updateSewaPeralatan')->name('updateSewaPeralatan')->middleware('auth');
 
-Route::get('/peralatan/request/{id}', 'peralatanController@request')->middleware('auth');
-Route::get('/peralatan/acc/{id},{id2},{id3},{id4}', 'peralatanController@accRequest')->middleware('auth');
-Route::get('/peralatan/done/{id},{id2},{id3},{id4}', 'peralatanController@doneRequest')->middleware('auth');
-Route::get('/peralatan/tolak/{id}', 'peralatanController@tolakRequest')->middleware('auth');
-Route::get('/peralatanan/doneRequest/{id}', 'peralatanController@doneRequest')->middleware('auth');
+Route::get('/peralatan/request/{id}', 'PeralatanController@request')->middleware('auth');
+Route::get('/peralatan/acc/{id},{id2},{id3},{id4}', 'PeralatanController@accRequest')->middleware('auth');
+Route::get('/peralatan/done/{id},{id2},{id3},{id4}', 'PeralatanController@doneRequest')->middleware('auth');
+Route::get('/peralatan/tolak/{id}', 'PeralatanController@tolakRequest')->middleware('auth');
+Route::get('/peralatanan/doneRequest/{id}', 'PeralatanController@doneRequest')->middleware('auth');
 // admin peralatan
 Route::get('/dashboard/peralatan/pending', 'Admin\PeralatanController@index')->name('dashboard.peralatan-pending')->middleware('auth');
 Route::get('/dashboard/peralatan/pending/show/{id}', 'Admin\PeralatanController@show')->name('dashboard.peralatan-pending-show')->middleware('auth');

@@ -37,6 +37,44 @@
         height: 80vh;
         
     }
+    .container .popup-image{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0,.9);
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    display: none;
+
+}
+.container .popup-image span{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 60px;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+    z-index: 100%;
+
+}
+.container .popup-image img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 5px solid #fff;
+    border-radius: 5px;
+    width: 500px;
+    object-fit: cover;
+
+}
+@media (max-width:768px){
+    .container .popup-image img{
+        width: 95%;
+    }
+}
     </style>
 
 
@@ -56,7 +94,8 @@
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/gantt/{{$_SESSION['id_sewa']}}">Jadwal Kegiatan</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/surat_pemilik/{{$_SESSION['id_sewa']}}">Surat Perjanjian</a>    
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/gantt/{{$_SESSION['id_sewa']}}">Jadwal Kegiatan</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/wbs/{{$_SESSION['id_sewa']}}">Anggaran Kegiatan</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('boq-wbs', $_SESSION['id_sewa'])}}">Anggaran Awal</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('scurve', $_SESSION['id_sewa'])}}">Grafik</a>
@@ -84,88 +123,105 @@
                         </ol> -->
                         </nav>
                     </div>
-                    @foreach($daily2 as $index=>$daily2)
-                    <table>
-                        <tr>
-                            <th scope="col">Nama Penyewa</th>          
-                            <th scope="col">:</th>     
-                            <td>{{ $daily2->nama}}</td>     
-                                               
-                        </tr>
-                        <tr>
-                            <th scope="col" >NIK</th>     
-                            <th scope="col">:</th>     
-                            <td>{{ $daily2->nik}}</td>                         
-                        </tr>
-                        
-                    </table>
-                    @endforeach
+                    <div class="row">
+                            <div class="col-md-3">
+                                @foreach($daily2 as $index=>$daily2)
+                                <table>
+                                    <tr>
+                                        <th scope="col">Nama Penyewa</th>          
+                                        <th scope="col">:</th>     
+                                        <td>{{ $daily2->nama}}</td>     
+                                                        
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" >NIK</th>     
+                                        <th scope="col">:</th>     
+                                        <td>{{ $daily2->nik}}</td>                         
+                                    </tr>
+                                    
+                                </table>
+                                @endforeach
+                            </div>            
 
-                    @foreach($daily3 as $index=>$daily3)
-                    <!-- <table>
-                        <tr>
-                             <td>
-                                 <a href="/lahan/createDaily/{{$daily3->id_sewa}}" class="btn btn-sm btn-info">Tambah Laporan Harian</a>
-                            </td>
-                        </tr>
-                    
-                    </table> -->
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="/lahan/createDaily/{{$daily3->id_sewa}}">
-                    Tambah Data
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Tambah Laporan Harian </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <form action="{{url('lahan/simpan_daily/{id}')}}" method="POST" enctype="multipart/form-data">
-                        <div class="modal-body">
-
-                        {{ csrf_field() }}
-                            @foreach ($daily4 as $dailyy)
-                                <div class="form-group">
-                                    <input type="hidden" name="id_sewa" value="{{$dailyy->id_sewa}}">
-                                </div>
-                            @endforeach
-                                <div class="form-group">
-                                    <label>Gambar</label>
-                                    <input type="file" name="gambar">
-                                </div>
-                                <div class="form-group">
-                                    <label>Keterangan</label>
-                                    <textarea name="keterangan" class="form-control form-control-user" rows="4" placeholder="Masukkan Keterangan"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Tanggal</label>
-                                    <input type="date" name="date" class="form-control form-control-user" placeholder="Tanggal">
-                                </div>                  
-                                                    
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success">SIMPAN</button>
-                                </div>
+                            <div class="col-md-3 d-flex">
+                            <!-- <table>
+                                <tr>
+                                    <td>
+                                        <a href="/lahan/createDaily/{{$daily3->id_sewa}}" class="btn btn-sm btn-info">Tambah Laporan Harian</a>
+                                    </td>
+                                </tr>
+                            
+                            </table> -->
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="/lahan/createDaily/{{$daily3->id_sewa}}">
+                                Tambah Data
+                                </button>
+                                @if (request()->get('start'))
+                                    <a href="{{ route('kelola_daily', $daily3->id_sewa) }}" class="btn btn-primary ml-2 mb-3">Tampil Semua</a>
+                                @endif
                             </div>
-                        </form>
+                            <div class="col-md-6">
+                                <form class="form-inline" action="" method="GET">
+                                    <div class="form-row">
+                                        <div class="col">
+                                          <input type="date" class="form-control" name="start" placeholder="dari">
+                                        </div>
+                                        <div class="col">
+                                          <input type="date" class="form-control" name="end" placeholder="ke">
+                                        </div>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary ml-2">Filter</button>
+                                </form>
+                            </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Tambah Laporan Harian </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="{{url('lahan/simpan_daily/{id}')}}" method="POST" enctype="multipart/form-data">
+                            <div class="modal-body">
+
+                            {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <input type="hidden" name="id_sewa" value="{{$daily3->id_sewa}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Gambar</label>
+                                        <input type="file" name="gambar">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Keterangan</label>
+                                        <textarea name="keterangan" class="form-control form-control-user" rows="4" placeholder="Masukkan Keterangan"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tanggal</label>
+                                        <input type="date" name="date" class="form-control form-control-user" placeholder="Tanggal">
+                                    </div>                  
+                                                        
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success">SIMPAN</button>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
                         </div>
-                    </div>
+                        </div>
                     </div>
 
                     <!-- tutup modal -->
 
-
-                    @endforeach
                         <table class="table table-bordered">
                             <thead>
                               <tr>
                                 <th scope="col">No</th>                                
                                 <th scope="col">Gambar</th>
-                                <th scope="col">keterangan</th>                               
-                                <th scope="col">date</th>
+                                <th scope="col">Deskripsi Kegiatan</th>                               
+                                <th scope="col">Tanggal</th>
                                 <th scope="col">Kelola</th>
                               </tr>
                             </thead>
@@ -174,7 +230,13 @@
                                 <tr>
                                     <td>{{ $index+1}}</td>
                                     <td>
-                                        <a href="{{ url('gambar_daily') }}/{{ $dailies->gambar }}" target="_blank"><img src="{{ url('gambar_daily') }}/{{ $dailies->gambar }} "width="50" height="50"><a>
+                                        <img src="{{ url('gambar_daily') }}/{{ $dailies->gambar }} "width="50" height="50">
+                                        <div class="popup-image">
+                                        <span>
+                                            &times;
+                                        </span>
+                                        <img src="{{ url('gambar_daily') }}/{{ $dailies->gambar }} ">
+                                        </div>
                                        
                                     </td>
                                     <td>{{ $dailies->keterangan}}</td>
@@ -226,3 +288,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <script>
+    document.querySelectorAll('.card-body img').forEach(image =>{
+       image.onclick =() =>{
+           document.querySelector('.popup-image').style.display ='block';
+           document.querySelector('.popup-image img').src=image.getAttribute('src');
+           
+       } 
+    });
+    document.querySelector('.popup-image span').onclick = () =>{
+        document.querySelector('.popup-image').style.display ='none';
+    }
+</script>

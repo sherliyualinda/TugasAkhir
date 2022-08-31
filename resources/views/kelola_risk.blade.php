@@ -56,7 +56,8 @@
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/gantt/{{$_SESSION['id_sewa']}}">Jadwal Kegiatan</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/surat_pemilik/{{$_SESSION['id_sewa']}}">Surat Perjanjian</a>    
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/gantt/{{$_SESSION['id_sewa']}}">Jadwal Kegiatan</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/wbs/{{$_SESSION['id_sewa']}}">Anggaran Kegiatan</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('boq-wbs', $_SESSION['id_sewa'])}}">Anggaran Awal</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('scurve', $_SESSION['id_sewa'])}}">Grafik</a>
@@ -137,11 +138,11 @@
                                                 </div>
                                             @endforeach
                                                 <div class="form-group">
-                                                    <label>Penyebab Resiko</label>
+                                                    <label>Penyebab Risiko</label>
                                                     <input type="input" name="penyebab" class="form-control form-control-user" placeholder="Penyebab">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Dampak Resiko</label>
+                                                    <label>Dampak Risiko</label>
                                                     <input type="input" name="dampak" class="form-control form-control-user" placeholder="Dampak">
                                                 </div>
                                                 <div class="form-group">
@@ -155,18 +156,18 @@
                                                 <div class="form-group">
                                                     <label>Probabilitas</label>
                                                     <select class="form-control" name="probabilitas" placeholder="--Skala Kemungkinan--">
-                                                        <option value="1">Low</option>
-                                                        <option value="2">Medium</option>
-                                                        <option value="3">High</option>
+                                                        <option value="1">Rendah</option>
+                                                        <option value="2">Sedang</option>
+                                                        <option value="3">Tinggi</option>
                                                     
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Impact</label>
+                                                    <label>Dampak</label>
                                                     <select class="form-control" name="impact" placeholder="--Skala Dampak">
-                                                        <option value="1">Low</option>
-                                                        <option value="2">Medium</option>
-                                                        <option value="3">High</option>
+                                                        <option value="1">Rendah</option>
+                                                        <option value="2">Sedang</option>
+                                                        <option value="3">Tinggi</option>
                                                     
                                                     </select>
                                                 </div>
@@ -193,8 +194,8 @@
                                             <th scope="col">Strategi</th>                               
                                             <th scope="col">Biaya</th>                               
                                             <th scope="col">Probabilitas</th>                               
-                                            <th scope="col">Impact</th>                               
-                                            <th scope="col">Level Risk</th>                               
+                                            <th scope="col">Dampak</th>                               
+                                            <th scope="col">Level Risiko</th>                               
                                             <th scope="col">Kelola</th>                               
                                             
                                         </tr>

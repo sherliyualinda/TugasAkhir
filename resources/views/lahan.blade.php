@@ -13,7 +13,8 @@
             <!-- <a href="{{ route('lahan.create') }}" class="btn btn-info">+ Buat Lahan</a> -->
             <a href="{{ route('lahan.kelola_lahan') }}" class="btn btn-primary">Kelola Lahan</a>
             <a href="{{ route('peralatan') }}" class="btn btn-primary">Peralatan</a>
-            <a href="/lahan/projek_user" class="btn btn-primary">Projek Saya</a>
+            <a href="/lahan/projek_user" class="btn btn-primary">Proyek Saya</a>
+            <a href="/lahan/Surat" class="btn btn-primary " target="_blank">Surat Perjanjian</a>
             <hr>
         </div>
         
@@ -28,6 +29,7 @@
                 <p class="card-text">
                     <strong>Pemilik : </strong>{{ $lahan->pemilik}} <br>
                     <strong>Ukuran : </strong>{{ $lahan->ukuran}} <br>
+                    <strong>Alamat : </strong>{{ $lahan->alamat}} <br>
                     <!-- <strong>Deskripsi :</strong> {{ $lahan->deskripsi }} <br> -->
                     <hr>
                     <strong>Deskripsi : </strong> <br>
@@ -40,7 +42,7 @@
                 <?php } ?>
                 <!-- <a href="/detailLahan" class="btn btn-primary"><i class="fa fa-info"></i> Detail Lahan</a> -->
                 <a href="/lahan/detail_lahan/{{$lahan->id}}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
-                <a href="/sosial-media/chat_lahan/{{$lahan->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> chat</a>
+                <a href="/sosial-media/chat_lahan/{{$lahan->username}}" class="btn btn-primary"><i class="fa fa-inbox"></i> Pesan</a>
                 
                 
               </div>

@@ -51,8 +51,9 @@
                         <input type="input" name="agenda" value="{{old('agenda',$jadwal->agenda)}}" class="form-control form-control-user" placeholder="Keterangan">
                     </div>
                     <div class="form-group">
-                        <label>Keterangan</label>
-                        <input type="input" name="keterangan" value="{{old('keterangan',$jadwal->keterangan)}}" class="form-control form-control-user" placeholder="Keterangan">
+                        <label>Notulensi</label>
+                        
+                        <textarea name="keterangan" id="keterangan" cols="30" rows="10">{{$jadwal->keterangan}}</textarea>
                     </div>
                     <div class="form-group">
                         <label>Link Meet</label>
@@ -73,6 +74,10 @@
 <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 <script>
     CKEDITOR.replace( 'content' );
+</script>
+<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'keterangan' );
 </script>
 </body>
 </html>
