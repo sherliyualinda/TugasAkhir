@@ -208,6 +208,8 @@ Route::prefix('superadmin')
 ->group(function() {
     Route::resource('/sosial-media/video', 'VideoController');
 });
+// for user
+Route::post('/sosial-media/video/store', 'VideoController@store')->name('user.video.store');
 
 //END SUPER ADMIN AREA
 Route::group(['middleware' => ['auth']], function(){

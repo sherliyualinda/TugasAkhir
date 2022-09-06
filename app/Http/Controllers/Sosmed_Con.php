@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use App\File_Gambar;
 use App\Models\VideoView;
 use App\Models\Video;
+use App\Pengguna;
 use File;
 use Auth;
 
@@ -1261,7 +1262,9 @@ class Sosmed_Con extends Controller{
             // $api_product = json_decode( file_get_contents($url_api), true );
             // $api_product = '';
             $video_history_view = VideoView::where('id_user', Auth::user()->id)->with('video')->orderBy('created_at', 'desc')->limit(4)->get();
-            return view('profil', compact('teman', 'teman_saya', 'jml_konten', 'konten', 'jml_teman', 'profil', 'followers', 'followers_saya', 'jml_followers', 'komentar', 'balas_komentar', 'notif_pesan', 'list_notif_display', 'total_notif', 'notif_group', 'likes', 'likes_all', 'pengaturan', 'follow_request','video_history_view'));
+            $video_user = Video::where('id_pengguna', Auth::user()->id)->with(['detail'])->orderBy('created_at', 'desc')->paginate(8);
+            // dd($video_user);
+            return view('profil', compact('teman', 'teman_saya', 'jml_konten', 'konten', 'jml_teman', 'profil', 'followers', 'followers_saya', 'jml_followers', 'komentar', 'balas_komentar', 'notif_pesan', 'list_notif_display', 'total_notif', 'notif_group', 'likes', 'likes_all', 'pengaturan', 'follow_request','video_history_view','video_user'));
         }else{
             return redirect('/sosial-media/beranda');
         }
