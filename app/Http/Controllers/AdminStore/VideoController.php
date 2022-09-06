@@ -9,6 +9,7 @@ use App\Models\Notification;
 use App\Models\VideoSubscribe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Pengguna;
 
 use Image;
 
@@ -21,7 +22,8 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = Video::with('detail')->orderBy('created_at', 'desc')->paginate(10);
+        $pengguna_ids = Pengguna::where('village_id',Auth::user()->pengguna->village_id)->pluck('id')->toArray();
+        $videos = Video::whereIn('id_pengguna', $pengguna_ids)->with('detail')->orderBy('created_at', 'desc')->paginate(10);
         return view('pages.adminstore.videos.index', compact('videos'));
     }
 
@@ -213,17 +215,31 @@ class VideoController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        try{
+            $video = Video::find($id);
+            $thumbnail = public_path($video->thumbnail);
+            $video = public_path($video->url);
+            if(file_exists($thumbnail)){
+                unlink($thumbnail);
+            }
+            if(file_exists($video)){
+                unlink($video);
+            }
+            Video::where('id', $id)->delete();
+            return redirect()->route('video.index')
+                    ->with('success', 'Sukses hapus data');
+        } catch (\Throwable $th) {
+            return redirect()->back()
+                ->with('errors', 'Gagal delete data');
+        }
+    }
+
+    public function status($id, $status)
+    {
         $video = Video::find($id);
-        $thumbnail = public_path($video->thumbnail);
-        $video = public_path($video->url);
-        if(file_exists($thumbnail)){
-            unlink($thumbnail);
-        }
-        if(file_exists($video)){
-            unlink($video);
-        }
-        Video::where('id', $id)->delete();
-        return redirect()->route('video.index')
-                ->with('success', 'Sukses hapus data');
+        $video->is_active = $status;
+        $video->save();
+        return redirect()->route('video.show', $id)
+                    ->with('success', 'Sukses update data');
     }
 }

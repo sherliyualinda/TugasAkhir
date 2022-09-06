@@ -93,4 +93,90 @@ class VideoController extends Controller
                 ->with('errors', 'Gagal simpan data');
         }
     }
+
+/**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'title'  => 'required',
+        ]);
+        try{
+            $video = Video::find($id);
+            $file = $request->file('video');
+            $uniqueName = time()."-".date('dmY');
+            if($file){
+                $this->validate($request, [
+                    'video'  => 'required|mimes:mp4,mov,3gp|max:20000',
+                ]);
+                $videoold = public_path($video['url']);
+                if(file_exists($videoold)){
+                    unlink($videoold);
+                }
+                // Upload video
+                $destinationPath = 'uploads/videos';
+                $fileName = $uniqueName.'.'.$file->getClientOriginalExtension();
+                $uploadSuccess = $file->move($destinationPath, $fileName);
+                $video->url = '/'.$destinationPath.'/'.$fileName;
+            }
+
+            $thumbnail = $request->file('thumbnail');
+            if($thumbnail){
+                $this->validate($request, [
+                    'thumbnail'  => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                ]);
+                $thumbnailold = public_path($video['thumbnail']);
+                if(file_exists($thumbnailold)){
+                    unlink($thumbnailold);
+                }
+                // Upload thumbnail
+                $destinationPath = 'uploads/thumbnails';
+                $fileName = $uniqueName."-thumbnail".'.'.$thumbnail->getClientOriginalExtension();
+                $resize_image = Image::make($thumbnail->getRealPath());
+
+                $resize_image->resize(200, 200, function($constraint){
+                $constraint->aspectRatio();
+                })->save($destinationPath . '/' . $fileName);
+                $video->thumbnail = '/'.$destinationPath.'/'.$fileName;
+            }
+
+            $video->title = $request->title;
+            $video->description = $request->description;
+            $video->id_pengguna = (Auth::user()->id == 1 ) ? 4 : Auth::user()->id;
+            $video->save();
+            return redirect()->route('sosial-media.profil', Auth::user()->pengguna->username)
+                ->with('success', 'Sukses edit video');
+        } catch (\Throwable $th) {
+            // dd($th->getMessage());
+            return redirect()->back()
+                ->with('errors', 'Gagal edit data');
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, $id)
+    {
+        $video = Video::find($id);
+        $thumbnail = public_path($video->thumbnail);
+        $video = public_path($video->url);
+        if(file_exists($thumbnail)){
+            unlink($thumbnail);
+        }
+        if(file_exists($video)){
+            unlink($video);
+        }
+        Video::where('id', $id)->delete();
+        return redirect()->route('sosial-media.profil', Auth::user()->pengguna->username)
+                ->with('success', 'Sukses hapus video');
+    }
 }

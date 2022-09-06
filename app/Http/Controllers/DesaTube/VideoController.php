@@ -31,9 +31,9 @@ class VideoController extends Controller
         $notif_group = NavbarTrait::notif_group();
         $search = $request->get('search');
         if($search){
-            $videos = Video::where('title', 'LIKE', "%$search%")->with(['user','detail'])->paginate(10);
+            $videos = Video::where('title', 'LIKE', "%$search%")->where('is_active', 1)->with(['user','detail'])->paginate(10);
         }else{
-            $videos = Video::with(['user','detail'])->paginate(10);            
+            $videos = Video::where('is_active', 1)->with(['user','detail'])->paginate(10);            
         }
         // dd($list_notif_display);
         return view('pages.desatube.index', compact('videos', 'total_notif' ,'list_notif_display', 'notif_pesan', 'notif_group'));

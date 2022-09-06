@@ -210,6 +210,8 @@ Route::prefix('superadmin')
 });
 // for user
 Route::post('/sosial-media/video/store', 'VideoController@store')->name('user.video.store');
+Route::put('/sosial-media/video/update/{id}', 'VideoController@update')->name('user.video.update');
+Route::delete('/sosial-media/video/{id}', 'VideoController@destroy')->name('user.video.destroy');
 
 //END SUPER ADMIN AREA
 Route::group(['middleware' => ['auth']], function(){
@@ -299,7 +301,7 @@ Route::get('/dashboard/lahan-pending-detail/{id}', 'Admin\LahanController@show')
 Route::post('/dashboard/lahan/approval/{id}', 'Admin\LahanController@approval')->name('dashboard.lahan.approval');
 
 Route::resource('/dashboard/video', 'AdminStore\VideoController');
-
+Route::get('/dashboard/video/{id}/{status}', 'AdminStore\VideoController@status')->name('dashboard.video.status');
 
 
 });

@@ -325,9 +325,63 @@
 											<span class="channel">{{ number_format($item->detail->views) . ' x ditonton' }}</span>
 											@endif
 											<span>{{ $item->created_at->diffForHumans() }}</span>
+											@if ($item->is_active)
+												<span class="badge badge-primary">Diterima</span>
+											@else
+												<span class="badge badge-warning">Sedang Ditinjau</span>
+											@endif
 										</div>
 									</div>
 								</a>
+								<div class="pt-3">
+									{{-- <a href="{{ route('desatube.show', $item->id) }}" class="btn btn-primary btn-sm">Lihat</a> --}}
+									<a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editVideoModal{{$item->id}}">Edit</a>
+									<a href="#" class="btn btn-danger delete-video btn-sm" data-toggle="modal" data-target="#deleteVideoModal" data-url={{ route('user.video.destroy', $item->id) }}>Hapus</a>
+								</div>
+							</div>
+							<!-- Modal -->
+							<div class="modal fade" id="editVideoModal{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="editVideoModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<form method="POST" action="{{route('user.video.update', $item->id)}}"  enctype="multipart/form-data">
+										<div class="modal-header">
+											<h5 class="modal-title" id="editVideoModalLabel">Edit Video</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body text-left">
+												{{ csrf_field() }}
+												<input type="hidden" name="_method" value="put" />
+												<div class="form-group">
+													<label for="">Judul</label>
+													<input type="text" name="title" class="form-control border-1" required value="{{ $item->title }}">
+											</div>
+											<div class="form-group">
+													<label for="">Deskripsi</label>
+													<textarea name="description" class="form-control border-1" rows="3">{{ $item->description }}</textarea>
+											</div>
+											<div class="form-group">
+													<label for="">Thumbnail</label>
+													<input type="file" name="thumbnail" class="form-control border-1" accept=".jpeg,.png,.jpg,.gif">
+													<img src="{{asset($item->thumbnail)}}" alt="thumbnail">
+											</div>
+											<div class="form-group">
+													<label for="">Video</label>
+													<input type="file" name="video" class="form-control border-1" accept=".mp4,.mov,.3gp">
+													<video width="320" height="240" controls>
+															<source src="{{asset($item->url)}}" type="video/mp4">
+														Your browser does not support the video tag.
+												</video>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Update</button>
+										</div>
+									</form>
+									</div>
+								</div>
 							</div>
 							@endforeach
 
@@ -371,6 +425,32 @@
 									</div>
 								</div>
 							</div>
+
+							<!-- Delete Warning Modal -->
+							<div class="modal modal-danger fade" id="deleteVideoModal" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+										<div class="modal-content modal-md">
+												<div class="modal-header">
+														<h5 class="modal-title" id="deleteModalLabel">Hapus Video</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+														</button>
+												</div>
+												<div class="modal-body">
+												<form action="" method="post">
+														{{ csrf_field() }}
+														<input type="hidden" name="_method" value="delete" />
+														<h5 class="text-center">Yakin mau hapus video ini?</h5>
+												</div>
+												<div class="modal-footer">
+														<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+														<button type="submit" class="btn btn-sm btn-danger">Ya, Hapus Video</button>
+												</div>
+												</form>
+										</div>
+								</div>
+							</div>
+							<!-- End Delete Modal --> 
 						@else
 						<div class="col-lg" style="padding-bottom:15px;">
 							<strong style="font-size: 16px;">Belum Ada Video</strong>
@@ -633,7 +713,12 @@
 
     });
 </script>
-
+<script>
+	$(document).on('click','.delete-video',function(){
+			let url = $(this).attr('data-url');
+			$('#deleteVideoModal form').attr('action',url);
+ });
+</script>
 </body>	
 
 </html>
