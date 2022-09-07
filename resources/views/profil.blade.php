@@ -213,122 +213,295 @@
 			</div>
 			<div class="col-lg-1"></div>
 			<div class="col-lg-1"></div>
-			<div class="central-meta col-lg-10" style="margin-bottom: 0px; border-bottom-right-radius: 0; border-bottom-left-radius: 0; border-bottom: 0px none;">
-				<div>
-					<?php foreach($pengaturan as $p){
-							$pengaturan_akun = $p->akun_privat;
-					} ?>
-					@foreach ($jml_konten as $data)
-						<a data-ripple="" style="padding:15px"><b>{{ $data->jml_konten }}</b> Post</a>
-					@endforeach
-					@foreach ($jml_followers as $d3)
-						@if($pengaturan_akun == 'tidak')
-							<a <?php if(Auth::check()) { echo 'href="#" data-toggle="modal" data-target="#myModalFollowers" data-ripple=""'; } ?> style="padding:15px"><b>{{ $d3->jml_followers }}</b> Followers</a>
-						@else
-							@if(Auth::check())
-								@if($p->id_pengguna == auth()->user()->pengguna->id_pengguna)
-									<a <?php if(Auth::check()) { echo 'href="#" data-toggle="modal" data-target="#myModalFollowers" data-ripple=""'; } ?> style="padding:15px"><b>{{ $d3->jml_followers }}</b> Followers</a>
-								@elseif(in_array($d->username, $arr_flwing))
-									<a <?php if(Auth::check()) { echo 'href="#" data-toggle="modal" data-target="#myModalFollowers" data-ripple=""'; } ?> style="padding:15px"><b>{{ $d3->jml_followers }}</b> Followers</a>
-								@else
-									<a style="padding:15px"><b>{{ $d3->jml_followers }}</b> Followers</a>
-								@endif
-							@else
-								<a style="padding:15px"><b>{{ $d3->jml_followers }}</b> Followers</a>
-							@endif
-						@endif
-					@endforeach
-					@foreach ($jml_teman as $d2)
-						@if($pengaturan_akun == 'tidak')
-							<a  <?php if(Auth::check()) { echo 'href="#" data-toggle="modal" data-target="#myModalFollowing" data-ripple=""'; } ?> style="padding:15px"><b>{{ $d2->jml_following }}</b> Following</a>
-						@else
-							@if(Auth::check())
-								@if($p->id_pengguna == auth()->user()->pengguna->id_pengguna)
-									<a  <?php if(Auth::check()) { echo 'href="#" data-toggle="modal" data-target="#myModalFollowing" data-ripple=""'; } ?> style="padding:15px"><b>{{ $d2->jml_following }}</b> Following</a>
-								@elseif(in_array($d->username, $arr_flwing))
-									<a  <?php if(Auth::check()) { echo 'href="#" data-toggle="modal" data-target="#myModalFollowing" data-ripple=""'; } ?> style="padding:15px"><b>{{ $d2->jml_following }}</b> Following</a>
-								@else
-									<a style="padding:15px"><b>{{ $d2->jml_following }}</b> Following</a>
-								@endif
-							@else
-								<a style="padding:15px"><b>{{ $d2->jml_following }}</b> Following</a>
-							@endif
-						@endif
-					@endforeach
-				</div>
-			</div>
-			@if($d->marketplace)
-			<div class="central-meta col-lg-10" style="padding: 0; border-top-right-radius: 0; border-top-left-radius: 0;">
-				<ul class="nav nav-tabs nav-pills nav-fill" style="padding: 5px;">
+			<div class="central-meta col-lg-10 mb-5" style="margin-bottom: 0px; border-bottom-right-radius: 0; border-bottom-left-radius: 0; border-bottom: 0px none;">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item">
-						<a class="active" href="#link1" data-toggle="tab" style="font-size: 15px; font-weight: bold; display: block;">Post</a>
+						<a class="nav-link active" id="postingan-tab" data-toggle="tab" href="#postingan" role="tab" aria-controls="postingan" aria-selected="true">Postingan</a>
 					</li>
 					<li class="nav-item">
-						<a class="" href="#link2" data-toggle="tab" style="font-size: 15px; font-weight: bold; display: block;">Shop</a>
+						<a class="nav-link" id="video-tab" data-toggle="tab" href="#video" role="tab" aria-controls="video" aria-selected="false">Video</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history" aria-selected="false">History Video</a>
 					</li>
 				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="postingan" role="tabpanel" aria-labelledby="postingan-tab">
+						<div>
+							<?php foreach($pengaturan as $p){
+									$pengaturan_akun = $p->akun_privat;
+							} ?>
+							@foreach ($jml_konten as $data)
+								<a data-ripple="" style="padding:15px"><b>{{ $data->jml_konten }}</b> Post</a>
+							@endforeach
+							@foreach ($jml_followers as $d3)
+								@if($pengaturan_akun == 'tidak')
+									<a <?php if(Auth::check()) { echo 'href="#" data-toggle="modal" data-target="#myModalFollowers" data-ripple=""'; } ?> style="padding:15px"><b>{{ $d3->jml_followers }}</b> Followers</a>
+								@else
+									@if(Auth::check())
+										@if($p->id_pengguna == auth()->user()->pengguna->id_pengguna)
+											<a <?php if(Auth::check()) { echo 'href="#" data-toggle="modal" data-target="#myModalFollowers" data-ripple=""'; } ?> style="padding:15px"><b>{{ $d3->jml_followers }}</b> Followers</a>
+										@elseif(in_array($d->username, $arr_flwing))
+											<a <?php if(Auth::check()) { echo 'href="#" data-toggle="modal" data-target="#myModalFollowers" data-ripple=""'; } ?> style="padding:15px"><b>{{ $d3->jml_followers }}</b> Followers</a>
+										@else
+											<a style="padding:15px"><b>{{ $d3->jml_followers }}</b> Followers</a>
+										@endif
+									@else
+										<a style="padding:15px"><b>{{ $d3->jml_followers }}</b> Followers</a>
+									@endif
+								@endif
+							@endforeach
+							@foreach ($jml_teman as $d2)
+								@if($pengaturan_akun == 'tidak')
+									<a  <?php if(Auth::check()) { echo 'href="#" data-toggle="modal" data-target="#myModalFollowing" data-ripple=""'; } ?> style="padding:15px"><b>{{ $d2->jml_following }}</b> Following</a>
+								@else
+									@if(Auth::check())
+										@if($p->id_pengguna == auth()->user()->pengguna->id_pengguna)
+											<a  <?php if(Auth::check()) { echo 'href="#" data-toggle="modal" data-target="#myModalFollowing" data-ripple=""'; } ?> style="padding:15px"><b>{{ $d2->jml_following }}</b> Following</a>
+										@elseif(in_array($d->username, $arr_flwing))
+											<a  <?php if(Auth::check()) { echo 'href="#" data-toggle="modal" data-target="#myModalFollowing" data-ripple=""'; } ?> style="padding:15px"><b>{{ $d2->jml_following }}</b> Following</a>
+										@else
+											<a style="padding:15px"><b>{{ $d2->jml_following }}</b> Following</a>
+										@endif
+									@else
+										<a style="padding:15px"><b>{{ $d2->jml_following }}</b> Following</a>
+									@endif
+								@endif
+							@endforeach
+						</div>
+						@if($d->marketplace)
+						<div class="central-meta col-lg-10" style="padding: 0; border-top-right-radius: 0; border-top-left-radius: 0;">
+							<ul class="nav nav-tabs nav-pills nav-fill" style="padding: 5px;">
+								<li class="nav-item">
+									<a class="active" href="#link1" data-toggle="tab" style="font-size: 15px; font-weight: bold; display: block;">Post</a>
+								</li>
+								<li class="nav-item">
+									<a class="" href="#link2" data-toggle="tab" style="font-size: 15px; font-weight: bold; display: block;">Shop</a>
+								</li>
+							</ul>
+						</div>
+						<!-- Tab panes -->
+						<div class="tab-content">
+								<div class="tab-pane active fade show " id="link1" >
+									@include('theme.postingan')
+								</div>
+								<div class="tab-pane fade" id="link2" >
+									@include('theme.shop')
+								</div>
+						</div>
+						@else
+							<br>
+							<br>
+							@include('theme.postingan')
+						@endif
+						{{-- end tab --}}
+					</div>
+					<div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab">
+						<div class="alert alert-light" role="alert">
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahVideoModal">
+								Tambah
+							</button>
+						</div>
+						@if ($video_user)
+							@foreach ($video_user as $item)
+							<div class="col-6 col-md-4 col-lg-3" data-aos="fade-up">
+								<a href="{{ route('desatube.show', $item->id) }}" class="component-products d-block">
+									<div class="video-thumbnail">
+										<div class="detail-thumbnail" style="
+										@if (!empty($item->thumbnail))
+												background-image: url('{{ asset($item->thumbnail) }}')
+										@else
+												background-image: #eee
+										@endif 
+										">
+										</div>
+									</div>
+									<div class="products-text">
+										<div class="video-title-scope">
+											{{ $item->title }}
+										</div>
+										<div class="identity-scope">
+											@if (!is_null($item->detail))
+											<span class="channel">{{ number_format($item->detail->views) . ' x ditonton' }}</span>
+											@endif
+											<span>{{ $item->created_at->diffForHumans() }}</span>
+											@if ($item->is_active)
+												<span class="badge badge-primary">Diterima</span>
+											@else
+												<span class="badge badge-warning">Sedang Ditinjau</span>
+											@endif
+										</div>
+									</div>
+								</a>
+								<div class="pt-3">
+									{{-- <a href="{{ route('desatube.show', $item->id) }}" class="btn btn-primary btn-sm">Lihat</a> --}}
+									<a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editVideoModal{{$item->id}}">Edit</a>
+									<a href="#" class="btn btn-danger delete-video btn-sm" data-toggle="modal" data-target="#deleteVideoModal" data-url={{ route('user.video.destroy', $item->id) }}>Hapus</a>
+								</div>
+							</div>
+							<!-- Modal -->
+							<div class="modal fade" id="editVideoModal{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="editVideoModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<form method="POST" action="{{route('user.video.update', $item->id)}}"  enctype="multipart/form-data">
+										<div class="modal-header">
+											<h5 class="modal-title" id="editVideoModalLabel">Edit Video</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body text-left">
+												{{ csrf_field() }}
+												<input type="hidden" name="_method" value="put" />
+												<div class="form-group">
+													<label for="">Judul</label>
+													<input type="text" name="title" class="form-control border-1" required value="{{ $item->title }}">
+											</div>
+											<div class="form-group">
+													<label for="">Deskripsi</label>
+													<textarea name="description" class="form-control border-1" rows="3">{{ $item->description }}</textarea>
+											</div>
+											<div class="form-group">
+													<label for="">Thumbnail</label>
+													<input type="file" name="thumbnail" class="form-control border-1" accept=".jpeg,.png,.jpg,.gif">
+													<img src="{{asset($item->thumbnail)}}" alt="thumbnail">
+											</div>
+											<div class="form-group">
+													<label for="">Video</label>
+													<input type="file" name="video" class="form-control border-1" accept=".mp4,.mov,.3gp">
+													<video width="320" height="240" controls>
+															<source src="{{asset($item->url)}}" type="video/mp4">
+														Your browser does not support the video tag.
+												</video>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Update</button>
+										</div>
+									</form>
+									</div>
+								</div>
+							</div>
+							@endforeach
+
+							{{ $video_user->links() }}
+
+							<!-- Modal -->
+							<div class="modal fade" id="tambahVideoModal" tabindex="-1" role="dialog" aria-labelledby="tambahVideoModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<form method="POST" action="{{route('user.video.store')}}"  enctype="multipart/form-data">
+										<div class="modal-header">
+											<h5 class="modal-title" id="tambahVideoModalLabel">Tambah Video</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body text-left">
+												{{ csrf_field() }}
+												<div class="form-group">
+														<label for="">Judul</label>
+														<input type="text" name="title" class="form-control border-1" required>
+												</div>
+												<div class="form-group">
+														<label for="">Deskripsi</label>
+														<textarea name="description" class="form-control border-1" rows="3"></textarea>
+												</div>
+												<div class="form-group">
+														<label for="">Thumbnail</label>
+														<input type="file" name="thumbnail" class="form-control border-1" accept=".jpeg,.png,.jpg,.gif" required>
+												</div>
+												<div class="form-group">
+														<label for="">Video</label>
+														<input type="file" name="video" class="form-control border-1" accept=".mp4,.mov,.3gp" required>
+												</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Simpan</button>
+										</div>
+									</form>
+									</div>
+								</div>
+							</div>
+
+							<!-- Delete Warning Modal -->
+							<div class="modal modal-danger fade" id="deleteVideoModal" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+										<div class="modal-content modal-md">
+												<div class="modal-header">
+														<h5 class="modal-title" id="deleteModalLabel">Hapus Video</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+														</button>
+												</div>
+												<div class="modal-body">
+												<form action="" method="post">
+														{{ csrf_field() }}
+														<input type="hidden" name="_method" value="delete" />
+														<h5 class="text-center">Yakin mau hapus video ini?</h5>
+												</div>
+												<div class="modal-footer">
+														<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+														<button type="submit" class="btn btn-sm btn-danger">Ya, Hapus Video</button>
+												</div>
+												</form>
+										</div>
+								</div>
+							</div>
+							<!-- End Delete Modal --> 
+						@else
+						<div class="col-lg" style="padding-bottom:15px;">
+							<strong style="font-size: 16px;">Belum Ada Video</strong>
+						</div>
+						@endif
+						{{-- endtab --}}
+					</div>
+					<div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+						@if ($video_history_view)
+							@foreach ($video_history_view as $item)
+							<div class="col-6 col-md-4 col-lg-3" data-aos="fade-up">
+								<a href="{{ route('desatube.show', $item->id_video) }}" class="component-products d-block">
+									<div class="video-thumbnail">
+										<div class="detail-thumbnail" style="
+										@if (!empty($item->video->thumbnail))
+												background-image: url('{{ asset($item->video->thumbnail) }}')
+										@else
+												background-image: #eee
+										@endif 
+										">
+										</div>
+									</div>
+									<div class="products-text">
+										<div class="video-title-scope">
+											{{ $item->video->title }}
+										</div>
+										<div class="identity-scope">
+											<span>{{ $item->video->pengguna->nama }}</span>
+											@if (!is_null($item->video->detail))
+											<span class="channel">{{ number_format($item->video->detail->views) . ' x ditonton' }}</span>
+											@endif
+											<span>{{ $item->video->created_at->diffForHumans() }}</span>
+										</div>
+									</div>
+								</a>
+							</div>
+							@endforeach
+						@else
+						<div class="col-lg" style="padding-bottom:15px;">
+							<strong style="font-size: 16px;">Belum Ada Video Dilihat</strong>
+						</div>
+						@endif
+						{{-- end tab --}}
+					</div>
+				</div>
+
 			</div>
-			<!-- Tab panes -->
-			<div class="tab-content">
-			  	<div class="tab-pane active fade show " id="link1" >
-			  		@include('theme.postingan')
-			  	</div>
-			  	<div class="tab-pane fade" id="link2" >
-				  	@include('theme.shop')
-			  	</div>
-			</div>
-			@else
-				<br>
-				<br>
-				@include('theme.postingan')
-			@endif
+			
 		</div>
 		<div class="col-lg-4 col-sm-4"></div>
 	</section>
-
-	<div class="container">
-		<div class="row">
-			<div class="pt-3 pb-3">
-				<h4>History Video</h4>
-			</div>
-		</div>
-		<div class="row">
-			@if ($video_history_view)
-				@foreach ($video_history_view as $item)
-				<div class="col-6 col-md-4 col-lg-3" data-aos="fade-up">
-					<a href="{{ route('desatube.show', $item->id_video) }}" class="component-products d-block">
-						<div class="video-thumbnail">
-							<div class="detail-thumbnail" style="
-							@if (!empty($item->video->thumbnail))
-									background-image: url('{{ asset($item->video->thumbnail) }}')
-							@else
-									background-image: #eee
-							@endif 
-							">
-							</div>
-						</div>
-						<div class="products-text">
-							<div class="video-title-scope">
-								{{ $item->video->title }}
-							</div>
-							<div class="identity-scope">
-								<span>{{ $item->video->pengguna->nama }}</span>
-								@if (!is_null($item->video->detail))
-								<span class="channel">{{ number_format($item->video->detail->views) . ' x ditonton' }}</span>
-								@endif
-								<span>{{ $item->video->created_at->diffForHumans() }}</span>
-							</div>
-						</div>
-					</a>
-				</div>
-				@endforeach
-			@else
-			<div class="col-lg" style="padding-bottom:15px;">
-				<strong style="font-size: 16px;">Belum Ada Video Dilihat</strong>
-			</div>
-			@endif
-		</div>
-	</div>
 
 	@if(Auth::check())
 		<div class="modal fade" id="myModalFollowers" role="dialog">
@@ -540,7 +713,12 @@
 
     });
 </script>
-
+<script>
+	$(document).on('click','.delete-video',function(){
+			let url = $(this).attr('data-url');
+			$('#deleteVideoModal form').attr('action',url);
+ });
+</script>
 </body>	
 
 </html>

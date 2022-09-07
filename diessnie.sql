@@ -9244,7 +9244,8 @@ CREATE TABLE `videos` (
   `thumbnail` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `id_pengguna` int(11) NOT NULL
+  `id_pengguna` int(11) NOT NULL,
+  `is_active` tinyint NOT NULL DEFAULT '0',
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -90348,25 +90349,42 @@ ALTER TABLE `videos`
 -- Indeks untuk tabel `video_comments`
 --
 ALTER TABLE `video_comments`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_video` (`id_video`);
 
 --
 -- Indeks untuk tabel `video_details`
 --
 ALTER TABLE `video_details`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_video` (`id_video`);
 
 --
 -- Indeks untuk tabel `video_likes`
 --
 ALTER TABLE `video_likes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_video` (`id_video`);
 
 --
 -- Indeks untuk tabel `video_subscribes`
 --
 ALTER TABLE `video_subscribes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_video` (`id_video`),
+  ADD KEY `id_channel` (`id_channel`);
+
+--
+-- Indeks untuk tabel `video_views`
+--
+ALTER TABLE `video_views`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_video` (`id_video`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -90588,6 +90606,41 @@ ALTER TABLE `undangan_grup`
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
+--
+-- AUTO_INCREMENT untuk tabel `videos`
+--
+ALTER TABLE `videos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `video_comments`
+--
+ALTER TABLE `video_comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `video_details`
+--
+ALTER TABLE `video_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `video_likes`
+--
+ALTER TABLE `video_likes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `video_subscribes`
+--
+ALTER TABLE `video_subscribes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `video_views`
+--
+ALTER TABLE `video_views`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --

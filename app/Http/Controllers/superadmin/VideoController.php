@@ -110,7 +110,6 @@ class VideoController extends Controller
             return redirect()->route('superadmin.sosial-media.video.index')
                 ->with('success', 'Sukses simpan data');
         } catch (\Throwable $th) {
-            dd($th->getMessage());
             DB::rollback();
             return redirect()->back()
                 ->with('errors', 'Gagal simpan data');

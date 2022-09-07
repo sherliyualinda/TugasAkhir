@@ -70,6 +70,13 @@
                                     <td>{{ $key+1 }}.</td>
                                     <td>{{ $item->title }}</td>
                                     <td>
+                                        @if ($item->is_active == 1)
+                                            <span class="badge badge-primary ml-2">Disetujui</span>
+                                        @elseif ($item->is_active == 2)
+                                            <span class="badge badge-danger ml-2">Ditolak</span>
+                                        @else
+                                            <span class="badge badge-secondary ml-2">Perlu Ditinjau</span>
+                                        @endif
                                         <span class="badge badge-secondary pl-2">Views {{ ($item->detail) ? number_format($item->detail['views']) : '0' }}</span>
                                         <span class="badge badge-secondary pl-2">Like {{ ($item->detail) ? number_format($item->detail['like']) : '0' }}</span>
                                         <span class="badge badge-secondary pl-2">Comment {{ ($item->detail) ? number_format($item->detail['comment']) : '0' }}</span>
@@ -79,7 +86,7 @@
                                         <td>
                                             <a href="{{route('video.show', $item->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
                                             <a href="{{route('video.edit', $item->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-                                            <a href="#" class="btn btn-danger delete btn-sm" data-toggle="modal" data-target="#deleteModal" data-url={{ route('superadmin.sosial-media.video.destroy', $item->id) }}><i class="fa fa-trash"></i></a>
+                                            <a href="#" class="btn btn-danger delete btn-sm" data-toggle="modal" data-target="#deleteModal" data-url={{ route('video.destroy', $item->id) }}><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -124,11 +131,11 @@
     </div>
 @endsection
 
-@section('js')
+@push('addon-script')
 <script>
      $(document).on('click','.delete',function(){
          let url = $(this).attr('data-url');
          $('#deleteModal form').attr('action',url);
     });
 </script>
-@endsection
+@endpush
