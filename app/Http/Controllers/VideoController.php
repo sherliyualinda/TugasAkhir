@@ -1,42 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\AdminStore;
+namespace App\Http\Controllers;
 
+use Image;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Video;
 use App\Models\Notification;
 use App\Models\VideoSubscribe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Pengguna;
-
-use Image;
 
 class VideoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $pengguna_ids = Pengguna::where('village_id',Auth::user()->pengguna->village_id)->pluck('id')->toArray();
-        $videos = Video::whereIn('id_pengguna', $pengguna_ids)->with('detail')->orderBy('created_at', 'desc')->paginate(10);
-        return view('pages.adminstore.videos.index', compact('videos'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('pages.adminstore.videos.create');
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -109,8 +84,8 @@ class VideoController extends Controller
             }
             Notification::insert($notif);
             DB::commit();
-            return redirect()->route('video.index')
-                ->with('success', 'Sukses simpan data');
+            return redirect()->route('sosial-media.profil', Auth::user()->pengguna->username)
+                ->with('success', 'Sukses tambah video');
         } catch (\Throwable $th) {
             dd($th->getMessage());
             DB::rollback();
@@ -119,31 +94,7 @@ class VideoController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $video = Video::with('detail')->where('id', $id)->first();
-        return view('pages.adminstore.videos.show', compact('video'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $video = Video::find($id);
-        return view('pages.adminstore.videos.edit', compact('video'));
-    }
-
-    /**
+/**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -198,8 +149,8 @@ class VideoController extends Controller
             $video->description = $request->description;
             $video->id_pengguna = (Auth::user()->id == 1 ) ? 4 : Auth::user()->id;
             $video->save();
-            return redirect()->route('video.index')
-                    ->with('success', 'Sukses simpan data');
+            return redirect()->route('sosial-media.profil', Auth::user()->pengguna->username)
+                ->with('success', 'Sukses edit video');
         } catch (\Throwable $th) {
             // dd($th->getMessage());
             return redirect()->back()
@@ -215,31 +166,17 @@ class VideoController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        try{
-            $video = Video::find($id);
-            $thumbnail = public_path($video->thumbnail);
-            $video = public_path($video->url);
-            if(file_exists($thumbnail)){
-                unlink($thumbnail);
-            }
-            if(file_exists($video)){
-                unlink($video);
-            }
-            Video::where('id', $id)->delete();
-            return redirect()->route('video.index')
-                    ->with('success', 'Sukses hapus data');
-        } catch (\Throwable $th) {
-            return redirect()->back()
-                ->with('errors', 'Gagal delete data');
-        }
-    }
-
-    public function status($id, $status)
-    {
         $video = Video::find($id);
-        $video->is_active = $status;
-        $video->save();
-        return redirect()->route('video.show', $id)
-                    ->with('success', 'Sukses update data');
+        $thumbnail = public_path($video->thumbnail);
+        $video = public_path($video->url);
+        if(file_exists($thumbnail)){
+            unlink($thumbnail);
+        }
+        if(file_exists($video)){
+            unlink($video);
+        }
+        Video::where('id', $id)->delete();
+        return redirect()->route('sosial-media.profil', Auth::user()->pengguna->username)
+                ->with('success', 'Sukses hapus video');
     }
 }

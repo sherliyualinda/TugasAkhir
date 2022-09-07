@@ -74,13 +74,13 @@
           {{-- <a href="{{ route('dashboard-settings-account') }}" 
              class="list-group-item list-group-item-action {{ Request::is('dashboard/account') ? 'active' : '' }}">Akun</a> --}}
           <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();" 
+            document.getElementById('logout-form').submit();" 
              class="list-group-item list-group-item-action">Keluar</a>
         </div>
       </div>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-          </form>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
 
       <!-- Page Content -->
       <div id="page-content-wrapper">
@@ -111,9 +111,6 @@
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                          @csrf
-                        </form>
                  </div>
                 </li>
               <li class="nav-item">

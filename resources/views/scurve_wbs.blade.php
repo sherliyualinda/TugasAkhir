@@ -123,11 +123,11 @@
         for (var i = 0; i < tanggal.length; i++) {
             const data = total_aktual[tanggal[i]];
             if(i > 0 && data > 0){
-                chart_data_first = data + tempArrFirst;
+                chart_data_first = +data + +tempArrFirst;
                 tempArrFirst = chart_data_first;
                 arrFirst.push(chart_data_first)
             }else if(i == 0){
-                chart_data_first = data + tempArrFirst;
+                chart_data_first = +data + +tempArrFirst;
                 tempArrFirst = chart_data_first;
                 arrFirst.push(chart_data_first)
             }else{
@@ -156,12 +156,12 @@
                 const data = total_history[tanggal[i]];
 
                 if(i > 0 && data > 0){
-                    chart_data_second = data + tempArrSecond;
+                    chart_data_second = +data + +tempArrSecond;
                     tempArrSecond = chart_data_second;
                     for_history.push(chart_data_second);
                     arrSecond.push(chart_data_second)
                 }else if(i == 0){
-                    chart_data_second = data + tempArrSecond;
+                    chart_data_second = +data + +tempArrSecond;
                     tempArrSecond = chart_data_second;
                     arrSecond.push(chart_data_second)
                 }else{

@@ -20003,8 +20003,7 @@ a.text-dark:hover {
     background: 0 0;
     padding: .125rem .125rem .0625rem;
     font-size: 1rem;
-    border-width: 0;
-    border-color: transparent;
+    border: 1px solid #4e4e4e;
     line-height: 1.9;
     width: 100%;
     color: transparent;
