@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Sep 2022 pada 13.50
+-- Waktu pembuatan: 08 Sep 2022 pada 07.25
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -9005,7 +9005,7 @@ INSERT INTO `tasks` (`id`, `text`, `duration`, `progress`, `start_date`, `parent
 (148, 'Development system', 20, 0.00, '2022-06-20 00:00:00', 147, 23, '2022-08-08 07:56:20', '2022-08-21 08:09:29', 6, 0, '0', 0, 0),
 (149, 'Pemupukan Lahan Persemaian', 1, 0.00, '2022-07-06 00:00:00', 127, 24, '2022-08-10 08:21:58', '2022-08-23 05:06:29', 7, 6, 'buah', 2000, 12000),
 (150, 'Pesebaran Benih', 1, 0.00, '2022-07-07 00:00:00', 127, 25, '2022-08-10 08:22:24', '2022-08-23 05:06:31', 7, 0, 'kilo', 0, 0),
-(151, 'Persiapan Lahan', 3, 0.00, '2022-07-13 00:00:00', 0, 26, '2022-08-10 08:24:35', '2022-09-07 08:41:06', 7, 0, 'hekatar', 0, 0),
+(151, 'Persiapan Lahan', 3, 0.00, '2022-07-13 00:00:00', 0, 26, '2022-08-10 08:24:35', '2022-09-08 03:14:57', 7, 2, 'kg', 20000, 40000),
 (152, 'SIT', 7, 0.00, '2022-07-15 00:00:00', 0, 27, '2022-08-21 08:09:56', '2022-08-21 08:09:56', 6, 0, '0', 0, 0),
 (153, 'Skenario', 2, 0.00, '2022-07-18 00:00:00', 152, 28, '2022-08-21 08:10:14', '2022-08-21 08:10:14', 6, 0, '0', 0, 0),
 (154, 'Execution', 3, 0.00, '2022-07-19 00:00:00', 152, 29, '2022-08-21 08:10:30', '2022-08-21 08:10:30', 6, 0, '0', 0, 0),
@@ -9224,7 +9224,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (35, 'User70239bf39', 'mughnymubarak14@gmail.com', '123456', NULL, '2021-08-14 10:19:42', '2021-08-14 10:19:42', 2),
 (36, 'Ridwan', 'ridwan@email.com', '123456', NULL, '2021-08-16 20:53:26', '2021-08-16 20:53:26', 2),
 (41, 'Ridwan Amir', 'ridwanamir@email.com', '123456', NULL, '2021-08-16 21:07:23', '2021-08-16 21:07:23', 2),
-(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'Az7fUknFa0EcTvwYpRSCarJfFXyeRANUcj4hNh2YR6xZZYiF1FFs49eQYVKb', '2022-04-03 03:54:28', '2022-04-03 03:54:28', 2),
+(42, 'Sherla', 'sherla@gmail.com', '$2y$10$39JYXBmfqu4XU.AuCgGb0uBcXQc4Fec3ARoHswyXPtM3VHuqs6Qbq', 'IwTqEWG5FqinMtbgbs2bIpripaSSDlqprWOk3gnJA78Pu7Gk26ef0SQihBJr', '2022-04-03 03:54:28', '2022-04-03 03:54:28', 2),
 (43, 'Jessika', 'jessika@gmail.com', '$2y$10$/LACSvvOdSCfEB11vwS0H.GgMSA1aRNleFzOF9XmPUbvtbZ9vSFvu', 'OMW5qSKiE3zXv3EduD31T3a0wNoPCeNYyftw2LMWEgBYqinWqf13PupRUjKR', '2022-04-18 00:37:26', '2022-04-18 00:37:26', 2),
 (45, 'Sherli', 'sherli@gmail.com', '$2y$10$326fAGQsytkBmXuIEtsZf.JQ49qlMqBjDZGXr.XwyO8PJCAWgrw8W', 'l6eWnd6x3ks7ri2WsfULjaTKuBdSJiZ1XMswES8vXpSMJ2B6RVVgQ2R9mV6n', '2022-06-04 23:42:37', '2022-06-04 23:42:37', 2),
 (46, 'Ade', 'ade@gmail.com', '$2y$10$dKKSpWzqUBei0MoG57akjumuiAsnsA9JMmcqxKm.9YTIZlGMKHCiK', 'aklNOulLF6vHJs28tC8f4uNRYE7vIWbRkmxZUudxsJ4IHlXFFPF66jw12fVF', '2022-06-05 05:02:18', '2022-06-05 05:02:18', 2),
@@ -9245,16 +9245,16 @@ CREATE TABLE `videos` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `id_pengguna` int(11) NOT NULL,
-  `is_active` tinyint NOT NULL DEFAULT '0',
+  `is_active` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `videos`
 --
 
-INSERT INTO `videos` (`id`, `title`, `description`, `url`, `thumbnail`, `created_at`, `updated_at`, `id_pengguna`) VALUES
-(22, 'tes', 'tes aja', '/uploads/videos/1658162172-18072022.mp4', '/uploads/thumbnails/1658162172-18072022-thumbnail.png', '2022-07-18 23:36:13', '2022-07-18 23:36:13', 4),
-(23, 'desa ieu', 'banyak pemandangan', '/uploads/videos/1658162231-18072022.mp4', '/uploads/thumbnails/1658162231-18072022-thumbnail.jpg', '2022-07-18 23:37:11', '2022-07-18 23:37:11', 4);
+INSERT INTO `videos` (`id`, `title`, `description`, `url`, `thumbnail`, `created_at`, `updated_at`, `id_pengguna`, `is_active`) VALUES
+(22, 'tes', 'tes aja', '/uploads/videos/1658162172-18072022.mp4', '/uploads/thumbnails/1658162172-18072022-thumbnail.png', '2022-07-18 23:36:13', '2022-07-18 23:36:13', 4, NULL),
+(23, 'desa ieu', 'banyak pemandangan', '/uploads/videos/1658162231-18072022.mp4', '/uploads/thumbnails/1658162231-18072022-thumbnail.jpg', '2022-07-18 23:37:11', '2022-07-18 23:37:11', 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -90349,42 +90349,25 @@ ALTER TABLE `videos`
 -- Indeks untuk tabel `video_comments`
 --
 ALTER TABLE `video_comments`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_video` (`id_video`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `video_details`
 --
 ALTER TABLE `video_details`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_video` (`id_video`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `video_likes`
 --
 ALTER TABLE `video_likes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_video` (`id_video`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `video_subscribes`
 --
 ALTER TABLE `video_subscribes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_video` (`id_video`),
-  ADD KEY `id_channel` (`id_channel`);
-
---
--- Indeks untuk tabel `video_views`
---
-ALTER TABLE `video_views`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_video` (`id_video`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -90606,41 +90589,6 @@ ALTER TABLE `undangan_grup`
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
---
--- AUTO_INCREMENT untuk tabel `videos`
---
-ALTER TABLE `videos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `video_comments`
---
-ALTER TABLE `video_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `video_details`
---
-ALTER TABLE `video_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `video_likes`
---
-ALTER TABLE `video_likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `video_subscribes`
---
-ALTER TABLE `video_subscribes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `video_views`
---
-ALTER TABLE `video_views`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --

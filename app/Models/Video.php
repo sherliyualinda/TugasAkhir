@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model
 {
-    protected $fillable = ['title', 'description', 'thumbnail', 'url', 'id_pengguna'];
+    protected $fillable = ['title', 'description', 'thumbnail', 'url', 'id_pengguna', 'is_active'];
 
     public function user(){
         return $this->belongsTo('App\User', 'id_pengguna');
