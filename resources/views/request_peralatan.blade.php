@@ -55,7 +55,7 @@
                                 <th scope="col">Nama Penyewa</th>
                                 <th scope="col">NIK</th>
                                 <th scope="col">Alamat Penyewa</th>
-                                <th scope="col">KTP</th>
+                                <th scope="col">Foto</th>
                                 <th scope="col">Total Alat</th>
                                 <th scope="col">Total Hari</th>
                                 <th scope="col">Total Harga</th>

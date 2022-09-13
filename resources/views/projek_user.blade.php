@@ -133,7 +133,7 @@
                                 @foreach($orang as $index=>$orang)
                                     <tr>
                                         <td>{{ $index+1}}</td>
-                                        <td>{{ $orang->resource}}</td>
+                                        <td><a href="/sosial-media/profil/{{$orang->resource}}" style="color: black">{{$orang->resource}}</a></td>
                                     </tr>
                                     @endforeach
                                 </table>

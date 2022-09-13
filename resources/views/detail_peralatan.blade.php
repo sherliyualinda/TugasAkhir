@@ -33,7 +33,7 @@
                                     <tr>
                                         <td>Deskripsi</td>
                                         <td>:</td>
-                                        <td>{{$data->deskripsi}}</td>
+                                        <td>{!! $data->deskripsi !!}</td>
                                     </tr> 
                                 </tbody>
                             </table>

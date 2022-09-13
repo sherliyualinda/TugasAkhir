@@ -152,7 +152,7 @@ class PeralatanController extends Controller
 
     public function request($id){
         session_start();
-        $sewa = DB::select("SELECT nama,l.stok, s.qty,alamat,s.bukti_bayar,s.id_sewa,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga,p.foto_profil, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa JOIN peralatans l ON l.id_peralatan = s.id_peralatan WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        $sewa = DB::select("SELECT nama,l.stok, p.foto_profil, s.qty,alamat,s.bukti_bayar,s.id_sewa,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga,p.foto_profil, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa JOIN peralatans l ON l.id_peralatan = s.id_peralatan WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
         $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();
         return view('request_peralatan', compact('sewa','peralatan'));
     }
@@ -169,10 +169,11 @@ class PeralatanController extends Controller
             'stok'         => $stok,
             'updated_at'   => date("Y-m-d H:i:s")
         ]);
+        return redirect()->route('reqPeralatan', $request->id);
 
-        $sewa = DB::select("SELECT nama,l.stok, s.qty,alamat,s.bukti_bayar,s.id_sewa,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa JOIN peralatans l ON l.id_peralatan = s.id_peralatan WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-        $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();
-        return view('request_peralatan', compact('sewa','peralatan'));
+        // $sewa = DB::select("SELECT nama,l.stok, p.foto_profil, s.qty,alamat,s.bukti_bayar,s.id_sewa,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa JOIN peralatans l ON l.id_peralatan = s.id_peralatan WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        // $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();
+        // return view('request_peralatan', compact('sewa','peralatan'));
     }
 
     public function tolakRequest($id){
@@ -182,10 +183,10 @@ class PeralatanController extends Controller
             'updated_at' => date("Y-m-d H:i:s")
         ]);
         //return redirect('lahan/kelola_lahan');
-        
-        $sewa = DB::select("SELECT nama,l.stok, s.qty,alamat,s.bukti_bayar,s.id_sewa,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa JOIN peralatans l ON l.id_peralatan = s.id_peralatan WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-        $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();
-        return view('request_peralatan', compact('sewa','peralatan'));
+        return redirect()->route('reqPeralatan', $id);
+        // $sewa = DB::select("SELECT nama,l.stok,p.foto_profil, s.qty,alamat,s.bukti_bayar,s.id_sewa,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa JOIN peralatans l ON l.id_peralatan = s.id_peralatan WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        // $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();
+        // return view('request_peralatan', compact('sewa','peralatan'));
     }
 
     public function doneRequest(Request $request, $id, $id2, $id3, $id4){
@@ -200,10 +201,11 @@ class PeralatanController extends Controller
             'stok'         => $stok,
             'updated_at'   => date("Y-m-d H:i:s")
         ]);
+        return redirect()->route('reqPeralatan', $request->id);
 
-        $sewa = DB::select("SELECT nama,l.stok, s.qty,alamat,s.bukti_bayar,s.id_sewa,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa JOIN peralatans l ON l.id_peralatan = s.id_peralatan WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
-        $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();
-        return view('request_peralatan', compact('sewa','peralatan'));
+        // $sewa = DB::select("SELECT nama,l.stok,p.foto_profil, s.qty,alamat,s.bukti_bayar,s.id_sewa,s.id_peralatan, nik, foto_ktp, id_penyewa, s.totalHari, s.totalHarga, s.status FROM pengguna p join sewa_peralatans s on p.id_pengguna = s.id_penyewa JOIN peralatans l ON l.id_peralatan = s.id_peralatan WHERE id_pengguna = ANY (SELECT s.id_penyewa FROM peralatans l join sewa_peralatans s on l.id_peralatan = s.id_peralatan) and s.id_peralatan = $id  or p.id_pengguna = '".Auth::user()->pengguna->id_pengguna."'");
+        // $peralatan = Peralatan::select('*')->where('id_peralatan', $id)->get();
+        // return view('request_peralatan', compact('sewa','peralatan'));
     }
 
     public function transaksi(){

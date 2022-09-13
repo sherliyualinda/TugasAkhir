@@ -478,7 +478,7 @@
 											{{ $item->video->title }}
 										</div>
 										<div class="identity-scope">
-											<span>{{ $item->video->pengguna->nama }}</span>
+											<span></span>
 											@if (!is_null($item->video->detail))
 											<span class="channel">{{ number_format($item->video->detail->views) . ' x ditonton' }}</span>
 											@endif

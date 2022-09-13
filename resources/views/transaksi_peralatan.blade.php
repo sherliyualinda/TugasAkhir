@@ -73,7 +73,7 @@
                                 <th scope="col">Total Harga</th>
                                 <th scope="col">Bukti Bayar</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Detail Sewa Lahan</th>
+                                <th scope="col">Bayar Sewa Alat</th>
                                 <th scope="col">Chat</th>
                                
 
